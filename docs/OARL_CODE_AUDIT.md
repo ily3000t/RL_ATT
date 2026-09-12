@@ -197,6 +197,8 @@ BO 最大值仍保留 actor 计算图，actor loss 对干净策略和扰动策�
 
 BO 注册的是 `.item()`，GP/suggest 过程不求梯度；但保存的原始 objective tensor 有 actor 图，取最大的那个反传。参数不通过 GP 可微优化；返回值并非每条 transition 各自找到的最坏扰动。`max([])` 在 attack_optimizing_times=0 时失败，**不能通过把次数设 0 获得 Clean Victim**。
 
+核对 `bayesian-optimization==1.2.0` 发布源码后，其默认 GP 为 Matérn(nu=2.5)、alpha=1e-6、normalize_y=True、5 次 kernel optimizer restart。UCB 为 mean+kappa·std；acquisition 内部先评估 10000 个随机候选，再从 10 个初值运行 L-BFGS-B。这些是代理函数优化，不是额外的真实 actor objective 查询。旧版 util 给 SciPy minimize 传入二维 x0，因此升级 SciPy 可能直接触发兼容错误；该依赖不能任意更新。
+
 扰动为 `δ=(u1-1)s+u2`，逐元素满足 `|δ_j| ≤ 0.2|s_j|+0.05`。这不是统一的 additive epsilon：只有某特征原本处于 [0,1] 时，才有该特征绝对改变量不超过 0.25。没有 clip 到 observation_space、范数投影、one-hot/lane 离散约束、缺失邻车 mask 或物理可行性检查；lane 编号和不存在车道的 0 距离也会被扰动。
 
 本轮不包装 OARLBOAttack。后续等价封装必须保留 batch 共享变换、s/s' 双项 objective、5 次实际评估、GP/依赖版本、固定 BO seed、actor 梯度和 RNG 消耗；独立在线评估若换成单状态 objective，必须明确记为不同使用方式并验证。
@@ -238,7 +240,7 @@ BO 注册的是 `.item()`，GP/suggest 过程不求梯度；但保存的原始 o
 
 ## 12. Reproducibility 审计与本轮执行边界
 
-- Python random、全局 NumPy 和 Torch 使用 CLI seed；HighwayEnv 没有自己的 seed 实现，SUMO seed 与 CLI seed 无关联。
+- Python random、全局 NumPy 和 Torch 使用 CLI seed；HighwayEnv 没有自己的 seed 实现，Gym 0.15.4 基类的 seed 方法直接 return，SUMO seed 与 CLI seed 无关联。
 - `reset_times` 从 0 开始，偶数 reset 改写 sumocfg，奇数复用，因此回合种子为 **0,0,2,2,4,4,...**。BO 每次单独固定 random_state=0。仅记录一个 `--seed` 无法表达所有随机性。
 - `_findstate()` 在 reset、step 前后、next observation 中的调用次数影响 NumPy；BO 内未使用的 action sampling 影响 Torch。不能随意合并调用来“优化”代码。
 - 原 main 不记录 commit、版本、配置快照和启动命令，也没有固定 SciPy/scikit-learn；新 runner 负责这些外围记录，保持上游执行代码不变。
