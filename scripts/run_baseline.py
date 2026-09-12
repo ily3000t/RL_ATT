@@ -60,6 +60,7 @@ def main():
     parser.add_argument("--label", default="smoke")
     parser.add_argument("--timeout", type=int, default=600)
     parser.add_argument("--cpu", action="store_true", help="Hide CUDA to match the upstream CPU setup")
+    parser.add_argument("--profile", action="store_true", help="Record call counts without editing upstream source")
     args = parser.parse_args()
     if git("status", "--porcelain"):
         parser.error("Commit or preserve all workspace changes before running; the snapshot must identify a clean commit.")
@@ -113,7 +114,10 @@ def main():
         runtime_paths = [str(path) for path in (prefix, prefix / "Library/bin", prefix / "Scripts")
                          if path.is_dir()]
         env["PATH"] = os.pathsep.join(runtime_paths + [env.get("PATH", "")])
-    command = [executable, "main.py"]
+    command = [executable]
+    if args.profile:
+        command.extend(["-m", "cProfile", "-o", str(run_dir / "calls.pstats")])
+    command.append("main.py")
     for key, value in config.items():
         command.extend(["--" + key, str(value)])
     probe = (
@@ -137,6 +141,7 @@ def main():
         "runtime_path_prepend": runtime_paths,
         "sumo_executable": shutil.which("sumo"), "host_os": platform.platform(),
         "timeout_seconds": args.timeout, "source_sha256_before": source_hashes,
+        "profile_enabled": args.profile,
         "status": "preparing",
     }
     manifest_path = run_dir / "manifest.json"
