@@ -1,0 +1,16 @@
+# Reproduction-check dependency choices, not claimed to be the authors' lockfile.
+# Python 3.7.16 on Windows. Keep the original ../requirements.txt unchanged.
+# BO 1.2.0 passes a 2D x0 to scipy.optimize.minimize; newer SciPy rejects it.
+scipy==1.7.3
+scikit-learn==0.24.2
+cloudpickle==1.2.2
+pyglet==1.3.2
+future==0.18.3
+six==1.16.0
+cycler==0.11.0
+kiwisolver==1.3.1
+pyparsing==2.4.7
+python-dateutil==2.8.2
+pytz==2023.3
+joblib==1.1.1
+threadpoolctl==2.2.0
