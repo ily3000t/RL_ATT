@@ -57,6 +57,7 @@ def main():
             "mean_observed_speed": state["speed_sum"] / max(1, state["steps"]),
             "training_updates_total": agent.update_count,
             "last_training_js": agent.last_js,
+            "bo_duplicate_proposals_total": agent.bo_duplicate_proposals,
             "dual_multiplier": float(agent.dual_cst.detach().exp().item()),
             "trajectory_sha256": state["trace"].hexdigest(),
             "elapsed_seconds": time.monotonic() - state["started"],
@@ -80,6 +81,8 @@ def main():
                 oarl.Agent = patched_agent
             self.update_count = 0
             self.last_js = None
+            self.bo_duplicate_proposals = 0
+            self.current_bo_proposals = None
             self.probes = []
             self.policy_stream = TorchPolicyStream(seeds["policy_seed"]) if config["protocol"] == "controlled" else None
             state["agent"] = self
@@ -93,9 +96,19 @@ def main():
                 return super(RecordedAgent, self).select_action_single(observation, mode)
 
         def get_optimal_perturb_Bayes(self, *values):
+            self.current_bo_proposals = []
             result = super(RecordedAgent, self).get_optimal_perturb_Bayes(*values)
+            if len(self.current_bo_proposals) != self.attack_optimizing_times:
+                raise ValueError("BO evaluation count differs from configuration")
+            self.bo_duplicate_proposals += len(self.current_bo_proposals) - len(set(self.current_bo_proposals))
+            self.current_bo_proposals = None
             self.last_js = float(result.detach().item())
             return result
+
+        def js_d_loss(self, u1, u2):
+            if self.current_bo_proposals is not None:
+                self.current_bo_proposals.append((float(u1), float(u2)))
+            return super(RecordedAgent, self).js_d_loss(u1, u2)
 
         def train_model(self):
             super(RecordedAgent, self).train_model()
