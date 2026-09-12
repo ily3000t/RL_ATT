@@ -6,7 +6,7 @@
 
 ## 1. 范围、文件清单与来源
 
-本轮不接入 Zero-One，不建立新 Attack API，不开发 Ours，不改 observation/action/reward/BO 公式。`Zero-OneAttack-main` 只检查了目录和 Git 状态，未修改源码。
+本轮不接入 Zero-One，不建立新 Attack API，不开发 Ours，不改存活车辆的 observation/action/reward 或 BO 公式。唯一上游源码修复是让车辆移除后的既有终止分支可达，见第 7 节。`Zero-OneAttack-main` 只检查了目录和 Git 状态，未修改源码。
 
 | 文件 | 职责 |
 |---|---|
@@ -142,7 +142,11 @@ r = v/35
 - reset 等待 Auto 出现没有超时或 `getMinExpectedNumber()` 保护。没有 Gym TimeLimit wrapper 配置。
 - 网络长 40000 并非 episode 终止条件；虽然返回 DistanceTravelled，主循环完全忽略该值。
 
-这些是上游行为/缺陷，本轮不把改变失败路径或观测语义混成兼容修复。
+实测原始 12 回合、max_step=200、seed=0 配置在第 2 回合第 51 步复现 `KeyError: 'Auto'`：SUMO 在 t=132 的换道碰撞中移除 Auto，训练尚未开始。commit `155b1c5` 增加一个 guard：仅 Auto 仍存在时执行该处 `obs_to_state()`，否则保留最后有效 state，让原有 `end=True/reward=0/DistanceTravelled=0` 分支执行。后续 `6acdb6f` 恢复 patch 工具误删的末尾空行，保证文件其他字节不变。
+
+此修复不改变存活步观测顺序、奖励公式、action、BO 或损失函数；但它把原先未定义的崩溃路径补全为终止 transition。最后有效 state 作为 terminal next observation 的约定已明确记录，可能进入后续 BO 的 next-state 项，不能声称与原本崩溃后的“轨迹”数值等价。没有将 observation 最后一维改为 -1，也没有新增碰撞罚分。其他已列出的语义问题仍保留。
+
+两个回归测试分别覆盖 removed-ego 终止返回和 surviving-ego 调用顺序；removed-ego 测试在原始版本失败、修复后通过。相同 12×2 非终止 smoke 的两份 CSV 与关键调用计数逐项一致；修复后 12 回合正常 horizon 检查完成 739 次交互、11 次训练更新，未再触发已观察到的崩溃。完整证据与结论边界见 [BASELINE_RUNTIME_CHECKS.md](BASELINE_RUNTIME_CHECKS.md)。
 
 ## 8. Actor、Critic、Replay 与训练更新
 
@@ -243,10 +247,10 @@ BO 注册的是 `.item()`，GP/suggest 过程不求梯度；但保存的原始 o
 - Python random、全局 NumPy 和 Torch 使用 CLI seed；HighwayEnv 没有自己的 seed 实现，Gym 0.15.4 基类的 seed 方法直接 return，SUMO seed 与 CLI seed 无关联。
 - `reset_times` 从 0 开始，偶数 reset 改写 sumocfg，奇数复用，因此回合种子为 **0,0,2,2,4,4,...**。BO 每次单独固定 random_state=0。仅记录一个 `--seed` 无法表达所有随机性。
 - `_findstate()` 在 reset、step 前后、next observation 中的调用次数影响 NumPy；BO 内未使用的 action sampling 影响 Torch。不能随意合并调用来“优化”代码。
-- 原 main 不记录 commit、版本、配置快照和启动命令，也没有固定 SciPy/scikit-learn；新 runner 负责这些外围记录，保持上游执行代码不变。
+- 原 main 不记录 commit、版本、配置快照和启动命令，也没有固定 SciPy/scikit-learn；新 runner 负责这些外围记录，不对导出的源码做运行时改写。上游源码差异仅为已提交的终止 guard。
 - 默认 `python main.py` 首个失败是缺少 Gym；默认 Python 还缺 PyTorch 和 bayesian-optimization，已有 Gym 0.26.1 的接口也不匹配。Python 3.12 不能满足旧版本 requirements，不能通过混装最新版就声称复现。
 - 隔离 runner 从干净 HEAD 导出训练文件，在 `.local/runs/<run-id>/source` 执行；reset 改写的是副本配置。raw results、日志、checkpoint 与环境不进入 Git。
-- `configs/oarl_smoke.json` 只执行 12×2 步，成功时恰有一次 train_model，足够检查 BO 与四类 optimizer 的调用，却不足以测试碰撞终止、长时训练、checkpoint 保存、收敛或论文数值。
+- `configs/oarl_smoke.json` 只执行 12×2 步，成功时恰有一次 train_model，足够检查 BO 与四个 optimizer 的调用，却不足以测试碰撞终止、长时训练、checkpoint 保存、收敛或论文数值。另以 `oarl_horizon_check.json` 检查 1 回合 200 步，以 `oarl_training_check.json` 检查最多 12×200 步并复现/验证终止修复；提前终止时实际步数小于上限。
 - 本轮运行命令、实际版本、失败与通过证据集中记录于 [BASELINE_RUNTIME_CHECKS.md](BASELINE_RUNTIME_CHECKS.md)。成功 smoke 不是 `v0.1.0-oarl-reproduced` 的依据。
 
 ## 13. 下一步的顺序与门槛
