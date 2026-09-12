@@ -205,7 +205,10 @@ class Agent():
         for i in range(self.attack_optimizing_times):
             probe_para = optimizer.suggest(util)
             target = self.js_d_loss(**probe_para)
-            optimizer.register(probe_para, target.item())
+            # BO 1.2 rejects duplicate points; retain the existing GP observation.
+            # Still evaluate all five proposals to preserve tensors and RNG use.
+            if optimizer.space.params_to_array(probe_para) not in optimizer.space:
+                optimizer.register(probe_para, target.item())
 
             target_list.append(target.item())
             target_list_grads.append(target)
@@ -260,7 +263,6 @@ class Agent():
         name = './' + model_path + '/policy%d' % model_name
         torch.save(self.actor, "{}.pkl".format(name))
         print("The model is saved!!!")
-
 
 
 
