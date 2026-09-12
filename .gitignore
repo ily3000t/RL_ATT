@@ -1,0 +1,43 @@
+# Local runtimes, immutable run snapshots, raw results and audit scratch files.
+/.local/
+/.venv*/
+/venv/
+/env/
+/model/
+/models/
+/checkpoint/
+/checkpoints/
+/result/
+/results/
+/logs/
+/runs/
+/trajectories/
+/wandb/
+/mlruns/
+
+# Model weights and large binary experiment artifacts (small summaries belong in docs).
+*.pt
+*.pth
+*.pkl
+*.ckpt
+*.onnx
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.log
+*.tfevents.*
+
+# Python/build/editor artifacts and credentials.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/

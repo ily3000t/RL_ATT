@@ -393,7 +393,9 @@ class HighwayEnv(gym.Env):
                 self.numberOfLaneChanges += 1
 
         traci.simulationStep()
-        self.state = self.obs_to_state()
+        # A removed ego has no subscription state; retain its last valid observation.
+        if self.AutoCarID in traci.vehicle.getIDList():
+            self.state = self.obs_to_state()
 
         self.VehicleIds = traci.vehicle.getIDList()
         if self.AutoCarID in traci.vehicle.getIDList():

@@ -1,0 +1,143 @@
+{
+  "upstream_url": "https://github.com/TMIS-Turbo/OARL",
+  "upstream_commit": "29e5c0e2497cd0bd27b6cf83c5bce800a3e2c54a",
+  "upstream_tree": "dd659d945ba084c947fc7e316320ed7d2c0d4b19",
+  "upstream_commit_date": "2025-05-13T15:53:49Z",
+  "local_baseline_commit": "e1abb405c147e613a9bc5b247d5ae7c08f423ec8",
+  "baseline_tag": "upstream-oarl-29e5c0e2497c",
+  "tree_verified_equal": true,
+  "initial_git_repository": false,
+  "license_file_present": false,
+  "github_license": null,
+  "source_of_verification": "GitHub REST commits/master and recursive Git tree, compared using Git blob SHA-1 and git write-tree",
+  "verified_at": "2026-09-12T14:54:26.2098122+08:00",
+  "target_repository": {
+    "url": "https://github.com/ily3000t/RL_ATT",
+    "private": false,
+    "size_kb": 0,
+    "branches": [],
+    "push_attempted": false
+  },
+  "files": [
+    {
+      "path": "Data/._StraightRoad.net.xml",
+      "upstream_git_blob": "bf5c09a4cb322a40c1805b393defa3aa26e29403",
+      "mode": "100755",
+      "size": 4096,
+      "initially_present": false,
+      "sha256": "e4c32f6914a758a2e0d8dfd7ca5cbb89b3b221f4238cc2f24adbda64284f42fc"
+    },
+    {
+      "path": "Data/._StraightRoad.rou.xml",
+      "upstream_git_blob": "7e6b92faba037dd9c4b7c6c53083983f37d3f0b6",
+      "mode": "100755",
+      "size": 4096,
+      "initially_present": false,
+      "sha256": "4ac481cdaa7b7031da1eb2fcfe9c2d9dba46ff7430126e82726c9a86e1e3134a"
+    },
+    {
+      "path": "Data/._StraightRoad.sumocfg",
+      "upstream_git_blob": "e6fa976ef94326a14ec3878d6e124a33678d80a3",
+      "mode": "100755",
+      "size": 4096,
+      "initially_present": false,
+      "sha256": "f8ec5a0da994c27def0077c32e1e5a204c7efe108d1ed6e04c884f0efc59e36a"
+    },
+    {
+      "path": "Data/StraightRoad.net.xml",
+      "upstream_git_blob": "d0571163952147acc9eca96cfd93bafec1339cf7",
+      "mode": "100755",
+      "size": 2146,
+      "sha256": "326419600cdcd05640f6f933f9ef460563f2bf81c0265eaaf7449197097f319c",
+      "initially_present": true
+    },
+    {
+      "path": "Data/StraightRoad.rou.xml",
+      "upstream_git_blob": "0c3e9d99a58f3c3a51256e43a82589586edea51c",
+      "mode": "100755",
+      "size": 1421,
+      "sha256": "9816a8e6ec0e701330cfb7e601a744535768ffc1c683b7fcb1cacb2c3e46ce1c",
+      "initially_present": true
+    },
+    {
+      "path": "Data/StraightRoad.sumocfg",
+      "upstream_git_blob": "3b4683abe65c56198581c21ed242b61ab7aedf72",
+      "mode": "100755",
+      "size": 690,
+      "sha256": "ce80b076f2c4e4c4971c658e21ba3b64380131466e5e61b765dbfdc2f29602b7",
+      "initially_present": true
+    },
+    {
+      "path": "Environment/environment/__init__.py",
+      "upstream_git_blob": "890d843aaff901b148ef67760b8630fe443056e6",
+      "mode": "100755",
+      "size": 138,
+      "sha256": "152e2813345f6c609b0a860bae43a36e3be462d0075fa4ec36eba031851e7eb7",
+      "initially_present": true
+    },
+    {
+      "path": "Environment/environment/envs/__init__.py",
+      "upstream_git_blob": "c01bafa4f68a9acf92e24fe8b361209cc62bc59d",
+      "mode": "100755",
+      "size": 64,
+      "sha256": "0c41766b6946976ca08a87ca4024017cc468a36c010c74773656f92f28238556",
+      "initially_present": true
+    },
+    {
+      "path": "Environment/environment/envs/highway_env.py",
+      "upstream_git_blob": "27577f070595fc4320b9a5d0e108b7a15a1aae47",
+      "mode": "100755",
+      "size": 21376,
+      "sha256": "5cdf4f98beb40295fbb9aa7489e555e6fbd16bef181228b805f9fc7c360e2523",
+      "initially_present": true
+    },
+    {
+      "path": "Environment/setup.py",
+      "upstream_git_blob": "7e5010b5d8e87d685cd9eaaaea63a752af98cefd",
+      "mode": "100755",
+      "size": 97,
+      "sha256": "9bef7b2ac7b1edeb76471638a468f6a28f857f257be134f9847e6dca1a37e7f2",
+      "initially_present": true
+    },
+    {
+      "path": "README.md",
+      "upstream_git_blob": "c0196383c2bdb62fda198857e2769b2fe16c24ed",
+      "mode": "100644",
+      "size": 4159,
+      "sha256": "d40ff2ce73974fe3c4d304fc0ab0f754dcbd175a3760767036472ed526ed912f",
+      "initially_present": true
+    },
+    {
+      "path": "framework.jpg",
+      "upstream_git_blob": "6d8aa225065dc08f1dfa25ddbd0f67c6382fb4a9",
+      "mode": "100644",
+      "size": 680705,
+      "sha256": "8ec2374a4fda12bee8aba7f06f470e5f18d203f1e848e051a9a24ee793bc5839",
+      "initially_present": true
+    },
+    {
+      "path": "main.py",
+      "upstream_git_blob": "3e627c511c8f2fe63522b812b7473edef7c0b905",
+      "mode": "100755",
+      "size": 4770,
+      "sha256": "d09330c94182ac55fec8d8e00b7181379bad958b98becb72c3ab7007cccf2806",
+      "initially_present": true
+    },
+    {
+      "path": "oarl.py",
+      "upstream_git_blob": "9519a7c6668e4b06a9311fb7b18cbeae19b83c80",
+      "mode": "100755",
+      "size": 9963,
+      "sha256": "2cac95b0419fb9cd90328bf02122d2aef21f1b76b5b734470c6830da04936f4e",
+      "initially_present": true
+    },
+    {
+      "path": "requirements.txt",
+      "upstream_git_blob": "bdc3810e793b974492b5330d4875d39bdbc5aa41",
+      "mode": "100644",
+      "size": 122,
+      "sha256": "381ce7320502d7a7ebf516f0ae062d036360cdce60828bb535f7783781b4c489",
+      "initially_present": true
+    }
+  ]
+}
