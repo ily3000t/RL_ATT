@@ -33,7 +33,8 @@ def write_json(path, data):
 
 
 def capture(command, env):
-    result = subprocess.run(command, capture_output=True, text=True, env=env)
+    result = subprocess.run(command, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace", env=env)
     return {"command": command, "returncode": result.returncode,
             "stdout": result.stdout, "stderr": result.stderr}
 
@@ -100,10 +101,18 @@ def main():
     source_hashes = {p.relative_to(source_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                      for p in source_dir.rglob("*") if p.is_file()}
     env = os.environ.copy()
-    overrides = {"MPLBACKEND": "Agg", "PYTHONHASHSEED": str(config["seed"]), "PYTHONUNBUFFERED": "1"}
+    overrides = {"MPLBACKEND": "Agg", "MPLCONFIGDIR": str(run_dir / "matplotlib"),
+                 "PYTHONHASHSEED": str(config["seed"]), "PYTHONUNBUFFERED": "1",
+                 "PYTHONIOENCODING": "utf-8"}
     if args.cpu:
         overrides["CUDA_VISIBLE_DEVICES"] = ""
     env.update(overrides)
+    runtime_paths = []
+    if os.name == "nt":
+        prefix = Path(executable).parent
+        runtime_paths = [str(path) for path in (prefix, prefix / "Library/bin", prefix / "Scripts")
+                         if path.is_dir()]
+        env["PATH"] = os.pathsep.join(runtime_paths + [env.get("PATH", "")])
     command = [executable, "main.py"]
     for key, value in config.items():
         command.extend(["--" + key, str(value)])
@@ -125,6 +134,7 @@ def main():
         "sumo_seed_note": "Upstream reset ignores CLI seed; episodes use 0,0,2,2,...",
         "agent_defaults": agent_defaults((source_dir / "oarl.py").read_text(encoding="utf-8")),
         "environment_overrides": overrides, "SUMO_HOME": env.get("SUMO_HOME"),
+        "runtime_path_prepend": runtime_paths,
         "sumo_executable": shutil.which("sumo"), "host_os": platform.platform(),
         "timeout_seconds": args.timeout, "source_sha256_before": source_hashes,
         "status": "preparing",
