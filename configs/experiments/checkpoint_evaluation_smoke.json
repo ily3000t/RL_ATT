@@ -1,0 +1,8 @@
+{
+  "checkpoints": [100],
+  "episodes": 2,
+  "max_steps": 2,
+  "action_selection": "greedy_argmax",
+  "sumo_schedule": "phase_separated_derived",
+  "gate_enabled": false
+}
