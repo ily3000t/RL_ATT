@@ -19,7 +19,7 @@
 
 检查完整上游 tree 后没有发现 LICENSE/COPYING 或明确的源码再分发授权；GitHub repository metadata 的 `license` 为空。保留 README 中原作者、论文引用和来源，不擅自添加替代许可证。
 
-目标 <https://github.com/ily3000t/RL_ATT> 在检查时为 **public**，API 返回 size=0、branches=[]。因此本轮不向公开目标上传完整上游代码。后续先将目标设为 private，或取得明确的公开再分发授权，再重新检查远端状态后推送。不会 force push、覆盖未知内容或改动 Git credential。
+目标 <https://github.com/ily3000t/RL_ATT> 首次检查时为 **public**，API 返回 size=0、branches=[]。暂停期间出现了指向 `f99de33` 的远端跟踪分支，随后 API 确认目标仍为 public、默认分支已变为 baseline/oarl-reproduce；这不是本代理执行的 push。因此后续不再按空仓库处理，本代理不继续向公开目标上传完整上游代码。先将目标设为 private，或取得明确的公开再分发授权，再重新检查远端状态后推送。不会 force push、覆盖未知内容或改动 Git credential。
 
 本机 Git HTTPS 到 github.com:443 连接失败；GitHub REST API 可读。这是网络连接失败，未据此断言认证失败或没有写权限。`gh` 未安装。已配置本地 `upstream` 和 `origin` URL，没有修改全局 Git 设置。安全手动上传流程见 [GIT_PUBLISH.md](GIT_PUBLISH.md)。
 

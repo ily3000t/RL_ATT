@@ -1,8 +1,10 @@
 # 安全上传与恢复命令
 
-2026-09-12 检查时 `ily3000t/RL_ATT` 为 public、size=0、branches=[]；上游没有明确许可证。**先在 GitHub 将目标改为 private，或取得明确的公开再分发授权，再执行上传。** 不能把这里记录的空仓库状态当作未来仍为空的保证。
+2026-09-12 首次检查时 `ily3000t/RL_ATT` 为 public、size=0、branches=[]。暂停期间，本地出现指向 `f99de33` 的 `origin/baseline/oarl-reproduce`；15:30 左右再次查询 API，目标仍为 public，default_branch 已变为 `baseline/oarl-reproduce`。不能再按空仓库处理，也不能推断是谁完成了这次同步。
 
-本轮未 push；没有验证写入权限。Git HTTPS 连接 github.com:443 失败，而 REST metadata 可读。未修改 credential、未 force push、未覆盖远端、未改写历史。`origin` 和 `upstream` 已在本地配置。
+上游没有明确许可证。**先在 GitHub 将目标改为 private，或取得明确的公开再分发授权，再执行上传。** 现有远端代码不构成许可证授权，也不意味着后续可以直接覆盖远端。
+
+本代理未执行 push，没有验证写入权限。重新检查时 Git HTTPS 连接 github.com:443 仍失败，而 REST metadata 可读。未修改 credential、未 force push、未覆盖远端、未改写历史。`origin` 和 `upstream` 已在本地配置。
 
 在 PowerShell 中，从本轮完成后的本地仓库执行以下完整 Git 流程。若当前认证失败，只解决一次认证/网络问题后由用户主动重试，不循环尝试、不替换凭据配置。
 
@@ -21,11 +23,23 @@ $remoteRefs = @(git ls-remote origin)
 if ($LASTEXITCODE -ne 0) {
     throw '远端检查失败：停止，不修改 credential，不反复重试。'
 }
-if ($remoteRefs.Count -ne 0) {
-    git fetch origin
-    if ($LASTEXITCODE -ne 0) { throw 'fetch 失败，停止。' }
-    git log --oneline --decorate --graph --all -30
-    throw '远端已有内容：先审阅历史并确定整合方案；此脚本不会覆盖或自动合并未知内容。'
+git fetch origin
+if ($LASTEXITCODE -ne 0) { throw 'fetch 失败，停止。' }
+git log --oneline --decorate --graph --all -30
+foreach ($branch in @('main', 'baseline/oarl-reproduce')) {
+    git show-ref --verify --quiet "refs/remotes/origin/$branch"
+    if ($LASTEXITCODE -eq 0) {
+        git merge-base --is-ancestor "refs/remotes/origin/$branch" "refs/heads/$branch"
+        if ($LASTEXITCODE -ne 0) {
+            throw "远端 $branch 含本地未包含的历史：停止，先审阅并在独立分支整合。"
+        }
+    }
+}
+$remoteTag = @(git ls-remote --tags origin refs/tags/upstream-oarl-29e5c0e2497c)
+if ($LASTEXITCODE -ne 0) { throw 'tag 检查失败，停止。' }
+$localTag = git rev-parse refs/tags/upstream-oarl-29e5c0e2497c
+if ($remoteTag.Count -gt 0 -and ($remoteTag[0] -split '\s+')[0] -ne $localTag) {
+    throw '远端同名 tag 与本地不同，停止，不覆盖 tag。'
 }
 
 # 仅在已确认 private 或已获公开再分发授权后执行。
@@ -39,7 +53,7 @@ git branch --set-upstream-to=origin/baseline/oarl-reproduce baseline/oarl-reprod
 git ls-remote origin
 ```
 
-若在最后检查后远端出现并发更新，普通非 force push 会拒绝不符合 fast-forward 的更新；不要通过 force 绕过。若远端并非空仓库，应单独检查双方历史、在独立分支整合并审阅，不能使用 reset 或重写共享 main。
+若在最后检查后远端出现并发更新，普通非 force push 会拒绝不符合 fast-forward 的更新；不要通过 force 绕过。以上只允许已有分支的历史完全包含于本地时安全推进，不改动其他远端分支；若出现分叉，单独检查双方历史、在独立分支整合并审阅，不能使用 reset 或重写共享 main。远端目前的默认分支也不会被此脚本更改；确认 main 完整后可由用户在 GitHub 设置默认分支。
 
 需要查验原始代码时，可在干净工作区创建新的检查分支，不回退现有 main：
 
