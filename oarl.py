@@ -85,6 +85,7 @@ class Agent():
                  dual_cst_lr=5e-4,
                  target_robust_error=0.0001,
                  attack_optimizing_times=5,
+                 attack_seed=0,
                  ):
         super(Agent, self).__init__()
 
@@ -99,6 +100,7 @@ class Agent():
         self.qf_lr = qf_lr
         self.dual_cst_lr = dual_cst_lr
         self.attack_optimizing_times = attack_optimizing_times
+        self.attack_seed = attack_seed
         self.target_robust_error = target_robust_error
 
         # Main network
@@ -198,7 +200,7 @@ class Agent():
         perturb_list = []
 
         pbounds = {'u1': (0.8, 1.2), 'u2': (-0.05, 0.05)}
-        optimizer = BayesianOptimization(f=self.js_d_loss, pbounds=pbounds, random_state=0)
+        optimizer = BayesianOptimization(f=self.js_d_loss, pbounds=pbounds, random_state=self.attack_seed)
         util = UtilityFunction(kind='ucb', kappa=1.0, xi=0.1)
         for i in range(self.attack_optimizing_times):
             probe_para = optimizer.suggest(util)
