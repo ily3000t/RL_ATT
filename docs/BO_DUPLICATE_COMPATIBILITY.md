@@ -38,3 +38,13 @@ one GP observation, retained autograd and finite nonzero actor gradients. The
 experiment recorder also verifies the number of objective evaluations on every
 update and records the cumulative number of duplicate suggestions. These checks
 diagnose execution; they do not select actions or disable an attack.
+
+The replacement cohort started at commit
+`9d0086c` in `.local/runs/20260912T085351Z-protocol-a-oarl-long-compatible`.
+Seed 0's first 96 completed episode records exactly matched the aborted run
+(excluding elapsed time and the newly added duplicate counter), then it passed
+episode 97 and saved/verified policy100. By episode 102 it had handled two
+duplicate proposals. Seed 2's policy100 weight hash and probe probabilities also
+matched its pre-change checkpoint exactly. All five replacement runs passed
+their first checkpoint. Final completion is reported separately after episode
+400 and held-out validation; these observations are not the final result.

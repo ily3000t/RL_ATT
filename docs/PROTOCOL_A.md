@@ -13,6 +13,11 @@ known upstream behavior and the previously committed removed-ego compatibility
 guard. No explicit upstream license was found; local development does not grant
 permission to redistribute the source publicly.
 
+Long training subsequently exposed duplicate BO proposals rejected by the
+pinned library. The minimal caching compatibility extension and retained failed
+cohort are documented in `BO_DUPLICATE_COMPATIBILITY.md`. Successful runs use
+that documented extension; the unmodified duplicate-registration path crashes.
+
 The user supplied the paper/configuration comparison and selected **only five
 Protocol A runs**, with run seeds 0–4. These are controlled-seed reproductions of
 the training procedure, not exact reproductions of the unpublished paper seeds
