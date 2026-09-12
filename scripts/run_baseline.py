@@ -123,7 +123,7 @@ def main():
         "config_file": config_relative, "config": config, "seed": config["seed"],
         "sumo_seed_schedule": [2 * (episode // 2) for episode in range(config["episodes"])],
         "sumo_seed_note": "Upstream reset ignores CLI seed; episodes use 0,0,2,2,...",
-        "agent_defaults": agent_defaults((source_dir / "oarl.py").read_text()),
+        "agent_defaults": agent_defaults((source_dir / "oarl.py").read_text(encoding="utf-8")),
         "environment_overrides": overrides, "SUMO_HOME": env.get("SUMO_HOME"),
         "sumo_executable": shutil.which("sumo"), "host_os": platform.platform(),
         "timeout_seconds": args.timeout, "source_sha256_before": source_hashes,
