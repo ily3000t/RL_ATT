@@ -70,7 +70,14 @@ def main():
     class RecordedAgent(original_agent):
         def __init__(self, *agent_args, **kwargs):
             kwargs["attack_seed"] = seeds["attack_seed"]
-            super(RecordedAgent, self).__init__(*agent_args, **kwargs)
+            # Upstream uses super(Agent, self), resolving Agent in its module.
+            # Keep that original class binding while its constructor executes.
+            patched_agent = oarl.Agent
+            oarl.Agent = original_agent
+            try:
+                super(RecordedAgent, self).__init__(*agent_args, **kwargs)
+            finally:
+                oarl.Agent = patched_agent
             self.update_count = 0
             self.last_js = None
             self.probes = []
