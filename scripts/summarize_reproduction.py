@@ -81,6 +81,7 @@ def main():
                           "interaction_steps": sum(row["steps"] for row in rows),
                           "training_updates": rows[-1]["training_updates_total"],
                           "bo_duplicate_proposals": rows[-1]["bo_duplicate_proposals_total"],
+                          "js_float64_evaluations": rows[-1]["js_float64_evaluations_total"],
                           "bo_objective_evaluations": rows[-1]["training_updates_total"] * manifest["agent_defaults"]["attack_optimizing_times"] if config["victim"] == "oarl" else 0,
                           "training_return_mean": statistics.mean(row["episode_return"] for row in rows),
                           "last100_training_return_mean": statistics.mean(row["episode_return"] for row in rows[-100:]),

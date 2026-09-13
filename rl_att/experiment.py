@@ -58,6 +58,7 @@ def main():
             "training_updates_total": agent.update_count,
             "last_training_js": agent.last_js,
             "bo_duplicate_proposals_total": agent.bo_duplicate_proposals,
+            "js_float64_evaluations_total": agent.js_float64_evaluations,
             "dual_multiplier": float(agent.dual_cst.detach().exp().item()),
             "trajectory_sha256": state["trace"].hexdigest(),
             "elapsed_seconds": time.monotonic() - state["started"],
@@ -111,14 +112,32 @@ def main():
             return super(RecordedAgent, self).js_d_loss(u1, u2)
 
         def train_model(self):
-            super(RecordedAgent, self).train_model()
-            self.update_count += 1
-            # An error diagnostic, not an action filter or an update gate.
-            for network in (self.actor, self.qf1, self.qf2, self.qf1_target, self.qf2_target):
-                if any(not bool(torch.isfinite(p).all()) for p in network.parameters()):
-                    raise FloatingPointError("Non-finite trained parameters")
-            if not bool(torch.isfinite(self.dual_cst.exp()).all()):
-                raise FloatingPointError("Non-finite robust multiplier")
+            try:
+                super(RecordedAgent, self).train_model()
+                self.update_count += 1
+                # An error diagnostic, not an action filter or an update gate.
+                for network in (self.actor, self.qf1, self.qf2, self.qf1_target, self.qf2_target):
+                    if any(not bool(torch.isfinite(p).all()) for p in network.parameters()):
+                        raise FloatingPointError("Non-finite trained parameters")
+                if not bool(torch.isfinite(self.dual_cst.exp()).all()):
+                    raise FloatingPointError("Non-finite robust multiplier")
+            except Exception as error:
+                diagnostic = {"error": repr(error), "episode": state["episode"] + 1,
+                              "step": state["steps"], "update_count": self.update_count,
+                              "git_commit": manifest["git_commit"], "run_seed": config["run_seed"]}
+                arrays = {}
+                for name in ("obs1", "obs2", "prob", "prob_next", "dual_cst"):
+                    value = getattr(self, name, None)
+                    if value is not None:
+                        arrays[name] = value.detach().cpu().numpy()
+                for name in ("actor", "qf1", "qf2", "qf1_target", "qf2_target"):
+                    for key, parameter in getattr(self, name).named_parameters():
+                        arrays[name + "." + key] = parameter.detach().cpu().numpy()
+                        if parameter.grad is not None:
+                            arrays[name + "." + key + ".grad"] = parameter.grad.detach().cpu().numpy()
+                np.savez_compressed(str(artifact_dir / "failure_tensors.npz"), **arrays)
+                write_json(artifact_dir / "failure.json", diagnostic)
+                raise
 
         def save_model(self, episode, model_path):
             finish_episode()
