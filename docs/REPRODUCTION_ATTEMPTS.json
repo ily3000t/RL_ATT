@@ -1,0 +1,224 @@
+{
+  "scope": "Retained unsuccessful cohorts; excluded from final five-seed aggregate",
+  "cohorts": [
+    {
+      "batch": ".local/runs/20260912T083846Z-protocol-a-oarl-long",
+      "git_commit": "11e1ccc11ef023e7810946cb905a8372f033f216",
+      "status": "failed",
+      "runs": [
+        {
+          "run_seed": 0,
+          "status": "failed",
+          "completed_episodes": 96,
+          "training_updates_after_last_complete_episode": 7061,
+          "saved_checkpoints": [],
+          "reason": "duplicate BO registration"
+        },
+        {
+          "run_seed": 1,
+          "status": "failed",
+          "completed_episodes": 132,
+          "training_updates_after_last_complete_episode": 10228,
+          "saved_checkpoints": [
+            100
+          ],
+          "reason": "stopped to restart cohort with consistent compatibility version"
+        },
+        {
+          "run_seed": 2,
+          "status": "failed",
+          "completed_episodes": 154,
+          "training_updates_after_last_complete_episode": 10905,
+          "saved_checkpoints": [
+            100
+          ],
+          "reason": "stopped to restart cohort with consistent compatibility version"
+        },
+        {
+          "run_seed": 3,
+          "status": "failed",
+          "completed_episodes": 121,
+          "training_updates_after_last_complete_episode": 8208,
+          "saved_checkpoints": [
+            100
+          ],
+          "reason": "stopped to restart cohort with consistent compatibility version"
+        },
+        {
+          "run_seed": 4,
+          "status": "failed",
+          "completed_episodes": 139,
+          "training_updates_after_last_complete_episode": 11001,
+          "saved_checkpoints": [
+            100
+          ],
+          "reason": "stopped to restart cohort with consistent compatibility version"
+        }
+      ]
+    },
+    {
+      "batch": ".local/runs/20260912T085351Z-protocol-a-oarl-long-compatible",
+      "git_commit": "9d0086cfa61599392007f013b8487c9b96b3f9a9",
+      "status": "failed",
+      "runs": [
+        {
+          "run_seed": 0,
+          "status": "passed",
+          "completed_episodes": 400,
+          "training_updates_after_last_complete_episode": 35998,
+          "saved_checkpoints": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "reason": "completed; retained but not pooled with final cohort"
+        },
+        {
+          "run_seed": 1,
+          "status": "passed",
+          "completed_episodes": 400,
+          "training_updates_after_last_complete_episode": 35858,
+          "saved_checkpoints": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "reason": "completed; retained but not pooled with final cohort"
+        },
+        {
+          "run_seed": 2,
+          "status": "failed",
+          "completed_episodes": 298,
+          "training_updates_after_last_complete_episode": 22632,
+          "saved_checkpoints": [
+            100,
+            200
+          ],
+          "reason": "non-finite trained parameters"
+        },
+        {
+          "run_seed": 3,
+          "status": "failed",
+          "completed_episodes": 376,
+          "training_updates_after_last_complete_episode": 29825,
+          "saved_checkpoints": [
+            100,
+            200,
+            300
+          ],
+          "reason": "non-finite trained parameters"
+        },
+        {
+          "run_seed": 4,
+          "status": "passed",
+          "completed_episodes": 400,
+          "training_updates_after_last_complete_episode": 35355,
+          "saved_checkpoints": [
+            100,
+            200,
+            300,
+            400
+          ],
+          "reason": "completed; retained but not pooled with final cohort"
+        }
+      ]
+    }
+  ],
+  "successful_subset_checkpoint_validations": [
+    {
+      "directory": ".local/runs/20260913T023310642881Z-checkpoint-evaluation-seed0",
+      "status": "passed",
+      "run_seed": 0,
+      "checkpoints": [
+        {
+          "episode": 100,
+          "frozen_unchanged": true,
+          "mean_return": 140.85470089497278,
+          "collision_episode_rate": 0.05
+        },
+        {
+          "episode": 200,
+          "frozen_unchanged": true,
+          "mean_return": 139.07495335094586,
+          "collision_episode_rate": 0.05
+        },
+        {
+          "episode": 300,
+          "frozen_unchanged": true,
+          "mean_return": 141.3466726556386,
+          "collision_episode_rate": 0.0
+        },
+        {
+          "episode": 400,
+          "frozen_unchanged": true,
+          "mean_return": 141.33934828454815,
+          "collision_episode_rate": 0.0
+        }
+      ]
+    },
+    {
+      "directory": ".local/runs/20260913T023310642881Z-checkpoint-evaluation-seed1",
+      "status": "passed",
+      "run_seed": 1,
+      "checkpoints": [
+        {
+          "episode": 100,
+          "frozen_unchanged": true,
+          "mean_return": 101.28326504614067,
+          "collision_episode_rate": 0.0
+        },
+        {
+          "episode": 200,
+          "frozen_unchanged": true,
+          "mean_return": 130.6109086849185,
+          "collision_episode_rate": 0.1
+        },
+        {
+          "episode": 300,
+          "frozen_unchanged": true,
+          "mean_return": 130.95622768205823,
+          "collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "frozen_unchanged": true,
+          "mean_return": 131.18413756617278,
+          "collision_episode_rate": 0.1
+        }
+      ]
+    },
+    {
+      "directory": ".local/runs/20260913T023310642881Z-checkpoint-evaluation-seed4",
+      "status": "passed",
+      "run_seed": 4,
+      "checkpoints": [
+        {
+          "episode": 100,
+          "frozen_unchanged": true,
+          "mean_return": 121.88193867151878,
+          "collision_episode_rate": 0.15
+        },
+        {
+          "episode": 200,
+          "frozen_unchanged": true,
+          "mean_return": 126.65842460362805,
+          "collision_episode_rate": 0.1
+        },
+        {
+          "episode": 300,
+          "frozen_unchanged": true,
+          "mean_return": 127.73063867820308,
+          "collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "frozen_unchanged": true,
+          "mean_return": 127.6766232980378,
+          "collision_episode_rate": 0.1
+        }
+      ]
+    }
+  ]
+}
