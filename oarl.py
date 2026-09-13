@@ -85,6 +85,7 @@ class Agent():
                  dual_cst_lr=5e-4,
                  target_robust_error=0.0001,
                  attack_optimizing_times=5,
+                 attack_seed=0,
                  ):
         super(Agent, self).__init__()
 
@@ -99,7 +100,9 @@ class Agent():
         self.qf_lr = qf_lr
         self.dual_cst_lr = dual_cst_lr
         self.attack_optimizing_times = attack_optimizing_times
+        self.attack_seed = attack_seed
         self.target_robust_error = target_robust_error
+        self.js_float64_evaluations = 0
 
         # Main network
         self.actor = ActorNet(self.state_dim, self.action_numb, self.hidden_sizes).to(device)
@@ -198,12 +201,15 @@ class Agent():
         perturb_list = []
 
         pbounds = {'u1': (0.8, 1.2), 'u2': (-0.05, 0.05)}
-        optimizer = BayesianOptimization(f=self.js_d_loss, pbounds=pbounds, random_state=0)
+        optimizer = BayesianOptimization(f=self.js_d_loss, pbounds=pbounds, random_state=self.attack_seed)
         util = UtilityFunction(kind='ucb', kappa=1.0, xi=0.1)
         for i in range(self.attack_optimizing_times):
             probe_para = optimizer.suggest(util)
             target = self.js_d_loss(**probe_para)
-            optimizer.register(probe_para, target.item())
+            # BO 1.2 rejects duplicate points; retain the existing GP observation.
+            # Still evaluate all five proposals to preserve tensors and RNG use.
+            if optimizer.space.params_to_array(probe_para) not in optimizer.space:
+                optimizer.register(probe_para, target.item())
 
             target_list.append(target.item())
             target_list_grads.append(target)
@@ -214,6 +220,15 @@ class Agent():
     def js_d_loss(self, u1, u2):
         perturb_a, perturb_prob = self.select_action_batch(u1 * self.obs1 + u2)
         perturb_a_next, perturb_prob_next = self.select_action_batch(u1 * self.obs2 + u2)
+
+        probabilities = (self.prob, perturb_prob, self.prob_next, perturb_prob_next)
+        if any(bool((probability < 1e-18).any()) for probability in probabilities):
+            # Float32 division backward can underflow its squared denominator.
+            # Evaluate the same JS in float64; do not change the policy or bounds.
+            self.js_float64_evaluations += 1
+            js_d = self._js_divergence_float64(self.prob, perturb_prob)
+            js_d_next = self._js_divergence_float64(self.prob_next, perturb_prob_next)
+            return (js_d + js_d_next).mean().to(dtype=self.prob.dtype)
 
         p_mean = (self.prob + perturb_prob) / 2
         js_d = 0.5 * torch.sum(self.prob * torch.log(self.prob / p_mean), dim=1) + 0.5 * torch.sum(
@@ -226,6 +241,16 @@ class Agent():
         js_d_next = js_d_next.unsqueeze(1)
 
         return (js_d + js_d_next).mean()
+
+    @staticmethod
+    def _js_divergence_float64(prob, perturb_prob):
+        # Only exact zeros are affected: 1e-150 is below every positive float32.
+        # Its square also stays normal in float64 division backward.
+        # This realizes 0 log 0 = 0 after casting back, with finite gradients.
+        p = prob.double().clamp(min=1e-150)
+        q = perturb_prob.double().clamp(min=1e-150)
+        mean = (p + q) / 2
+        return 0.5 * (p * torch.log(p / mean)).sum(dim=1) + 0.5 * (q * torch.log(q / mean)).sum(dim=1)
 
     def soft_target_update(self, main, target, tau=0.005):
         for main_param, target_param in zip(main.parameters(), target.parameters()):
@@ -258,7 +283,4 @@ class Agent():
         name = './' + model_path + '/policy%d' % model_name
         torch.save(self.actor, "{}.pkl".format(name))
         print("The model is saved!!!")
-
-
-
 

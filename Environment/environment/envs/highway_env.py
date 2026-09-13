@@ -31,7 +31,7 @@ config_path = os.path.dirname(__file__)+"/../../../Data/StraightRoad.sumocfg"
 class HighwayEnv(gym.Env):
     metadata = {'render.modes':['human']}
 
-    def __init__(self):
+    def __init__(self, sumo_seed_schedule=None):
         self.minAutoVelocity = 0
         self.maxAutoVelocity = 30
 
@@ -64,6 +64,7 @@ class HighwayEnv(gym.Env):
         self.AutoCarID = 'Auto'
         self.end = False
         self.reset_times = 0
+        self.sumo_seed_schedule = sumo_seed_schedule
 
         # front vehicle characteristics previous step values
         self.PrevFrontVehID = 'None'
@@ -438,7 +439,9 @@ class HighwayEnv(gym.Env):
         root = dom.documentElement
         random_seed_element = root.getElementsByTagName("seed")[0]
 
-        if self.reset_times % 2 == 0:
+        if self.sumo_seed_schedule is not None:
+            random_seed_element.setAttribute("value", str(self.sumo_seed_schedule[self.reset_times]))
+        elif self.reset_times % 2 == 0:
             random_seed = "%d" % self.reset_times
             random_seed_element.setAttribute("value", random_seed)
 
