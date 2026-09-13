@@ -1,0 +1,399 @@
+{
+  "scope": "Controlled Protocol A reproduction; no Gate; no attack benchmark or claim of paper numerical agreement",
+  "summary_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+  "command": [
+    "E:\\Programs\\anaconda3\\python.exe",
+    "scripts/summarize_reproduction.py",
+    "--batch",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js",
+    "--evaluations",
+    ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed0",
+    ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed1",
+    ".local/runs/20260913T031654832937Z-checkpoint-evaluation-seed2",
+    ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed3",
+    ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed4",
+    "--output",
+    "docs/OARL_PROTOCOL_A_RESULTS.json"
+  ],
+  "generated_at_utc": "2026-09-13T12:52:54.198747+00:00",
+  "batch": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js",
+  "all_2000_episodes_completed": true,
+  "all_20_checkpoints_verified": true,
+  "statistics": "Mean and sample standard deviation of five run-level values; evaluation uses greedy argmax on held-out seeds",
+  "aggregate": {
+    "last100_training_return": {
+      "mean": 134.80822377439608,
+      "sample_sd": 2.925127987841715
+    },
+    "final_checkpoint_evaluation_return": {
+      "mean": 134.66075399094998,
+      "sample_sd": 8.387556444092294
+    },
+    "final_checkpoint_evaluation_collision_rate": {
+      "mean": 0.09000000000000001,
+      "sample_sd": 0.07416198487095664
+    }
+  },
+  "runs": [
+    {
+      "run_seed": 0,
+      "victim": "oarl",
+      "training_manifest": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed0/manifest.json",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "evaluation_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+      "config_file": "configs/experiments/oarl_protocol_a_seed0.json",
+      "episodes_completed": 400,
+      "interaction_steps": 72684,
+      "training_updates": 35998,
+      "bo_duplicate_proposals": 63,
+      "js_float64_evaluations": 23621,
+      "bo_objective_evaluations": 179990,
+      "training_return_mean": 126.42021436618295,
+      "last100_training_return_mean": 133.09885808988295,
+      "training_collision_episode_rate": 0.1225,
+      "last100_training_collision_episode_rate": 0.04,
+      "last_training_js": 0.00013930896238889545,
+      "last_dual_multiplier": 0.6504277586936951,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/source/model/policy100.pkl",
+          "checkpoint_sha256": "dbe7d68c7b740182a06f1a8610280d3e182b9f08d3068207c1b3236c284a57a8",
+          "weights_sha256": "226485b0548c57188f1342e5a5c27011a115aa0c3989afcb84a98039e97cc894",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 140.85470089497278,
+          "evaluation_collision_episode_rate": 0.05
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/source/model/policy200.pkl",
+          "checkpoint_sha256": "ace67b866280217ec785d1f20ba207a3d070e6232940a1411ca050606efd0ef2",
+          "weights_sha256": "4fa6bb0aa9d7813368f9bca802870a34802ede845b524d5f0101f6673836f292",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 139.07495335094586,
+          "evaluation_collision_episode_rate": 0.05
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/source/model/policy300.pkl",
+          "checkpoint_sha256": "6d8eb742d295ffa3203c744861f61a24658a0919bd1901b4bd9a494c5dcfcb74",
+          "weights_sha256": "299ccbd5abea78cb88e0d7cdd1c68f9690ac792b9479e893ecc9a7d3f0245d57",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 141.3466726556386,
+          "evaluation_collision_episode_rate": 0.0
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/source/model/policy400.pkl",
+          "checkpoint_sha256": "f1e208cfad92b5d89cb4bbb55e8c6dc7ba2d2a287f9fb14dac3857f6f081864f",
+          "weights_sha256": "18ec55b0785735f29d794112d93a6a4faf5292a1cecf81af6e9be8dabaceca2d",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 141.33934828454815,
+          "evaluation_collision_episode_rate": 0.0
+        }
+      ]
+    },
+    {
+      "run_seed": 1,
+      "victim": "oarl",
+      "training_manifest": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed1/manifest.json",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "evaluation_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+      "config_file": "configs/experiments/oarl_protocol_a_seed1.json",
+      "episodes_completed": 400,
+      "interaction_steps": 72287,
+      "training_updates": 35954,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 63045,
+      "bo_objective_evaluations": 179770,
+      "training_return_mean": 115.37016313268512,
+      "last100_training_return_mean": 135.4115434213356,
+      "training_collision_episode_rate": 0.115,
+      "last100_training_collision_episode_rate": 0.04,
+      "last_training_js": 0.00011880495731020346,
+      "last_dual_multiplier": 4.420100212097168,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/source/model/policy100.pkl",
+          "checkpoint_sha256": "2e21161d5cc0b0ad49bf49d21f90ef0cb8a65d9b03b0af5798f83bd62946aff8",
+          "weights_sha256": "e030db4c253daabede16d62e5b762ab236354a0ed2a626dffbbd9372ef354f6e",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 101.28326504614067,
+          "evaluation_collision_episode_rate": 0.0
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/source/model/policy200.pkl",
+          "checkpoint_sha256": "688d496ac326d4c64b2646e25b8f6a890c837b82ee1162b9a89614cdae3f34b4",
+          "weights_sha256": "2a57f99cc36d9c18c72ac6f7276983ecfb4f511e7e7f90e5dcadd095dcc73cad",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 130.6109086849185,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/source/model/policy300.pkl",
+          "checkpoint_sha256": "c008148535ad0ca25c04bee8455573cea7a772492e54ecf381a76e19dbdb98a2",
+          "weights_sha256": "33f38ffc63b163f007a0357d56e82cf89ee59ef934ec0bea4a5ac067c94c953e",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 130.95921023958786,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/source/model/policy400.pkl",
+          "checkpoint_sha256": "5c52847fe2b1f45b93b23fa1981c5849bfdbd73d5da27ddb80f93fbffe956172",
+          "weights_sha256": "ac9e0ba628addb9e2da39cc3a4e2c4f5909b8d13ec60e38e99936249e6aebc0b",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 131.23482163608747,
+          "evaluation_collision_episode_rate": 0.1
+        }
+      ]
+    },
+    {
+      "run_seed": 2,
+      "victim": "oarl",
+      "training_manifest": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T031654832937Z-checkpoint-evaluation-seed2/manifest.json",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "evaluation_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+      "config_file": "configs/experiments/oarl_protocol_a_seed2.json",
+      "episodes_completed": 400,
+      "interaction_steps": 62838,
+      "training_updates": 30987,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 53191,
+      "bo_objective_evaluations": 154935,
+      "training_return_mean": 122.8836489593826,
+      "last100_training_return_mean": 135.66617062810542,
+      "training_collision_episode_rate": 0.31,
+      "last100_training_collision_episode_rate": 0.25,
+      "last_training_js": 7.709967030677944e-05,
+      "last_dual_multiplier": 44.14617919921875,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/source/model/policy100.pkl",
+          "checkpoint_sha256": "2f221bdeda83e559b15306870f11d0dceea5f24702ff5191ec5a0104bb8926c7",
+          "weights_sha256": "88403702aa71dcb57758be9433645129a8b81f76c5834c7c57d4b7b25ef95092",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 130.30499736904412,
+          "evaluation_collision_episode_rate": 0.05
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/source/model/policy200.pkl",
+          "checkpoint_sha256": "f7574f4965585738aaad280e40a370807e0fb6a96b290f8d4b14018d6cb9d1e9",
+          "weights_sha256": "5a5553bb53543ac668ebea8e95c6f642d56970c52bf2624ffa8059df85911565",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 122.07623396163527,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/source/model/policy300.pkl",
+          "checkpoint_sha256": "2d8d318473227dbd2ca9118ac21d0085ef43813cbe8145d36e9a09ea975de061",
+          "weights_sha256": "38f76bbdf3133323fb5e30d1b893fbd9175b83662afd48b1ddd60dd3d218ace5",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 128.57888897587492,
+          "evaluation_collision_episode_rate": 0.2
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/source/model/policy400.pkl",
+          "checkpoint_sha256": "0f5b3fddac81eaff7c564c98a535fb7c8d657000c4d1ab312d4c1fec0d47c4a1",
+          "weights_sha256": "ca30da8a76365356d285c442d03c9458d685a2f8f963a815ee55d3ed33755039",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 129.03697153339348,
+          "evaluation_collision_episode_rate": 0.2
+        }
+      ]
+    },
+    {
+      "run_seed": 3,
+      "victim": "oarl",
+      "training_manifest": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed3/manifest.json",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "evaluation_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+      "config_file": "configs/experiments/oarl_protocol_a_seed3.json",
+      "episodes_completed": 400,
+      "interaction_steps": 64599,
+      "training_updates": 31899,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 38265,
+      "bo_objective_evaluations": 159495,
+      "training_return_mean": 123.01090595145332,
+      "last100_training_return_mean": 138.81638973526842,
+      "training_collision_episode_rate": 0.295,
+      "last100_training_collision_episode_rate": 0.17,
+      "last_training_js": 9.161522757494822e-05,
+      "last_dual_multiplier": 25.01689910888672,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/source/model/policy100.pkl",
+          "checkpoint_sha256": "c444bcb8c22ff3fb5d403b104c081d135b4b6177572c5000c6d18bf0a45e7590",
+          "weights_sha256": "3ee6bf0000e7ffe14df7b7d074917aa8b7a82dc942b2db16b5a148171ec33672",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 131.27225483107821,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/source/model/policy200.pkl",
+          "checkpoint_sha256": "951dc11ac48671f326cca0fe470fe9eb5fc87136b547087605b600b186d96b5f",
+          "weights_sha256": "1e1fb0cc27dd756eba4f4c19f56e8d4572d60117cf899c598ecb6136afd74ea8",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 135.38837149484783,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/source/model/policy300.pkl",
+          "checkpoint_sha256": "e9e2a6f4b87e7dc759dd2af522d2dc50d6e5b3dc521a4253390c09d89249e535",
+          "weights_sha256": "5a3769952d8f39c8f8f0e1cc59d31b086b83e06db0552312a3e6bc625972e65f",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 134.00877638543588,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/source/model/policy400.pkl",
+          "checkpoint_sha256": "24bb2d1c63d694f95e596f2a3998ea3b23343be82787fef19e118da49f17cffc",
+          "weights_sha256": "4455abb511aee4e97f0d4c9ac52e0dbe26e43899fd89f135c5aa14cf1b958146",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 145.60914536601157,
+          "evaluation_collision_episode_rate": 0.05
+        }
+      ]
+    },
+    {
+      "run_seed": 4,
+      "victim": "oarl",
+      "training_manifest": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T124931448933Z-checkpoint-evaluation-seed4/manifest.json",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "evaluation_commit": "555ef497ef69aa6a9e3604591cdabaf5b2222cda",
+      "config_file": "configs/experiments/oarl_protocol_a_seed4.json",
+      "episodes_completed": 400,
+      "interaction_steps": 72087,
+      "training_updates": 35787,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 57138,
+      "bo_objective_evaluations": 178935,
+      "training_return_mean": 126.78123846907779,
+      "last100_training_return_mean": 131.048156997388,
+      "training_collision_episode_rate": 0.12,
+      "last100_training_collision_episode_rate": 0.05,
+      "last_training_js": 7.808364171069115e-05,
+      "last_dual_multiplier": 0.8715179562568665,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/source/model/policy100.pkl",
+          "checkpoint_sha256": "a5a5814ca3d6084dd4f74f3d6aab9ad4030989d4fa176cb45fe13336d4254589",
+          "weights_sha256": "05395de1511a7c3d981945ee22fc56aac23181dd7ceb4e877a940cff5c573317",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 121.88193867151878,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/source/model/policy200.pkl",
+          "checkpoint_sha256": "1c6416ca068c89038ed031529daf9701e3a24bb0c9f252554861d0856d9ec028",
+          "weights_sha256": "5961fedfe96cb8363b7b84e239a42c50f318942ce429cde6e32d8a21a6889ddf",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 126.65842460362805,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/source/model/policy300.pkl",
+          "checkpoint_sha256": "d18f4b1788da240bd42f75066a453533eb9f7fb80e8d149bc4d754878e9f01ec",
+          "weights_sha256": "0af27cba0cb8b1ac09a5eaf56e655f220909dc8860ec01dd30d36a92d57113b1",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 127.73063867820308,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/source/model/policy400.pkl",
+          "checkpoint_sha256": "8f8835f6acae0505d4820d2dbeec4d994a4aa4bd17cfeeb23104b4fe778a2516",
+          "weights_sha256": "ea67205fabc9286d002b011c3b90c0a3d62a46abed62f61eb99ea78c4f8f33d7",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 126.0834831347092,
+          "evaluation_collision_episode_rate": 0.1
+        }
+      ]
+    }
+  ]
+}
