@@ -22,6 +22,7 @@ def main():
     training = json.loads((run / "manifest.json").read_text(encoding="utf-8"))
     run_seed = training["config"]["run_seed"]
     seeds = seed_manifest(run_seed, "controlled", config["episodes"], phase="evaluation")
+    seeds.update(policy_rng="unused_greedy_argmax", attack_rng="unused_no_attack")
     random.seed(run_seed)
     np.random.seed(run_seed)
     torch.manual_seed(run_seed)

@@ -6,6 +6,7 @@ import hashlib
 import io
 import json
 import os
+import platform
 from pathlib import Path
 import subprocess
 import sys
@@ -55,7 +56,10 @@ def main():
     manifest = {"kind": "frozen_checkpoint_evaluation", "git_commit": git("rev-parse", "HEAD"),
                 "training_run": str(run), "config": config, "config_file": relative,
                 "launch_command": command, "wrapper_command": [sys.executable, *sys.argv], "cwd": str(source),
-                "environment_overrides": training["environment_overrides"], "SUMO_HOME": env.get("SUMO_HOME"),
+                "environment_overrides": {key: env[key] for key in training["environment_overrides"]},
+                "runtime_path_prepend": training["runtime_path_prepend"],
+                "host_os": platform.platform(), "SUMO_HOME": env.get("SUMO_HOME"),
+                "python_runtime": capture([python, "-c", "import json,sys,torch,numpy,scipy,sklearn; print(json.dumps(dict(python=sys.version,torch=torch.__version__,torch_threads=torch.get_num_threads(),numpy=numpy.__version__,scipy=scipy.__version__,sklearn=sklearn.__version__)))"], env),
                 "pip_freeze": capture([python, "-m", "pip", "freeze", "--all"], env),
                 "sumo_version": capture(["sumo", "--version"], env), "started_at_utc": stamp, "status": "running"}
     write_json(manifest_path, manifest)
