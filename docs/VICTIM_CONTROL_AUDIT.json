@@ -1,0 +1,61 @@
+{
+  "audit_commit": "7b266ab990ab8c10d41afee15cb7d93a54ea6073",
+  "held_out_evaluation_audit_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+  "oarl_training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+  "clean_training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+  "oarl_batch": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js",
+  "clean_batch": ".local/runs/20260913T125918Z-protocol-a-clean-long",
+  "scope": "Verified training controls and held-out evaluation parity; both complete cohorts",
+  "checks": [
+    {
+      "run_seed": 0,
+      "matched_config_except_victim_and_algo": true,
+      "matched_agent_defaults": true,
+      "matched_seed_values_and_training_schedule": true,
+      "matched_original_main_agent_environment_traffic_hashes": true,
+      "matched_runtime_and_dependencies": true,
+      "matched_held_out_seed_list_and_evaluation_config": true,
+      "matched_evaluation_runtime": true
+    },
+    {
+      "run_seed": 1,
+      "matched_config_except_victim_and_algo": true,
+      "matched_agent_defaults": true,
+      "matched_seed_values_and_training_schedule": true,
+      "matched_original_main_agent_environment_traffic_hashes": true,
+      "matched_runtime_and_dependencies": true,
+      "matched_held_out_seed_list_and_evaluation_config": true,
+      "matched_evaluation_runtime": true
+    },
+    {
+      "run_seed": 2,
+      "matched_config_except_victim_and_algo": true,
+      "matched_agent_defaults": true,
+      "matched_seed_values_and_training_schedule": true,
+      "matched_original_main_agent_environment_traffic_hashes": true,
+      "matched_runtime_and_dependencies": true,
+      "matched_held_out_seed_list_and_evaluation_config": true,
+      "matched_evaluation_runtime": true
+    },
+    {
+      "run_seed": 3,
+      "matched_config_except_victim_and_algo": true,
+      "matched_agent_defaults": true,
+      "matched_seed_values_and_training_schedule": true,
+      "matched_original_main_agent_environment_traffic_hashes": true,
+      "matched_runtime_and_dependencies": true,
+      "matched_held_out_seed_list_and_evaluation_config": true,
+      "matched_evaluation_runtime": true
+    },
+    {
+      "run_seed": 4,
+      "matched_config_except_victim_and_algo": true,
+      "matched_agent_defaults": true,
+      "matched_seed_values_and_training_schedule": true,
+      "matched_original_main_agent_environment_traffic_hashes": true,
+      "matched_runtime_and_dependencies": true,
+      "matched_held_out_seed_list_and_evaluation_config": true,
+      "matched_evaluation_runtime": true
+    }
+  ]
+}

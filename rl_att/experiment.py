@@ -33,7 +33,12 @@ def main():
     config = manifest["config"]
     cli = config["training"]
     seeds = seed_manifest(config["run_seed"], config["protocol"], cli["episodes"], config["sumo_schedule"])
+    robust_training = config["victim"] == "oarl"
+    if not robust_training:
+        seeds["attack_rng"] = "unused_clean_training"
     manifest["effective_seeds"] = seeds
+    manifest["bo_training_enabled"] = robust_training
+    manifest["dual_training_enabled"] = robust_training
     manifest["gate_enabled"] = False
     write_json(manifest_path, manifest)
     artifact_dir = manifest_path.parent
@@ -41,6 +46,10 @@ def main():
     (artifact_dir / "episodes.jsonl").touch()
     state = {"episode": -1, "active": False, "steps": 0, "agent": None, "env": None}
     original_agent = oarl.Agent
+    training_agent = original_agent
+    if config["victim"] == "clean":
+        from rl_att.agents.clean_victim import CleanVictimAgent
+        training_agent = CleanVictimAgent
     original_make = gym.make
 
     def finish_episode():
@@ -59,7 +68,7 @@ def main():
             "last_training_js": agent.last_js,
             "bo_duplicate_proposals_total": agent.bo_duplicate_proposals,
             "js_float64_evaluations_total": agent.js_float64_evaluations,
-            "dual_multiplier": float(agent.dual_cst.detach().exp().item()),
+            "dual_multiplier": float(agent.dual_cst.detach().exp().item()) if robust_training else None,
             "trajectory_sha256": state["trace"].hexdigest(),
             "elapsed_seconds": time.monotonic() - state["started"],
         }
@@ -69,7 +78,7 @@ def main():
         print("RUN_PROGRESS " + json.dumps({key: row[key] for key in ("episode", "episode_return", "steps", "training_updates_total")}), flush=True)
         state["active"] = False
 
-    class RecordedAgent(original_agent):
+    class RecordedAgent(training_agent):
         def __init__(self, *agent_args, **kwargs):
             kwargs["attack_seed"] = seeds["attack_seed"]
             # Upstream uses super(Agent, self), resolving Agent in its module.
@@ -119,7 +128,7 @@ def main():
                 for network in (self.actor, self.qf1, self.qf2, self.qf1_target, self.qf2_target):
                     if any(not bool(torch.isfinite(p).all()) for p in network.parameters()):
                         raise FloatingPointError("Non-finite trained parameters")
-                if not bool(torch.isfinite(self.dual_cst.exp()).all()):
+                if robust_training and not bool(torch.isfinite(self.dual_cst.exp()).all()):
                     raise FloatingPointError("Non-finite robust multiplier")
             except Exception as error:
                 diagnostic = {"error": repr(error), "episode": state["episode"] + 1,

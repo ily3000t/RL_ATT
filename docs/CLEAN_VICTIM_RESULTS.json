@@ -1,0 +1,399 @@
+{
+  "scope": "Controlled Protocol A reproduction; no Gate; no attack benchmark or claim of paper numerical agreement",
+  "summary_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+  "command": [
+    "E:\\Programs\\anaconda3\\python.exe",
+    "scripts/summarize_reproduction.py",
+    "--batch",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long",
+    "--evaluations",
+    ".local/runs/20260913T131340440150Z-checkpoint-evaluation-seed0",
+    ".local/runs/20260913T131340435151Z-checkpoint-evaluation-seed1",
+    ".local/runs/20260913T131109760013Z-checkpoint-evaluation-seed2",
+    ".local/runs/20260913T131340437151Z-checkpoint-evaluation-seed3",
+    ".local/runs/20260913T131340439151Z-checkpoint-evaluation-seed4",
+    "--output",
+    "docs/CLEAN_VICTIM_RESULTS.json"
+  ],
+  "generated_at_utc": "2026-09-13T13:17:03.058553+00:00",
+  "batch": ".local/runs/20260913T125918Z-protocol-a-clean-long",
+  "all_2000_episodes_completed": true,
+  "all_20_checkpoints_verified": true,
+  "statistics": "Mean and sample standard deviation of five run-level values; evaluation uses greedy argmax on held-out seeds",
+  "aggregate": {
+    "last100_training_return": {
+      "mean": 134.65173357637357,
+      "sample_sd": 5.366685834290442
+    },
+    "final_checkpoint_evaluation_return": {
+      "mean": 129.48823864092444,
+      "sample_sd": 8.403557809718794
+    },
+    "final_checkpoint_evaluation_collision_rate": {
+      "mean": 0.12,
+      "sample_sd": 0.07582875444051551
+    }
+  },
+  "runs": [
+    {
+      "run_seed": 0,
+      "victim": "clean",
+      "training_manifest": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T131340440150Z-checkpoint-evaluation-seed0/manifest.json",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "evaluation_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+      "config_file": "configs/experiments/clean_protocol_a_seed0.json",
+      "episodes_completed": 400,
+      "interaction_steps": 73464,
+      "training_updates": 36388,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 0,
+      "bo_objective_evaluations": 0,
+      "training_return_mean": 128.13978135982657,
+      "last100_training_return_mean": 135.73608541903718,
+      "training_collision_episode_rate": 0.105,
+      "last100_training_collision_episode_rate": 0.03,
+      "last_training_js": null,
+      "last_dual_multiplier": null,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy100.pkl",
+          "checkpoint_sha256": "b4ffc7e1d9d56c8bfab2bb5ccda64ff3da1e212bd756da8d4f92d70dc92d01ca",
+          "weights_sha256": "a582a4e650461c1998a5f641b9fcf15af5fc9de5c49a23329b6b330ce39e5d83",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 139.5900633344875,
+          "evaluation_collision_episode_rate": 0.0
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy200.pkl",
+          "checkpoint_sha256": "46f005645d250b7c03415712ecec275cf08afd76f3c4f057e5277e5266c8e78a",
+          "weights_sha256": "9acf61c0e176c9ccc32e8c0e7c4422670e78c47d5cdd1e53a27edf4dfffe506c",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 140.1888800251458,
+          "evaluation_collision_episode_rate": 0.0
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy300.pkl",
+          "checkpoint_sha256": "0a604c1880c772059082a4512932398060211b29bf551e893eb5f1b41f028151",
+          "weights_sha256": "fa8e61f3a6d0e68b26e3429ce818eee549927b96920d6a6d597f0d9077b7da18",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 143.21702211835816,
+          "evaluation_collision_episode_rate": 0.0
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy400.pkl",
+          "checkpoint_sha256": "b76d3f02a992f84d805480c96e42ac95c837fa934e63b86a577f42d7ad95e48d",
+          "weights_sha256": "6ff16dc9b7c23ad988d5ca33b78fbbccafbf8fe80f573b82474da092516a5ca3",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 141.37446635775763,
+          "evaluation_collision_episode_rate": 0.0
+        }
+      ]
+    },
+    {
+      "run_seed": 1,
+      "victim": "clean",
+      "training_manifest": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T131340435151Z-checkpoint-evaluation-seed1/manifest.json",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "evaluation_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+      "config_file": "configs/experiments/clean_protocol_a_seed1.json",
+      "episodes_completed": 400,
+      "interaction_steps": 72165,
+      "training_updates": 35893,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 0,
+      "bo_objective_evaluations": 0,
+      "training_return_mean": 125.83112684215072,
+      "last100_training_return_mean": 134.72621989325384,
+      "training_collision_episode_rate": 0.1175,
+      "last100_training_collision_episode_rate": 0.06,
+      "last_training_js": null,
+      "last_dual_multiplier": null,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy100.pkl",
+          "checkpoint_sha256": "1811b556dd6199fa97f68091b8f9a248547f8300f56db492d9c633da2db7c4eb",
+          "weights_sha256": "699849d6a19ad8c4caef2478c9800170c1f2a7dbbae3a6980c77ad639a96eaf4",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 137.517086194761,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy200.pkl",
+          "checkpoint_sha256": "0e6e63e9e0ff62d20ba6a811895c97e2094347683d9b58dce8f194d57b7a11df",
+          "weights_sha256": "aeb02b9f35852abfe45ae21efa0ffcf56ec5fd033d0a8eace2a558bb6955eebf",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 140.78255719894477,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy300.pkl",
+          "checkpoint_sha256": "bcb4c3eca0466c25b8b32804c83cd4d80742591fb078a21e41068ad489718c89",
+          "weights_sha256": "5aecdb7d738bce40c44221bdae19dbf45cbf661c43042cda461ae03911f6d976",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 137.75045270286213,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy400.pkl",
+          "checkpoint_sha256": "900ac011d78bc175ef3695f0d82052abd6b50d3811cccf67167606853009462a",
+          "weights_sha256": "1e2d9fc6f8e5da8cfe024b24c360cceb89791e3f346a2aecb855a7be47edc315",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 134.01123327565884,
+          "evaluation_collision_episode_rate": 0.1
+        }
+      ]
+    },
+    {
+      "run_seed": 2,
+      "victim": "clean",
+      "training_manifest": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T131109760013Z-checkpoint-evaluation-seed2/manifest.json",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "evaluation_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+      "config_file": "configs/experiments/clean_protocol_a_seed2.json",
+      "episodes_completed": 400,
+      "interaction_steps": 63308,
+      "training_updates": 31222,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 0,
+      "bo_objective_evaluations": 0,
+      "training_return_mean": 123.68371186755965,
+      "last100_training_return_mean": 142.1896316547473,
+      "training_collision_episode_rate": 0.295,
+      "last100_training_collision_episode_rate": 0.21,
+      "last_training_js": null,
+      "last_dual_multiplier": null,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy100.pkl",
+          "checkpoint_sha256": "7f615f20b229d623062b874493fc399aa119e1b3b968b05bd7f1d6fa589d6391",
+          "weights_sha256": "76d584585da99fdc27ea7b73dbc3ac74783d5bc0864fcc53a2b6d18559b1f446",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 121.84949850477442,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy200.pkl",
+          "checkpoint_sha256": "a459af824a40980c322ca19d5bcaba3c0f65b99d75e9a59c071efffb71ddf552",
+          "weights_sha256": "2936160aa1f1cbe9a35b34c7ac3ee2188dee1ee6b771731f20f2616e096c5c46",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 112.90340675835996,
+          "evaluation_collision_episode_rate": 0.45
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy300.pkl",
+          "checkpoint_sha256": "6b7877cb211563273b1b816e749e92778e6a70e4968cc0e9423d3e42cb92781b",
+          "weights_sha256": "737a50609808ab580083c5b6112ac0c0739051109927258fe2c64ccfd7688764",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 121.5933052790646,
+          "evaluation_collision_episode_rate": 0.3
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy400.pkl",
+          "checkpoint_sha256": "3c0c5e254e2c8c6feda5dbbfb91df9068c4ad632845db3625f69bb68cb53f86b",
+          "weights_sha256": "0e8e21eda2af71a230ecdca6a5b806186974236afc381cd0fbcbc5b56bf07f83",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 127.54722438566178,
+          "evaluation_collision_episode_rate": 0.2
+        }
+      ]
+    },
+    {
+      "run_seed": 3,
+      "victim": "clean",
+      "training_manifest": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T131340437151Z-checkpoint-evaluation-seed3/manifest.json",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "evaluation_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+      "config_file": "configs/experiments/clean_protocol_a_seed3.json",
+      "episodes_completed": 400,
+      "interaction_steps": 71952,
+      "training_updates": 35576,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 0,
+      "bo_objective_evaluations": 0,
+      "training_return_mean": 124.98819679472604,
+      "last100_training_return_mean": 133.41683476109355,
+      "training_collision_episode_rate": 0.1275,
+      "last100_training_collision_episode_rate": 0.06,
+      "last_training_js": null,
+      "last_dual_multiplier": null,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy100.pkl",
+          "checkpoint_sha256": "9471727a03b199c5f7d5dd3f4dc5688b32b629e1e694c66590005521a4a6fa13",
+          "weights_sha256": "92eb27fb207189abba752de2a8dac8c6bd8f79857e059e2e619747e7f2299e7f",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 116.93496552980707,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy200.pkl",
+          "checkpoint_sha256": "f2bb76543350b1bca630c9f1fd9bf95c8ffcc140863c6503f8d887b492992f42",
+          "weights_sha256": "516e6bf4e60c72ac677850eb6623d90ffe8cafd2e55a34aa669c4d0c184a9c09",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 117.041891452957,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy300.pkl",
+          "checkpoint_sha256": "fcd60a11c7f304f7fc65133f769201d9232ca9c09908611f1f89c03e5a0ac1c0",
+          "weights_sha256": "08a1fca67ad6cc571fba71094e2b711d58430782a2956a95253ea6d841848efd",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 121.22657143368569,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy400.pkl",
+          "checkpoint_sha256": "ce7b56a6e7d3c214b09a731650d479bbe17dcc37a15c75b582c71d7196a7a9ab",
+          "weights_sha256": "5e50c9945c50312b6238feeb009edc5d7559017f4b3042e3bcba8e478c394d67",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 119.77349087139962,
+          "evaluation_collision_episode_rate": 0.15
+        }
+      ]
+    },
+    {
+      "run_seed": 4,
+      "victim": "clean",
+      "training_manifest": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/manifest.json",
+      "evaluation_manifest": ".local/runs/20260913T131340439151Z-checkpoint-evaluation-seed4/manifest.json",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "evaluation_commit": "f00a8171eb88eb6984c5c8831e0b3a4b20ffd41c",
+      "config_file": "configs/experiments/clean_protocol_a_seed4.json",
+      "episodes_completed": 400,
+      "interaction_steps": 71506,
+      "training_updates": 35497,
+      "bo_duplicate_proposals": 0,
+      "js_float64_evaluations": 0,
+      "bo_objective_evaluations": 0,
+      "training_return_mean": 123.68988196573558,
+      "last100_training_return_mean": 127.18989615373603,
+      "training_collision_episode_rate": 0.125,
+      "last100_training_collision_episode_rate": 0.09,
+      "last_training_js": null,
+      "last_dual_multiplier": null,
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy100.pkl",
+          "checkpoint_sha256": "59c1725d442ece3321bb7b89b119e8ec573e787483f8cb9193a1745c736c4652",
+          "weights_sha256": "6d9db97d99739236cdf76b2cc2160e5474d022f437631053f434885935323be1",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 133.4047648603484,
+          "evaluation_collision_episode_rate": 0.05
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy200.pkl",
+          "checkpoint_sha256": "23edcba7a454a457da3f2f72b8592ee410a946b600b8bb20f245f0029690da18",
+          "weights_sha256": "ba5213e60800db099e56371dd252f7c89151f1b451fd1391a094282158f93621",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 121.48900913770099,
+          "evaluation_collision_episode_rate": 0.15
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy300.pkl",
+          "checkpoint_sha256": "342e84795484ccdafadcc60fd336cfe1053be7981fb59aaecc87b373d18ba60c",
+          "weights_sha256": "63a4d895c6c4cfa72e421788166f533653fdf53dbde760f5d78654f7c2634950",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 126.6939516607504,
+          "evaluation_collision_episode_rate": 0.1
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy400.pkl",
+          "checkpoint_sha256": "4e14a28adcd95fdea3306a57656d61d9480ed026cc21a8136b85a6267bc9659a",
+          "weights_sha256": "c661b05b4a8138556933dae21bae7449dad78ce395b52ec35b187fd533baf8ff",
+          "fresh_process_verified": true,
+          "frozen_unchanged": true,
+          "evaluation_mean_return": 124.73477831414428,
+          "evaluation_collision_episode_rate": 0.15
+        }
+      ]
+    }
+  ]
+}

@@ -33,8 +33,8 @@ def main():
     config = json.loads(committed)
     if config["training"]["seed"] != config["run_seed"] or config.get("gate_enabled") is not False:
         parser.error("Training seed must match run_seed, and Gate must be disabled")
-    if config["victim"] != "oarl":
-        parser.error("This stage supports only the OARL victim")
+    if config["victim"] not in ("oarl", "clean"):
+        parser.error("This stage supports the OARL and matched clean victims")
     for key in ("save_dir_model", "save_dir_data", "save_dir_train_data"):
         path = Path(config["training"][key])
         if path.is_absolute() or path.drive or ".." in path.parts:

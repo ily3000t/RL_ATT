@@ -1,0 +1,22 @@
+{
+  "victim": "clean",
+  "protocol": "controlled",
+  "run_seed": 0,
+  "sumo_schedule": "derived",
+  "cpu_threads": 1,
+  "gate_enabled": false,
+  "training": {
+    "env": "highway-v0",
+    "algo": "clean",
+    "seed": 0,
+    "episodes": 100,
+    "max_step": 2,
+    "state_dim": 16,
+    "action_dim": 1,
+    "action_numb": 3,
+    "mode": "train",
+    "save_dir_model": "model/",
+    "save_dir_data": "result/",
+    "save_dir_train_data": "train/"
+  }
+}

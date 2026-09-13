@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "protocol": "controlled",
+  "checkpoint_selection": "episode_400_predeclared",
+  "checkpoint_type": "inference_actor_only",
+  "path_base": "repository_root",
+  "load_contract": "Verify the file hash, load using the pinned runtime, set eval mode and requires_grad_(False); do not train these checkpoints",
+  "victims": [
+    {
+      "victim": "clean",
+      "run_seed": 0,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy400.pkl",
+      "checkpoint_sha256": "b76d3f02a992f84d805480c96e42ac95c837fa934e63b86a577f42d7ad95e48d",
+      "weights_sha256": "6ff16dc9b7c23ad988d5ca33b78fbbccafbf8fe80f573b82474da092516a5ca3",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed0.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 1,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy400.pkl",
+      "checkpoint_sha256": "900ac011d78bc175ef3695f0d82052abd6b50d3811cccf67167606853009462a",
+      "weights_sha256": "1e2d9fc6f8e5da8cfe024b24c360cceb89791e3f346a2aecb855a7be47edc315",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed1.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 2,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy400.pkl",
+      "checkpoint_sha256": "3c0c5e254e2c8c6feda5dbbfb91df9068c4ad632845db3625f69bb68cb53f86b",
+      "weights_sha256": "0e8e21eda2af71a230ecdca6a5b806186974236afc381cd0fbcbc5b56bf07f83",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed2.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 3,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy400.pkl",
+      "checkpoint_sha256": "ce7b56a6e7d3c214b09a731650d479bbe17dcc37a15c75b582c71d7196a7a9ab",
+      "weights_sha256": "5e50c9945c50312b6238feeb009edc5d7559017f4b3042e3bcba8e478c394d67",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed3.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 4,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy400.pkl",
+      "checkpoint_sha256": "4e14a28adcd95fdea3306a57656d61d9480ed026cc21a8136b85a6267bc9659a",
+      "weights_sha256": "c661b05b4a8138556933dae21bae7449dad78ce395b52ec35b187fd533baf8ff",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed4.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "oarl",
+      "run_seed": 0,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/source/model/policy400.pkl",
+      "checkpoint_sha256": "f1e208cfad92b5d89cb4bbb55e8c6dc7ba2d2a287f9fb14dac3857f6f081864f",
+      "weights_sha256": "18ec55b0785735f29d794112d93a6a4faf5292a1cecf81af6e9be8dabaceca2d",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "training_config": "configs/experiments/oarl_protocol_a_seed0.json",
+      "verification_summary": "docs/OARL_PROTOCOL_A_RESULTS.json"
+    },
+    {
+      "victim": "oarl",
+      "run_seed": 1,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/source/model/policy400.pkl",
+      "checkpoint_sha256": "5c52847fe2b1f45b93b23fa1981c5849bfdbd73d5da27ddb80f93fbffe956172",
+      "weights_sha256": "ac9e0ba628addb9e2da39cc3a4e2c4f5909b8d13ec60e38e99936249e6aebc0b",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "training_config": "configs/experiments/oarl_protocol_a_seed1.json",
+      "verification_summary": "docs/OARL_PROTOCOL_A_RESULTS.json"
+    },
+    {
+      "victim": "oarl",
+      "run_seed": 2,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/source/model/policy400.pkl",
+      "checkpoint_sha256": "0f5b3fddac81eaff7c564c98a535fb7c8d657000c4d1ab312d4c1fec0d47c4a1",
+      "weights_sha256": "ca30da8a76365356d285c442d03c9458d685a2f8f963a815ee55d3ed33755039",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "training_config": "configs/experiments/oarl_protocol_a_seed2.json",
+      "verification_summary": "docs/OARL_PROTOCOL_A_RESULTS.json"
+    },
+    {
+      "victim": "oarl",
+      "run_seed": 3,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/source/model/policy400.pkl",
+      "checkpoint_sha256": "24bb2d1c63d694f95e596f2a3998ea3b23343be82787fef19e118da49f17cffc",
+      "weights_sha256": "4455abb511aee4e97f0d4c9ac52e0dbe26e43899fd89f135c5aa14cf1b958146",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "training_config": "configs/experiments/oarl_protocol_a_seed3.json",
+      "verification_summary": "docs/OARL_PROTOCOL_A_RESULTS.json"
+    },
+    {
+      "victim": "oarl",
+      "run_seed": 4,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/source/model/policy400.pkl",
+      "checkpoint_sha256": "8f8835f6acae0505d4820d2dbeec4d994a4aa4bd17cfeeb23104b4fe778a2516",
+      "weights_sha256": "ea67205fabc9286d002b011c3b90c0a3d62a46abed62f61eb99ea78c4f8f33d7",
+      "training_commit": "97fdb5767cae6bfbfccda5d2e2dac3913ad5f467",
+      "training_config": "configs/experiments/oarl_protocol_a_seed4.json",
+      "verification_summary": "docs/OARL_PROTOCOL_A_RESULTS.json"
+    }
+  ]
+}
