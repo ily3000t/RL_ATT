@@ -50,6 +50,12 @@ def main():
             raise ValueError("Recorded episode seeds differ from manifest")
         if any(not 1 <= row["steps"] <= 200 for row in rows):
             raise ValueError("Invalid episode length")
+        if config["victim"] == "clean":
+            if manifest.get("bo_training_enabled") is not False or manifest.get("dual_training_enabled") is not False:
+                raise ValueError("Clean run incorrectly enables robust training")
+            if any(row["last_training_js"] is not None or row["dual_multiplier"] is not None
+                   or row["bo_duplicate_proposals_total"] != 0 or row["js_float64_evaluations_total"] != 0 for row in rows):
+                raise ValueError("Clean records contain robust training activity")
         for name, digest in manifest["source_sha256_before"].items():
             if name != "Data/StraightRoad.sumocfg" and manifest["source_sha256_after"].get(name) != digest:
                 raise ValueError("Unexpected training source mutation: " + name)
