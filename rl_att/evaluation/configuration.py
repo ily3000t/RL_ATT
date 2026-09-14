@@ -57,10 +57,21 @@ def validate_config(config):
                                         {"norm": "observation_scaled_linf", "epsilon": 1.0,
                                          "relative_scale": 0.2, "absolute_scale": 0.05}):
                 raise ValueError("Original BO uses its fixed affine box; epsilon projection would change it")
-        elif attack["name"] in ("random", "fgsm", "pgd"):
+        elif attack["name"] in ("random", "fgsm", "pgd", "zero_one"):
             validate_envelope(attack["budget"])
             parameters = attack["parameters"]
             keys = {"epsilon", "relative_scale", "absolute_scale", "every_n_steps"}
+            if attack["name"] == "zero_one":
+                keys.update(("horizon", "evaluations", "inner_steps", "step_size", "objective"))
+                if parameters.get("objective") != "targeted_logit_margin":
+                    raise ValueError("Zero-One requires an explicit targeted logit objective")
+                if any(type(parameters.get(k)) is not int or parameters[k] < 1
+                       for k in ("horizon", "evaluations", "inner_steps")):
+                    raise ValueError("Invalid Zero-One horizon or optimization budget")
+                if parameters["evaluations"] < 4 or parameters.get("every_n_steps") != 1 or parameters.get("epsilon", 0) <= 0:
+                    raise ValueError("Zero-One requires at least four candidates and a positive every-step budget")
+                if type(parameters.get("step_size")) not in (int, float) or not math.isfinite(parameters["step_size"]) or parameters["step_size"] <= 0:
+                    raise ValueError("Zero-One PGD step_size must be finite and positive")
             if attack["name"] in ("fgsm", "pgd"):
                 keys.add("objective")
                 if parameters.get("objective") != "untargeted_logit_margin":
