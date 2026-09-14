@@ -3,6 +3,16 @@
 import math
 
 
+def validate_envelope(budget):
+    if set(budget) != {"norm", "epsilon", "relative_scale", "absolute_scale"} or budget["norm"] != "observation_scaled_linf":
+        raise ValueError("Expected an explicit observation-scaled L-infinity envelope")
+    if any(type(budget[k]) not in (int, float) or not math.isfinite(budget[k]) for k in
+           ("epsilon", "relative_scale", "absolute_scale")):
+        raise ValueError("Envelope parameters must be finite numbers")
+    if budget["epsilon"] < 0 or budget["relative_scale"] < 0 or budget["absolute_scale"] <= 0:
+        raise ValueError("Invalid envelope size")
+
+
 def validate_config(config):
     required = {"victims", "run_seeds", "episodes", "max_steps", "action_selection", "gate_enabled",
                 "sumo_schedule", "attacks", "lookahead_m", "metric_percentiles", "verify_legacy_no_attack"}
@@ -42,9 +52,29 @@ def validate_config(config):
             if set(attack["parameters"]) != {"evaluations", "every_n_steps"} or any(
                     type(v) is not int or v < 1 for v in attack["parameters"].values()):
                 raise ValueError("BO requires explicit positive evaluations and every_n_steps")
-            if attack["budget"] != {"norm": "affine_box", "multiplicative_bounds": [0.8, 1.2],
-                                    "additive_bounds": [-0.05, 0.05]}:
+            if attack["budget"] not in ({"norm": "affine_box", "multiplicative_bounds": [0.8, 1.2],
+                                         "additive_bounds": [-0.05, 0.05]},
+                                        {"norm": "observation_scaled_linf", "epsilon": 1.0,
+                                         "relative_scale": 0.2, "absolute_scale": 0.05}):
                 raise ValueError("Original BO uses its fixed affine box; epsilon projection would change it")
+        elif attack["name"] in ("random", "fgsm", "pgd"):
+            validate_envelope(attack["budget"])
+            parameters = attack["parameters"]
+            keys = {"epsilon", "relative_scale", "absolute_scale", "every_n_steps"}
+            if attack["name"] in ("fgsm", "pgd"):
+                keys.add("objective")
+                if parameters.get("objective") != "untargeted_logit_margin":
+                    raise ValueError("Gradient objective must be explicitly declared")
+            if attack["name"] == "pgd":
+                keys.update(("steps", "step_size"))
+                if type(parameters.get("steps")) is not int or parameters["steps"] < 1:
+                    raise ValueError("PGD steps must be positive")
+                if type(parameters.get("step_size")) not in (int, float) or not math.isfinite(parameters["step_size"]) or parameters["step_size"] <= 0:
+                    raise ValueError("PGD step_size must be finite and positive")
+            if set(parameters) != keys or type(parameters["every_n_steps"]) is not int or parameters["every_n_steps"] < 1:
+                raise ValueError("Invalid attack parameters or frequency")
+            if any(parameters[k] != attack["budget"][k] for k in ("epsilon", "relative_scale", "absolute_scale")):
+                raise ValueError("Attack implementation parameters differ from declared budget")
         else:
             raise ValueError("Attack is not implemented in this stage")
     if config["verify_legacy_no_attack"] and (config["episodes"], config["max_steps"]) != (20, 200):

@@ -20,9 +20,13 @@ from rl_att.evaluation.configuration import validate_config
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--expected-commit", help="Reject a batch child launched after its Git commit changed")
     args = parser.parse_args()
     if git("status", "--porcelain"):
         parser.error("Commit changes before evaluation")
+    if args.expected_commit and git("rev-parse", "HEAD") != args.expected_commit:
+        parser.error("Git commit changed since batch dispatch")
     relative = args.config.resolve().relative_to(ROOT).as_posix()
     config = validate_config(json.loads(subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=str(ROOT))))
     references = json.loads(subprocess.check_output(
@@ -41,7 +45,9 @@ def main():
             raise ValueError("Frozen training provenance mismatch")
         trainings.append(training)
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-    output = ROOT / ".local/runs" / (stamp + "-attack-evaluation")
+    output = args.output.resolve() if args.output else ROOT / ".local/runs" / (stamp + "-attack-evaluation")
+    if (ROOT / ".local/runs").resolve() not in output.resolve().parents:
+        parser.error("Output must stay in the ignored .local/runs directory")
     source = output / "source"
     source.mkdir(parents=True)
     archive = subprocess.check_output(["git", "archive", "--format=tar", "HEAD", *SOURCE_PATHS, "rl_att"], cwd=str(ROOT))

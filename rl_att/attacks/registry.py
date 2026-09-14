@@ -19,7 +19,13 @@ class AttackRegistry:
     def defaults(cls):
         from .no_attack import NoAttack
         from .oarl_bo import OARLBOAttack
+        from .random_noise import RandomNoiseAttack
+        from .fgsm import FGSMAttack
+        from .pgd import PGDAttack
         registry = cls()
         registry.register("none", NoAttack)
         registry.register("oarl_bo", OARLBOAttack)
+        registry.register("random", RandomNoiseAttack)
+        registry.register("fgsm", FGSMAttack)
+        registry.register("pgd", PGDAttack)
         return registry

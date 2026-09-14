@@ -27,7 +27,7 @@ flowchart LR
 - `BaseAttack(observation, victim, context) → AttackResult`。输入是原环境的 16D 归一化向量；不能修改传入 observation 或 victim。`AttackContext` 包含 run_seed、attack_seed、从 0 开始的 episode/step。
 - `AttackResult` 包含 adversarial_observation、perturbation、attacked、attack_cost、metadata。扰动等于 adversarial−clean；不攻击时 observation 必须逐元素原样返回。`attacked` 表示执行了攻击，不要求非零扰动或动作改变。
 - cost 记录 objective_evaluations、policy_forward_calls、wall_seconds；forward calls 指攻击自身调用，评估器的干净动作诊断与最终动作调用另计为每 step 两次。
-- `AttackRegistry.defaults()` 注册 `none`、`oarl_bo`。未知攻击、重复名字、未知配置字段和不支持的预算直接报错。后续新增攻击需显式扩展配置验证。
+- `AttackRegistry.defaults()` 在 Stage 2 注册 `none`、`oarl_bo`；Stage 3 增加 `random`、`fgsm`、`pgd`，预算和目标见 [STAGE3_PROTOCOL.md](STAGE3_PROTOCOL.md)。未知攻击、重复名字、未知配置字段和不支持的预算直接报错。后续新增攻击需显式扩展配置验证。
 - 固定频率 `every_n_steps=N` 在每个 episode 的 step 0、N、2N… 执行；无状态筛选、无 Gate。
 
 ## OARL BO 的两个入口
@@ -53,4 +53,4 @@ python scripts/evaluate_attacks.py --config configs/evaluation/oarl_bo_adapter_s
 
 每个运行在 `.local/runs/<timestamp>-attack-evaluation/` 保存 Git SHA、完整配置、启动命令、运行时、源文件哈希、模型引用、各组有效角色 seed；训练/评估 SUMO seed 直接复用 `seed_manifest`。保存 `evaluation.json`、逐组 `summary.json`/`episodes.json`/`steps.jsonl` 和 stdout/stderr。源码来自 Git 快照；只有快照中的 SUMO seed XML 允许按原 reset 行为变化。原 checkpoint 始终只读引用。
 
-安全口径见 [SAFETY_METRICS.md](SAFETY_METRICS.md)。本阶段没有 Random、FGSM、PGD、Zero-One 或 Ours。
+安全口径见 [SAFETY_METRICS.md](SAFETY_METRICS.md)。上述 Stage 2 验证保持历史记录；Stage 3 的 Random、FGSM、PGD 和完整 benchmark 单独记录于 [STAGE3_PROTOCOL.md](STAGE3_PROTOCOL.md)。没有接入 Zero-One 或 Ours。

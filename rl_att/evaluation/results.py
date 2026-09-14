@@ -21,6 +21,8 @@ def summarize_episodes(rows, reference=None):
               "linf_max": max(r["linf_max"] for r in rows), "l2_max": max(r["l2_max"] for r in rows),
               "objective_evaluations": sum(r["objective_evaluations"] for r in rows),
               "attack_policy_forward_calls": sum(r["attack_policy_forward_calls"] for r in rows),
+              "gradient_evaluations": sum(r.get("gradient_evaluations", 0) for r in rows),
+              "scaled_linf_max": max(r["scaled_linf_max"] for r in rows) if all(r.get("scaled_linf_max") is not None for r in rows) else None,
               "attack_wall_seconds": sum(r["attack_wall_seconds"] for r in rows),
               "return_drop_mean": None, "attack_success_rate": None,
               "attack_success_definition": "collision conversion among paired non-collision clean episodes"}

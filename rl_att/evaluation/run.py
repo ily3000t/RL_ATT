@@ -56,7 +56,9 @@ def main():
             torch.manual_seed(run_seed)
             seeds = seed_manifest(run_seed, "controlled", config["episodes"], phase="evaluation")
             seeds.update(policy_rng="unused_greedy_argmax", attack_rng=(
-                "unused_no_attack" if name == "none" else "optimizer_and_discarded_torch_draws_reinitialized_each_attack"))
+                "unused_no_attack" if name == "none" else "unused_deterministic_gradient" if name == "fgsm"
+                else "seedsequence_attack_phase3_episode_step_local_numpy" if name in ("random", "pgd")
+                else "optimizer_and_discarded_torch_draws_reinitialized_each_attack"))
             env = HighwayEnv(sumo_seed_schedule=seeds["episode_sumo_seeds"])
             directory = output / ("%s-seed%d-%s" % (reference["victim"], run_seed, name))
             try:
