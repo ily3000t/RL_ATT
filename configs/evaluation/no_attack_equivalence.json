@@ -1,0 +1,13 @@
+{
+  "victims": ["clean", "oarl"],
+  "run_seeds": [0, 1, 2, 3, 4],
+  "episodes": 20,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "phase_separated_derived",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {"ttc_percentile": 5, "drac_percentile": 95},
+  "verify_legacy_no_attack": true,
+  "attacks": [{"name": "none", "parameters": {}, "budget": {"norm": "none"}}]
+}
