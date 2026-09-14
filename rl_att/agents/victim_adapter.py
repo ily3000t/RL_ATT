@@ -49,6 +49,18 @@ class VictimAdapter:
             raise ValueError("action expects one observation")
         return int(self.probabilities(observation).argmax().item())
 
+    def logits(self, observation, input_grad=False):
+        """Capture the existing actor head without replacing its forward method."""
+        captured = []
+        handle = self.actor.pi.register_forward_hook(lambda module, inputs, output: captured.append(output))
+        try:
+            self.probabilities(observation, input_grad=input_grad)
+        finally:
+            handle.remove()
+        if len(captured) != 1 or not bool(torch.isfinite(captured[0]).all()):
+            raise ValueError("Expected one finite actor logit head output")
+        return captured[0]
+
     def assert_frozen(self):
         if self.actor.training or any(p.requires_grad for p in self.actor.parameters()):
             raise ValueError("Victim must remain in eval mode with frozen parameters")
