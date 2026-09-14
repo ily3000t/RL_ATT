@@ -39,9 +39,10 @@ def validate_budget(result, observation, budget):
 
 
 class AttackEvaluator:
-    def __init__(self, env, victim, attack, metrics, config, seeds, budget):
+    def __init__(self, env, victim, attack, metrics, config, seeds, budget, oracle=None):
         self.env, self.victim, self.attack, self.metrics = env, victim, attack, metrics
         self.config, self.seeds, self.budget = config, seeds, budget
+        self.oracle = oracle
 
     def run(self, output, reference=None):
         output.mkdir(parents=True, exist_ok=False)
@@ -50,7 +51,10 @@ class AttackEvaluator:
         try:
             with (output / "steps.jsonl").open("w", encoding="utf-8") as raw:
                 for index in range(self.config["episodes"]):
+                    snapshot = self.oracle.snapshot(self.env) if self.oracle is not None else None
                     obs = self.env.reset()
+                    if self.oracle is not None:
+                        self.oracle.reset(snapshot, obs)
                     score, collision, done = 0.0, False, False
                     actions, samples, digest = [0, 0, 0], [], hashlib.sha256()
                     attacked = changed = action_changed = evaluations = forward_calls = gradients = 0
@@ -58,7 +62,8 @@ class AttackEvaluator:
                     for step in range(self.config["max_steps"]):
                         clean_obs = np.asarray(obs).copy()
                         clean_action = self.victim.action(clean_obs)
-                        context = AttackContext(self.seeds["run_seed"], self.seeds["attack_seed"], index, step)
+                        context = AttackContext(self.seeds["run_seed"], self.seeds["attack_seed"], index, step,
+                                                self.oracle, self.config["max_steps"] - step)
                         supplied = clean_obs.copy()
                         result = self.attack(supplied, self.victim, context)
                         if not np.array_equal(supplied, clean_obs):
@@ -76,6 +81,8 @@ class AttackEvaluator:
                         score += float(reward)
                         actions[action] += 1
                         safety = self.metrics.sample()
+                        if self.oracle is not None:
+                            self.oracle.observe(action, obs, reward, done, safety["ego_collision_observed"])
                         samples.append(safety)
                         collision = collision or safety["ego_collision_observed"]
                         attacked += int(result.attacked)

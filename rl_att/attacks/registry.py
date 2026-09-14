@@ -22,10 +22,12 @@ class AttackRegistry:
         from .random_noise import RandomNoiseAttack
         from .fgsm import FGSMAttack
         from .pgd import PGDAttack
+        from .zero_one import ZeroOneAttack
         registry = cls()
         registry.register("none", NoAttack)
         registry.register("oarl_bo", OARLBOAttack)
         registry.register("random", RandomNoiseAttack)
         registry.register("fgsm", FGSMAttack)
         registry.register("pgd", PGDAttack)
+        registry.register("zero_one", ZeroOneAttack)
         return registry

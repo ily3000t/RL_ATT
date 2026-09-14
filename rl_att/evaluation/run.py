@@ -15,6 +15,7 @@ from .configuration import validate_config
 from .evaluator import AttackEvaluator
 from .sumo_metrics import SUMOMetrics
 from .results import write_json
+from .simulator_oracle import SimulatorOracle
 
 
 def compare_legacy(root, reference, rows):
@@ -58,18 +59,24 @@ def main():
             seeds.update(policy_rng="unused_greedy_argmax", attack_rng=(
                 "unused_no_attack" if name == "none" else "unused_deterministic_gradient" if name == "fgsm"
                 else "seedsequence_attack_phase3_episode_step_local_numpy" if name in ("random", "pgd")
+                else "phase4_outer_block_and_inner_state_target_isolated_rng" if name == "zero_one"
                 else "optimizer_and_discarded_torch_draws_reinitialized_each_attack"))
             env = HighwayEnv(sumo_seed_schedule=seeds["episode_sumo_seeds"])
             directory = output / ("%s-seed%d-%s" % (reference["victim"], run_seed, name))
+            oracle = None
             try:
                 env.start(gui=False)
+                if name == "zero_one":
+                    oracle = SimulatorOracle(output / (directory.name + "-oracle"), Path(manifest["cwd"]))
                 rows, summary = AttackEvaluator(
                     env, victim, registry.create(name, **specification["parameters"]),
                     SUMOMetrics(traci, lookahead_m=config["lookahead_m"]), config, seeds,
-                    specification["budget"]).run(directory, base_rows)
+                    specification["budget"], oracle=oracle).run(directory, base_rows)
             finally:
                 if traci.isLoaded():
                     env.close()
+                if oracle is not None:
+                    oracle.close()
             entry = {"victim": reference["victim"], "run_seed": run_seed, "attack": specification,
                      "effective_seeds": seeds, "checkpoint_sha256": reference["checkpoint_sha256"],
                      "weights_sha256": reference["weights_sha256"], "frozen_unchanged": True,

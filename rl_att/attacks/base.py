@@ -12,6 +12,8 @@ class AttackContext:
     attack_seed: int
     episode: int
     step: int  # zero based; schedule restarts each episode
+    rollout_oracle: Any = field(default=None, repr=False, compare=False)
+    remaining_steps: Any = None
 
     def __post_init__(self):
         for value in (self.run_seed, self.attack_seed, self.episode, self.step):
