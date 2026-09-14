@@ -39,7 +39,11 @@ class SimulatorOracle:
         if not line:
             self.status = "failed"
             raise RuntimeError("Simulator oracle exited; inspect " + str(self.directory / "stderr.log"))
-        reply = json.loads(line)
+        try:
+            reply = json.loads(line)
+        except ValueError:
+            self.status = "failed"
+            raise RuntimeError("Invalid oracle IPC response: " + repr(line))
         if not reply["ok"]:
             self.status = "failed"
             raise RuntimeError(reply["error"])

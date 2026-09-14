@@ -3,6 +3,7 @@
 import base64
 import copy
 import json
+import os
 import pickle
 import sys
 import traceback
@@ -11,8 +12,10 @@ from .replay_oracle import ReplayOracle
 
 
 def main():
-    channel = sys.stdout
-    sys.stdout = sys.stderr  # TraCI and upstream diagnostics cannot corrupt IPC.
+    # SUMO inherits OS descriptors, so redirect fd 1 as well as Python stdout.
+    channel = os.fdopen(os.dup(sys.stdout.fileno()), "w", buffering=1)
+    os.dup2(sys.stderr.fileno(), sys.stdout.fileno())
+    sys.stdout = sys.stderr
     from Environment.environment.envs.highway_env import HighwayEnv, traci
     env = HighwayEnv()
     snapshot = None
