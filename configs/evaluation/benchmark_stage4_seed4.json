@@ -1,0 +1,48 @@
+{
+  "victims": [
+    "clean"
+  ],
+  "run_seeds": [
+    4
+  ],
+  "episodes": 20,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "phase_separated_derived",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {
+    "ttc_percentile": 5,
+    "drac_percentile": 95
+  },
+  "verify_legacy_no_attack": true,
+  "attacks": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "zero_one",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "objective": "targeted_logit_margin"
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ]
+}
