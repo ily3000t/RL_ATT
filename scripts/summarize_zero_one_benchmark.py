@@ -18,6 +18,15 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sequential_sum(values):
+    # Training/evaluation use Python 3.7's sequential sum. Python 3.12 changed
+    # float summation; replay that operation order for exact trace validation.
+    total = 0.0
+    for value in values:
+        total += value
+    return total
+
+
 def verify_zero_one(directory, episodes, oracle):
     counters = {k: 0 for k in ("shadow_steps", "replay_steps", "cache_hits", "shadow_resets",
                                "candidate_rollouts", "inner_cache_hits", "gradient_evaluations",
@@ -51,7 +60,7 @@ def verify_zero_one(directory, episodes, oracle):
                     raise ValueError("Incorrect candidate winner")
                 selected = trace[best]
                 for candidate in trace:
-                    if candidate["value"] != sum(candidate["rewards"]) or len(candidate["actions"]) != len(candidate["rewards"]):
+                    if candidate["value"] != sequential_sum(candidate["rewards"]) or len(candidate["actions"]) != len(candidate["rewards"]):
                         raise ValueError("Candidate return differs from actual rollout rewards")
                     if len(candidate["actions"]) > min(20, 200-step) or any(a not in (0,1,2) for a in candidate["actions"]):
                         raise ValueError("Invalid candidate horizon or actions")
