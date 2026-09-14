@@ -1,0 +1,17 @@
+{
+  "victims": ["clean", "oarl"],
+  "run_seeds": [0],
+  "episodes": 2,
+  "max_steps": 20,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "phase_separated_derived",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {"ttc_percentile": 5, "drac_percentile": 95},
+  "verify_legacy_no_attack": false,
+  "attacks": [
+    {"name": "none", "parameters": {}, "budget": {"norm": "none"}},
+    {"name": "oarl_bo", "parameters": {"evaluations": 5, "every_n_steps": 1},
+     "budget": {"norm": "affine_box", "multiplicative_bounds": [0.8, 1.2], "additive_bounds": [-0.05, 0.05]}}
+  ]
+}
