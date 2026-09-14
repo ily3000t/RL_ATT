@@ -2,6 +2,8 @@
 
 安全采样只读 SUMO state，在每次 `HighwayEnv.step` 之后采集；不从受扰动的 16D observation 反推真值，不改变仿真参数。与旧 collision 验证一致，不覆盖 reset 内部的 simulationStep 事件。
 
+**Collision 是 SUMO 报告事件，不能直接解释为物理车身接触。** 原 `Data/StraightRoad.rou.xml` 中 Auto/Car/FastCar 的 minGap=25 m，truck=30 m；sumocfg 设置 collision.action=remove，未覆盖 collision.mingap-factor。本机 1.22.0 默认模板的 CLI factor 为 **−1**，含义是使用跟驰模型参数，而不是负的物理碰撞阈值；[1.22.0 跟驰模型基类](https://github.com/eclipse-sumo/sumo/blob/v1_22_0/src/microsim/cfmodels/MSCFModel.cpp#L56) 的 collisionMinGapFactor 默认值为 1，原配置沿用默认 Krauss 模型。按 [SUMO collision 官方定义](https://sumo.dlr.de/docs/Simulation/Safety.html#collisions)，低于 minGap 就可能记录碰撞；只有 factor=0 才将该判据限制为 bumper 接触/重叠。本轮没有更改此参数。Collision Rate/ASR 因而沿用原配置的 SUMO 事件口径。移除事件后的纵向 TTC 样本可能缺失，事件也不要求之前采样到 TTC=0；不能以有碰撞但 minimum TTC>0 判定测量矛盾。
+
 ## 纵向安全范围
 
 本阶段限定 **ego 当前同 lane 的前车/后车**。使用 `getLeader`/`getFollower`（搜索距离明确配置，默认 1000 m），过滤其他 lane、超范围和不存在的邻车。不包括相邻 lane 潜在切入、并道、交叉口或连续时间完整碰撞包络。未来场景扩展必须重新设计这些指标。
