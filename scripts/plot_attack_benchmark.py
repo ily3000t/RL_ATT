@@ -23,9 +23,9 @@ def main():
     colors = ["#486581", "#809c73", "#d79745", "#a65353", "#6d63a8"]
     if "zero_one" in data["aggregate"]:
         methods.append("zero_one")
-        labels.append("Zero-One\nSUMO adapter")
+        labels.append("Zero-One\nadapter")
         colors.append("#29898a")
-    fig, axes = plt.subplots(2, 3, figsize=(13, 8))
+    fig, axes = plt.subplots(2, 3, figsize=(15 if len(methods) == 6 else 13, 8))
     for ax, (metric, title, factor) in zip(axes.flat, panels):
         for i, method in enumerate(methods):
             values = []
