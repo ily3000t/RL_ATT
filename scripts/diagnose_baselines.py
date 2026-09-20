@@ -115,6 +115,8 @@ def main():
     args = parser.parse_args()
     if git("status", "--porcelain"):
         parser.error("Commit diagnostic code before analysis")
+    if read(args.cross_batch / "batch.json")["status"] != "passed":
+        parser.error("Wait for the crossed diagnostic batch to complete before analysis")
     output = args.output.resolve()
     if (ROOT / ".local").resolve() not in output.parents:
         parser.error("Raw diagnostic output must stay under .local")
