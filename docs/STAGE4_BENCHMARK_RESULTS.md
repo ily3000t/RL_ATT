@@ -76,7 +76,7 @@ Zero-One 累计 attack wall time 为 614.334 秒，含规划和动作确认，�
 
 - 当前仅验证了固定 horizon 20、外层预算 10、内层 2 steps 的离散 SUMO 适配；没有根据结果调参，也没有声称复现原连续环境数值。原环境专用的终止奖励修正、timing attack、连续动作损失没有被带入 SUMO。
 - 原奖励总和会受提前终止和规划 horizon 影响；本轮保留原奖励，没有额外碰撞奖励或 Gate。TTC/DRAC 分位数未必随碰撞率单调变化，需要结合逐轨迹事件解释。
-- 下一阶段先分析 seed 2 与其他模型的动作 margin、目标可达性、攻击时刻及碰撞轨迹，区分额外仿真权限、搜索预算与目标函数的影响，再预先设计独立 ablation。当前不预设或实现 Ours，也不更换场景或 victim。
+- 下一阶段先确认基线可信，分析 seed 2 的动作分歧与碰撞轨迹，必要时用 checkpoint × 交通种子的诊断性对照区分因素。之后提出研究问题和自己的方法，验证效果后才对新增模块做消融。当前不预设或实现 Ours，也不更换场景或 victim。后续诊断结果见 [BASELINE_DIAGNOSTIC_RESULTS.md](BASELINE_DIAGNOSTIC_RESULTS.md)。
 
 ## Provenance 与复现
 

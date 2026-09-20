@@ -10,7 +10,7 @@ import torch
 from Environment.environment.envs.highway_env import HighwayEnv, traci
 from rl_att.agents.victim_adapter import VictimAdapter
 from rl_att.attacks.registry import AttackRegistry
-from rl_att.utils.seeding import seed_manifest
+from .seed_control import evaluation_seeds
 from .configuration import validate_config
 from .evaluator import AttackEvaluator
 from .sumo_metrics import SUMOMetrics
@@ -52,10 +52,10 @@ def main():
         base_rows = None
         for specification in config["attacks"]:
             run_seed, name = reference["run_seed"], specification["name"]
-            random.seed(run_seed)
-            np.random.seed(run_seed)
-            torch.manual_seed(run_seed)
-            seeds = seed_manifest(run_seed, "controlled", config["episodes"], phase="evaluation")
+            seeds = evaluation_seeds(run_seed, config["episodes"], config.get("traffic_seed"))
+            random.seed(seeds["python_seed"])
+            np.random.seed(seeds["numpy_seed"])
+            torch.manual_seed(seeds["torch_seed"])
             seeds.update(policy_rng="unused_greedy_argmax", attack_rng=(
                 "unused_no_attack" if name == "none" else "unused_deterministic_gradient" if name == "fgsm"
                 else "seedsequence_attack_phase3_episode_step_local_numpy" if name in ("random", "pgd")

@@ -16,8 +16,15 @@ def validate_envelope(budget):
 def validate_config(config):
     required = {"victims", "run_seeds", "episodes", "max_steps", "action_selection", "gate_enabled",
                 "sumo_schedule", "attacks", "lookahead_m", "metric_percentiles", "verify_legacy_no_attack"}
-    if set(config) != required:
+    if not required <= set(config) or set(config) - required - {"traffic_seed"}:
         raise ValueError("Unexpected or missing evaluation configuration fields")
+    if "traffic_seed" in config:
+        if type(config["traffic_seed"]) is not int or not 0 <= config["traffic_seed"] < 5:
+            raise ValueError("Diagnostic traffic_seed must be in 0 through 4")
+        if config["verify_legacy_no_attack"]:
+            raise ValueError("Crossed traffic uses explicit diagonal verification in diagnostic analysis")
+        if [a["name"] for a in config["attacks"]] != ["none", "fgsm"]:
+            raise ValueError("This diagnostic protocol uses deterministic Clean/FGSM controls")
     if config["gate_enabled"] is not False or config["action_selection"] != "greedy_argmax":
         raise ValueError("This stage requires greedy evaluation without Gate")
     if config["sumo_schedule"] != "phase_separated_derived":
