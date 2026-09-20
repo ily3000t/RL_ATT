@@ -58,6 +58,8 @@ def load_steps(directory):
 
 def policy_audit(victim, rows):
     clean_margins, target_hits, target_total, roundoff_checks = [], 0, 0, 0
+    domain = dict(fractional_lane_feature_steps=0, negative_speed_feature_steps=0,
+                  distance_outside_normalized_range_steps=0, changed_angle_feature_steps=0)
     for begin in range(0, len(rows), 512):
         batch = rows[begin:begin+512]
         clean = np.array([r["observation"] for r in batch])
@@ -67,6 +69,11 @@ def policy_audit(victim, rows):
             raise ValueError("Invalid perturbation record")
         if np.any(abs(delta) > .2*abs(clean)+.05+2e-7):
             raise ValueError("Perturbation exceeded frozen budget")
+        domain["fractional_lane_feature_steps"] += int(np.sum(np.min(abs(adv[:,13,None] - np.array([0.,.1,.2,.3])),axis=1)>1e-7))
+        domain["negative_speed_feature_steps"] += int(np.sum(np.any(adv[:,[0,1,3,5,7,9,11]] < -1e-7,axis=1)))
+        distances = adv[:,[2,4,6,8,10,12]]
+        domain["distance_outside_normalized_range_steps"] += int(np.sum(np.any((distances < -1e-7) | (distances > 1+1e-7),axis=1)))
+        domain["changed_angle_feature_steps"] += int(np.sum(abs(delta[:,15])>1e-7))
         logits = victim.logits(clean).numpy()
         clean_actions = victim.probabilities(clean).argmax(-1).numpy()
         adv_actions = victim.probabilities(adv).argmax(-1).numpy()
@@ -87,7 +94,8 @@ def policy_audit(victim, rows):
                 clean_logit_margin_p05=float(np.percentile(clean_margins,5)),
                 clean_logit_margin_median=float(np.median(clean_margins)),
                 target_hits=target_hits, target_total=target_total,
-                target_hit_rate=target_hits/target_total if target_total else None)
+                target_hit_rate=target_hits/target_total if target_total else None,
+                observation_domain_diagnostics=domain)
 
 
 def detail(victim, baseline, attacked, diagnosis):
