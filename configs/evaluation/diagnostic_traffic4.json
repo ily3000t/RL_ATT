@@ -1,0 +1,49 @@
+{
+  "victims": [
+    "clean"
+  ],
+  "run_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "episodes": 20,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "phase_separated_derived",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {
+    "ttc_percentile": 5,
+    "drac_percentile": 95
+  },
+  "verify_legacy_no_attack": false,
+  "attacks": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "fgsm",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "objective": "untargeted_logit_margin"
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ],
+  "traffic_seed": 4
+}
