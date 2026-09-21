@@ -79,7 +79,8 @@ def audit_steps(steps, parameters):
     return dict(costs=totals, **stats)
 
 
-def summarize(batch_path):
+def summarize(batch_path, expected_episodes=2):
+    require(expected_episodes in (2, 10), "Only frozen smoke/development protocols are supported")
     batch = json.loads(batch_path.read_text(encoding="utf-8"))
     require(batch["status"] == "passed", "Batch did not pass")
     rows, sources, checkpoint_seeds, common_traffic = [], {}, set(), None
@@ -93,8 +94,8 @@ def summarize(batch_path):
         require(manifest["status"] == "passed" and manifest["git_commit"] == batch["git_commit"], "Run provenance mismatch")
         require(evaluation["git_commit"] == batch["git_commit"], "Evaluation commit mismatch")
         config = manifest["config"]
-        require(config["episodes"] == 2 and config["max_steps"] == 200 and config["research_seeds"]["split_id"] == 10,
-                "This report is restricted to 2-episode development smoke")
+        require(config["episodes"] == expected_episodes and config["max_steps"] == 200 and config["research_seeds"]["split_id"] == 10,
+                "This report is restricted to the requested development protocol")
         require(set(e["attack"]["name"] for e in evaluation["runs"]) == expected_names, "Incomplete 2x2 controls")
         comparison = None
         clean_steps = None
@@ -109,6 +110,9 @@ def summarize(batch_path):
             name = entry["attack"]["name"]
             result_dir = directory / entry["results_directory"]
             episodes = read(result_dir / "episodes.json")
+            require(len(episodes) == expected_episodes and [e["episode"] for e in episodes] == list(range(1, expected_episodes + 1)),
+                    "Missing, repeated or misordered episode records")
+            require([e["sumo_seed"] for e in episodes] == traffic["episode_sumo_seeds"], "Episode traffic mismatch")
             raw = result_dir / "steps.jsonl"
             sources[str(raw.relative_to(ROOT))] = hashlib.sha256(raw.read_bytes()).hexdigest()
             steps = [json.loads(line) for line in raw.read_text(encoding="utf-8").splitlines()]
@@ -146,11 +150,14 @@ def summarize(batch_path):
                              checkpoint_sha256=entry["checkpoint_sha256"], summary=entry["summary"],
                              collisions=sum(e["ego_collision_observed"] for e in episodes),
                              episodes=len(episodes), audit=audit))
+            if expected_episodes == 10:
+                rows[-1]["episode_rows"] = episodes
     require(checkpoint_seeds == set(range(5)), "Missing frozen checkpoint")
-    return dict(kind="proposed_v0_engineering_smoke", git_commit=batch["git_commit"],
+    return dict(kind="proposed_v0_engineering_smoke" if expected_episodes == 2 else "proposed_v0_development", git_commit=batch["git_commit"],
                 batch=str(batch_path.relative_to(ROOT)), traffic=common_traffic, rows=rows,
                 verified=True, source_sha256=sources,
-                limitation="Two development episodes per checkpoint, one attack seed: not an efficacy/generalization test")
+                limitation=("Two development episodes per checkpoint, one attack seed: not an efficacy/generalization test" if expected_episodes == 2
+                            else "Ten shared development traffic episodes and one attack seed; overlapping smoke, not held-out validation or final test"))
 
 
 def verify_repeat(original_path, repeat_path):
