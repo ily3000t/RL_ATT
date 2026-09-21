@@ -46,6 +46,11 @@ def main():
                 result = oracle.begin()
             elif command == "step":
                 result = oracle.step(message["action"])
+            elif command == "budgeted_step":
+                result = oracle.budgeted_step(message["action"], message["remaining"])
+            elif command == "observe_fallback":
+                oracle.observe_fallback(message["action"], message["transition"])
+                result = oracle.counts
             elif command == "observe":
                 oracle.observe(message["action"], message["transition"])
                 result = oracle.counts

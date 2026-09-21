@@ -64,6 +64,13 @@ class SimulatorOracle:
     def step(self, action):
         return self.request("step", action=int(action))
 
+    def budgeted_step(self, action, remaining):
+        return self.request("budgeted_step", action=int(action), remaining=remaining)
+
+    def observe_fallback(self, action, observation, reward, done, collision):
+        return self.request("observe_fallback", action=int(action), transition=dict(
+            observation=np.asarray(observation).tolist(), reward=float(reward), done=bool(done), collision=bool(collision)))
+
     def observe(self, action, observation, reward, done, collision):
         return self.request("observe", action=int(action), transition=dict(
             observation=np.asarray(observation).tolist(), reward=float(reward), done=bool(done), collision=bool(collision)))

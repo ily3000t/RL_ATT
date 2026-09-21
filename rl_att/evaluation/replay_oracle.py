@@ -66,3 +66,35 @@ class ReplayOracle:
         assert_transition(self.cache[target], actual)
         self.counts["live_verified_steps"] += 1
         self.live = target
+
+    def budgeted_step(self, action, remaining):
+        """Reject before reset/replay/step/cache/cursor mutation, inside the worker."""
+        if type(action) is not int or action not in (0, 1, 2):
+            raise ValueError("Expected a discrete policy action")
+        if self.cache[self.cursor]["done"]:
+            raise ValueError("Cannot query beyond episode termination")
+        target = self.cursor + (action,)
+        fresh = int(target not in self.cache)
+        physical_steps = fresh * (1 + (len(self.cursor) if self.physical != self.cursor else 0))
+        costs = dict(new_shadow_transitions=fresh, shadow_steps=physical_steps)
+        if any(type(remaining.get(k)) is not int or remaining[k] < 0 for k in costs):
+            raise ValueError("Missing oracle resource allowance")
+        if any(costs[k] > remaining[k] for k in costs):
+            return dict(accepted=False, costs=costs)
+        return dict(accepted=True, costs=costs, transition=self.step(action))
+
+    def observe_fallback(self, action, actual):
+        """Admit a real clean transition when planning could not finish its fallback.
+
+        Cached transitions retain strict verification. New live observations are
+        explicitly unverified; any later physical replay must match them exactly.
+        """
+        if type(action) is not int or action not in (0, 1, 2):
+            raise ValueError("Expected a discrete policy action")
+        target = self.live + (action,)
+        if target in self.cache:
+            self.observe(action, actual)
+        else:
+            self.cache[target] = copy.deepcopy(actual)
+            self.counts["live_unverified_fallback_steps"] = self.counts.get("live_unverified_fallback_steps", 0) + 1
+            self.live = target
