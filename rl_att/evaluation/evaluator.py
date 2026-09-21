@@ -53,11 +53,18 @@ class AttackEvaluator:
                 for index in range(self.config["episodes"]):
                     snapshot = self.oracle.snapshot(self.env) if self.oracle is not None else None
                     obs = self.env.reset()
+                    setup_cost = {}
                     if self.oracle is not None:
-                        self.oracle.reset(snapshot, obs)
+                        before_reset = self.oracle.counts() if "research_seeds" in self.config else None
+                        after_reset = self.oracle.reset(snapshot, obs)
+                        if before_reset is not None:
+                            setup_cost = {k: after_reset[k] - before_reset.get(k, 0) for k in after_reset}
                     score, collision, done = 0.0, False, False
                     actions, samples, digest = [0, 0, 0], [], hashlib.sha256()
                     attacked = changed = action_changed = evaluations = forward_calls = gradients = 0
+                    attempted = 0
+                    search_costs = dict.fromkeys(("new_shadow_transitions", "shadow_steps", "replay_steps",
+                                                  "cache_hits", "shadow_resets", "inner_cache_hits", "warmup_steps", "ipc_requests"), 0)
                     wall_seconds = linf = l2 = scaled_linf = 0.0
                     for step in range(self.config["max_steps"]):
                         clean_obs = np.asarray(obs).copy()
@@ -82,10 +89,18 @@ class AttackEvaluator:
                         actions[action] += 1
                         safety = self.metrics.sample()
                         if self.oracle is not None:
-                            self.oracle.observe(action, obs, reward, done, safety["ego_collision_observed"])
+                            if result.metadata.get("oracle_unplanned_fallback", False):
+                                if result.attacked or action != clean_action or np.any(result.perturbation != 0):
+                                    raise ValueError("Unplanned oracle admission is limited to clean budget fallback")
+                                self.oracle.observe_fallback(action, obs, reward, done, safety["ego_collision_observed"])
+                            else:
+                                self.oracle.observe(action, obs, reward, done, safety["ego_collision_observed"])
                         samples.append(safety)
                         collision = collision or safety["ego_collision_observed"]
                         attacked += int(result.attacked)
+                        attempted += int(result.metadata.get("attempted", result.attacked))
+                        for key in search_costs:
+                            search_costs[key] += result.attack_cost.get(key, 0)
                         changed += int(np.any(result.perturbation != 0))
                         action_changed += int(action != clean_action)
                         linf = max(linf, float(np.linalg.norm(result.perturbation, ord=np.inf)))
@@ -119,6 +134,11 @@ class AttackEvaluator:
                            "attack_policy_forward_calls": forward_calls, "attack_wall_seconds": wall_seconds,
                            "safety": summarize_safety(samples, **self.config["metric_percentiles"])}
                     rows.append(row)
+                    if "research_seeds" in self.config:
+                        row["research_audit"] = dict(eligible_steps=step + 1, attempted_steps=attempted,
+                                                      applied_steps=attacked, changed_steps=changed,
+                                                      oracle_episode_setup_cost=setup_cost,
+                                                      evaluator_policy_forward_calls=2 * (step + 1), **search_costs)
                     all_samples.extend(samples)
                     write_json(output / "episodes.json", rows)
                     raw.flush()

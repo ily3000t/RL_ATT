@@ -47,6 +47,7 @@ class ProposedAttack(BoxAttack):
         self.budget.charge(policy_forward_calls=1)
         emergency_action = victim.action(observation)
         engine = BehaviorSearch(self, victim, context, observation, self.history, self.budget, horizon)
+        ipc_before = getattr(context.rollout_oracle, "ipc_requests", 0)
         before = context.rollout_oracle.counts()
         try:
             engine.rollout("fallback")
@@ -67,6 +68,7 @@ class ProposedAttack(BoxAttack):
         self.unplanned = metadata["oracle_unplanned_fallback"]
         after = context.rollout_oracle.counts()
         cost = {k: after[k] - before.get(k, 0) for k in after}
+        cost["ipc_requests"] = getattr(context.rollout_oracle, "ipc_requests", 0) - ipc_before
         cost.update(objective_evaluations=len(engine.trace), inner_cache_hits=engine.inner_cache_hits)
         metadata.update(horizon=horizon, block_start=context.step, search_kind=self.search_kind)
         return cost, metadata
