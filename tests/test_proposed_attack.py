@@ -11,6 +11,7 @@ from rl_att.attacks.behavior_search import BehaviorSearch, witness_seed
 from rl_att.attacks.search_budget import SearchBudget
 from rl_att.attacks.rollout_objectives import rollout_key, optimizer_value
 from rl_att.attacks.zero_one_controls import BudgetedZeroOneAttack
+from rl_att.attacks.registry import AttackRegistry
 
 
 class BudgetOracle(ToyOracle):
@@ -129,3 +130,10 @@ class ProposedTests(unittest.TestCase):
         common = set(traces[0]) & set(traces[1])
         self.assertTrue(common)
         self.assertTrue(all(traces[0][k] == traces[1][k] for k in common))
+
+    def test_named_registry_defaults_cannot_silently_change_objective(self):
+        registry = AttackRegistry.defaults()
+        for name in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety"):
+            self.assertEqual(registry.create(name).objective, name.rsplit("_", 1)[-1])
+            with self.assertRaises(ValueError):
+                registry.create(name, objective="safety" if name.endswith("return") else "return")
