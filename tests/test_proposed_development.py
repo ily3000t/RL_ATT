@@ -2,13 +2,33 @@ import copy
 from pathlib import Path
 import sys
 import unittest
+import hashlib
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from analyze_proposed_development import pair_outcomes, retry_yield
+from analyze_proposed_development import pair_outcomes, retry_yield, audit_episode_records
 sys.path.pop(0)
 
 
 class DevelopmentAnalysisTests(unittest.TestCase):
+    def test_raw_episode_integrity_checks_return_costs_digest_and_completion(self):
+        obs = [0.] * 16
+        raw = [dict(episode=1, step=0, action=2, reward=-1., terminated=True, next_observation=obs,
+                    safety=dict(ego_collision_observed=True),
+                    attack_cost=dict(policy_forward_calls=3, objective_evaluations=1))]
+        digest = hashlib.sha256(np.asarray(obs, dtype=np.float64).tobytes())
+        digest.update(np.asarray([2, -1., True], dtype=np.float64).tobytes())
+        episode = dict(episode=1, steps=1, episode_return=-1., terminated=True, truncated=False,
+                        ego_collision_observed=True, gradient_evaluations=0, attack_policy_forward_calls=3,
+                        objective_evaluations=1, action_counts=[0, 0, 1], trajectory_sha256=digest.hexdigest())
+        self.assertEqual(audit_episode_records(raw, [episode], 200), 1)
+        episode["episode_return"] = 1.
+        with self.assertRaisesRegex(ValueError, "summary/raw mismatch"):
+            audit_episode_records(raw, [episode], 200)
+        raw[0]["terminated"] = False
+        with self.assertRaisesRegex(ValueError, "Incomplete raw episode"):
+            audit_episode_records(raw, [episode], 200)
+
     @staticmethod
     def episode(index, collision, reward, digest):
         return dict(episode=index, sumo_seed=100 + index, ego_collision_observed=collision,

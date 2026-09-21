@@ -6,7 +6,42 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import numpy as np
 from summarize_proposed_smoke import ROOT, summarize, require
+
+
+def audit_episode_records(steps, episodes, max_steps):
+    """Recompute outcomes and digests from raw transitions used in pairing."""
+    expected = {e["episode"]: e for e in episodes}
+    observed = {}
+    for row in steps:
+        ep = row["episode"]
+        require(ep in expected, "Unknown raw episode")
+        if ep not in observed:
+            observed[ep] = dict(steps=0, episode_return=0., ego_collision_observed=False,
+                                terminated=False, gradient_evaluations=0, attack_policy_forward_calls=0,
+                                objective_evaluations=0, action_counts=[0, 0, 0],
+                                digest=hashlib.sha256())
+        state = observed[ep]
+        require(row["step"] == state["steps"] and not state["terminated"], "Missing/duplicate/post-terminal raw step")
+        state["steps"] += 1
+        state["episode_return"] += float(row["reward"])
+        state["ego_collision_observed"] |= row["safety"]["ego_collision_observed"]
+        state["terminated"] = row["terminated"]
+        state["gradient_evaluations"] += row["attack_cost"].get("gradient_evaluations", 0)
+        state["attack_policy_forward_calls"] += row["attack_cost"]["policy_forward_calls"]
+        state["objective_evaluations"] += row["attack_cost"]["objective_evaluations"]
+        state["action_counts"][row["action"]] += 1
+        state["digest"].update(np.asarray(row["next_observation"], dtype=np.float64).tobytes())
+        state["digest"].update(np.asarray([row["action"], row["reward"], row["terminated"]], dtype=np.float64).tobytes())
+    require(set(observed) == set(expected), "Missing raw episode")
+    for ep, state in observed.items():
+        state["trajectory_sha256"] = state.pop("digest").hexdigest()
+        state["truncated"] = not state["terminated"]
+        require(1 <= state["steps"] <= max_steps and (state["terminated"] or state["steps"] == max_steps), "Incomplete raw episode")
+        for key, value in state.items():
+            require(expected[ep][key] == value, "Episode summary/raw mismatch: %s/%s" % (ep, key))
+    return sum(e["steps"] for e in observed.values())
 
 
 def pair_outcomes(clean, first, second):
@@ -110,6 +145,11 @@ def analyze(batch_path):
         for entry in evaluation["runs"]:
             directories[(entry["run_seed"], entry["attack"]["name"])] = directory / entry["results_directory"]
     by_key = {(r["checkpoint_seed"], r["attack"]): r for r in report["rows"]}
+    report["raw_episode_verified_steps"] = 0
+    for key, directory in directories.items():
+        with (directory / "steps.jsonl").open(encoding="utf-8") as source:
+            report["raw_episode_verified_steps"] += audit_episode_records(
+                (json.loads(line) for line in source), by_key[key]["episode_rows"], 200)
     report["paired_contrasts"] = []
     for seed in range(5):
         clean = by_key[(seed, "none")]["episode_rows"]
