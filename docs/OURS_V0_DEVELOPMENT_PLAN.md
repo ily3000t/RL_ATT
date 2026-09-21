@@ -1,6 +1,6 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
-状态：设计阶段，尚未实现或验证攻击效果。名称仅为工程代号，不代表已确立论文创新。基线冻结点为 `de9b10d`；开发分支 `feat/proposed-attack`。不修改两个上游项目源码、已有攻击配置、冻结 checkpoint、奖励或终止语义。
+状态更新（2026-09-21）：P0/P1 已实现并完成工程 smoke；P2 四条件接口及五模型两 episode smoke 已完成，完整开发集、验证和最终测试尚未执行。实现见 `OURS_V0_IMPLEMENTATION.md`，证据及限制见 `OURS_V0_SMOKE_RESULTS.md`。以下保留最初设计依据。名称仅为工程代号，不代表已确立论文创新或效果优势。基线冻结点为 `de9b10d`；开发分支 `feat/proposed-attack`。不修改两个上游项目源码、已有攻击配置、冻结 checkpoint、奖励或终止语义。
 
 ## 1. 研究问题与可否定假设
 
@@ -142,4 +142,4 @@ Safety 的碰撞事件仍包含 SUMO 原配置的 minGap 语义，不声称物�
 - oracle 扩展：计费预留、预算拒绝、干净保底 witness 的验证路径；旧接口默认行为保持一致。
 - `configs/evaluation/proposed_*`、针对性测试与方法/结果文档。
 
-以上仅为模块规划，当前尚未创建算法模块。每个单一职责改动独立 Conventional Commit，必要的兼容修改单独提交。保持功能分支，测试与实验通过后再 merge main。达到实际稳定复现里程碑才创建 `v0.5.0-proposed`；设计文档或单次 smoke 不构成里程碑。
+以上模块规划现已按实现文档落地。每个单一职责改动独立 Conventional Commit，必要的兼容修改单独提交。保持功能分支，阶段功能与实验完成后再 merge main。达到实际稳定复现里程碑才创建 `v0.5.0-proposed`；设计文档或 smoke 不构成算法有效性里程碑。
