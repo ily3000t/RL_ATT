@@ -153,12 +153,45 @@ def summarize(batch_path):
                 limitation="Two development episodes per checkpoint, one attack seed: not an efficacy/generalization test")
 
 
+def verify_repeat(original_path, repeat_path):
+    """Compare every step field except the explicitly nondeterministic timer."""
+    original, repeated = [json.loads(p.read_text(encoding="utf-8")) for p in (original_path, repeat_path)]
+    require(original["status"] == repeated["status"] == "passed", "Repeat batch did not pass")
+    old_runs = {r["config"]: Path(r["run_dir"]) for r in original["runs"]}
+    comparisons = []
+    for run in repeated["runs"]:
+        new_dir, old_dir = Path(run["run_dir"]), old_runs[run["config"]]
+        old_manifest, new_manifest = [json.loads((d / "manifest.json").read_text()) for d in (old_dir, new_dir)]
+        require(old_manifest["status"] == new_manifest["status"] == "passed", "Repeat run failed")
+        for key in ("config", "victim_references", "python_runtime", "pip_freeze", "sumo_version"):
+            require(old_manifest[key] == new_manifest[key], "Repeat provenance differs: " + key)
+        for new_file in sorted(new_dir.glob("clean-*/steps.jsonl")):
+            old_file = old_dir / new_file.relative_to(new_dir)
+            old_rows, new_rows = [[json.loads(line) for line in p.read_text(encoding="utf-8").splitlines()]
+                                  for p in (old_file, new_file)]
+            require(len(old_rows) == len(new_rows), "Repeat trajectory length differs")
+            for old, new in zip(old_rows, new_rows):
+                for row in (old, new):
+                    row["attack_cost"].pop("wall_seconds")
+                require(old == new, "Repeat step differs: " + str(new_file))
+            comparisons.append(dict(condition=new_file.parent.name, steps=len(new_rows),
+                                     original_sha256=hashlib.sha256(old_file.read_bytes()).hexdigest(),
+                                     repeat_sha256=hashlib.sha256(new_file.read_bytes()).hexdigest()))
+    require(comparisons, "No repeat trajectories found")
+    return dict(passed=True, original_commit=original["git_commit"], repeat_commit=repeated["git_commit"],
+                repeat_batch=str(repeat_path.relative_to(ROOT)), ignored_fields=["attack_cost.wall_seconds"],
+                comparisons=comparisons, verified_steps=sum(c["steps"] for c in comparisons))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--batch", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--repeat-batch", type=Path)
     args = parser.parse_args()
     report = summarize(args.batch.resolve())
+    if args.repeat_batch:
+        report["repeat_verification"] = verify_repeat(args.batch.resolve(), args.repeat_batch.resolve())
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print("Verified %d conditions at %s" % (len(report["rows"]), report["git_commit"]))
     for row in report["rows"]:
