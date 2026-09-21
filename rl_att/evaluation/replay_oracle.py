@@ -11,8 +11,10 @@ def assert_transition(expected, actual):
 
 
 class ReplayOracle:
-    def __init__(self, reset, step):
+    def __init__(self, reset, step, reset_step_cost=None):
         self.reset_fn, self.step_fn = reset, step
+        self.reset_step_cost = reset_step_cost
+        self.last_reset_steps = None
         self.counts = dict(shadow_steps=0, replay_steps=0, cache_hits=0, shadow_resets=0,
                            candidate_rollouts=0, live_verified_steps=0)
 
@@ -21,11 +23,19 @@ class ReplayOracle:
         self.cache = {(): copy.deepcopy(initial)}
         self.live = self.cursor = ()
         self.physical = None
+        self.last_reset_steps = None
         self._reset()
 
     def _reset(self):
         actual = self.reset_fn()
         self.counts["shadow_resets"] += 1
+        if self.reset_step_cost is not None:
+            steps = self.reset_step_cost()
+            if type(steps) is not int or steps < 0 or (self.last_reset_steps is not None and steps != self.last_reset_steps):
+                raise ValueError("Reset warmup cost changed within an exact replay episode")
+            self.last_reset_steps = steps
+            self.counts["warmup_steps"] = self.counts.get("warmup_steps", 0) + steps
+            self.counts["shadow_steps"] += steps
         assert_transition(self.initial, actual)
         self.physical = ()
 
@@ -75,7 +85,8 @@ class ReplayOracle:
             raise ValueError("Cannot query beyond episode termination")
         target = self.cursor + (action,)
         fresh = int(target not in self.cache)
-        physical_steps = fresh * (1 + (len(self.cursor) if self.physical != self.cursor else 0))
+        physical_steps = fresh * (1 + (len(self.cursor) + (self.last_reset_steps or 0)
+                                       if self.physical != self.cursor else 0))
         costs = dict(new_shadow_transitions=fresh, shadow_steps=physical_steps)
         if any(type(remaining.get(k)) is not int or remaining[k] < 0 for k in costs):
             raise ValueError("Missing oracle resource allowance")

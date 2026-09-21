@@ -19,12 +19,23 @@ def main():
     from Environment.environment.envs.highway_env import HighwayEnv, traci
     env = HighwayEnv()
     snapshot = None
+    simulation_calls, last_warmup = [0], [0]
+    original_simulation_step = traci.simulationStep
+
+    def counted_simulation_step(*args, **kwargs):
+        simulation_calls[0] += 1
+        return original_simulation_step(*args, **kwargs)
+
+    traci.simulationStep = counted_simulation_step
 
     def reset():
         attributes, rng = snapshot
         env.__dict__ = copy.deepcopy(attributes)
         np.random.set_state(rng)
-        return dict(observation=np.asarray(env.reset()).tolist(), reward=0.0, done=False, collision=False)
+        before = simulation_calls[0]
+        observation = np.asarray(env.reset()).tolist()
+        last_warmup[0] = simulation_calls[0] - before
+        return dict(observation=observation, reward=0.0, done=False, collision=False)
 
     def step(action):
         obs, reward, done = env.step(action)[:3]
@@ -40,6 +51,7 @@ def main():
             if command == "reset":
                 # Payload is created by this same local evaluator, never external input.
                 snapshot = pickle.loads(base64.b64decode(message["snapshot"]))
+                oracle.reset_step_cost = (lambda: last_warmup[0]) if message.get("account_reset_warmup", False) else None
                 oracle.start_episode(message["initial"])
                 result = oracle.counts
             elif command == "begin":
@@ -69,6 +81,7 @@ def main():
         channel.flush()
         raise
     finally:
+        traci.simulationStep = original_simulation_step
         if traci.isLoaded():
             env.close()
 
