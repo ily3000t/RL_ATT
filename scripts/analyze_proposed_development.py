@@ -135,6 +135,30 @@ def retry_yield(steps):
                 interpretation="Post-hoc discovery attribution; selected does not establish a causal collision contribution")
 
 
+def objective_opportunities(steps):
+    """Compare two rankings of each already observed candidate set, without new queries."""
+    counts = dict(blocks=0, no_collision_candidate=0, all_candidates_collide=0,
+                  mixed_collision_candidates=0, return_safety_selection_differs=0,
+                  return_safety_actual_sequence_differs=0)
+    for row in steps:
+        m = row["attack_metadata"]
+        if not m.get("planned", False):
+            continue
+        traces = m["candidate_trace"]
+        if not traces:
+            continue
+        counts["blocks"] += 1
+        collisions = [any(t["collisions"]) for t in traces]
+        category = ("no_collision_candidate" if not any(collisions) else "all_candidates_collide"
+                    if all(collisions) else "mixed_collision_candidates")
+        counts[category] += 1
+        best_return = min(range(len(traces)), key=lambda i: traces[i]["value"])
+        best_safety = min(range(len(traces)), key=lambda i: (-int(collisions[i]), traces[i]["value"]))
+        counts["return_safety_selection_differs"] += int(best_return != best_safety)
+        counts["return_safety_actual_sequence_differs"] += int(traces[best_return]["actions"] != traces[best_safety]["actions"])
+    return dict(counts, interpretation="Fixed observed candidate sets only; no claim about unsearched unsafe trajectories")
+
+
 def analyze(batch_path):
     report = summarize(batch_path, expected_episodes=10)
     batch = json.loads(batch_path.read_text(encoding="utf-8"))
@@ -150,6 +174,9 @@ def analyze(batch_path):
         with (directory / "steps.jsonl").open(encoding="utf-8") as source:
             report["raw_episode_verified_steps"] += audit_episode_records(
                 (json.loads(line) for line in source), by_key[key]["episode_rows"], 200)
+        if key[1] != "none":
+            with (directory / "steps.jsonl").open(encoding="utf-8") as source:
+                by_key[key]["objective_opportunities"] = objective_opportunities(json.loads(line) for line in source)
     report["paired_contrasts"] = []
     for seed in range(5):
         clean = by_key[(seed, "none")]["episode_rows"]

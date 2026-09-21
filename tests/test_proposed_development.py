@@ -6,11 +6,23 @@ import hashlib
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from analyze_proposed_development import pair_outcomes, retry_yield, audit_episode_records
+from analyze_proposed_development import pair_outcomes, retry_yield, audit_episode_records, objective_opportunities
 sys.path.pop(0)
 
 
 class DevelopmentAnalysisTests(unittest.TestCase):
+    def test_objective_opportunity_is_measured_on_same_candidate_set(self):
+        def block(candidates):
+            return dict(attack_metadata=dict(planned=True, candidate_trace=[dict(collisions=[c], value=v, actions=[a])
+                                                                           for c, v, a in candidates]))
+        result = objective_opportunities([block([(False, -1., 0), (True, 10., 1)]),
+                                          block([(False, 1., 0), (True, 0., 1)]),
+                                          block([(False, 1., 0)])])
+        self.assertEqual(result["mixed_collision_candidates"], 2)
+        self.assertEqual(result["no_collision_candidate"], 1)
+        self.assertEqual(result["return_safety_selection_differs"], 1)
+        self.assertEqual(result["return_safety_actual_sequence_differs"], 1)
+
     def test_raw_episode_integrity_checks_return_costs_digest_and_completion(self):
         obs = [0.] * 16
         raw = [dict(episode=1, step=0, action=2, reward=-1., terminated=True, next_observation=obs,
