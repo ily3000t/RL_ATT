@@ -23,6 +23,8 @@ class AttackRegistry:
         from .fgsm import FGSMAttack
         from .pgd import PGDAttack
         from .zero_one import ZeroOneAttack
+        from .proposed import ProposedAttack
+        from .zero_one_controls import BudgetedZeroOneAttack
         registry = cls()
         registry.register("none", NoAttack)
         registry.register("oarl_bo", OARLBOAttack)
@@ -30,4 +32,8 @@ class AttackRegistry:
         registry.register("fgsm", FGSMAttack)
         registry.register("pgd", PGDAttack)
         registry.register("zero_one", ZeroOneAttack)
+        registry.register("ours_return", ProposedAttack)
+        registry.register("ours_safety", ProposedAttack)
+        registry.register("zero_one_budgeted_return", BudgetedZeroOneAttack)
+        registry.register("zero_one_budgeted_safety", BudgetedZeroOneAttack)
         return registry

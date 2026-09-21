@@ -10,6 +10,7 @@ from rl_att.attacks.proposed import ProposedAttack, DEFAULT_LIMITS
 from rl_att.attacks.behavior_search import BehaviorSearch, witness_seed
 from rl_att.attacks.search_budget import SearchBudget
 from rl_att.attacks.rollout_objectives import rollout_key, optimizer_value
+from rl_att.attacks.zero_one_controls import BudgetedZeroOneAttack
 
 
 class BudgetOracle(ToyOracle):
@@ -117,3 +118,14 @@ class ProposedTests(unittest.TestCase):
         self.assertEqual(result.metadata["budget"]["limits"]["new_shadow_transitions"], 10)
         with self.assertRaises(ValueError):
             attack(self.obs, self.victim, AttackContext(0, 0, 0, 0))
+
+    def test_control_uses_shared_witnesses_and_complete_rollouts(self):
+        traces = []
+        for cls in (ProposedAttack, BudgetedZeroOneAttack):
+            result = cls(horizon=2)(self.obs, self.victim, AttackContext(0, 0, 0, 0, BudgetOracle(self.obs), 2))
+            self.assertEqual(result.metadata["selected_return"], -2.)
+            traces.append({(tuple(t["history"]), t["target"], t["attempt"]): t
+                           for t in result.metadata["inner_attempt_trace"]})
+        common = set(traces[0]) & set(traces[1])
+        self.assertTrue(common)
+        self.assertTrue(all(traces[0][k] == traces[1][k] for k in common))
