@@ -4,6 +4,8 @@ import sys
 import unittest
 import hashlib
 import numpy as np
+import math
+from rl_att.attacks.rollout_objectives import optimizer_value
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from analyze_proposed_development import pair_outcomes, retry_yield, audit_episode_records, objective_opportunities
@@ -11,6 +13,13 @@ sys.path.pop(0)
 
 
 class DevelopmentAnalysisTests(unittest.TestCase):
+    def test_safety_scalar_keeps_collision_priority_at_finite_extremes(self):
+        self.assertLess(optimizer_value((-1, 1e308)), optimizer_value((0, -1e308)))
+        for reward in (-200., -10., 0., 10., 200.):
+            for collision in (-1, 0):
+                self.assertEqual(optimizer_value((collision, reward)),
+                                 2. * collision + 2. / math.pi * math.atan(reward))
+
     def test_objective_opportunity_is_measured_on_same_candidate_set(self):
         def block(candidates):
             return dict(attack_metadata=dict(planned=True, candidate_trace=[dict(collisions=[c], value=v, actions=[a])

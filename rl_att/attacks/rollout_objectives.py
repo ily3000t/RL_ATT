@@ -17,6 +17,11 @@ def rollout_key(rewards, collisions, objective):
 
 
 def optimizer_value(key):
-    # Disjoint intervals preserve collision-first ordering for unbounded finite
-    # rewards. Final plan selection always uses the original tuple, not this map.
-    return key[0] if len(key) == 1 else 2.0 * key[0] + 2.0 / math.pi * math.atan(key[1])
+    # atan can round to +/- pi/2 for large finite inputs. Keep a float64
+    # separation between collision classes even after the final addition.
+    # Final plan selection uses the original tuple, not this bounded map.
+    if len(key) == 1:
+        return key[0]
+    score = 2.0 / math.pi * math.atan(key[1])
+    interior = 1.0 - 2.0 ** -50
+    return 2.0 * key[0] + max(-interior, min(interior, score))
