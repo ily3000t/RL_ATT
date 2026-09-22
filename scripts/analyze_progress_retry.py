@@ -1,4 +1,4 @@
-"""Audit v0/progress-retry smoke pairs and every logged retry stop decision."""
+"""Audit v0/progress-retry development pairs and logged retry stop decisions."""
 
 import argparse
 import json
@@ -78,10 +78,11 @@ def audit_stops(steps):
     return stopped
 
 
-def analyze(batch_path, reference_path=None):
+def analyze(batch_path, reference_path=None, expected_episodes=2):
     names = {"none", "ours_return", "ours_safety", "ours_progress_return", "ours_progress_safety"}
-    report = summarize(batch_path, expected_names=names)
-    report["kind"] = "progress_retry_development_smoke"
+    report = summarize(batch_path, expected_episodes=expected_episodes, expected_names=names)
+    report["kind"] = ("progress_retry_development_smoke" if expected_episodes == 2
+                      else "progress_retry_development")
     batch = json.loads(batch_path.read_text())
     directories = {}
     for run in batch["runs"]:
@@ -119,8 +120,10 @@ if __name__ == "__main__":
     parser.add_argument("--batch", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--v0-reference", type=Path)
+    parser.add_argument("--episodes", type=int, choices=(2, 10), default=2)
     args = parser.parse_args()
-    result = analyze(args.batch.resolve(), args.v0_reference.resolve() if args.v0_reference else None)
+    result = analyze(args.batch.resolve(), args.v0_reference.resolve() if args.v0_reference else None,
+                     expected_episodes=args.episodes)
     args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print("PROGRESS_RETRY_AUDIT_PASSED=" + result["git_commit"])
     for row in result["rows"]:
