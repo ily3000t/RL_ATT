@@ -79,12 +79,14 @@ def audit_steps(steps, parameters):
     return dict(costs=totals, **stats)
 
 
-def summarize(batch_path, expected_episodes=2):
+def summarize(batch_path, expected_episodes=2, expected_names=None):
     require(expected_episodes in (2, 10), "Only frozen smoke/development protocols are supported")
     batch = json.loads(batch_path.read_text(encoding="utf-8"))
     require(batch["status"] == "passed", "Batch did not pass")
     rows, sources, checkpoint_seeds, common_traffic = [], {}, set(), None
-    expected_names = {"none", "zero_one_budgeted_return", "zero_one_budgeted_safety", "ours_return", "ours_safety"}
+    custom_methods = expected_names is not None
+    if expected_names is None:
+        expected_names = {"none", "zero_one_budgeted_return", "zero_one_budgeted_safety", "ours_return", "ours_safety"}
     for run in sorted(batch["runs"], key=lambda r: r["config"]):
         directory = Path(run["run_dir"])
         def read(path):
@@ -122,7 +124,7 @@ def summarize(batch_path, expected_episodes=2):
                 clean_steps = {(s["episode"], s["step"]): s for s in steps}
             else:
                 p = entry["attack"]["parameters"]
-                comparable = {k: v for k, v in p.items() if k != "objective"}
+                comparable = {k: v for k, v in p.items() if k not in ("objective", "retry_rule")}
                 if comparison is None:
                     comparison = comparable
                 require(comparable == comparison, "Controls have different search/perturbation budgets")
@@ -150,7 +152,7 @@ def summarize(batch_path, expected_episodes=2):
                              checkpoint_sha256=entry["checkpoint_sha256"], summary=entry["summary"],
                              collisions=sum(e["ego_collision_observed"] for e in episodes),
                              episodes=len(episodes), audit=audit))
-            if expected_episodes == 10:
+            if expected_episodes == 10 or custom_methods:
                 rows[-1]["episode_rows"] = episodes
     require(checkpoint_seeds == set(range(5)), "Missing frozen checkpoint")
     return dict(kind="proposed_v0_engineering_smoke" if expected_episodes == 2 else "proposed_v0_development", git_commit=batch["git_commit"],
