@@ -28,3 +28,11 @@
 ```
 
 在 legacy Python 下运行 `scripts/analyze_progress_retry.py --batch <batch.json> --v0-reference <原 smoke batch.json> --output <summary.json>`，还会核对五个模型的 Clean/v0 三条件与原冻结轨迹，只排除 wall time。实际结果与边界见 `PROGRESS_RETRY_SMOKE_RESULTS.md`。验证集和最终测试集继续保留。
+
+完整开发协议使用 `proposed_progress_development_seed0..4.json`：每个 checkpoint 取既有 development split 的全部十个交通 episode，attack seed 仍为 0；五条件、预算与 smoke 完全一致。总计 250 episode，其中前两个 episode 与 smoke 重叠，不能当作新的独立样本。配置与分析入口在实验前提交，算法没有再次修改。
+
+```powershell
+& 'E:\Programs\anaconda3\python.exe' scripts/evaluate_attack_batch.py --configs configs/evaluation/proposed_progress_development_seed0.json configs/evaluation/proposed_progress_development_seed1.json configs/evaluation/proposed_progress_development_seed2.json configs/evaluation/proposed_progress_development_seed3.json configs/evaluation/proposed_progress_development_seed4.json --jobs 5
+```
+
+完整批次审计使用 legacy Python 执行 `scripts/analyze_progress_retry.py --episodes 10 --batch <batch.json> --v0-reference .local/runs/20260921T085944130990Z-attack-benchmark/batch.json --output <summary.json>`。此处参考的是完整 v0 开发批次；除逐 episode 配对、停止决策和预算审计外，还要求保留的 Clean/v0 三条件与历史冻结记录逐步一致。回报和碰撞分别报告；实际轨迹一致、碰撞一致和资源减少是不同结论，不能互相替代。并行 wall time 不作为可靠的速度提升依据。
