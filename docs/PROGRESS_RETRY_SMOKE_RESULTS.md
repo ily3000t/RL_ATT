@@ -1,5 +1,7 @@
 # 进展重试版本：首次配对验证
 
+后续进展：完整十 episode 开发验证已完成，见 `PROGRESS_RETRY_DEVELOPMENT_RESULTS.md`。以下保留首次 smoke 完成时的结论与下一步安排。
+
 2026-09-22。结论：新版本在开发 smoke 中保持了 v0 的实际轨迹，减少梯度与 forward 调用；没有新增碰撞优势，也没有减少 SUMO 物理步数。尚未运行该版本的完整十 episode 开发集、独立 attack seeds 1/2、验证集或最终测试集。
 
 ## 已完成
