@@ -1,6 +1,6 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
-状态更新（2026-09-21）：P0/P1 已实现并完成工程 smoke；P2 四条件接口及五模型两 episode smoke 已完成，完整开发集、验证和最终测试尚未执行。实现见 `OURS_V0_IMPLEMENTATION.md`，证据及限制见 `OURS_V0_SMOKE_RESULTS.md`。以下保留最初设计依据。名称仅为工程代号，不代表已确立论文创新或效果优势。基线冻结点为 `de9b10d`；开发分支 `feat/proposed-attack`。不修改两个上游项目源码、已有攻击配置、冻结 checkpoint、奖励或终止语义。
+状态更新（2026-09-22）：P0/P1 和 v0 的 P2 十 episode 开发比较已完成；v0 未表现出额外碰撞优势，重试成本偏高，见 `OURS_V0_DEVELOPMENT_RESULTS.md`。据此在独立分支 `feat/proposed-progress-retry` 实现单一重试分配修改，首次配对结果见 `PROGRESS_RETRY_SMOKE_RESULTS.md`。验证和最终测试仍未执行。以下保留最初设计依据。名称仅为工程代号，不代表已确立论文创新或效果优势。基线冻结点为 `de9b10d`；原开发分支 `feat/proposed-attack` 保留。不修改两个上游项目源码、已有攻击配置、冻结 checkpoint、奖励或终止语义。
 
 ## 1. 研究问题与可否定假设
 

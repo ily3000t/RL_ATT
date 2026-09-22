@@ -1,0 +1,1296 @@
+{
+  "kind": "progress_retry_development_smoke",
+  "git_commit": "989e6a3066448f4b31b7ac5810d5e73d77a800ed",
+  "analysis_commit": "7e6d52580fdea56dfca123dd8737576834bcea0c",
+  "batch": ".local\\runs\\20260922T073213636553Z-attack-benchmark\\batch.json",
+  "traffic": {
+    "python_seed": 454097930,
+    "numpy_seed": 454097930,
+    "torch_seed": 454097930,
+    "sumo_seed": 454097930,
+    "episode_sumo_seeds": [
+      1472154258,
+      1940738230
+    ]
+  },
+  "verified": true,
+  "limitation": "Two development episodes per checkpoint, one attack seed: not an efficacy/generalization test",
+  "raw_episode_verified_steps": 8504,
+  "v0_regression": {
+    "passed": true,
+    "reference_batch": ".local\\runs\\20260921T071026843375Z-attack-benchmark\\batch.json",
+    "reference_commit": "6edc06a1b9a39db34cdcbdc84efc1fff92b1e9c3",
+    "comparisons": [
+      {
+        "checkpoint_seed": 0,
+        "attack": "none",
+        "verified_steps": 400,
+        "old_sha256": "f018dfa9ceea022654fdd03039c381c15af637542b8795681831baca6bde47e7",
+        "new_sha256": "f018dfa9ceea022654fdd03039c381c15af637542b8795681831baca6bde47e7"
+      },
+      {
+        "checkpoint_seed": 0,
+        "attack": "ours_return",
+        "verified_steps": 400,
+        "old_sha256": "8abf573c93266fc9fc7b81cdc98cd305ea9ac0eca0a8f38924193b7ecd903184",
+        "new_sha256": "32236dc5868f538f0436f11cbd5bf8376e8f3812a6596a19b22b13d16eaee30f"
+      },
+      {
+        "checkpoint_seed": 0,
+        "attack": "ours_safety",
+        "verified_steps": 400,
+        "old_sha256": "1877ed2e94aef37fc668757d7ecc89dbcca9aedbc695f5659950f2001e3b4ab2",
+        "new_sha256": "50d97f046bf023ad8c4318684cc7002e8397320a00211c134660f9ffa09eec36"
+      },
+      {
+        "checkpoint_seed": 1,
+        "attack": "none",
+        "verified_steps": 400,
+        "old_sha256": "7db0e6ef763604a11f16d9f6fdfb7cd3544a3073bb0c076dcfa4ff753b961826",
+        "new_sha256": "7db0e6ef763604a11f16d9f6fdfb7cd3544a3073bb0c076dcfa4ff753b961826"
+      },
+      {
+        "checkpoint_seed": 1,
+        "attack": "ours_return",
+        "verified_steps": 400,
+        "old_sha256": "8687bbcfa701f61a5edae5e1bc63a9298d740b5a27456267128f5ed45c2b5b79",
+        "new_sha256": "9066bdbfc616ae99238f9f9da6d93d5a265bb9f6670107272da69b7725556f3a"
+      },
+      {
+        "checkpoint_seed": 1,
+        "attack": "ours_safety",
+        "verified_steps": 400,
+        "old_sha256": "039791466cd8167a2c7212cbb4a267197e74f5739311d9886c4d4b6150942290",
+        "new_sha256": "22dafd4a9e3cb2a4fe6b6f7a4c98a11d13dd4ac7c852a0e8ea7098670bd5d153"
+      },
+      {
+        "checkpoint_seed": 2,
+        "attack": "none",
+        "verified_steps": 372,
+        "old_sha256": "48c060ac1ad542bc5efeb4865bf4e219e2a30dd314c8b20873da0d537da38ebb",
+        "new_sha256": "48c060ac1ad542bc5efeb4865bf4e219e2a30dd314c8b20873da0d537da38ebb"
+      },
+      {
+        "checkpoint_seed": 2,
+        "attack": "ours_return",
+        "verified_steps": 33,
+        "old_sha256": "d203ba05609b1ca42089e2df126665b752a0ee09befd0d7f188232a21a733bc2",
+        "new_sha256": "48cc5f70ff7f7b32db38eec6dccabde678d64a815c4bdefdc76a75d019b7eb3a"
+      },
+      {
+        "checkpoint_seed": 2,
+        "attack": "ours_safety",
+        "verified_steps": 33,
+        "old_sha256": "0bf06197930bd1e954efa24199131be6265be85607270f8b3861ad53d8a958bd",
+        "new_sha256": "bcc685d0ccf55ece1dd85b946c44ea4dd3f3560d7e91f8265e6da059467270ca"
+      },
+      {
+        "checkpoint_seed": 3,
+        "attack": "none",
+        "verified_steps": 400,
+        "old_sha256": "7db0e6ef763604a11f16d9f6fdfb7cd3544a3073bb0c076dcfa4ff753b961826",
+        "new_sha256": "7db0e6ef763604a11f16d9f6fdfb7cd3544a3073bb0c076dcfa4ff753b961826"
+      },
+      {
+        "checkpoint_seed": 3,
+        "attack": "ours_return",
+        "verified_steps": 400,
+        "old_sha256": "db58705145829e7dfffc69269093354f0545ef6b576bb0513b57f32b16ba03a8",
+        "new_sha256": "df9bd701af42dd13f0e6685c7f1f3433f6ff442d5c0e8b0dafe49993261b9528"
+      },
+      {
+        "checkpoint_seed": 3,
+        "attack": "ours_safety",
+        "verified_steps": 400,
+        "old_sha256": "ad0f0d267d36fef829bfaa5fec6dfff56d9eb497d79a554ef22cec2e11b33031",
+        "new_sha256": "1553ee96820978ab285b96e0ce110ae40630f53956e58b5d8a7ff4b0171a7960"
+      },
+      {
+        "checkpoint_seed": 4,
+        "attack": "none",
+        "verified_steps": 400,
+        "old_sha256": "6c4423273f30e7d21dea2a0206ce851b190e7d3a09d5164d7651ce6d02c22d6e",
+        "new_sha256": "6c4423273f30e7d21dea2a0206ce851b190e7d3a09d5164d7651ce6d02c22d6e"
+      },
+      {
+        "checkpoint_seed": 4,
+        "attack": "ours_return",
+        "verified_steps": 400,
+        "old_sha256": "b8615b9b63de6feb4e7da0ff3f59867172d44a15151af740500262466bbd4e37",
+        "new_sha256": "1efe9c940d3eb51725ca791e52e3272b71e9ad36fd2d3841bac8f2e70c61bccb"
+      },
+      {
+        "checkpoint_seed": 4,
+        "attack": "ours_safety",
+        "verified_steps": 400,
+        "old_sha256": "ce971da637bee6325c93b3d6e9fd9fe2f410e550c7ce4850fc3e469248f9b1e9",
+        "new_sha256": "b602232c2b764483e0aca87693125eee1f2b173222bd6febdcfb5b54ee7b6677"
+      }
+    ],
+    "excluded_fields": [
+      "attack_cost.wall_seconds"
+    ],
+    "verified_steps": 5238
+  },
+  "full_audit": ".local/runs/20260922T073213636553Z-attack-benchmark/verified-progress-summary.json",
+  "full_audit_sha256": "0a47f7061e272537b4bfae4b630da37225ff5f5d987b9cc4535f820adf6f0ab4",
+  "rows": [
+    {
+      "checkpoint_seed": 0,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 126.12442510359065,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4936,
+          "policy_forward_calls": 11334,
+          "new_shadow_transitions": 527,
+          "shadow_steps": 1212,
+          "replay_steps": 29,
+          "warmup_steps": 656,
+          "shadow_resets": 8,
+          "cache_hits": 3791,
+          "ipc_requests": 4575
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 25,
+        "duplicate_actual_sequences": 170,
+        "unique_actual_prefixes": 496,
+        "failed_target_attempts": 2460,
+        "retry_attempts": 1507,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 124.28898239145792,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2468,
+        "retries": 1507,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 647,
+        "nodes_with_retries": 403,
+        "retries_without_new_branch": 1507,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4936,
+          "policy_forward_calls": 11334,
+          "new_shadow_transitions": 527,
+          "shadow_steps": 1212,
+          "replay_steps": 29,
+          "warmup_steps": 656,
+          "shadow_resets": 8,
+          "cache_hits": 3791,
+          "ipc_requests": 4575
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 25,
+        "duplicate_actual_sequences": 170,
+        "unique_actual_prefixes": 496,
+        "failed_target_attempts": 2460,
+        "retry_attempts": 1507,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 124.28898239145792,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2468,
+        "retries": 1507,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 647,
+        "nodes_with_retries": 403,
+        "retries_without_new_branch": 1507,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_progress_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3918,
+          "policy_forward_calls": 9298,
+          "new_shadow_transitions": 528,
+          "shadow_steps": 1213,
+          "replay_steps": 29,
+          "warmup_steps": 656,
+          "shadow_resets": 8,
+          "cache_hits": 3795,
+          "ipc_requests": 4580
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 25,
+        "duplicate_actual_sequences": 170,
+        "unique_actual_prefixes": 496,
+        "failed_target_attempts": 1951,
+        "retry_attempts": 997,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 124.28898239145792,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1959,
+        "retries": 997,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 388,
+        "nodes_with_retries": 403,
+        "retries_without_new_branch": 997,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 530
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_progress_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3918,
+          "policy_forward_calls": 9298,
+          "new_shadow_transitions": 528,
+          "shadow_steps": 1213,
+          "replay_steps": 29,
+          "warmup_steps": 656,
+          "shadow_resets": 8,
+          "cache_hits": 3795,
+          "ipc_requests": 4580
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 25,
+        "duplicate_actual_sequences": 170,
+        "unique_actual_prefixes": 496,
+        "failed_target_attempts": 1951,
+        "retry_attempts": 997,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 124.28898239145792,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1959,
+        "retries": 997,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 388,
+        "nodes_with_retries": 403,
+        "retries_without_new_branch": 997,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 530
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 126.43661993365163,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5164,
+          "policy_forward_calls": 15270,
+          "new_shadow_transitions": 2372,
+          "shadow_steps": 28170,
+          "replay_steps": 14400,
+          "warmup_steps": 11398,
+          "shadow_resets": 139,
+          "cache_hits": 891,
+          "ipc_requests": 3474
+        },
+        "blocks": 20,
+        "complete_search_candidates": 134,
+        "unique_actual_sequences": 111,
+        "duplicate_actual_sequences": 23,
+        "unique_actual_prefixes": 1934,
+        "failed_target_attempts": 916,
+        "retry_attempts": 370,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 102.07424122515458,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2582,
+        "retries": 370,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 200,
+        "nodes_with_retries": 154,
+        "retries_without_new_branch": 369,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5164,
+          "policy_forward_calls": 15270,
+          "new_shadow_transitions": 2372,
+          "shadow_steps": 28170,
+          "replay_steps": 14400,
+          "warmup_steps": 11398,
+          "shadow_resets": 139,
+          "cache_hits": 891,
+          "ipc_requests": 3474
+        },
+        "blocks": 20,
+        "complete_search_candidates": 134,
+        "unique_actual_sequences": 111,
+        "duplicate_actual_sequences": 23,
+        "unique_actual_prefixes": 1934,
+        "failed_target_attempts": 916,
+        "retry_attempts": 370,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 102.07424122515458,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2582,
+        "retries": 370,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 200,
+        "nodes_with_retries": 154,
+        "retries_without_new_branch": 369,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_progress_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4974,
+          "policy_forward_calls": 14920,
+          "new_shadow_transitions": 2390,
+          "shadow_steps": 28188,
+          "replay_steps": 14400,
+          "warmup_steps": 11398,
+          "shadow_resets": 139,
+          "cache_hits": 893,
+          "ipc_requests": 3494
+        },
+        "blocks": 20,
+        "complete_search_candidates": 134,
+        "unique_actual_sequences": 111,
+        "duplicate_actual_sequences": 23,
+        "unique_actual_prefixes": 1934,
+        "failed_target_attempts": 804,
+        "retry_attempts": 257,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 102.07424122515458,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2487,
+        "retries": 257,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 127,
+        "nodes_with_retries": 154,
+        "retries_without_new_branch": 256,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 131
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_progress_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4974,
+          "policy_forward_calls": 14920,
+          "new_shadow_transitions": 2390,
+          "shadow_steps": 28188,
+          "replay_steps": 14400,
+          "warmup_steps": 11398,
+          "shadow_resets": 139,
+          "cache_hits": 893,
+          "ipc_requests": 3494
+        },
+        "blocks": 20,
+        "complete_search_candidates": 134,
+        "unique_actual_sequences": 111,
+        "duplicate_actual_sequences": 23,
+        "unique_actual_prefixes": 1934,
+        "failed_target_attempts": 804,
+        "retry_attempts": 257,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 102.07424122515458,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2487,
+        "retries": 257,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 127,
+        "nodes_with_retries": 154,
+        "retries_without_new_branch": 256,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 131
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "none",
+      "collisions": 1,
+      "episodes": 2,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 148.85108146018916,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_return",
+      "collisions": 2,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 682,
+          "policy_forward_calls": 1880,
+          "new_shadow_transitions": 258,
+          "shadow_steps": 2088,
+          "replay_steps": 190,
+          "warmup_steps": 1640,
+          "shadow_resets": 20,
+          "cache_hits": 200,
+          "ipc_requests": 495
+        },
+        "blocks": 3,
+        "complete_search_candidates": 27,
+        "unique_actual_sequences": 19,
+        "duplicate_actual_sequences": 8,
+        "unique_actual_prefixes": 217,
+        "failed_target_attempts": 224,
+        "retry_attempts": 67,
+        "budget_exhausted_blocks": 1,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 10.387719137444426,
+        "attack_success_rate": 1.0,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 1
+      },
+      "retry_yield": {
+        "attempts": 341,
+        "retries": 67,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 26,
+        "nodes_with_retries": 35,
+        "retries_without_new_branch": 67,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_safety",
+      "collisions": 2,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 682,
+          "policy_forward_calls": 1880,
+          "new_shadow_transitions": 258,
+          "shadow_steps": 2088,
+          "replay_steps": 190,
+          "warmup_steps": 1640,
+          "shadow_resets": 20,
+          "cache_hits": 200,
+          "ipc_requests": 495
+        },
+        "blocks": 3,
+        "complete_search_candidates": 27,
+        "unique_actual_sequences": 19,
+        "duplicate_actual_sequences": 8,
+        "unique_actual_prefixes": 217,
+        "failed_target_attempts": 224,
+        "retry_attempts": 67,
+        "budget_exhausted_blocks": 1,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 10.387719137444426,
+        "attack_success_rate": 1.0,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 1
+      },
+      "retry_yield": {
+        "attempts": 341,
+        "retries": 67,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 26,
+        "nodes_with_retries": 35,
+        "retries_without_new_branch": 67,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_progress_return",
+      "collisions": 2,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 648,
+          "policy_forward_calls": 1812,
+          "new_shadow_transitions": 258,
+          "shadow_steps": 2088,
+          "replay_steps": 190,
+          "warmup_steps": 1640,
+          "shadow_resets": 20,
+          "cache_hits": 200,
+          "ipc_requests": 495
+        },
+        "blocks": 3,
+        "complete_search_candidates": 27,
+        "unique_actual_sequences": 19,
+        "duplicate_actual_sequences": 8,
+        "unique_actual_prefixes": 217,
+        "failed_target_attempts": 207,
+        "retry_attempts": 50,
+        "budget_exhausted_blocks": 1,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 10.387719137444426,
+        "attack_success_rate": 1.0,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 1
+      },
+      "retry_yield": {
+        "attempts": 324,
+        "retries": 50,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 15,
+        "nodes_with_retries": 35,
+        "retries_without_new_branch": 50,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 17
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_progress_safety",
+      "collisions": 2,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 648,
+          "policy_forward_calls": 1812,
+          "new_shadow_transitions": 258,
+          "shadow_steps": 2088,
+          "replay_steps": 190,
+          "warmup_steps": 1640,
+          "shadow_resets": 20,
+          "cache_hits": 200,
+          "ipc_requests": 495
+        },
+        "blocks": 3,
+        "complete_search_candidates": 27,
+        "unique_actual_sequences": 19,
+        "duplicate_actual_sequences": 8,
+        "unique_actual_prefixes": 217,
+        "failed_target_attempts": 207,
+        "retry_attempts": 50,
+        "budget_exhausted_blocks": 1,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 10.387719137444426,
+        "attack_success_rate": 1.0,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 1
+      },
+      "retry_yield": {
+        "attempts": 324,
+        "retries": 50,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 15,
+        "nodes_with_retries": 35,
+        "retries_without_new_branch": 50,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 17
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 126.43661993365163,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4970,
+          "policy_forward_calls": 11432,
+          "new_shadow_transitions": 549,
+          "shadow_steps": 2170,
+          "replay_steps": 391,
+          "warmup_steps": 1230,
+          "shadow_resets": 15,
+          "cache_hits": 3774,
+          "ipc_requests": 4580
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 31,
+        "duplicate_actual_sequences": 164,
+        "unique_actual_prefixes": 523,
+        "failed_target_attempts": 2472,
+        "retry_attempts": 1534,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.47280451450106,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2485,
+        "retries": 1534,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 1140,
+        "nodes_with_retries": 402,
+        "retries_without_new_branch": 1534,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4970,
+          "policy_forward_calls": 11432,
+          "new_shadow_transitions": 549,
+          "shadow_steps": 2170,
+          "replay_steps": 391,
+          "warmup_steps": 1230,
+          "shadow_resets": 15,
+          "cache_hits": 3774,
+          "ipc_requests": 4580
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 31,
+        "duplicate_actual_sequences": 164,
+        "unique_actual_prefixes": 523,
+        "failed_target_attempts": 2472,
+        "retry_attempts": 1534,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.47280451450106,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2485,
+        "retries": 1534,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 1140,
+        "nodes_with_retries": 402,
+        "retries_without_new_branch": 1534,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_progress_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3712,
+          "policy_forward_calls": 8916,
+          "new_shadow_transitions": 549,
+          "shadow_steps": 2170,
+          "replay_steps": 391,
+          "warmup_steps": 1230,
+          "shadow_resets": 15,
+          "cache_hits": 3808,
+          "ipc_requests": 4616
+        },
+        "blocks": 20,
+        "complete_search_candidates": 197,
+        "unique_actual_sequences": 31,
+        "duplicate_actual_sequences": 166,
+        "unique_actual_prefixes": 523,
+        "failed_target_attempts": 1843,
+        "retry_attempts": 898,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.47280451450106,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1856,
+        "retries": 898,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 622,
+        "nodes_with_retries": 414,
+        "retries_without_new_branch": 898,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 679
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_progress_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3712,
+          "policy_forward_calls": 8916,
+          "new_shadow_transitions": 549,
+          "shadow_steps": 2170,
+          "replay_steps": 391,
+          "warmup_steps": 1230,
+          "shadow_resets": 15,
+          "cache_hits": 3808,
+          "ipc_requests": 4616
+        },
+        "blocks": 20,
+        "complete_search_candidates": 197,
+        "unique_actual_sequences": 31,
+        "duplicate_actual_sequences": 166,
+        "unique_actual_prefixes": 523,
+        "failed_target_attempts": 1843,
+        "retry_attempts": 898,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.47280451450106,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1856,
+        "retries": 898,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 622,
+        "nodes_with_retries": 414,
+        "retries_without_new_branch": 898,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 679
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 126.39992545344144,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5104,
+          "policy_forward_calls": 11752,
+          "new_shadow_transitions": 573,
+          "shadow_steps": 2224,
+          "replay_steps": 503,
+          "warmup_steps": 1148,
+          "shadow_resets": 14,
+          "cache_hits": 3745,
+          "ipc_requests": 4575
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 30,
+        "duplicate_actual_sequences": 165,
+        "unique_actual_prefixes": 542,
+        "failed_target_attempts": 2539,
+        "retry_attempts": 1518,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 123.96239401145549,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2552,
+        "retries": 1518,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 820,
+        "nodes_with_retries": 435,
+        "retries_without_new_branch": 1518,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5104,
+          "policy_forward_calls": 11752,
+          "new_shadow_transitions": 573,
+          "shadow_steps": 2224,
+          "replay_steps": 503,
+          "warmup_steps": 1148,
+          "shadow_resets": 14,
+          "cache_hits": 3745,
+          "ipc_requests": 4575
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 30,
+        "duplicate_actual_sequences": 165,
+        "unique_actual_prefixes": 542,
+        "failed_target_attempts": 2539,
+        "retry_attempts": 1518,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 123.96239401145549,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 2552,
+        "retries": 1518,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 820,
+        "nodes_with_retries": 435,
+        "retries_without_new_branch": 1518,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_progress_return",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3976,
+          "policy_forward_calls": 9496,
+          "new_shadow_transitions": 574,
+          "shadow_steps": 2225,
+          "replay_steps": 503,
+          "warmup_steps": 1148,
+          "shadow_resets": 14,
+          "cache_hits": 3758,
+          "ipc_requests": 4589
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 30,
+        "duplicate_actual_sequences": 165,
+        "unique_actual_prefixes": 542,
+        "failed_target_attempts": 1975,
+        "retry_attempts": 953,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 123.96239401145549,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1988,
+        "retries": 953,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 476,
+        "nodes_with_retries": 435,
+        "retries_without_new_branch": 953,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 605
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_progress_safety",
+      "collisions": 0,
+      "episodes": 2,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 3976,
+          "policy_forward_calls": 9496,
+          "new_shadow_transitions": 574,
+          "shadow_steps": 2225,
+          "replay_steps": 503,
+          "warmup_steps": 1148,
+          "shadow_resets": 14,
+          "cache_hits": 3758,
+          "ipc_requests": 4589
+        },
+        "blocks": 20,
+        "complete_search_candidates": 195,
+        "unique_actual_sequences": 30,
+        "duplicate_actual_sequences": 165,
+        "unique_actual_prefixes": 542,
+        "failed_target_attempts": 1975,
+        "retry_attempts": 953,
+        "budget_exhausted_blocks": 2,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 123.96239401145549,
+        "attack_success_rate": 0.0,
+        "attack_successes": 0,
+        "attack_success_eligible_episodes": 2
+      },
+      "retry_yield": {
+        "attempts": 1988,
+        "retries": 953,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 476,
+        "nodes_with_retries": 435,
+        "retries_without_new_branch": 953,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "verified_suppressed_retry_targets": 605
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "checkpoint_seed": 0,
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 0,
+      "first": "ours_progress_safety",
+      "second": "ours_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "ours_progress_safety",
+      "second": "ours_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 2,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 1,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "ours_progress_safety",
+      "second": "ours_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 2,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 1,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "ours_progress_safety",
+      "second": "ours_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "ours_progress_safety",
+      "second": "ours_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 0,
+      "neither_collision": 2,
+      "eligible_clean_noncollision": 2,
+      "first_conversion": 0,
+      "second_conversion": 0,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": 0.0
+    }
+  ]
+}
