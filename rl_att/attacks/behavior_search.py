@@ -90,11 +90,14 @@ class BehaviorSearch:
                                        attempt=attempt, seed=seed, margin=margin, succeeded=target == actual))
         return item
 
+    def retry_targets(self, node, history, targets):
+        return [a for a in targets if a not in node["branches"] and node["attempts"][a] < self.attack.max_attempts]
+
     def choose(self, node, history):
         # One attempt per visit. Retry only after every alternative was tried.
         targets = node["ranking"]
         untried = [a for a in targets if node["attempts"][a] == 0]
-        retry = [a for a in targets if a not in node["branches"] and node["attempts"][a] < self.attack.max_attempts]
+        retry = self.retry_targets(node, history, targets)
         candidates = untried or retry
         if candidates:
             target = candidates[0]
