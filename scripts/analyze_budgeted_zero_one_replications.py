@@ -20,7 +20,15 @@ def validate_pairing(baseline, reference, baseline_entries, reference_entries, a
     clean = next(e for e in reference_entries if e["attack"]["name"] == "none")
     for entry in baseline_entries + reference_entries:
         for field in ("run_seed", "effective_seeds", "checkpoint_sha256", "weights_sha256"):
-            require(entry[field] == clean[field], "Cross-batch victim/seed differs: " + field)
+            actual, expected = entry[field], clean[field]
+            if field == "effective_seeds":
+                require(isinstance(actual, dict), "Cross-batch victim/seed differs: " + field)
+                mechanism = ("unused_no_attack" if entry["attack"]["name"] == "none"
+                             else "sha256_attack_episode_full_history_target_attempt_local_numpy")
+                require(actual.get("attack_rng") == mechanism, "Unexpected attack RNG mechanism")
+                actual, expected = [{k: v for k, v in seeds.items() if k != "attack_rng"}
+                                    for seeds in (actual, expected)]
+            require(actual == expected, "Cross-batch victim/seed differs: " + field)
     for objective in ("return", "safety"):
         zero = next(e["attack"] for e in baseline_entries if e["attack"]["name"] == "zero_one_budgeted_" + objective)
         for prefix in ("ours_", "ours_progress_"):

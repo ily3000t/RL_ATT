@@ -17,7 +17,8 @@ class BudgetedBaselinePairingTests(unittest.TestCase):
             "zero_one_budgeted_development_attack1_seed0.json", "proposed_progress_development_attack1_seed0.json")]
         manifests = [dict(config=config, python_runtime="runtime", pip_freeze="freeze", sumo_version="sumo",
                           source_sha256_before={"actor": "abc"}, victim_references=["same"]) for config in configs]
-        entries = [[dict(attack=a, run_seed=0, effective_seeds={"attack_seed": 1, "sumo_seed": 42},
+        entries = [[dict(attack=a, run_seed=0, effective_seeds={"attack_seed": 1, "sumo_seed": 42,
+                         "attack_rng": "unused_no_attack" if a["name"] == "none" else "sha256_attack_episode_full_history_target_attempt_local_numpy"},
                          checkpoint_sha256="checkpoint", weights_sha256="weights") for a in config["attacks"]] for config in configs]
         return manifests[0], manifests[1], entries[0], entries[1], 1
 
@@ -28,6 +29,17 @@ class BudgetedBaselinePairingTests(unittest.TestCase):
             changed = copy.deepcopy(fixture)
             changed[0][field] = "different"
             with self.assertRaisesRegex(ValueError, "provenance differs"):
+                validate_pairing(*changed)
+
+    def test_rng_labels_are_checked_separately_from_actual_seed_values(self):
+        fixture = self.fixture()
+        validate_pairing(*fixture)
+        for key, value, message in (("attack_rng", "unused_no_attack", "RNG mechanism"),
+                                    ("attack_seed", 2, "victim/seed differs"),
+                                    ("sumo_seed", 43, "victim/seed differs")):
+            changed = copy.deepcopy(fixture)
+            changed[2][1]["effective_seeds"][key] = value
+            with self.assertRaisesRegex(ValueError, message):
                 validate_pairing(*changed)
         for field in ("run_seed", "effective_seeds", "checkpoint_sha256", "weights_sha256"):
             changed = copy.deepcopy(fixture)
