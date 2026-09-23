@@ -1,5 +1,7 @@
 # 预算版 Zero-One：缺失攻击种子的配对对照
 
+执行与审计已完成，结果见 `BUDGETED_ZERO_ONE_REPLICATION_RESULTS.md`。以下保留实验前冻结的协议。
+
 2026-09-23。分支 `feat/budgeted-zero-one-seed-replication` 从进展重试复核结果 `6333518` 派生。目的为补齐 attack seeds 1/2 的同协议基线，判断此前相对 v0 的计算节省是否构成相对基线的优势。本轮不修改攻击算法。
 
 配置 `configs/evaluation/zero_one_budgeted_development_attack{1,2}_seed{0..4}.json` 来自原完整开发配置，仅保留 Clean、`zero_one_budgeted_return`、`zero_one_budgeted_safety`，并将 attack seed 设为 1/2。每批五个冻结模型 × 十个既有开发交通 episode × 三条件，共 150 episode；两批顺序运行，共新增 300。其他随机种子、观测包络、规划时域、内层梯度步数、多维预算和候选数上限均不改变。
