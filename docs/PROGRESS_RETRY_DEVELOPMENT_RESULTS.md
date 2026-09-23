@@ -1,5 +1,7 @@
 # 进展重试版本：完整开发集结果
 
+后续进展：attack seeds 1/2 的复核见 `PROGRESS_RETRY_REPLICATION_RESULTS.md`。seed 2 已观察到少量轨迹差异及一个回报攻击退化案例；以下“轨迹全部一致”仅针对本报告的 attack seed 0。
+
 2026-09-22。五个冻结 Clean Victim、十个共享开发交通 episode、attack seed 0 的配对验证完成。新版保持了 v0 的实际轨迹，输入梯度约减少 18.4%，policy forward 约减少 15.1%；规划 SUMO 步数略增。没有新增碰撞优势，尚不能认为整体优于预算版 Zero-One。
 
 ## 实验与审计

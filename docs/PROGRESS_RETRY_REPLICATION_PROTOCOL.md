@@ -1,5 +1,7 @@
 # 进展重试：独立攻击随机种子复核
 
+执行结果已完成，见 `PROGRESS_RETRY_REPLICATION_RESULTS.md`；本文件保留实验前冻结的协议。
+
 2026-09-23。分支 `feat/proposed-attack-seed-replication` 从完整开发证据提交 `8381878` 派生。停止规则保持 `strict_margin_progress`，本轮仅增加预先安排的 attack seeds 1/2，不改变攻击算法。
 
 ## 固定条件与检查
