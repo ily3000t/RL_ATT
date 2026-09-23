@@ -79,11 +79,18 @@ def audit_steps(steps, parameters):
     return dict(costs=totals, **stats)
 
 
-def summarize(batch_path, expected_episodes=2, expected_names=None):
+def validate_attack_seed(config, seeds, expected):
+    require(type(expected) is int and expected in (0, 1, 2), "Unknown development attack replicate")
+    require(config["research_seeds"]["attack_seed"] == seeds["attack_seed"] == expected,
+            "Configured/effective attack replicate mismatch")
+
+
+def summarize(batch_path, expected_episodes=2, expected_names=None, expected_attack_seed=0):
     require(expected_episodes in (2, 10), "Only frozen smoke/development protocols are supported")
     batch = json.loads(batch_path.read_text(encoding="utf-8"))
     require(batch["status"] == "passed", "Batch did not pass")
     rows, sources, checkpoint_seeds, common_traffic = [], {}, set(), None
+    conditions = set()
     custom_methods = expected_names is not None
     if expected_names is None:
         expected_names = {"none", "zero_one_budgeted_return", "zero_one_budgeted_safety", "ours_return", "ours_safety"}
@@ -107,9 +114,13 @@ def summarize(batch_path, expected_episodes=2, expected_names=None):
             traffic = {k: seeds[k] for k in ("python_seed", "numpy_seed", "torch_seed", "sumo_seed", "episode_sumo_seeds")}
             if common_traffic is None:
                 common_traffic = traffic
-            require(common_traffic == traffic and seeds["attack_seed"] == 0, "Unpaired traffic or attack replicate")
+            require(common_traffic == traffic, "Unpaired traffic")
+            validate_attack_seed(config, seeds, expected_attack_seed)
             checkpoint_seeds.add(entry["run_seed"])
             name = entry["attack"]["name"]
+            condition = entry["run_seed"], name
+            require(condition not in conditions, "Repeated checkpoint/attack condition")
+            conditions.add(condition)
             result_dir = directory / entry["results_directory"]
             episodes = read(result_dir / "episodes.json")
             require(len(episodes) == expected_episodes and [e["episode"] for e in episodes] == list(range(1, expected_episodes + 1)),
@@ -155,8 +166,9 @@ def summarize(batch_path, expected_episodes=2, expected_names=None):
             if expected_episodes == 10 or custom_methods:
                 rows[-1]["episode_rows"] = episodes
     require(checkpoint_seeds == set(range(5)), "Missing frozen checkpoint")
+    require(conditions == {(s, n) for s in range(5) for n in expected_names}, "Missing checkpoint/attack condition")
     return dict(kind="proposed_v0_engineering_smoke" if expected_episodes == 2 else "proposed_v0_development", git_commit=batch["git_commit"],
-                batch=str(batch_path.relative_to(ROOT)), traffic=common_traffic, rows=rows,
+                batch=str(batch_path.relative_to(ROOT)), traffic=common_traffic, attack_seed=expected_attack_seed, rows=rows,
                 verified=True, source_sha256=sources,
                 limitation=("Two development episodes per checkpoint, one attack seed: not an efficacy/generalization test" if expected_episodes == 2
                             else "Ten shared development traffic episodes and one attack seed; overlapping smoke, not held-out validation or final test"))
