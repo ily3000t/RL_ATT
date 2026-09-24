@@ -194,11 +194,11 @@ def plot(report, path):
             axes[0, col].set_title(objective.capitalize() + " objective")
         axes[1, col].set_xlabel("Actual gradient evaluations / episode")
         axes[0, col].legend(fontsize=8, loc="lower right")
-    axes[0, 0].set_ylabel("Clean-noncollision conversion (%) [higher = stronger]")
-    axes[1, 0].set_ylabel("Mean episode return [lower = stronger]")
+    axes[0, 0].set_ylabel("Collision conversion (%)")
+    axes[1, 0].set_ylabel("Mean episode return")
     fig.suptitle("Shared computation budgets: development set only", fontsize=14)
-    fig.text(.5, .015, "Labels: gradient cap (forward cap = 2x). 3 correlated attack seeds; no confidence intervals.\n"
-             "Cost includes early termination effects; matched caps do not imply matched actual cost.", ha="center", fontsize=9)
+    fig.text(.5, .015, "Stronger attack: higher conversion, lower return. Labels: gradient cap (forward cap = 2x).\n"
+             "3 correlated attack seeds; no confidence intervals. Cost includes early termination effects.", ha="center", fontsize=9)
     fig.tight_layout(rect=(0, .065, 1, .95))
     fig.savefig(str(path), dpi=160)
     plt.close(fig)
