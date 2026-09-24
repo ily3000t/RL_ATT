@@ -1,5 +1,7 @@
 # 共享模型计算预算：预先固定的敏感性协议
 
+完成状态（2026-09-24）：七批共 1,650 个新增 episode 全部通过，原协议未变更。完整网格、成本、退化和关键案例见 [SHARED_COMPUTE_BUDGET_RESULTS.md](SHARED_COMPUTE_BUDGET_RESULTS.md)。以下保留运行前登记内容。
+
 2026-09-23。从 `10cd154` 建立分支 `feat/shared-compute-budget-sweep`。检验问题：降低模型计算上限后，进展重试搜索能否保留相对预算版 Zero-One 的额外碰撞案例，并缩小实际成本差距？本轮不修改攻击算法。
 
 ## 固定设计
