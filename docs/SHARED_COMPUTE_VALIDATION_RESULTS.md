@@ -88,7 +88,7 @@ Clean 在 100 个唯一模型–交通组合中有 13 个碰撞，平均回报 1
 
 ## 实际成本与完整候选
 
-下表每行合并 300 episode。规划 shadow 包括新转移、replay 和 reset 预热；初始 oracle setup 每行另有 24,600 shadow 步，完整账本均经审计。
+下表每行合并 300 episode。规划 shadow 包括新转移、replay 和 reset 预热；初始 oracle setup 每行另有 **24,615** shadow 步，按实际记录求和：episode 17 每次预热 83 步，其余每次 82 步，不能按固定 82×300 估算。完整账本均经审计。
 
 | 上限 | 方法 / 目标 | 梯度 | Forward | 规划 shadow |
 | --- | --- | ---: | ---: | ---: |
