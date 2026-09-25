@@ -1,5 +1,7 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
+验证阶段更新（2026-09-25）：从 `57ae7e8` 创建 `feat/shared-compute-validation`，固定 split 20 的 20 个新交通 seed，预登记三档预算、五个 checkpoint、三个攻击 seed 的完整验证。配置、逐批审计和失败停止运行器已就绪，见 [SHARED_COMPUTE_VALIDATION_PROTOCOL.md](SHARED_COMPUTE_VALIDATION_PROTOCOL.md)。本地运行状态以 `.local/runs/20260925-shared-compute-validation/validation.json` 为准；预登记与启动不代表验证成功，正式结论等待九批全部审计完成。final split 30 仍保留。下段保留开发阶段结论。
+
 状态更新（2026-09-24）：P0/P1、v0 的 P2、进展重试三个攻击种子开发复核、预算版 Zero-One 配对对照及三档共享计算预算实验均已完成。本轮七批新增 1,650 episode 审计通过；每个目标合并三个相关攻击 seed 后，100/200 档进展版本与 Zero-One 分别为 41/150、31/150 碰撞，200/400 档为 38/150、39/150，400/800 档为 42/150、40/150。低档配对收益中 7 个重复同一交通 episode；总计算下降受提前终止影响，不能当作独立效率收益。完整成本、回退和反例见 [SHARED_COMPUTE_BUDGET_RESULTS.md](SHARED_COMPUTE_BUDGET_RESULTS.md)。当前分支 `feat/shared-compute-budget-sweep`。建议下一步冻结候选，在 validation split 20 的新交通预登记复核完整三档；验证和最终测试仍未执行。进展规则错过有效后续重启的已有反例、原开发分支和负结果全部保留。以下保留最初设计依据；名称仅为工程代号，不代表已确立论文创新或全面效果优势。基线冻结点为 `de9b10d`。不修改两个上游项目源码、已有攻击配置、冻结 checkpoint、奖励或终止语义。
 
 ## 1. 研究问题与可否定假设
