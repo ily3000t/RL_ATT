@@ -1,5 +1,7 @@
 # 共享计算预算：新交通验证预登记
 
+完成状态（2026-09-25）：九批共 4,500 episode、707,039 个交互步全部通过审计。低档净收益对单一交通敏感，中档仍退化；完整结果和预登记的集中性检查见 [SHARED_COMPUTE_VALIDATION_RESULTS.md](SHARED_COMPUTE_VALIDATION_RESULTS.md)。以下保留运行前协议，不作结果驱动修改。
+
 2026-09-25。在观察任何 split 20 结果前登记。从开发阶段冻结点 `57ae7e8` 创建 `feat/shared-compute-validation`，继续验证现有进展版本；不新增或调整攻击模块。开发集结果见 [SHARED_COMPUTE_BUDGET_RESULTS.md](SHARED_COMPUTE_BUDGET_RESULTS.md)。
 
 ## 问题与固定条件
