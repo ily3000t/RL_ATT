@@ -67,7 +67,7 @@ def aggregate_simple(rows, clean_mean):
     eligible = sum(r["summary"].get("attack_success_eligible_episodes",
                     sum(not e["ego_collision_observed"] for e in r["episode_rows"])) for r in rows)
     conversions = sum(r["summary"].get("attack_successes", 0) for r in rows)
-    mean = sum(r["summary"]["episode_return_mean"] * r["episodes"] for r in rows) / total
+    mean = clean_mean if name == "none" else sum(r["summary"]["episode_return_mean"] * r["episodes"] for r in rows) / total
     return dict(attack=name, gradient_cap=None, episodes=total,
                 attack_seeds=[0] if name in ("none", "fgsm") else [0, 1, 2],
                 mean_return=mean, return_drop=clean_mean - mean, collisions=sum(r["collisions"] for r in rows),
@@ -193,10 +193,15 @@ def summarize(path):
                     pairs.append(dict(attack_seed=seed, checkpoint_seed=s, **pair))
                     discordances.extend(dict(checkpoint_seed=s, attack_seed=seed, **e) for e in pair["episodes"]
                                         if e["first_collision"] != e["second_collision"])
+            cluster = concentration(pairs, traffic)
+            cluster["traffic"] = [{k: e[k] for k in ("episode", "sumo_seed", "eligible", "first_only_conversion",
+                                                    "second_only_conversion", "net_conversions", "net_without_this_traffic")}
+                                  for e in cluster["traffic"]]
             comparisons.append(dict(search=p["attack"], gradient_cap=p["gradient_cap"], simple=simple,
                 return_search_minus_simple=sum(differences)/len(differences), paired_records=300,
-                fgsm_reference_reused=simple == "fgsm", collision_discordances=discordances,
-                traffic_concentration=concentration(pairs, traffic), **counts))
+                fgsm_reference_reused=simple == "fgsm",
+                fgsm_exclusive_conversions=[e for e in discordances if not e["clean_collision"]] if simple == "fgsm" else [],
+                traffic_concentration=cluster, **counts))
     core = []
     for cap in (100, 200, 400):
         for objective in ("return", "safety"):
@@ -257,7 +262,7 @@ def markdown(result):
                      (r["gradient_cap"],2*r["gradient_cap"],r["objective"],a,b,a-b,r["return_progress_minus_zero_one"],
                       r["leave_one_traffic_out_net_range"],c["gradient_evaluations"],c["policy_forward_calls"],c["physical_shadow_steps_including_setup"]))
     lines += ["", "## 搜索与FGSM的同交通配对", "",
-              "FGSM是本轮简单方法中ASR最高者。下表将其100个确定性参考复用于搜索的三个attack seed，形成300条相关配对；没有新增FGSM样本或独立性。其他三种简单攻击的48组完整配对计数见JSON。", "",
+              "FGSM是本轮简单方法中ASR最高者。下表将其100个确定性参考复用于搜索的三个attack seed，形成300条相关配对；没有新增FGSM样本或独立性。全部四种简单攻击的48组配对计数见JSON。", "",
               "| 搜索 | 上限 | 搜索独有转换 | FGSM独有转换 | 净差/261 | 回报差 | 去掉一交通净差范围 |", "| --- | --- | ---: | ---: | ---: | ---: | --- |"]
     for r in result["search_vs_simple"]:
         if r["simple"] != "fgsm":
@@ -274,7 +279,8 @@ def markdown(result):
                      (LABELS[r["attack"]],r["gradient_cap"] or "固定",100*a["attack_rate"],100*a["observation_changed_rate"],
                       100*a["action_change_rate"],a["linf_max"],a["l2_max"],
                       "%.6f" % a["scaled_linf_max"] if a["scaled_linf_max"] is not None else "—"))
-    lines += ["", "逐checkpoint/attack seed的Return、ASR及TTC/DRAC原始小型摘要保留在JSON checkpoints中；TTC是同车道前后车在交互后采样，缺少闭合样本时为null。没有把分组分位数平均成总体分位数，也没有把轨迹搜索内部风险分数当成真实安全指标。SUMO碰撞仍包含原minGap语义。", "",
+    lines += ["", "BO归一化最大范数1.000001来自原float32仿射计算，处于既有bounds检查的数值容差内；未重新裁剪扰动或改变算法。", "",
+              "逐checkpoint/attack seed的Return、ASR及TTC/DRAC原始小型摘要保留在JSON checkpoints中；TTC是同车道前后车在交互后采样，缺少闭合样本时为null。没有把分组分位数平均成总体分位数，也没有把轨迹搜索内部风险分数当成真实安全指标。SUMO碰撞仍包含原minGap语义。", "",
               "所有费用按实际记录。OARL-BO使用共同扰动盒内共享仿射子集，并沿用在线obs2=obs1适配。Random无需策略梯度；FGSM/PGD需要白盒策略；BO保留原actor/critic目标；轨迹搜索额外拥有SUMO oracle权限。不同目标与权限的比较不能单独归因于搜索模块。完整配对得失、逐模型指标与来源哈希见机器摘要。", ""]
     return "\n".join(lines)
 
