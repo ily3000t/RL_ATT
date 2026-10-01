@@ -1,0 +1,148 @@
+{
+  "kind": "basic_validation_controls",
+  "research_split_id": 20,
+  "episodes": 20,
+  "max_steps": 200,
+  "groups": [
+    {
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/basic_validation_attack0_seed0.json",
+        "configs/evaluation/basic_validation_attack0_seed1.json",
+        "configs/evaluation/basic_validation_attack0_seed2.json",
+        "configs/evaluation/basic_validation_attack0_seed3.json",
+        "configs/evaluation/basic_validation_attack0_seed4.json"
+      ]
+    },
+    {
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/basic_validation_attack1_seed0.json",
+        "configs/evaluation/basic_validation_attack1_seed1.json",
+        "configs/evaluation/basic_validation_attack1_seed2.json",
+        "configs/evaluation/basic_validation_attack1_seed3.json",
+        "configs/evaluation/basic_validation_attack1_seed4.json"
+      ]
+    },
+    {
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/basic_validation_attack2_seed0.json",
+        "configs/evaluation/basic_validation_attack2_seed1.json",
+        "configs/evaluation/basic_validation_attack2_seed2.json",
+        "configs/evaluation/basic_validation_attack2_seed3.json",
+        "configs/evaluation/basic_validation_attack2_seed4.json"
+      ]
+    }
+  ],
+  "total_episodes": 1300,
+  "attack_episodes": 1000,
+  "clean_control_episodes": 300,
+  "fgsm_unique_episodes": 100,
+  "stochastic_episodes_per_attack": 300,
+  "frozen_method_commit": "cd69cad1e639427362c318122bdb63d0bffead6e",
+  "search_pipeline": ".local/runs/20260925-shared-compute-validation/validation.json",
+  "search_pipeline_sha256": "cbc0b9d76d8f57cab496163c9d2840dd4da30b7efa89ef506e3e5aa29c0b9acd",
+  "search_summary": "docs/SHARED_COMPUTE_VALIDATION_RESULTS.json",
+  "search_summary_sha256": "a61ea2891595b1b6c9688eda7eaf41f1bbb9d257e707c81291d678d3f1d8465e",
+  "clean_reference_batch": ".local\\runs\\20260925T060530687015Z-attack-benchmark\\batch.json",
+  "reference_manifests": [
+    {
+      "checkpoint_seed": 0,
+      "path": ".local/runs/20260925T060530687015Z-attack-benchmark/run-0/manifest.json",
+      "sha256": "3c61803e6579c3df6313bdac51a40d4bdc5af830a247219e2f70e9fd6584be14"
+    },
+    {
+      "checkpoint_seed": 1,
+      "path": ".local/runs/20260925T060530687015Z-attack-benchmark/run-1/manifest.json",
+      "sha256": "f6e72d70bd7b7ccf09634ec76ea8155cfe6d3872a229b3317c0cca2e91e398b1"
+    },
+    {
+      "checkpoint_seed": 2,
+      "path": ".local/runs/20260925T060530687015Z-attack-benchmark/run-2/manifest.json",
+      "sha256": "a018253a17fa81005ddd8c88194fda1c6acb70224eb4df84a5609d2ac13fdfb6"
+    },
+    {
+      "checkpoint_seed": 3,
+      "path": ".local/runs/20260925T060530687015Z-attack-benchmark/run-3/manifest.json",
+      "sha256": "2484e71df51a142cae48740cd3b87139b528b35762b732b880f77414800dced7"
+    },
+    {
+      "checkpoint_seed": 4,
+      "path": ".local/runs/20260925T060530687015Z-attack-benchmark/run-4/manifest.json",
+      "sha256": "5caf9c52ab35520e9af362382907237184bb4e274cc2d8626cf5b4395366b920"
+    }
+  ],
+  "basic_specs": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "random",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "fgsm",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "objective": "untargeted_logit_margin"
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "pgd",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "objective": "untargeted_logit_margin",
+        "steps": 10,
+        "step_size": 0.2
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "oarl_bo",
+      "parameters": {
+        "evaluations": 5,
+        "every_n_steps": 1
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ],
+  "interpretation": "Fixed simple-attack configurations, actual costs; FGSM/Clean deterministic records are not independent attack replicates"
+}
