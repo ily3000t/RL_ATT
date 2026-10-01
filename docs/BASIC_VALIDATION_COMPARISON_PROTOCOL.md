@@ -44,3 +44,7 @@ Random不调用攻击梯度，FGSM每步1次梯度，PGD每步10次梯度，BO�
 ```
 
 顶层 `basic-validation.json` 记录已审计episode及固定SHA；各批日志和 `verified-basic-validation.json` 保存完整输入哈希与结果。全部三批通过后再形成正式17行比较，不把中途结果当作完成。
+
+## 完成记录（2026-10-01）
+
+三批1,300episode、225,248步全部通过；300个Clean回归控制逐步一致。17行完整比较、资源计费与六组核心搜索配对已形成，见 [VALIDATION_COMPARISON_RESULTS.md](VALIDATION_COMPARISON_RESULTS.md) 和 [VALIDATION_COMPARISON_TABLES.md](VALIDATION_COMPARISON_TABLES.md)。配置与算法仍按预登记冻结。FGSM的ASR16.09%；当前方法三档16.48%/16.09%/18.39%，高档额外转换集中于checkpoint2的两种交通。相对预算版Zero-One的碰撞与成本限制仍成立。104项测试通过，final split30保留。
