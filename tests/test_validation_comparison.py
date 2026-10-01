@@ -49,8 +49,11 @@ class ValidationComparisonTests(unittest.TestCase):
         row.update(attack="none")
         row["summary"].pop("attack_successes")
         row["summary"].pop("attack_success_eligible_episodes")
+        for e in row["episode_rows"]:
+            e["scaled_linf_max"]=None
         self.assertEqual(aggregate_simple([row],20.)["eligible"],2)
         self.assertEqual(aggregate_simple([row],20.)["asr"],0.)
+        self.assertIsNone(aggregate_simple([row],20.)["activity"]["scaled_linf_max"])
 
     def test_core_costs_include_setup_and_do_not_normalize_away_early_termination(self):
         first=dict(episodes=2,live_steps=10,setup_shadow_steps=12,

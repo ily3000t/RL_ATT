@@ -42,11 +42,12 @@ def activity(rows):
     episodes = [e for r in rows for e in r["episode_rows"]]
     counts = {k: sum(e[k] for e in episodes)
               for k in ("steps", "attacked_steps", "changed_steps", "action_changed_steps")}
+    norms = {k: [e[k] for e in episodes if e[k] is not None] for k in ("linf_max", "l2_max", "scaled_linf_max")}
     return dict(counts,
                 attack_rate=counts["attacked_steps"] / counts["steps"],
                 observation_changed_rate=counts["changed_steps"] / counts["steps"],
                 action_change_rate=counts["action_changed_steps"] / counts["steps"],
-                **{k: max(e[k] for e in episodes) for k in ("linf_max", "l2_max", "scaled_linf_max")})
+                **{k: max(values) if values else None for k, values in norms.items()})
 
 
 def core_cost_contrast(first, second):
@@ -269,9 +270,10 @@ def markdown(result):
               "| 方法 | 上限 | Attack % | 观测改变 % | 动作改变 % | 最大L_inf | 最大L2 | 最大归一化L_inf |", "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for r in result["rows"]:
         a=r["activity"]
-        lines.append("| %s | %s | %.2f | %.2f | %.2f | %.6f | %.6f | %.6f |" %
+        lines.append("| %s | %s | %.2f | %.2f | %.2f | %.6f | %.6f | %s |" %
                      (LABELS[r["attack"]],r["gradient_cap"] or "固定",100*a["attack_rate"],100*a["observation_changed_rate"],
-                      100*a["action_change_rate"],a["linf_max"],a["l2_max"],a["scaled_linf_max"]))
+                      100*a["action_change_rate"],a["linf_max"],a["l2_max"],
+                      "%.6f" % a["scaled_linf_max"] if a["scaled_linf_max"] is not None else "—"))
     lines += ["", "逐checkpoint/attack seed的Return、ASR及TTC/DRAC原始小型摘要保留在JSON checkpoints中；TTC是同车道前后车在交互后采样，缺少闭合样本时为null。没有把分组分位数平均成总体分位数，也没有把轨迹搜索内部风险分数当成真实安全指标。SUMO碰撞仍包含原minGap语义。", "",
               "所有费用按实际记录。OARL-BO使用共同扰动盒内共享仿射子集，并沿用在线obs2=obs1适配。Random无需策略梯度；FGSM/PGD需要白盒策略；BO保留原actor/critic目标；轨迹搜索额外拥有SUMO oracle权限。不同目标与权限的比较不能单独归因于搜索模块。完整配对得失、逐模型指标与来源哈希见机器摘要。", ""]
     return "\n".join(lines)
