@@ -1,5 +1,7 @@
 # 完整 Return 机制对照协议
 
+执行状态（2026-10-03）：九组共 2250 episode 已全部完成，369008 步原始记录审计通过，实验源码固定于 `4fda0927acb9e4c21d6455b3a4d29ade343e6ff7`。结果和方法局限见 [MECHANISM_DEVELOPMENT_RESULTS.md](MECHANISM_DEVELOPMENT_RESULTS.md)；下文保留运行前登记协议，未按结果改动预算或攻击。
+
 开发分支 `codex/mechanism-development-study` 从 `main` 的 `5501e966279eca62344692d436cde17b24b5fe16` 创建。只增加实验配置、启动/审计和分析工具，保持 `rl_att/`、原 OARL、SUMO 环境、checkpoint 及既有搜索算法不变。
 
 完整网格为梯度/forward 上限 100/200、200/400、400/800 × attack seed 0/1/2 × 五个冻结 Clean 模型 × split 10 的十个开发交通 episode × Clean 和四个 Return 搜索条件，共 2250 个 episode。45 个配置、九个批次，在运行前提交。450 个 Clean episode 是 50 个 model/traffic 单元的九次重复；1800 个攻击 episode 包含同一交通上的相关随机重启，不当作独立交通样本。
