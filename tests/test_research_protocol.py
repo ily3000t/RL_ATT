@@ -39,3 +39,13 @@ class ResearchProtocolTests(unittest.TestCase):
         finally:
             sys.path.pop(0)
         self.assertEqual(expected, json.loads((ROOT / "configs/research_seed_splits.json").read_text()))
+
+    def test_progress_replications_change_only_attack_seed(self):
+        base = ROOT / "configs/evaluation"
+        for checkpoint in range(5):
+            reference = json.loads((base / ("proposed_progress_development_seed%d.json" % checkpoint)).read_text())
+            for attack_seed in (1, 2):
+                actual = json.loads((base / ("proposed_progress_development_attack%d_seed%d.json" % (attack_seed, checkpoint))).read_text())
+                self.assertEqual(actual["research_seeds"]["attack_seed"], attack_seed)
+                actual["research_seeds"]["attack_seed"] = 0
+                self.assertEqual(actual, reference)

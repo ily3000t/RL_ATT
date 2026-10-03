@@ -10,7 +10,8 @@ from summarize_proposed_smoke import ROOT, summarize, require
 from analyze_proposed_development import pair_outcomes, audit_episode_records, retry_yield
 
 
-def verify_v0_reference(batch_path, reference_path):
+def verify_v0_reference(batch_path, reference_path, clean_only=False):
+    names = ("none",) if clean_only else ("none", "ours_return", "ours_safety")
     records = []
     for path in (reference_path, batch_path):
         batch = json.loads(path.read_text())
@@ -23,17 +24,22 @@ def verify_v0_reference(batch_path, reference_path):
             require(manifest["status"] == "passed", "Baseline regression run failed")
             for entry in evaluation["runs"]:
                 name = entry["attack"]["name"]
-                if name in ("none", "ours_return", "ours_safety"):
+                if name in names:
+                    require((entry["run_seed"], name) not in conditions, "Repeated regression condition")
                     conditions[(entry["run_seed"], name)] = (directory / entry["results_directory"] / "steps.jsonl", entry, manifest)
         records.append((batch, conditions))
-    expected = {(seed, name) for seed in range(5) for name in ("none", "ours_return", "ours_safety")}
+    expected = {(seed, name) for seed in range(5) for name in names}
     require(set(records[0][1]) == set(records[1][1]) == expected, "Missing v0 regression conditions")
     proof = []
     for key in sorted(expected):
         old_path, old_entry, old_manifest = records[0][1][key]
         new_path, new_entry, new_manifest = records[1][1][key]
         for field in ("attack", "effective_seeds", "checkpoint_sha256", "weights_sha256"):
-            require(old_entry[field] == new_entry[field], "Baseline regression provenance differs: " + field)
+            old_value, new_value = old_entry[field], new_entry[field]
+            if clean_only and field == "effective_seeds":
+                old_value, new_value = [{k: v for k, v in value.items() if k != "attack_seed"}
+                                        for value in (old_value, new_value)]
+            require(old_value == new_value, "Baseline regression provenance differs: " + field)
         for field in ("python_runtime", "pip_freeze", "sumo_version"):
             require(old_manifest[field] == new_manifest[field], "Baseline regression runtime differs")
         old_rows, new_rows = [[json.loads(line) for line in p.read_text().splitlines()] for p in (old_path, new_path)]
@@ -47,7 +53,9 @@ def verify_v0_reference(batch_path, reference_path):
                           new_sha256=hashlib.sha256(new_path.read_bytes()).hexdigest()))
     return dict(passed=True, reference_batch=str(reference_path.relative_to(ROOT)),
                 reference_commit=records[0][0]["git_commit"], comparisons=proof,
-                excluded_fields=["attack_cost.wall_seconds"], verified_steps=sum(p["verified_steps"] for p in proof))
+                excluded_fields=["attack_cost.wall_seconds"],
+                excluded_seed_fields=["attack_seed"] if clean_only else [],
+                verified_steps=sum(p["verified_steps"] for p in proof))
 
 
 def audit_stops(steps):
@@ -78,9 +86,10 @@ def audit_stops(steps):
     return stopped
 
 
-def analyze(batch_path, reference_path=None, expected_episodes=2):
+def analyze(batch_path, reference_path=None, expected_episodes=2, expected_attack_seed=0, clean_reference_path=None):
     names = {"none", "ours_return", "ours_safety", "ours_progress_return", "ours_progress_safety"}
-    report = summarize(batch_path, expected_episodes=expected_episodes, expected_names=names)
+    report = summarize(batch_path, expected_episodes=expected_episodes, expected_names=names,
+                       expected_attack_seed=expected_attack_seed)
     report["kind"] = ("progress_retry_development_smoke" if expected_episodes == 2
                       else "progress_retry_development")
     batch = json.loads(batch_path.read_text())
@@ -111,6 +120,8 @@ def analyze(batch_path, reference_path=None, expected_episodes=2):
     report["analysis_commit"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(ROOT), universal_newlines=True).strip()
     if reference_path is not None:
         report["v0_regression"] = verify_v0_reference(batch_path, reference_path)
+    if clean_reference_path is not None:
+        report["clean_regression"] = verify_v0_reference(batch_path, clean_reference_path, clean_only=True)
     require(not subprocess.check_output(["git", "status", "--porcelain"], cwd=str(ROOT)), "Commit analyzer before publishing report")
     return report
 
@@ -121,9 +132,12 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--v0-reference", type=Path)
     parser.add_argument("--episodes", type=int, choices=(2, 10), default=2)
+    parser.add_argument("--attack-seed", type=int, choices=(0, 1, 2), default=0)
+    parser.add_argument("--clean-reference", type=Path)
     args = parser.parse_args()
     result = analyze(args.batch.resolve(), args.v0_reference.resolve() if args.v0_reference else None,
-                     expected_episodes=args.episodes)
+                     expected_episodes=args.episodes, expected_attack_seed=args.attack_seed,
+                     clean_reference_path=args.clean_reference.resolve() if args.clean_reference else None)
     args.output.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print("PROGRESS_RETRY_AUDIT_PASSED=" + result["git_commit"])
     for row in result["rows"]:
