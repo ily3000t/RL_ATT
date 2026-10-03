@@ -2,10 +2,12 @@
 
 import copy
 import hashlib
+import io
 import json
 from pathlib import Path
 import sys
 import subprocess
+import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -25,8 +27,10 @@ def sha256(path):
 
 
 def source_sha256(path):
-    # Experiments execute git-archived bytes, independent of Windows CRLF checkout.
-    return hashlib.sha256(subprocess.check_output(["git", "show", "HEAD:" + path], cwd=str(ROOT))).hexdigest()
+    # Git archive applies export line endings; hash exactly what launchers execute.
+    archive = subprocess.check_output(["git", "archive", "--format=tar", "HEAD", path], cwd=str(ROOT))
+    with tarfile.open(fileobj=io.BytesIO(archive)) as exported:
+        return hashlib.sha256(exported.extractfile(path).read()).hexdigest()
 
 
 def make_config(checkpoint_seed, episodes=2, gradient_cap=400, attack_seed=0):
