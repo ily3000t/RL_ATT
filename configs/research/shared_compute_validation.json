@@ -1,0 +1,178 @@
+{
+  "kind": "shared_compute_validation",
+  "frozen_method_commit": "57ae7e80cbf097483cf6ba4001dc6b91c86d989e",
+  "research_split_id": 20,
+  "episodes": 20,
+  "max_steps": 200,
+  "checkpoint_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "attack_seeds": [
+    0,
+    1,
+    2
+  ],
+  "gradient_forward_caps": [
+    [
+      400,
+      800
+    ],
+    [
+      200,
+      400
+    ],
+    [
+      100,
+      200
+    ]
+  ],
+  "groups": [
+    {
+      "gradient_cap": 400,
+      "forward_cap": 800,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/budget_validation_g400_attack0_seed0.json",
+        "configs/evaluation/budget_validation_g400_attack0_seed1.json",
+        "configs/evaluation/budget_validation_g400_attack0_seed2.json",
+        "configs/evaluation/budget_validation_g400_attack0_seed3.json",
+        "configs/evaluation/budget_validation_g400_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 400,
+      "forward_cap": 800,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/budget_validation_g400_attack1_seed0.json",
+        "configs/evaluation/budget_validation_g400_attack1_seed1.json",
+        "configs/evaluation/budget_validation_g400_attack1_seed2.json",
+        "configs/evaluation/budget_validation_g400_attack1_seed3.json",
+        "configs/evaluation/budget_validation_g400_attack1_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 400,
+      "forward_cap": 800,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/budget_validation_g400_attack2_seed0.json",
+        "configs/evaluation/budget_validation_g400_attack2_seed1.json",
+        "configs/evaluation/budget_validation_g400_attack2_seed2.json",
+        "configs/evaluation/budget_validation_g400_attack2_seed3.json",
+        "configs/evaluation/budget_validation_g400_attack2_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/budget_validation_g200_attack0_seed0.json",
+        "configs/evaluation/budget_validation_g200_attack0_seed1.json",
+        "configs/evaluation/budget_validation_g200_attack0_seed2.json",
+        "configs/evaluation/budget_validation_g200_attack0_seed3.json",
+        "configs/evaluation/budget_validation_g200_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/budget_validation_g200_attack1_seed0.json",
+        "configs/evaluation/budget_validation_g200_attack1_seed1.json",
+        "configs/evaluation/budget_validation_g200_attack1_seed2.json",
+        "configs/evaluation/budget_validation_g200_attack1_seed3.json",
+        "configs/evaluation/budget_validation_g200_attack1_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/budget_validation_g200_attack2_seed0.json",
+        "configs/evaluation/budget_validation_g200_attack2_seed1.json",
+        "configs/evaluation/budget_validation_g200_attack2_seed2.json",
+        "configs/evaluation/budget_validation_g200_attack2_seed3.json",
+        "configs/evaluation/budget_validation_g200_attack2_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/budget_validation_g100_attack0_seed0.json",
+        "configs/evaluation/budget_validation_g100_attack0_seed1.json",
+        "configs/evaluation/budget_validation_g100_attack0_seed2.json",
+        "configs/evaluation/budget_validation_g100_attack0_seed3.json",
+        "configs/evaluation/budget_validation_g100_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/budget_validation_g100_attack1_seed0.json",
+        "configs/evaluation/budget_validation_g100_attack1_seed1.json",
+        "configs/evaluation/budget_validation_g100_attack1_seed2.json",
+        "configs/evaluation/budget_validation_g100_attack1_seed3.json",
+        "configs/evaluation/budget_validation_g100_attack1_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/budget_validation_g100_attack2_seed0.json",
+        "configs/evaluation/budget_validation_g100_attack2_seed1.json",
+        "configs/evaluation/budget_validation_g100_attack2_seed2.json",
+        "configs/evaluation/budget_validation_g100_attack2_seed3.json",
+        "configs/evaluation/budget_validation_g100_attack2_seed4.json"
+      ]
+    }
+  ],
+  "total_episodes": 4500,
+  "attack_episodes": 3600,
+  "repeated_clean_episodes": 900,
+  "unique_clean_pairs": 100,
+  "seed_protocol_sha256": "36a8319fd8ae73523d2e76cbaeece0ee9b37d3254c483a0d244a93b8412ae30e",
+  "victim_registry_sha256": "abdfb1437842832134fca2ff7de5d8c9091c27014f4d7e18bfb0e9ec062f5af9",
+  "development_references": [
+    {
+      "checkpoint_seed": 0,
+      "path": ".local/runs/20260923T142718092754Z-attack-benchmark/run-0/manifest.json",
+      "sha256": "4390225af2191db7c392c4b50b03895fac0ec71b50b1abc83c1a54557f696206"
+    },
+    {
+      "checkpoint_seed": 1,
+      "path": ".local/runs/20260923T142718092754Z-attack-benchmark/run-1/manifest.json",
+      "sha256": "d75f4f5d69255908da5c0dde33378baedcd95062cab12d25313309f87918d4b7"
+    },
+    {
+      "checkpoint_seed": 2,
+      "path": ".local/runs/20260923T142718092754Z-attack-benchmark/run-2/manifest.json",
+      "sha256": "303241e5d0a25c61760d5151100bb662fdcd03e4a3348450ee63a74d31d0e318"
+    },
+    {
+      "checkpoint_seed": 3,
+      "path": ".local/runs/20260923T142718092754Z-attack-benchmark/run-3/manifest.json",
+      "sha256": "4882542f9918c66d692fd8f26348c1e54b494976a1dd568a590731e585c35549"
+    },
+    {
+      "checkpoint_seed": 4,
+      "path": ".local/runs/20260923T142718092754Z-attack-benchmark/run-4/manifest.json",
+      "sha256": "e23a83fe24fa04f06e6d7b4724ae28c8f461fdab8e81fb0f28eca07b9d74e531"
+    }
+  ],
+  "primary_endpoint": "paired collision conversions among Clean noncollision episodes, separately for every budget/objective",
+  "limitations": "Same scenario and frozen models; new traffic only. Attack seeds and objectives are correlated. No final-test outcomes."
+}

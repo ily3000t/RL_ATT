@@ -128,3 +128,5 @@ $budgetReports = @($budgetBatches | ForEach-Object { ".local/runs/$_/verified-bu
 目前不需要新增算法模块或凭此结果调整停止阈值。若下一轮仍有收益，再针对自身新增模块设计明确消融；本次敏感性实验没有单独识别进展停止规则的贡献，也没有与低档 v0 作模块归因比较。验证与最终测试本轮均未执行。
 
 当前分支 `feat/shared-compute-budget-sweep`。本阶段提交包括 `b6ec155`（固定网格）、`91a1b4d`（预算与回退审计）、`d1c5fa9`（预登记协议）、`167ad09`（汇总与针对性测试）、`4ef1143`（图表标签修正）。未创建稳定方法 milestone tag。
+
+后续阶段（2026-09-25）：已建立独立验证分支 `feat/shared-compute-validation`，预登记新交通完整网格，见 [SHARED_COMPUTE_VALIDATION_PROTOCOL.md](SHARED_COMPUTE_VALIDATION_PROTOCOL.md)。本文件结果仍仅属于 development split 10。
