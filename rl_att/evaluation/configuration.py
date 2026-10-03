@@ -78,11 +78,16 @@ def validate_config(config):
                                         {"norm": "observation_scaled_linf", "epsilon": 1.0,
                                          "relative_scale": 0.2, "absolute_scale": 0.05}):
                 raise ValueError("Original BO uses its fixed affine box; epsilon projection would change it")
-        elif attack["name"] in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety"):
+        elif attack["name"] in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety",
+                              "ours_progress_return", "ours_progress_safety"):
             validate_envelope(attack["budget"])
             p = attack["parameters"]
             keys = {"epsilon", "relative_scale", "absolute_scale", "every_n_steps", "horizon", "evaluations",
                     "inner_steps", "step_size", "max_attempts", "objective", "resource_limits"}
+            if attack["name"].startswith("ours_progress_"):
+                keys.add("retry_rule")
+                if p.get("retry_rule") != "strict_margin_progress":
+                    raise ValueError("Explicit progress retry rule required")
             if set(p) != keys or p["objective"] != attack["name"].split("_")[-1]:
                 raise ValueError("Search name must match its explicit objective and parameters")
             if any(type(p[k]) is not int or p[k] < 1 for k in ("horizon", "evaluations", "inner_steps", "max_attempts")):

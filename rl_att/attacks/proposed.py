@@ -13,6 +13,8 @@ DEFAULT_LIMITS = dict(gradient_evaluations=400, policy_forward_calls=800,
 
 class ProposedAttack(BoxAttack):
     search_kind = "behavior"
+    engine_type = BehaviorSearch
+    method_prefix = None
 
     def __init__(self, horizon=20, evaluations=10, inner_steps=2, step_size=1., max_attempts=3,
                  objective="return", resource_limits=None, **kwargs):
@@ -46,7 +48,7 @@ class ProposedAttack(BoxAttack):
         # complete fallback cannot fit. Its forward is charged in every condition.
         self.budget.charge(policy_forward_calls=1)
         emergency_action = victim.action(observation)
-        engine = BehaviorSearch(self, victim, context, observation, self.history, self.budget, horizon)
+        engine = self.engine_type(self, victim, context, observation, self.history, self.budget, horizon)
         ipc_before = getattr(context.rollout_oracle, "ipc_requests", 0)
         before = context.rollout_oracle.counts()
         try:
@@ -99,7 +101,8 @@ class ProposedAttack(BoxAttack):
             raise ValueError("Live policy output differs from witness action")
         cost.update({k: self.budget.used[k] - previous_used[k] for k in self.budget.used})
         cost["wall_seconds"] = time.perf_counter() - start
-        metadata = dict(details, name=("ours_" if self.search_kind == "behavior" else "zero_one_budgeted_") + self.objective,
+        prefix = self.method_prefix or ("ours_" if self.search_kind == "behavior" else "zero_one_budgeted_")
+        metadata = dict(details, name=prefix + self.objective,
                         planned=planned, objective=self.objective, gate_enabled=False,
                         privileged_simulator_access=True, budget=self.budget.snapshot(),
                         target_action=selected["target"], planned_action=selected["action"],
