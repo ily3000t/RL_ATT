@@ -1,5 +1,7 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
+完整机制研究更新（2026-10-03）：`codex/mechanism-development-study` 的九批 2250 episode、369008 步审计全部通过；九批 Clean 共 89748 步及高档五条件 smoke 前缀 8504 步回归一致。Single 已取得低/中/高档相对预算版 ZO 的平均 Return 差 −10.511/−1.087/−3.685；固定重试只再改善 0/0.093/0.322，没有新增碰撞，高档梯度约翻倍。进展规则高档比固定重试节省 18.20% 梯度，但保留错过有效后续尝试的真实反例。当前 Progress 相对 ZO 的净新增转换仍为 +10/−1/+2，安全收益集中性和成本局限没有消失。详见 [MECHANISM_DEVELOPMENT_RESULTS.md](MECHANISM_DEVELOPMENT_RESULTS.md)。建议下一功能独立冻结并验证简化候选，不自动替换现有方法；final split 30 继续保留，当前不启动防御。以下 smoke 和各阶段判断保留为历史记录。
+
 机制对照工程更新（2026-10-03）：既有七个完成分支已依赖顺序合入 main，新分支 `codex/attack-mechanism-controls` 增加单次尝试行为搜索对照，与预算版 Zero-One、固定重试版、进展版形成四个 Return 条件。五模型、两个已有开发交通的 50 episode / 8504 步审计及 110 项测试通过，四个旧条件逐字段回归一致。当前 smoke 未显示独立重试带来额外效果，不能预设该模块有益。完整三预算、三 attack seed 的 2250 episode 机制研究尚未运行；最终 split 30 继续保留。详见 [MECHANISM_CONTROLS_SMOKE_RESULTS.md](MECHANISM_CONTROLS_SMOKE_RESULTS.md)。此工程结果不替代下述完整验证结论，后续分支/测试/合并规范见根目录 `AGENTS.md`。
 
 完整对照更新（2026-10-01）：同validation交通上的Clean/Random/FGSM/PGD/OARL-BO已补齐；三批新增1,300episode、225,248步审计通过，形成保留全部三档搜索预算的17行效果–成本比较。FGSM的ASR16.09%，当前方法三档为16.48%/16.09%/18.39%；高档相对FGSM的+6条相关转换仅来自checkpoint2的两个交通。相对预算版Zero-One仍是回报更低、碰撞优势小且不稳定、计算无全面优势。详见 [VALIDATION_COMPARISON_RESULTS.md](VALIDATION_COMPARISON_RESULTS.md)。下一步诊断已有失败案例与收益集中性，先形成机制假设；尚不支持稳定安全改进，不启动final split30或以新增消融替代核心比较。以下保留各阶段历史判断。
