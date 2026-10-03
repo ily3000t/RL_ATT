@@ -79,7 +79,7 @@ def validate_config(config):
                                          "relative_scale": 0.2, "absolute_scale": 0.05}):
                 raise ValueError("Original BO uses its fixed affine box; epsilon projection would change it")
         elif attack["name"] in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety",
-                              "ours_progress_return", "ours_progress_safety"):
+                              "ours_progress_return", "ours_progress_safety", "ours_single_return"):
             validate_envelope(attack["budget"])
             p = attack["parameters"]
             keys = {"epsilon", "relative_scale", "absolute_scale", "every_n_steps", "horizon", "evaluations",
@@ -92,6 +92,8 @@ def validate_config(config):
                 raise ValueError("Search name must match its explicit objective and parameters")
             if any(type(p[k]) is not int or p[k] < 1 for k in ("horizon", "evaluations", "inner_steps", "max_attempts")):
                 raise ValueError("Positive integer search parameters required")
+            if attack["name"] == "ours_single_return" and p["max_attempts"] != 1:
+                raise ValueError("Single-attempt control requires max_attempts=1")
             if p["every_n_steps"] != 1 or p["epsilon"] <= 0 or p["evaluations"] < 4:
                 raise ValueError("Positive every-step budget and at least four candidates required")
             if type(p["step_size"]) not in (float, int) or not math.isfinite(p["step_size"]) or p["step_size"] <= 0:

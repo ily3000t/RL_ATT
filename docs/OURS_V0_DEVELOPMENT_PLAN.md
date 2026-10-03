@@ -1,5 +1,7 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
+机制对照工程更新（2026-10-03）：既有七个完成分支已依赖顺序合入 main，新分支 `codex/attack-mechanism-controls` 增加单次尝试行为搜索对照，与预算版 Zero-One、固定重试版、进展版形成四个 Return 条件。五模型、两个已有开发交通的 50 episode / 8504 步审计及 110 项测试通过，四个旧条件逐字段回归一致。当前 smoke 未显示独立重试带来额外效果，不能预设该模块有益。完整三预算、三 attack seed 的 2250 episode 机制研究尚未运行；最终 split 30 继续保留。详见 [MECHANISM_CONTROLS_SMOKE_RESULTS.md](MECHANISM_CONTROLS_SMOKE_RESULTS.md)。此工程结果不替代下述完整验证结论，后续分支/测试/合并规范见根目录 `AGENTS.md`。
+
 完整对照更新（2026-10-01）：同validation交通上的Clean/Random/FGSM/PGD/OARL-BO已补齐；三批新增1,300episode、225,248步审计通过，形成保留全部三档搜索预算的17行效果–成本比较。FGSM的ASR16.09%，当前方法三档为16.48%/16.09%/18.39%；高档相对FGSM的+6条相关转换仅来自checkpoint2的两个交通。相对预算版Zero-One仍是回报更低、碰撞优势小且不稳定、计算无全面优势。详见 [VALIDATION_COMPARISON_RESULTS.md](VALIDATION_COMPARISON_RESULTS.md)。下一步诊断已有失败案例与收益集中性，先形成机制假设；尚不支持稳定安全改进，不启动final split30或以新增消融替代核心比较。以下保留各阶段历史判断。
 
 验证阶段更新（2026-09-25）：`feat/shared-compute-validation` 的九批 4,500 episode 已全部完成，707,039 步审计通过。新交通低档进展/Zero-One 为 82/300 对 79/300 碰撞，但去掉 episode 1 后净差从 +3 变为 −1；中档进展为 81/300，对照 Return/Safety 为 82/300、84/300；高档 87/300 对 85/300 的全部额外碰撞也集中于 episode 1。现有证据不足以支持稳定的安全收益，详见 [SHARED_COMPUTE_VALIDATION_RESULTS.md](SHARED_COMPUTE_VALIDATION_RESULTS.md)。建议先分析已有 episode 11 漏检和 episode 1 三步碰撞，不急于最终测试或按结果临时调参。split 20 现已用于判断；后续方法若依此修改须明确验证驱动开发，final split 30 继续保留。下段保留开发阶段结论。

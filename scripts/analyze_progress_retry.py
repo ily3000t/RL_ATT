@@ -10,8 +10,11 @@ from summarize_proposed_smoke import ROOT, summarize, require
 from analyze_proposed_development import pair_outcomes, audit_episode_records, retry_yield
 
 
-def verify_v0_reference(batch_path, reference_path, clean_only=False):
-    names = ("none",) if clean_only else ("none", "ours_return", "ours_safety")
+def verify_v0_reference(batch_path, reference_path, clean_only=False, names=None):
+    if names is None:
+        names = ("none",) if clean_only else ("none", "ours_return", "ours_safety")
+    require(bool(names) and len(set(names)) == len(names) and (not clean_only or names == ("none",)),
+            "Explicit unique regression methods required")
     records = []
     for path in (reference_path, batch_path):
         batch = json.loads(path.read_text())

@@ -93,7 +93,8 @@ def validate_audit_protocol(config, expected_episodes, expected_split_id):
             "This report is restricted to the requested research protocol")
 
 
-def summarize(batch_path, expected_episodes=2, expected_names=None, expected_attack_seed=0, expected_split_id=10):
+def summarize(batch_path, expected_episodes=2, expected_names=None, expected_attack_seed=0, expected_split_id=10,
+              expected_parameters=None):
     require((expected_split_id, expected_episodes) in ((10, 2), (10, 10), (20, 20)),
             "Only frozen smoke/development/validation protocols are supported")
     batch = json.loads(batch_path.read_text(encoding="utf-8"))
@@ -103,6 +104,8 @@ def summarize(batch_path, expected_episodes=2, expected_names=None, expected_att
     custom_methods = expected_names is not None
     if expected_names is None:
         expected_names = {"none", "zero_one_budgeted_return", "zero_one_budgeted_safety", "ours_return", "ours_safety"}
+    if expected_parameters is not None:
+        require(set(expected_parameters) == expected_names, "Explicit parameter controls must cover every method")
     for run in sorted(batch["runs"], key=lambda r: r["config"]):
         directory = Path(run["run_dir"])
         def read(path):
@@ -126,6 +129,8 @@ def summarize(batch_path, expected_episodes=2, expected_names=None, expected_att
             validate_attack_seed(config, seeds, expected_attack_seed)
             checkpoint_seeds.add(entry["run_seed"])
             name = entry["attack"]["name"]
+            if expected_parameters is not None:
+                require(entry["attack"]["parameters"] == expected_parameters[name], "Control differs from its explicit parameters")
             condition = entry["run_seed"], name
             require(condition not in conditions, "Repeated checkpoint/attack condition")
             conditions.add(condition)
@@ -146,7 +151,8 @@ def summarize(batch_path, expected_episodes=2, expected_names=None, expected_att
                 comparable = {k: v for k, v in p.items() if k not in ("objective", "retry_rule")}
                 if comparison is None:
                     comparison = comparable
-                require(comparable == comparison, "Controls have different search/perturbation budgets")
+                if expected_parameters is None:
+                    require(comparable == comparison, "Controls have different search/perturbation budgets")
                 audit = audit_steps(steps, p)
                 oracle = read(directory / (entry["results_directory"] + "-oracle") / "manifest.json")
                 require(oracle["status"] == "passed" and oracle["account_reset_warmup"], "Oracle not verified with warmup accounting")
