@@ -118,6 +118,9 @@ def analyze(batch_path, gradient_cap=400, attack_seed=0, development=False):
         witnesses, clean = {}, None
         for entry in evaluation["runs"]:
             name = entry["attack"]["name"]
+            require(entry["run_seed"] == seed and entry["victim"] == "clean" and entry["frozen_unchanged"], "Frozen victim identity changed")
+            for field in ("checkpoint_sha256", "weights_sha256"):
+                require(entry[field] == manifest["victim_references"][0][field], "Frozen model hash differs from launch reference")
             require(entry["attack"] == next(a for a in manifest["config"]["attacks"] if a["name"] == name), "Declared attack changed")
             require(entry["effective_seeds"] == expected_seeds(manifest["config"], seed, name), "Effective mechanism seeds differ")
             path = directory / entry["results_directory"] / "steps.jsonl"
