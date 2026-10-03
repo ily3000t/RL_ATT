@@ -1,0 +1,194 @@
+{
+  "kind": "return_mechanism_controls",
+  "frozen_base_commit": "db50474",
+  "methods": [
+    "none",
+    "zero_one_budgeted_return",
+    "ours_single_return",
+    "ours_return",
+    "ours_progress_return"
+  ],
+  "references": {
+    "original": {
+      "path": ".local/runs/20260921T071026843375Z-attack-benchmark/batch.json",
+      "sha256": "e3834ecb3c50ca1110412cd5281d5fc8c26811bb8b9dfbdbb4917078461eb514",
+      "git_commit": "6edc06a1b9a39db34cdcbdc84efc1fff92b1e9c3",
+      "manifests": [
+        {
+          "path": ".local/runs/20260921T071026843375Z-attack-benchmark/run-0/manifest.json",
+          "sha256": "912204d8c65786f9b88b2f3dedc8aba75ce79aa2c5512ea3758859cea9ca2c9f"
+        },
+        {
+          "path": ".local/runs/20260921T071026843375Z-attack-benchmark/run-1/manifest.json",
+          "sha256": "77a67f7f17d4ef985919f87f353dff0ba22cddf70330325d95587a47d9f3b6b6"
+        },
+        {
+          "path": ".local/runs/20260921T071026843375Z-attack-benchmark/run-2/manifest.json",
+          "sha256": "68a2b2927eb59f30f090d546e93defa1955872b130b685b873d134e459b45fae"
+        },
+        {
+          "path": ".local/runs/20260921T071026843375Z-attack-benchmark/run-3/manifest.json",
+          "sha256": "9b71189cae6e17a68e74bdedd8baf4d12a816b7bbc688333f01ad4b155ffe38d"
+        },
+        {
+          "path": ".local/runs/20260921T071026843375Z-attack-benchmark/run-4/manifest.json",
+          "sha256": "63024e3b977082533dab9c86030e150b51c4b82fd3a196f5f0f0898c6a2466f2"
+        }
+      ]
+    },
+    "progress": {
+      "path": ".local/runs/20260922T073213636553Z-attack-benchmark/batch.json",
+      "sha256": "d1acbd0cc4d60762f15014d49669bc7f05087c39c96a1fc561a11dea944d6238",
+      "git_commit": "989e6a3066448f4b31b7ac5810d5e73d77a800ed",
+      "manifests": [
+        {
+          "path": ".local/runs/20260922T073213636553Z-attack-benchmark/run-0/manifest.json",
+          "sha256": "0810b1db514ffb1206f9b0960487ca9bb230e5e8a6f60118736dd1226236b421"
+        },
+        {
+          "path": ".local/runs/20260922T073213636553Z-attack-benchmark/run-1/manifest.json",
+          "sha256": "2ac649fb792f2758757467608e2820c1d70435a2a78c843d2a13449c2cd2ec8b"
+        },
+        {
+          "path": ".local/runs/20260922T073213636553Z-attack-benchmark/run-2/manifest.json",
+          "sha256": "5f7343084ff8bd0a7805d0f2fec6f1f85db1319975db7e9f4b2404ee097dadfb"
+        },
+        {
+          "path": ".local/runs/20260922T073213636553Z-attack-benchmark/run-3/manifest.json",
+          "sha256": "08cf599077be0f659baae6f469495f7e4bc1e01d095c9eba725349511df38a53"
+        },
+        {
+          "path": ".local/runs/20260922T073213636553Z-attack-benchmark/run-4/manifest.json",
+          "sha256": "89eb7a049833291d7256d074cbb952730965b69ebf59d0c530b5e5b03827b8b5"
+        }
+      ]
+    }
+  },
+  "frozen_source_sha256": {
+    "Data/._StraightRoad.net.xml": "e4c32f6914a758a2e0d8dfd7ca5cbb89b3b221f4238cc2f24adbda64284f42fc",
+    "Data/._StraightRoad.rou.xml": "4ac481cdaa7b7031da1eb2fcfe9c2d9dba46ff7430126e82726c9a86e1e3134a",
+    "Data/._StraightRoad.sumocfg": "f8ec5a0da994c27def0077c32e1e5a204c7efe108d1ed6e04c884f0efc59e36a",
+    "Data/StraightRoad.net.xml": "326419600cdcd05640f6f933f9ef460563f2bf81c0265eaaf7449197097f319c",
+    "Data/StraightRoad.rou.xml": "9816a8e6ec0e701330cfb7e601a744535768ffc1c683b7fcb1cacb2c3e46ce1c",
+    "Data/StraightRoad.sumocfg": "ce80b076f2c4e4c4971c658e21ba3b64380131466e5e61b765dbfdc2f29602b7",
+    "Environment/environment/__init__.py": "152e2813345f6c609b0a860bae43a36e3be462d0075fa4ec36eba031851e7eb7",
+    "Environment/environment/envs/__init__.py": "0c41766b6946976ca08a87ca4024017cc468a36c010c74773656f92f28238556",
+    "Environment/environment/envs/highway_env.py": "7c27532c49e0673ae808afe30c4266a1304a3ead188a8e7917c0b241ccc9095d",
+    "Environment/setup.py": "9bef7b2ac7b1edeb76471638a468f6a28f857f257be134f9847e6dca1a37e7f2",
+    "main.py": "d09330c94182ac55fec8d8e00b7181379bad958b98becb72c3ab7007cccf2806",
+    "oarl.py": "663c339f4273c9a12c94691c3e77b53e5db7adeed4f4d0b349ac5941a71680a5",
+    "requirements.txt": "381ce7320502d7a7ebf516f0ae062d036360cdce60828bb535f7783781b4c489",
+    "rl_att/__init__.py": "db53d159caf55730ef0fb522aff9bad3e7e7a365b57112c09eacb3ddcbbd7936",
+    "rl_att/agents/__init__.py": "2bbf9caf111ef3062e1bd3cebcbfe4e9894e9aae983ecc52e0a6d719be917367",
+    "rl_att/agents/clean_victim.py": "fc2d9ad87e8a3cbc2992a36c7016c94afeba16dca40321351e7aec7a5265e0ae",
+    "rl_att/agents/victim_adapter.py": "e1cfbecb4944b1e4d67972ea1b453d976f8646a5d1acbb2221c488b8259af397",
+    "rl_att/attacks/__init__.py": "58bfa6de379db6be3304381755a94a23b9355562649768b06f020fc069395fbd",
+    "rl_att/attacks/base.py": "3948494a68146425dbb85c3f607b7484b3d12d0267f13d56bfaefe591d635d2c",
+    "rl_att/attacks/behavior_search.py": "0fd94d36e22bdaffea8fdfff73f45114c98d63accc5d3c6f0be1318713b44782",
+    "rl_att/attacks/box.py": "3696a1f0881a7cca6d7e80f4f29793648a22bdea96f6f41dfd4d25d6739cdd1c",
+    "rl_att/attacks/fgsm.py": "b5afdaf9c1589936edfb2f23b42cf333265543278222b1c330ebf72bc6fc35c9",
+    "rl_att/attacks/no_attack.py": "c270fa5a9f5a02045611dba9981d38bb74196cc9ed1c73eedfebf1464a03f01e",
+    "rl_att/attacks/oarl_bo.py": "23196f473b967d3dc34d1f946f8b35df6766e5a364313bf6acee0a630a6cb973",
+    "rl_att/attacks/objectives.py": "ed5774aec645121c684b15f4863509f7b290480f84000ad3449cd7047faa727e",
+    "rl_att/attacks/pgd.py": "bf2527bb3c221f7f0a0dc4ec50cd308b82f33bb491952abf32095e3daf9e5262",
+    "rl_att/attacks/progress_retry.py": "936265f70b856a11aa97e05c62f6b00a3c4bc956269e28c317e32fe911191f3d",
+    "rl_att/attacks/proposed.py": "41966ae171b2c960dd2aea6d3336027a8e7ce3672db9891fe060ee4f0c758dae",
+    "rl_att/attacks/random_noise.py": "250b83ac9dc342af6738d146035846cec01c3ef13b55c0141488e6545acaa189",
+    "rl_att/attacks/registry.py": "8353eac373352ff9d745c0c2201200d668c3de1189e47f61d13536a17b5d87c6",
+    "rl_att/attacks/rollout_objectives.py": "fe059eb2a4c90284d953aef6a57c856e8b914100ee49c5a1e29a96ed8555652c",
+    "rl_att/attacks/search_budget.py": "cabaa541011ed252b0ef8b8110c23a76747ae68d7b0082330bae8986fb9cbdc2",
+    "rl_att/attacks/single_attempt.py": "c84d337f75bf035e0911d986f97b4ed9cd6259998034d3bdf3038dcf10dd2703",
+    "rl_att/attacks/zero_one.py": "5efda0fb449027e2e90463ba731eca6e45eb5c09f36685385fb700f39a776ff1",
+    "rl_att/attacks/zero_one_controls.py": "aeb56430783c0fb07c3ffd3d418c477d6766d1bbb44a99679bb467dcce81570d",
+    "rl_att/checkpoint_evaluation.py": "1f81b86b4b54a34c073d4369fb357bac937ffe9dc23fd41e7847039a528c5afc",
+    "rl_att/evaluation/__init__.py": "3f83e9d25df0550819c40dde8b23301aae3c81763ef0ab2cdd0012613057a6f7",
+    "rl_att/evaluation/configuration.py": "f0a800fc92452120110c71652170a937cbb7279871f6d6e0f68a2a040a5965de",
+    "rl_att/evaluation/evaluator.py": "7b31485155c4dd4edeb35f6224ac5fbbe3f344960275ba78b5930d41f2fc6514",
+    "rl_att/evaluation/oracle_worker.py": "a87b2c88accee70c04b97ee88da9f41dfd6f6f64dfdf2299eb0e3104469403b8",
+    "rl_att/evaluation/replay_oracle.py": "c1cc66e8fd7a44cab5b90bec66cdb03bfafa69441ad16d33d0abf2289ef824da",
+    "rl_att/evaluation/results.py": "768afed0ef0dde5fccb47cf35405a641ab0f8c108098717acf9cd83867db66a1",
+    "rl_att/evaluation/run.py": "6d957a12660dc442977eec17599b871845347d37fcff59bb9a274faea4b9ba9a",
+    "rl_att/evaluation/seed_control.py": "722dfb67e7591eff1236205e830ecd7814843700457e928c6bbc903fd50f8a18",
+    "rl_att/evaluation/simulator_oracle.py": "3bfd04c72b7b351df77c40486dcd6097dfeae69ad63d055178b2ce4c2b8ff777",
+    "rl_att/evaluation/sumo_metrics.py": "a3e71eea724d16f6fb64006893f932b182cc5cd6567695dcc6220fdb6f5b782e",
+    "rl_att/evaluation/trace_diagnostics.py": "15a03d9b5c2f168a107d82e0168ab755550ee2e8be6fbfa3f9f70790fefd67ef",
+    "rl_att/experiment.py": "5dcaa084f4fb3dcee1ae491c7423dd470c7ab4f2f83066fda50ab357647ec2f9",
+    "rl_att/utils/__init__.py": "16528446be87c647e33d274caf455647e7d98154e2917a702b8ada683b6cda0f",
+    "rl_att/utils/checkpoints.py": "073459a5129816db295d8ad225b6a622e6f32b1868c67204c4b1cd1b0e37d278",
+    "rl_att/utils/seeding.py": "87bb62ea63ccd847d43dca6f53c5999354ecdf63cae94eadb9aaa5202bd1fa5b",
+    "rl_att/utils/zero_one_dependency.py": "393b1ebd5ea593a67cce7a23db9ffef3023909c3443b2d72c13dfc282c6399ac"
+  },
+  "seed_splits_sha256": "36a8319fd8ae73523d2e76cbaeece0ee9b37d3254c483a0d244a93b8412ae30e",
+  "frozen_victims_sha256": "abdfb1437842832134fca2ff7de5d8c9091c27014f4d7e18bfb0e9ec062f5af9",
+  "smoke": {
+    "configs": [
+      "configs/evaluation/mechanism_smoke_seed0.json",
+      "configs/evaluation/mechanism_smoke_seed1.json",
+      "configs/evaluation/mechanism_smoke_seed2.json",
+      "configs/evaluation/mechanism_smoke_seed3.json",
+      "configs/evaluation/mechanism_smoke_seed4.json"
+    ],
+    "episodes": 2,
+    "max_steps": 200,
+    "split_id": 10,
+    "attack_seed": 0,
+    "gradient_cap": 400,
+    "forward_cap": 800,
+    "total_episodes": 50
+  },
+  "contrasts": [
+    {
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "effect": "outer search organization without retries"
+    },
+    {
+      "first": "ours_return",
+      "second": "ours_single_return",
+      "effect": "fixed retries within behavior search"
+    },
+    {
+      "first": "ours_progress_return",
+      "second": "ours_return",
+      "effect": "progress stopping within behavior search"
+    },
+    {
+      "first": "ours_progress_return",
+      "second": "zero_one_budgeted_return",
+      "effect": "current method versus matched baseline"
+    }
+  ],
+  "planned_development": {
+    "status": "not_run",
+    "checkpoint_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "attack_seeds": [
+      0,
+      1,
+      2
+    ],
+    "gradient_forward_caps": [
+      [
+        100,
+        200
+      ],
+      [
+        200,
+        400
+      ],
+      [
+        400,
+        800
+      ]
+    ],
+    "episodes": 10,
+    "split_id": 10,
+    "total_episodes": 2250
+  },
+  "limitation": "Nested conditional contrasts, not a full factorial or a causal test of history caching alone; smoke is not efficacy evidence. Final split 30 remains unused."
+}
