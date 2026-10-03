@@ -67,12 +67,16 @@ def verify_shared_witnesses(witnesses):
     return comparisons
 
 
-def analyze(batch_path):
+def analyze(batch_path, gradient_cap=400, attack_seed=0, development=False):
     sources = {}
     def read(path):
         sources[path.relative_to(ROOT).as_posix()] = sha256(path)
         return json.loads(path.read_text(encoding="utf-8"))
-    protocol = read(PROTOCOL)
+    require(gradient_cap in (100, 200, 400) and attack_seed in (0, 1, 2), "Unregistered mechanism cell")
+    require(development or (gradient_cap, attack_seed) == (400, 0), "Smoke uses its frozen upper cap and seed zero")
+    protocol_path = ROOT / "configs/research/mechanism_development.json" if development else PROTOCOL
+    protocol = read(protocol_path)
+    episodes = 10 if development else 2
     require(sha256(ROOT / "configs/research_seed_splits.json") == protocol["seed_splits_sha256"], "Seed split changed")
     require(sha256(ROOT / "configs/frozen_victims.json") == protocol["frozen_victims_sha256"], "Frozen registry changed")
     references = {}
@@ -88,18 +92,22 @@ def analyze(batch_path):
             manifest = read(path)
             references[label][manifest["config"]["run_seeds"][0]] = manifest
     batch = read(batch_path)
-    require(batch["status"] == "passed" and batch["configs"] == protocol["smoke"]["configs"] and len(batch["runs"]) == 5,
-            "Unregistered or incomplete mechanism smoke")
-    params = {a["name"]: a["parameters"] for a in make_config(0)["attacks"]}
-    report = summarize(batch_path, expected_names=set(CONTROL_NAMES), expected_parameters=params)
-    report.update(kind="return_mechanism_engineering_smoke", raw_episode_verified_steps=0,
+    group = next(g for g in protocol["groups"] if (g["gradient_cap"], g["attack_seed"]) == (gradient_cap, attack_seed)) if development else protocol["smoke"]
+    require(batch["status"] == "passed" and batch["configs"] == group["configs"] and len(batch["runs"]) == 5,
+            "Unregistered or incomplete mechanism batch")
+    params = {a["name"]: a["parameters"] for a in make_config(0, episodes, gradient_cap, attack_seed)["attacks"]}
+    report = summarize(batch_path, expected_episodes=episodes, expected_attack_seed=attack_seed,
+                       expected_names=set(CONTROL_NAMES), expected_parameters=params)
+    report.update(kind="return_mechanism_development" if development else "return_mechanism_engineering_smoke", raw_episode_verified_steps=0,
                   shared_first_attempt_comparisons=[], paired_contrasts=[])
+    if development:
+        report.update(gradient_cap=gradient_cap, forward_cap=2 * gradient_cap, research_split_id=10)
     by_key = {(r["checkpoint_seed"], r["attack"]): r for r in report["rows"]}
     for run in batch["runs"]:
         directory = Path(run["run_dir"])
         manifest, evaluation = read(directory / "manifest.json"), read(directory / "evaluation.json")
         seed = manifest["config"]["run_seeds"][0]
-        require(run["returncode"] == 0 and manifest["config"] == make_config(seed), "Wrong checkpoint or smoke configuration")
+        require(run["returncode"] == 0 and manifest["config"] == make_config(seed, episodes, gradient_cap, attack_seed), "Wrong checkpoint or mechanism configuration")
         require(evaluation["config"] == manifest["config"] and not evaluation["gate_enabled"], "Evaluation protocol changed")
         require(manifest["source_sha256_before"] == protocol["frozen_source_sha256"], "Frozen mechanism source changed")
         require(all(p == "Data/StraightRoad.sumocfg" for p in manifest["changed_source_files"]), "Unexpected runtime source mutation")
@@ -126,7 +134,7 @@ def analyze(batch_path):
                 clean = row["episode_rows"]
                 require(all(not s["attacked"] and not any(s["perturbation"]) for s in steps), "Clean condition perturbed")
             else:
-                witnesses[name], row["attempt_audit"] = audit_attempts(steps, name, 0, params[name])
+                witnesses[name], row["attempt_audit"] = audit_attempts(steps, name, attack_seed, params[name])
                 if name.startswith("ours_"):
                     row["retry_yield"] = retry_yield(steps)
                 if name == "ours_progress_return":
@@ -138,11 +146,21 @@ def analyze(batch_path):
             a, b = contrast["first"], contrast["second"]
             report["paired_contrasts"].append(dict(checkpoint_seed=seed, **contrast,
                                                  **pair_outcomes(clean, by_key[seed, a]["episode_rows"], by_key[seed, b]["episode_rows"])))
-    report["historical_regression"] = dict(
-        original=verify_v0_reference(batch_path, ROOT / protocol["references"]["original"]["path"],
-                                     names=("none", "zero_one_budgeted_return", "ours_return")),
-        progress=verify_v0_reference(batch_path, ROOT / protocol["references"]["progress"]["path"],
-                                     names=("ours_progress_return",)))
+    if development:
+        for key in ("clean_reference", "smoke_reference"):
+            proof = protocol[key]
+            require(sha256(ROOT / proof["path"]) == proof["sha256"], "Frozen development regression reference changed")
+            read(ROOT / proof["path"])
+        report["clean_regression"] = verify_v0_reference(batch_path, ROOT / protocol["clean_reference"]["path"], clean_only=True)
+        if (gradient_cap, attack_seed) == (400, 0):
+            report["smoke_regression"] = verify_v0_reference(batch_path, ROOT / protocol["smoke_reference"]["path"],
+                                                           names=CONTROL_NAMES, prefix_episodes=2)
+    else:
+        report["historical_regression"] = dict(
+            original=verify_v0_reference(batch_path, ROOT / protocol["references"]["original"]["path"],
+                                         names=("none", "zero_one_budgeted_return", "ours_return")),
+            progress=verify_v0_reference(batch_path, ROOT / protocol["references"]["progress"]["path"],
+                                         names=("ours_progress_return",)))
     report["source_sha256"].update(sources)
     report["analysis_commit"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=str(ROOT), universal_newlines=True).strip()
     require(not subprocess.check_output(["git", "status", "--porcelain"], cwd=str(ROOT)), "Commit analyzer before publishing report")
@@ -153,8 +171,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--batch", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--phase", choices=("smoke", "development"), default="smoke")
+    parser.add_argument("--gradient-cap", type=int, choices=(100, 200, 400), default=400)
+    parser.add_argument("--attack-seed", type=int, choices=(0, 1, 2), default=0)
     args = parser.parse_args()
-    report = analyze(args.batch.resolve())
+    report = analyze(args.batch.resolve(), args.gradient_cap, args.attack_seed, args.phase == "development")
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     print("MECHANISM_AUDIT_PASSED=" + report["git_commit"])
     print("RAW_VERIFIED_STEPS=" + str(report["raw_episode_verified_steps"]))

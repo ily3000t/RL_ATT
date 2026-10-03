@@ -10,11 +10,13 @@ from summarize_proposed_smoke import ROOT, summarize, require
 from analyze_proposed_development import pair_outcomes, audit_episode_records, retry_yield
 
 
-def verify_v0_reference(batch_path, reference_path, clean_only=False, names=None):
+def verify_v0_reference(batch_path, reference_path, clean_only=False, names=None, prefix_episodes=None):
     if names is None:
         names = ("none",) if clean_only else ("none", "ours_return", "ours_safety")
     require(bool(names) and len(set(names)) == len(names) and (not clean_only or names == ("none",)),
             "Explicit unique regression methods required")
+    require(prefix_episodes is None or (type(prefix_episodes) is int and prefix_episodes > 0),
+            "Positive regression episode prefix required")
     records = []
     for path in (reference_path, batch_path):
         batch = json.loads(path.read_text())
@@ -42,10 +44,19 @@ def verify_v0_reference(batch_path, reference_path, clean_only=False, names=None
             if clean_only and field == "effective_seeds":
                 old_value, new_value = [{k: v for k, v in value.items() if k != "attack_seed"}
                                         for value in (old_value, new_value)]
+            if prefix_episodes is not None and field == "effective_seeds":
+                require(len(old_value["episode_sumo_seeds"]) == prefix_episodes and
+                        old_value["episode_sumo_seeds"] == new_value["episode_sumo_seeds"][:prefix_episodes],
+                        "Regression prefix traffic differs")
+                old_value, new_value = [{k: v for k, v in value.items() if k != "episode_sumo_seeds"}
+                                        for value in (old_value, new_value)]
             require(old_value == new_value, "Baseline regression provenance differs: " + field)
         for field in ("python_runtime", "pip_freeze", "sumo_version"):
             require(old_manifest[field] == new_manifest[field], "Baseline regression runtime differs")
         old_rows, new_rows = [[json.loads(line) for line in p.read_text().splitlines()] for p in (old_path, new_path)]
+        if prefix_episodes is not None:
+            require({r["episode"] for r in old_rows} == set(range(1, prefix_episodes + 1)), "Incomplete reference prefix")
+            new_rows = [r for r in new_rows if r["episode"] <= prefix_episodes]
         require(len(old_rows) == len(new_rows), "Baseline regression trajectory length differs")
         for old, new in zip(old_rows, new_rows):
             old["attack_cost"].pop("wall_seconds")
