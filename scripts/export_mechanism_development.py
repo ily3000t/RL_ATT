@@ -37,11 +37,12 @@ def compact(path):
     return result
 
 
-def plot(report, path):
+def plot(report, path, methods=None, contrast_labels=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    methods = (("zero_one_budgeted_return", "Budgeted Zero-One", "#2864ad", "o"),
+    if methods is None:
+        methods = (("zero_one_budgeted_return", "Budgeted Zero-One", "#2864ad", "o"),
                ("ours_single_return", "Single attempt", "#24865d", "s"),
                ("ours_return", "Fixed retries", "#a35caa", "^"),
                ("ours_progress_return", "Progress retries", "#d56a24", "D"))
@@ -58,7 +59,8 @@ def plot(report, path):
             ax.plot(xs, [value(r) for r in rows], marker=marker, label=label, color=color, linewidth=1.5, markersize=5)
             ax.set_title(title, fontsize=11)
     ax = axes[1, 2]
-    contrast_labels = ("Single - Zero-One", "Fixed - Single", "Progress - Fixed", "Progress - Zero-One")
+    if contrast_labels is None:
+        contrast_labels = ("Single - Zero-One", "Fixed - Single", "Progress - Fixed", "Progress - Zero-One")
     for index, (label, style) in enumerate(zip(contrast_labels, ("o-", "s--", "^:", "D-."))):
         ax.plot(xs, [b["contrasts"][index]["mean_return_delta"] for b in report["budgets"]], style, label=label, markersize=5)
     ax.axhline(0, color="#666666", linewidth=.8)
@@ -72,13 +74,13 @@ def plot(report, path):
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
     axes[0, 1].set_ylim(bottom=0)
-    fig.suptitle("Return mechanism controls: reused development traffic", fontsize=15, y=.98)
+    fig.suptitle(report.get("figure_title", "Return mechanism controls: reused development traffic"), fontsize=15, y=.98)
     handles, labels = axes[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, ncol=4, loc="upper center", bbox_to_anchor=(.5, .947), fontsize=10, frameon=False)
+    fig.legend(handles, labels, ncol=len(methods), loc="upper center", bbox_to_anchor=(.5, .947), fontsize=10, frameon=False)
     clean_return = report["budgets"][0]["conditions"][0]["mean_return"]
-    fig.text(.5, .025, "5 frozen models, 10 traffic seeds, 3 correlated attack seeds; no confidence intervals or final-test claim.\n"
+    fig.text(.5, .025, "5 frozen models, %d traffic seeds, 3 correlated attack seeds; no confidence intervals or final-test claim.\n"
              "Lower return / higher conversion: stronger attack. Clean mean return: %.4f.\n"
-             "Shadow includes replay, resets and episode setup; total costs include early termination effects." % clean_return,
+             "Shadow includes replay, resets and episode setup; total costs include early termination effects." % (report["unique_traffic_episodes"], clean_return),
              ha="center", fontsize=9)
     fig.tight_layout(rect=(0, .11, 1, .90))
     path.parent.mkdir(parents=True, exist_ok=True)
