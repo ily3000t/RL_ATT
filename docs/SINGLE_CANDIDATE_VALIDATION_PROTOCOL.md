@@ -1,5 +1,7 @@
 # Single 简化候选：既有 validation 复核协议
 
+执行完成（2026-10-03）：源码 `4ada57b940a04edfd6a450627a60b23b67a5fb67` 的九批新增 1800 episode / 297467 步及复用对照 272619 步均通过审计，Clean 完整回归 162243 步一致。结果见 [SINGLE_CANDIDATE_VALIDATION_RESULTS.md](SINGLE_CANDIDATE_VALIDATION_RESULTS.md)。下面保留运行前冻结的协议；机器协议和原始对照哈希未改动。
+
 分支 `codex/single-candidate-validation` 从 `main` 的 `aac4716fd7d535920f667eabde8af749b2360245` 创建。本轮候选仍是既有 `SingleAttemptAttack` 包装器，只冻结 `max_attempts=1`；不修改训练策略、搜索实现、SUMO、checkpoint 或参考 Zero-One 源码。
 
 上一轮完整 Return 机制研究显示，独立重试没有新增碰撞，中、高档回报收益有限但梯度成本明显上升。因此冻结 Single 为待复核简化候选，保留现有 Progress 和预算版 Zero-One Return。**split 20 已用于方法判断，本轮是验证驱动的候选复核，不是未见测试。** 不因结果临时调参或删去预算档位，final split 30 继续保留。
