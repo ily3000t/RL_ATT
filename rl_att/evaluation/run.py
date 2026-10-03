@@ -52,7 +52,7 @@ def main():
         base_rows = None
         for specification in config["attacks"]:
             run_seed, name = reference["run_seed"], specification["name"]
-            seeds = evaluation_seeds(run_seed, config["episodes"], config.get("traffic_seed"))
+            seeds = evaluation_seeds(run_seed, config["episodes"], config.get("traffic_seed"), config.get("research_seeds"))
             random.seed(seeds["python_seed"])
             np.random.seed(seeds["numpy_seed"])
             torch.manual_seed(seeds["torch_seed"])
@@ -60,14 +60,16 @@ def main():
                 "unused_no_attack" if name == "none" else "unused_deterministic_gradient" if name == "fgsm"
                 else "seedsequence_attack_phase3_episode_step_local_numpy" if name in ("random", "pgd")
                 else "phase4_outer_block_and_inner_state_target_isolated_rng" if name == "zero_one"
+                else "sha256_attack_episode_full_history_target_attempt_local_numpy" if name.startswith(("ours_", "zero_one_budgeted_"))
                 else "optimizer_and_discarded_torch_draws_reinitialized_each_attack"))
             env = HighwayEnv(sumo_seed_schedule=seeds["episode_sumo_seeds"])
             directory = output / ("%s-seed%d-%s" % (reference["victim"], run_seed, name))
             oracle = None
             try:
                 env.start(gui=False)
-                if name == "zero_one":
-                    oracle = SimulatorOracle(output / (directory.name + "-oracle"), Path(manifest["cwd"]))
+                if name == "zero_one" or name.startswith(("ours_", "zero_one_budgeted_")):
+                    oracle = SimulatorOracle(output / (directory.name + "-oracle"), Path(manifest["cwd"]),
+                                             account_reset_warmup=name != "zero_one")
                 rows, summary = AttackEvaluator(
                     env, victim, registry.create(name, **specification["parameters"]),
                     SUMOMetrics(traci, lookahead_m=config["lookahead_m"]), config, seeds,

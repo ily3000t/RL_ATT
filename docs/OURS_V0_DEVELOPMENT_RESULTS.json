@@ -1,0 +1,1433 @@
+{
+  "kind": "proposed_v0_development",
+  "git_commit": "5f07f1b1523de23135f9e7cb5d0675218b059370",
+  "analysis_commit": "89ef47ce0943dcfb32aae007192163878761f690",
+  "batch": ".local\\runs\\20260921T085944130990Z-attack-benchmark\\batch.json",
+  "traffic": {
+    "python_seed": 454097930,
+    "numpy_seed": 454097930,
+    "torch_seed": 454097930,
+    "sumo_seed": 454097930,
+    "episode_sumo_seeds": [
+      1472154258,
+      1940738230,
+      1610385403,
+      258385557,
+      2018177452,
+      544136477,
+      1189631354,
+      2096810982,
+      1828089188,
+      200217526
+    ]
+  },
+  "raw_episode_verified_steps": 40267,
+  "verified": true,
+  "limitation": "Ten shared development traffic episodes and one attack seed; overlapping smoke, not held-out validation or final test",
+  "full_audit": ".local/runs/20260921T085944130990Z-attack-benchmark/verified-development-summary.json",
+  "full_audit_sha256": "d33739b9290ebf54021a0ea2d59c00fdb5da739209d2aca4f1af666f8f2a3fc2",
+  "rows": [
+    {
+      "checkpoint_seed": 0,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 10,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 138.61465174341544,
+        "return_drop_mean": null,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "zero_one_budgeted_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 9660,
+          "policy_forward_calls": 25484,
+          "new_shadow_transitions": 2155,
+          "shadow_steps": 4249,
+          "replay_steps": 126,
+          "warmup_steps": 1968,
+          "shadow_resets": 24,
+          "cache_hits": 17675,
+          "ipc_requests": 21013
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 106,
+        "duplicate_actual_sequences": 804,
+        "unique_actual_prefixes": 2081,
+        "failed_target_attempts": 3180,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.5120798215642,
+        "return_drop_mean": 12.10257192185124,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "zero_one_budgeted_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 9660,
+          "policy_forward_calls": 25484,
+          "new_shadow_transitions": 2155,
+          "shadow_steps": 4249,
+          "replay_steps": 126,
+          "warmup_steps": 1968,
+          "shadow_resets": 24,
+          "cache_hits": 17675,
+          "ipc_requests": 21013
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 106,
+        "duplicate_actual_sequences": 804,
+        "unique_actual_prefixes": 2081,
+        "failed_target_attempts": 3180,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.5120798215642,
+        "return_drop_mean": 12.10257192185124,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22378,
+          "policy_forward_calls": 51432,
+          "new_shadow_transitions": 2422,
+          "shadow_steps": 6068,
+          "replay_steps": 202,
+          "warmup_steps": 3444,
+          "shadow_resets": 42,
+          "cache_hits": 17120,
+          "ipc_requests": 20712
+        },
+        "blocks": 91,
+        "complete_search_candidates": 888,
+        "unique_actual_sequences": 118,
+        "duplicate_actual_sequences": 770,
+        "unique_actual_prefixes": 2317,
+        "failed_target_attempts": 11148,
+        "retry_attempts": 6814,
+        "budget_exhausted_blocks": 9,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.61392949843298,
+        "return_drop_mean": 12.00072224498246,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11189,
+        "retries": 6814,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 2914,
+        "nodes_with_retries": 1852,
+        "retries_without_new_branch": 6814,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 0,
+      "attack": "ours_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22378,
+          "policy_forward_calls": 51432,
+          "new_shadow_transitions": 2422,
+          "shadow_steps": 6068,
+          "replay_steps": 202,
+          "warmup_steps": 3444,
+          "shadow_resets": 42,
+          "cache_hits": 17120,
+          "ipc_requests": 20712
+        },
+        "blocks": 91,
+        "complete_search_candidates": 888,
+        "unique_actual_sequences": 118,
+        "duplicate_actual_sequences": 770,
+        "unique_actual_prefixes": 2317,
+        "failed_target_attempts": 11148,
+        "retry_attempts": 6814,
+        "budget_exhausted_blocks": 9,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.61392949843298,
+        "return_drop_mean": 12.00072224498246,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11189,
+        "retries": 6814,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 2914,
+        "nodes_with_retries": 1852,
+        "retries_without_new_branch": 6814,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 10,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 142.20484511260722,
+        "return_drop_mean": null,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "zero_one_budgeted_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 15180,
+          "policy_forward_calls": 44346,
+          "new_shadow_transitions": 6372,
+          "shadow_steps": 76812,
+          "replay_steps": 40100,
+          "warmup_steps": 30340,
+          "shadow_resets": 370,
+          "cache_hits": 13161,
+          "ipc_requests": 20705
+        },
+        "blocks": 91,
+        "complete_search_candidates": 882,
+        "unique_actual_sequences": 372,
+        "duplicate_actual_sequences": 510,
+        "unique_actual_prefixes": 5657,
+        "failed_target_attempts": 3627,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 120.89074461862864,
+        "return_drop_mean": 21.31410049397858,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "zero_one_budgeted_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 15180,
+          "policy_forward_calls": 44346,
+          "new_shadow_transitions": 6372,
+          "shadow_steps": 76812,
+          "replay_steps": 40100,
+          "warmup_steps": 30340,
+          "shadow_resets": 370,
+          "cache_hits": 13161,
+          "ipc_requests": 20705
+        },
+        "blocks": 91,
+        "complete_search_candidates": 882,
+        "unique_actual_sequences": 372,
+        "duplicate_actual_sequences": 510,
+        "unique_actual_prefixes": 5657,
+        "failed_target_attempts": 3627,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 17,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 120.89074461862864,
+        "return_drop_mean": 21.31410049397858,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 23334,
+          "policy_forward_calls": 61748,
+          "new_shadow_transitions": 6885,
+          "shadow_steps": 72990,
+          "replay_steps": 36011,
+          "warmup_steps": 30094,
+          "shadow_resets": 367,
+          "cache_hits": 10234,
+          "ipc_requests": 18184
+        },
+        "blocks": 91,
+        "complete_search_candidates": 745,
+        "unique_actual_sequences": 333,
+        "duplicate_actual_sequences": 412,
+        "unique_actual_prefixes": 5795,
+        "failed_target_attempts": 7896,
+        "retry_attempts": 4182,
+        "budget_exhausted_blocks": 47,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 116.01391180927837,
+        "return_drop_mean": 26.19093330332883,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11667,
+        "retries": 4182,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 2581,
+        "nodes_with_retries": 1295,
+        "retries_without_new_branch": 4181,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 1,
+      "attack": "ours_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 23334,
+          "policy_forward_calls": 61748,
+          "new_shadow_transitions": 6885,
+          "shadow_steps": 72990,
+          "replay_steps": 36011,
+          "warmup_steps": 30094,
+          "shadow_resets": 367,
+          "cache_hits": 10234,
+          "ipc_requests": 18184
+        },
+        "blocks": 91,
+        "complete_search_candidates": 745,
+        "unique_actual_sequences": 333,
+        "duplicate_actual_sequences": 412,
+        "unique_actual_prefixes": 5795,
+        "failed_target_attempts": 7896,
+        "retry_attempts": 4182,
+        "budget_exhausted_blocks": 47,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 116.01391180927837,
+        "return_drop_mean": 26.19093330332883,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11667,
+        "retries": 4182,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 2581,
+        "nodes_with_retries": 1295,
+        "retries_without_new_branch": 4181,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "none",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 150.80554208937124,
+        "return_drop_mean": null,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "zero_one_budgeted_return",
+      "collisions": 10,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4858,
+          "policy_forward_calls": 14768,
+          "new_shadow_transitions": 2457,
+          "shadow_steps": 21171,
+          "replay_steps": 5102,
+          "warmup_steps": 13612,
+          "shadow_resets": 166,
+          "cache_hits": 2482,
+          "ipc_requests": 5275
+        },
+        "blocks": 26,
+        "complete_search_candidates": 252,
+        "unique_actual_sequences": 154,
+        "duplicate_actual_sequences": 98,
+        "unique_actual_prefixes": 2143,
+        "failed_target_attempts": 924,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 6,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 29.775011106114242,
+        "return_drop_mean": 121.03053098325695,
+        "attack_success_rate": 1.0,
+        "attack_successes": 9,
+        "attack_success_eligible_episodes": 9
+      },
+      "objective_opportunities": {
+        "blocks": 26,
+        "no_collision_candidate": 15,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 11,
+        "return_safety_selection_differs": 1,
+        "return_safety_actual_sequence_differs": 1,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "zero_one_budgeted_safety",
+      "collisions": 10,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 4706,
+          "policy_forward_calls": 14315,
+          "new_shadow_transitions": 2388,
+          "shadow_steps": 20089,
+          "replay_steps": 4745,
+          "warmup_steps": 12956,
+          "shadow_resets": 158,
+          "cache_hits": 2215,
+          "ipc_requests": 4913
+        },
+        "blocks": 24,
+        "complete_search_candidates": 231,
+        "unique_actual_sequences": 146,
+        "duplicate_actual_sequences": 85,
+        "unique_actual_prefixes": 2081,
+        "failed_target_attempts": 895,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 7,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 28.584984300674865,
+        "return_drop_mean": 122.22055778869633,
+        "attack_success_rate": 1.0,
+        "attack_successes": 9,
+        "attack_success_eligible_episodes": 9
+      },
+      "objective_opportunities": {
+        "blocks": 24,
+        "no_collision_candidate": 14,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 10,
+        "return_safety_selection_differs": 1,
+        "return_safety_actual_sequence_differs": 1,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_return",
+      "collisions": 10,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5696,
+          "policy_forward_calls": 16802,
+          "new_shadow_transitions": 2659,
+          "shadow_steps": 19956,
+          "replay_steps": 4013,
+          "warmup_steps": 13284,
+          "shadow_resets": 162,
+          "cache_hits": 969,
+          "ipc_requests": 3898
+        },
+        "blocks": 24,
+        "complete_search_candidates": 182,
+        "unique_actual_sequences": 139,
+        "duplicate_actual_sequences": 43,
+        "unique_actual_prefixes": 2203,
+        "failed_target_attempts": 1245,
+        "retry_attempts": 351,
+        "budget_exhausted_blocks": 16,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 21.07577255791489,
+        "return_drop_mean": 129.72976953145633,
+        "attack_success_rate": 1.0,
+        "attack_successes": 9,
+        "attack_success_eligible_episodes": 9
+      },
+      "retry_yield": {
+        "attempts": 2848,
+        "retries": 351,
+        "retry_target_hits": 4,
+        "retry_new_branches": 4,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 121,
+        "nodes_with_retries": 164,
+        "retries_without_new_branch": 347,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 24,
+        "no_collision_candidate": 13,
+        "all_candidates_collide": 1,
+        "mixed_collision_candidates": 10,
+        "return_safety_selection_differs": 1,
+        "return_safety_actual_sequence_differs": 1,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 2,
+      "attack": "ours_safety",
+      "collisions": 10,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 5434,
+          "policy_forward_calls": 16013,
+          "new_shadow_transitions": 2526,
+          "shadow_steps": 18670,
+          "replay_steps": 3516,
+          "warmup_steps": 12628,
+          "shadow_resets": 154,
+          "cache_hits": 947,
+          "ipc_requests": 3732
+        },
+        "blocks": 23,
+        "complete_search_candidates": 175,
+        "unique_actual_sequences": 132,
+        "duplicate_actual_sequences": 43,
+        "unique_actual_prefixes": 2080,
+        "failed_target_attempts": 1179,
+        "retry_attempts": 345,
+        "budget_exhausted_blocks": 15,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 20.592002646656262,
+        "return_drop_mean": 130.21353944271493,
+        "attack_success_rate": 1.0,
+        "attack_successes": 9,
+        "attack_success_eligible_episodes": 9
+      },
+      "retry_yield": {
+        "attempts": 2717,
+        "retries": 345,
+        "retry_target_hits": 3,
+        "retry_new_branches": 3,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 117,
+        "nodes_with_retries": 161,
+        "retries_without_new_branch": 342,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 23,
+        "no_collision_candidate": 13,
+        "all_candidates_collide": 1,
+        "mixed_collision_candidates": 9,
+        "return_safety_selection_differs": 1,
+        "return_safety_actual_sequence_differs": 1,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 10,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 137.4130169740837,
+        "return_drop_mean": null,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "zero_one_budgeted_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 9786,
+          "policy_forward_calls": 25766,
+          "new_shadow_transitions": 2182,
+          "shadow_steps": 7679,
+          "replay_steps": 2299,
+          "warmup_steps": 3198,
+          "shadow_resets": 39,
+          "cache_hits": 17686,
+          "ipc_requests": 21051
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 118,
+        "duplicate_actual_sequences": 792,
+        "unique_actual_prefixes": 2127,
+        "failed_target_attempts": 3210,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.62986521361475,
+        "return_drop_mean": 10.783151760468932,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "zero_one_budgeted_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 9786,
+          "policy_forward_calls": 25766,
+          "new_shadow_transitions": 2182,
+          "shadow_steps": 7679,
+          "replay_steps": 2299,
+          "warmup_steps": 3198,
+          "shadow_resets": 39,
+          "cache_hits": 17686,
+          "ipc_requests": 21051
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 118,
+        "duplicate_actual_sequences": 792,
+        "unique_actual_prefixes": 2127,
+        "failed_target_attempts": 3210,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.62986521361475,
+        "return_drop_mean": 10.783151760468932,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22950,
+          "policy_forward_calls": 52532,
+          "new_shadow_transitions": 2430,
+          "shadow_steps": 12821,
+          "replay_steps": 4487,
+          "warmup_steps": 5904,
+          "shadow_resets": 72,
+          "cache_hits": 17213,
+          "ipc_requests": 20818
+        },
+        "blocks": 91,
+        "complete_search_candidates": 891,
+        "unique_actual_sequences": 145,
+        "duplicate_actual_sequences": 746,
+        "unique_actual_prefixes": 2369,
+        "failed_target_attempts": 11410,
+        "retry_attempts": 7065,
+        "budget_exhausted_blocks": 11,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.62793298356159,
+        "return_drop_mean": 10.785083990522088,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11475,
+        "retries": 7065,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 5149,
+        "nodes_with_retries": 1982,
+        "retries_without_new_branch": 7064,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 3,
+      "attack": "ours_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22950,
+          "policy_forward_calls": 52532,
+          "new_shadow_transitions": 2430,
+          "shadow_steps": 12821,
+          "replay_steps": 4487,
+          "warmup_steps": 5904,
+          "shadow_resets": 72,
+          "cache_hits": 17213,
+          "ipc_requests": 20818
+        },
+        "blocks": 91,
+        "complete_search_candidates": 891,
+        "unique_actual_sequences": 145,
+        "duplicate_actual_sequences": 746,
+        "unique_actual_prefixes": 2369,
+        "failed_target_attempts": 11410,
+        "retry_attempts": 7065,
+        "budget_exhausted_blocks": 11,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 126.62793298356159,
+        "return_drop_mean": 10.785083990522088,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11475,
+        "retries": 7065,
+        "retry_target_hits": 1,
+        "retry_new_branches": 1,
+        "retry_new_branches_on_selected_plan": 1,
+        "retry_repeated_margin_and_action": 5149,
+        "nodes_with_retries": 1982,
+        "retries_without_new_branch": 7064,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "none",
+      "collisions": 0,
+      "episodes": 10,
+      "audit": {},
+      "outcomes": {
+        "episode_return_mean": 138.73954072820493,
+        "return_drop_mean": null,
+        "attack_success_rate": null,
+        "attack_successes": null,
+        "attack_success_eligible_episodes": null
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "zero_one_budgeted_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 10640,
+          "policy_forward_calls": 28628,
+          "new_shadow_transitions": 2801,
+          "shadow_steps": 16507,
+          "replay_steps": 6900,
+          "warmup_steps": 6806,
+          "shadow_resets": 83,
+          "cache_hits": 17067,
+          "ipc_requests": 21051
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 152,
+        "duplicate_actual_sequences": 758,
+        "unique_actual_prefixes": 2647,
+        "failed_target_attempts": 3412,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.31710013540514,
+        "return_drop_mean": 13.422440592799783,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "zero_one_budgeted_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 10580,
+          "policy_forward_calls": 28460,
+          "new_shadow_transitions": 2775,
+          "shadow_steps": 15741,
+          "replay_steps": 6406,
+          "warmup_steps": 6560,
+          "shadow_resets": 80,
+          "cache_hits": 17093,
+          "ipc_requests": 21051
+        },
+        "blocks": 91,
+        "complete_search_candidates": 910,
+        "unique_actual_sequences": 150,
+        "duplicate_actual_sequences": 760,
+        "unique_actual_prefixes": 2621,
+        "failed_target_attempts": 3395,
+        "retry_attempts": 0,
+        "budget_exhausted_blocks": 0,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.29710013540515,
+        "return_drop_mean": 13.44244059279978,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_return",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22920,
+          "policy_forward_calls": 53902,
+          "new_shadow_transitions": 3174,
+          "shadow_steps": 20228,
+          "replay_steps": 8034,
+          "warmup_steps": 9020,
+          "shadow_resets": 110,
+          "cache_hits": 16007,
+          "ipc_requests": 20337
+        },
+        "blocks": 91,
+        "complete_search_candidates": 867,
+        "unique_actual_sequences": 167,
+        "duplicate_actual_sequences": 700,
+        "unique_actual_prefixes": 2919,
+        "failed_target_attempts": 11100,
+        "retry_attempts": 6473,
+        "budget_exhausted_blocks": 16,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.82027322802423,
+        "return_drop_mean": 12.9192675001807,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11460,
+        "retries": 6473,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 3318,
+        "nodes_with_retries": 1861,
+        "retries_without_new_branch": 6473,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    },
+    {
+      "checkpoint_seed": 4,
+      "attack": "ours_safety",
+      "collisions": 1,
+      "episodes": 10,
+      "audit": {
+        "costs": {
+          "gradient_evaluations": 22920,
+          "policy_forward_calls": 53902,
+          "new_shadow_transitions": 3174,
+          "shadow_steps": 20228,
+          "replay_steps": 8034,
+          "warmup_steps": 9020,
+          "shadow_resets": 110,
+          "cache_hits": 16007,
+          "ipc_requests": 20337
+        },
+        "blocks": 91,
+        "complete_search_candidates": 867,
+        "unique_actual_sequences": 167,
+        "duplicate_actual_sequences": 700,
+        "unique_actual_prefixes": 2919,
+        "failed_target_attempts": 11100,
+        "retry_attempts": 6473,
+        "budget_exhausted_blocks": 16,
+        "unplanned_fallback_steps": 0,
+        "live_unverified_fallback_steps": 0
+      },
+      "outcomes": {
+        "episode_return_mean": 125.82027322802423,
+        "return_drop_mean": 12.9192675001807,
+        "attack_success_rate": 0.1,
+        "attack_successes": 1,
+        "attack_success_eligible_episodes": 10
+      },
+      "retry_yield": {
+        "attempts": 11460,
+        "retries": 6473,
+        "retry_target_hits": 0,
+        "retry_new_branches": 0,
+        "retry_new_branches_on_selected_plan": 0,
+        "retry_repeated_margin_and_action": 3318,
+        "nodes_with_retries": 1861,
+        "retries_without_new_branch": 6473,
+        "interpretation": "Post-hoc discovery attribution; selected does not establish a causal collision contribution"
+      },
+      "objective_opportunities": {
+        "blocks": 91,
+        "no_collision_candidate": 90,
+        "all_candidates_collide": 0,
+        "mixed_collision_candidates": 1,
+        "return_safety_selection_differs": 0,
+        "return_safety_actual_sequence_differs": 0,
+        "interpretation": "Fixed observed candidate sets only; no claim about unsearched unsafe trajectories"
+      }
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "checkpoint_seed": 0,
+      "first": "ours_return",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 4,
+      "return_first_minus_second_mean": 0.10184967686877969
+    },
+    {
+      "checkpoint_seed": 0,
+      "first": "ours_safety",
+      "second": "zero_one_budgeted_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 4,
+      "return_first_minus_second_mean": 0.10184967686877969
+    },
+    {
+      "checkpoint_seed": 0,
+      "first": "ours_safety",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 0,
+      "first": "zero_one_budgeted_safety",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "ours_return",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": -4.876832809350257
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "ours_safety",
+      "second": "zero_one_budgeted_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 2,
+      "return_first_minus_second_mean": -4.876832809350257
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "ours_safety",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 1,
+      "first": "zero_one_budgeted_safety",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "ours_return",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 10,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 9,
+      "first_conversion": 9,
+      "second_conversion": 9,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 3,
+      "return_first_minus_second_mean": -8.69923854819935
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "ours_safety",
+      "second": "zero_one_budgeted_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 10,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 9,
+      "first_conversion": 9,
+      "second_conversion": 9,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 3,
+      "return_first_minus_second_mean": -7.992981654018598
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "ours_safety",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 10,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 9,
+      "first_conversion": 9,
+      "second_conversion": 9,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 9,
+      "return_first_minus_second_mean": -0.48376991125862573
+    },
+    {
+      "checkpoint_seed": 2,
+      "first": "zero_one_budgeted_safety",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 10,
+      "neither_collision": 0,
+      "eligible_clean_noncollision": 9,
+      "first_conversion": 9,
+      "second_conversion": 9,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 9,
+      "return_first_minus_second_mean": -1.1900268054393786
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "ours_return",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 6,
+      "return_first_minus_second_mean": -0.0019322300531555924
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "ours_safety",
+      "second": "zero_one_budgeted_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 6,
+      "return_first_minus_second_mean": -0.0019322300531555924
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "ours_safety",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 3,
+      "first": "zero_one_budgeted_safety",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "ours_return",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 4,
+      "return_first_minus_second_mean": 0.5031730926190789
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "ours_safety",
+      "second": "zero_one_budgeted_safety",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 4,
+      "return_first_minus_second_mean": 0.5231730926190792
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "ours_safety",
+      "second": "ours_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 10,
+      "return_first_minus_second_mean": 0.0
+    },
+    {
+      "checkpoint_seed": 4,
+      "first": "zero_one_budgeted_safety",
+      "second": "zero_one_budgeted_return",
+      "first_only_collision": 0,
+      "second_only_collision": 0,
+      "both_collision": 1,
+      "neither_collision": 9,
+      "eligible_clean_noncollision": 10,
+      "first_conversion": 1,
+      "second_conversion": 1,
+      "first_only_conversion": 0,
+      "second_only_conversion": 0,
+      "identical_trajectories": 9,
+      "return_first_minus_second_mean": -0.020000000000000285
+    }
+  ]
+}

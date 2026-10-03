@@ -13,6 +13,11 @@ class AttackRegistry:
     def create(self, name, **parameters):
         if name not in self._types:
             raise ValueError("Unknown attack: " + name)
+        if name in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety"):
+            objective = name.rsplit("_", 1)[-1]
+            if parameters.get("objective", objective) != objective:
+                raise ValueError("Attack name and objective disagree")
+            parameters["objective"] = objective
         return self._types[name](**parameters)
 
     @classmethod
@@ -23,6 +28,8 @@ class AttackRegistry:
         from .fgsm import FGSMAttack
         from .pgd import PGDAttack
         from .zero_one import ZeroOneAttack
+        from .proposed import ProposedAttack
+        from .zero_one_controls import BudgetedZeroOneAttack
         registry = cls()
         registry.register("none", NoAttack)
         registry.register("oarl_bo", OARLBOAttack)
@@ -30,4 +37,8 @@ class AttackRegistry:
         registry.register("fgsm", FGSMAttack)
         registry.register("pgd", PGDAttack)
         registry.register("zero_one", ZeroOneAttack)
+        registry.register("ours_return", ProposedAttack)
+        registry.register("ours_safety", ProposedAttack)
+        registry.register("zero_one_budgeted_return", BudgetedZeroOneAttack)
+        registry.register("zero_one_budgeted_safety", BudgetedZeroOneAttack)
         return registry

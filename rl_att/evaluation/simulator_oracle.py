@@ -14,7 +14,9 @@ from .results import write_json
 
 
 class SimulatorOracle:
-    def __init__(self, directory, source):
+    def __init__(self, directory, source, account_reset_warmup=False):
+        self.account_reset_warmup = account_reset_warmup
+        self.ipc_requests = 0
         self.directory = Path(directory)
         private = self.directory / "source"
         private.mkdir(parents=True, exist_ok=False)
@@ -33,6 +35,7 @@ class SimulatorOracle:
         self.status = "running"
 
     def request(self, command, **fields):
+        self.ipc_requests += 1
         self.process.stdin.write(json.dumps(dict(command=command, **fields), allow_nan=False) + "\n")
         self.process.stdin.flush()
         line = self.process.stdout.readline()
@@ -51,6 +54,7 @@ class SimulatorOracle:
 
     def reset(self, snapshot, observation):
         return self.request("reset", snapshot=base64.b64encode(snapshot).decode("ascii"),
+                            account_reset_warmup=self.account_reset_warmup,
                             initial=dict(observation=np.asarray(observation).tolist(), reward=0.0,
                                          done=False, collision=False))
 
@@ -63,6 +67,13 @@ class SimulatorOracle:
 
     def step(self, action):
         return self.request("step", action=int(action))
+
+    def budgeted_step(self, action, remaining):
+        return self.request("budgeted_step", action=int(action), remaining=remaining)
+
+    def observe_fallback(self, action, observation, reward, done, collision):
+        return self.request("observe_fallback", action=int(action), transition=dict(
+            observation=np.asarray(observation).tolist(), reward=float(reward), done=bool(done), collision=bool(collision)))
 
     def observe(self, action, observation, reward, done, collision):
         return self.request("observe", action=int(action), transition=dict(
@@ -90,6 +101,7 @@ class SimulatorOracle:
                 self.status = "failed"
             write_json(self.directory / "manifest.json", dict(command=self.command, cwd=str(self.private),
                        status=self.status, returncode=self.process.poll(), counts=counts,
+                       ipc_requests=self.ipc_requests, account_reset_warmup=self.account_reset_warmup,
                        source_sha256_before=self.hashes, source_sha256_after=after, changed_source_files=changed))
         if self.status != "passed":
             raise RuntimeError("Simulator oracle did not close with verified source integrity")

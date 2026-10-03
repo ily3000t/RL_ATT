@@ -16,7 +16,7 @@ def validate_envelope(budget):
 def validate_config(config):
     required = {"victims", "run_seeds", "episodes", "max_steps", "action_selection", "gate_enabled",
                 "sumo_schedule", "attacks", "lookahead_m", "metric_percentiles", "verify_legacy_no_attack"}
-    if not required <= set(config) or set(config) - required - {"traffic_seed"}:
+    if not required <= set(config) or set(config) - required - {"traffic_seed", "research_seeds"}:
         raise ValueError("Unexpected or missing evaluation configuration fields")
     if "traffic_seed" in config:
         if type(config["traffic_seed"]) is not int or not 0 <= config["traffic_seed"] < 5:
@@ -27,7 +27,21 @@ def validate_config(config):
             raise ValueError("This diagnostic protocol uses deterministic Clean/FGSM controls")
     if config["gate_enabled"] is not False or config["action_selection"] != "greedy_argmax":
         raise ValueError("This stage requires greedy evaluation without Gate")
-    if config["sumo_schedule"] != "phase_separated_derived":
+    if "research_seeds" in config:
+        seeds = config["research_seeds"]
+        if set(seeds) != {"root_seed", "split_id", "attack_seed", "episode_sumo_seeds"}:
+            raise ValueError("Explicit research seed protocol required")
+        if seeds["root_seed"] != 20260921 or type(seeds["split_id"]) is not int or seeds["split_id"] not in (10, 20, 30):
+            raise ValueError("Use the frozen research split identifiers")
+        if type(seeds["attack_seed"]) is not int or seeds["attack_seed"] not in (0, 1, 2):
+            raise ValueError("Use independent attack replicate 0, 1 or 2")
+        traffic = seeds["episode_sumo_seeds"]
+        if not isinstance(traffic, list) or len(traffic) != config["episodes"] or len(set(traffic)) != len(traffic) or any(
+                type(s) is not int or not 0 <= s < 2 ** 31 - 1 for s in traffic):
+            raise ValueError("Explicit unique episode traffic seeds required")
+        if config["sumo_schedule"] != "research_split_v1" or "traffic_seed" in config or config["verify_legacy_no_attack"]:
+            raise ValueError("Research traffic cannot be mixed with the old held-out protocol")
+    elif config["sumo_schedule"] != "phase_separated_derived":
         raise ValueError("Use the existing Protocol A evaluation seed derivation")
     for key in ("episodes", "max_steps"):
         if type(config[key]) is not int or config[key] < 1:
@@ -64,6 +78,28 @@ def validate_config(config):
                                         {"norm": "observation_scaled_linf", "epsilon": 1.0,
                                          "relative_scale": 0.2, "absolute_scale": 0.05}):
                 raise ValueError("Original BO uses its fixed affine box; epsilon projection would change it")
+        elif attack["name"] in ("ours_return", "ours_safety", "zero_one_budgeted_return", "zero_one_budgeted_safety"):
+            validate_envelope(attack["budget"])
+            p = attack["parameters"]
+            keys = {"epsilon", "relative_scale", "absolute_scale", "every_n_steps", "horizon", "evaluations",
+                    "inner_steps", "step_size", "max_attempts", "objective", "resource_limits"}
+            if set(p) != keys or p["objective"] != attack["name"].split("_")[-1]:
+                raise ValueError("Search name must match its explicit objective and parameters")
+            if any(type(p[k]) is not int or p[k] < 1 for k in ("horizon", "evaluations", "inner_steps", "max_attempts")):
+                raise ValueError("Positive integer search parameters required")
+            if p["every_n_steps"] != 1 or p["epsilon"] <= 0 or p["evaluations"] < 4:
+                raise ValueError("Positive every-step budget and at least four candidates required")
+            if type(p["step_size"]) not in (float, int) or not math.isfinite(p["step_size"]) or p["step_size"] <= 0:
+                raise ValueError("Invalid inner PGD step size")
+            resource_keys = {"gradient_evaluations", "policy_forward_calls", "new_shadow_transitions", "shadow_steps"}
+            if set(p["resource_limits"]) != resource_keys or any(type(v) is not int or v < 0 for v in p["resource_limits"].values()):
+                raise ValueError("Explicit nonnegative resource limits required")
+            if p["resource_limits"]["policy_forward_calls"] < p["horizon"] + 2:
+                raise ValueError("Reserve execution and emergency clean forward calls")
+            if any(p[k] != attack["budget"][k] for k in ("epsilon", "relative_scale", "absolute_scale")):
+                raise ValueError("Search envelope differs from declared perturbation budget")
+            if "research_seeds" not in config:
+                raise ValueError("New methods use separate development/validation/test traffic")
         elif attack["name"] in ("random", "fgsm", "pgd", "zero_one"):
             validate_envelope(attack["budget"])
             parameters = attack["parameters"]

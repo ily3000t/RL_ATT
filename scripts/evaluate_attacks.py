@@ -75,7 +75,7 @@ def main():
     env["MPLCONFIGDIR"] = str(output / "matplotlib")
     env["PATH"] = os.pathsep.join(training["runtime_path_prepend"] + [env.get("PATH", "")])
     extra_dependencies = []
-    if any(a["name"] == "zero_one" for a in config["attacks"]):
+    if any(a["name"] == "zero_one" or a["name"].startswith("zero_one_budgeted_") for a in config["attacks"]):
         dependency = dependency_record(ROOT / ".local/dependencies/zero-one/zoopt-0.4.2-py3-none-any.whl")
         env["RL_ATT_ZOOPT_WHEEL"] = dependency["path"]
         extra_dependencies.append(dependency)
