@@ -1,0 +1,129 @@
+{
+  "kind": "shared_compute_budget_sweep",
+  "checkpoint_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "attack_seeds": [
+    0,
+    1,
+    2
+  ],
+  "gradient_forward_caps": [
+    [
+      400,
+      800
+    ],
+    [
+      200,
+      400
+    ],
+    [
+      100,
+      200
+    ]
+  ],
+  "episodes": 10,
+  "max_steps": 200,
+  "research_split_id": 10,
+  "fixed_new_shadow_transitions": 200,
+  "fixed_shadow_steps": 4000,
+  "groups": [
+    {
+      "gradient_cap": 400,
+      "forward_cap": 800,
+      "attack_seed": 0,
+      "kind": "upper_zero_one_refresh",
+      "configs": [
+        "configs/evaluation/zero_one_budgeted_development_attack0_seed0.json",
+        "configs/evaluation/zero_one_budgeted_development_attack0_seed1.json",
+        "configs/evaluation/zero_one_budgeted_development_attack0_seed2.json",
+        "configs/evaluation/zero_one_budgeted_development_attack0_seed3.json",
+        "configs/evaluation/zero_one_budgeted_development_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 0,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g200_attack0_seed0.json",
+        "configs/evaluation/budget_sweep_g200_attack0_seed1.json",
+        "configs/evaluation/budget_sweep_g200_attack0_seed2.json",
+        "configs/evaluation/budget_sweep_g200_attack0_seed3.json",
+        "configs/evaluation/budget_sweep_g200_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 1,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g200_attack1_seed0.json",
+        "configs/evaluation/budget_sweep_g200_attack1_seed1.json",
+        "configs/evaluation/budget_sweep_g200_attack1_seed2.json",
+        "configs/evaluation/budget_sweep_g200_attack1_seed3.json",
+        "configs/evaluation/budget_sweep_g200_attack1_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 200,
+      "forward_cap": 400,
+      "attack_seed": 2,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g200_attack2_seed0.json",
+        "configs/evaluation/budget_sweep_g200_attack2_seed1.json",
+        "configs/evaluation/budget_sweep_g200_attack2_seed2.json",
+        "configs/evaluation/budget_sweep_g200_attack2_seed3.json",
+        "configs/evaluation/budget_sweep_g200_attack2_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 0,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g100_attack0_seed0.json",
+        "configs/evaluation/budget_sweep_g100_attack0_seed1.json",
+        "configs/evaluation/budget_sweep_g100_attack0_seed2.json",
+        "configs/evaluation/budget_sweep_g100_attack0_seed3.json",
+        "configs/evaluation/budget_sweep_g100_attack0_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 1,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g100_attack1_seed0.json",
+        "configs/evaluation/budget_sweep_g100_attack1_seed1.json",
+        "configs/evaluation/budget_sweep_g100_attack1_seed2.json",
+        "configs/evaluation/budget_sweep_g100_attack1_seed3.json",
+        "configs/evaluation/budget_sweep_g100_attack1_seed4.json"
+      ]
+    },
+    {
+      "gradient_cap": 100,
+      "forward_cap": 200,
+      "attack_seed": 2,
+      "kind": "paired_budget_sweep",
+      "configs": [
+        "configs/evaluation/budget_sweep_g100_attack2_seed0.json",
+        "configs/evaluation/budget_sweep_g100_attack2_seed1.json",
+        "configs/evaluation/budget_sweep_g100_attack2_seed2.json",
+        "configs/evaluation/budget_sweep_g100_attack2_seed3.json",
+        "configs/evaluation/budget_sweep_g100_attack2_seed4.json"
+      ]
+    }
+  ],
+  "additional_episodes": 1650,
+  "interpretation": "Coupled gradient/forward sensitivity, not independent effects of each resource or held-out validation"
+}

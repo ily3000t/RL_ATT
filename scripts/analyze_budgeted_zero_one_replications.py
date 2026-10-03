@@ -39,7 +39,7 @@ def validate_pairing(baseline, reference, baseline_entries, reference_entries, a
 
 
 def analyze(batch_path, reference_path, attack_seed):
-    require(attack_seed in (1, 2), "This extension is restricted to attack seeds 1/2")
+    require(attack_seed in (0, 1, 2), "Expected a frozen development attack seed")
     reference = json.loads(reference_path.read_text(encoding="utf-8"))
     require(reference["verified"] and reference["kind"] == "progress_retry_development"
             and reference["attack_seed"] == attack_seed, "Wrong or unverified reference")
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--batch", type=Path, required=True)
     parser.add_argument("--reference-report", type=Path, required=True)
-    parser.add_argument("--attack-seed", type=int, choices=(1, 2), required=True)
+    parser.add_argument("--attack-seed", type=int, choices=(0, 1, 2), required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     report = analyze(args.batch.resolve(), args.reference_report.resolve(), args.attack_seed)

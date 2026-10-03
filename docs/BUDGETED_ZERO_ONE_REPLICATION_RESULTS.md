@@ -72,4 +72,6 @@ checkpoint 0、1、3、4 的各方法均为 1/10 碰撞；checkpoint 2 的 Zero-
 
 本轮未临时增添停止阈值、Gate 或新攻击模块，也未进入验证/最终测试集。完成预算比较后，再决定继续方法开发或扩大验证；保留当前效果和负面成本证据。
 
-当前分支 `feat/budgeted-zero-one-seed-replication`。原子提交：`02c3c50`（冻结对照配置）、`e31a909`（跨批配对审计）、`b76eaf2`（协议）、`2b8aea8`（RNG 机制标签与数值种子分开校验）。研究阶段未创建方法里程碑 tag。
+当时分支 `feat/budgeted-zero-one-seed-replication`。原子提交：`02c3c50`（冻结对照配置）、`e31a909`（跨批配对审计）、`b76eaf2`（协议）、`2b8aea8`（RNG 机制标签与数值种子分开校验）。研究阶段未创建方法里程碑 tag。
+
+后续更新（2026-09-24）：共享计算预算的三档敏感性验证已完成，含 seed 0 Zero-One 高档同源码补录及六批低档实验，见 [SHARED_COMPUTE_BUDGET_RESULTS.md](SHARED_COMPUTE_BUDGET_RESULTS.md)。本文件保留此前阶段结果。

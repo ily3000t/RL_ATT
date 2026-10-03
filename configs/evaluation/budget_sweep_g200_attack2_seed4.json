@@ -1,0 +1,155 @@
+{
+  "victims": [
+    "clean"
+  ],
+  "run_seeds": [
+    4
+  ],
+  "episodes": 10,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "research_split_v1",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {
+    "ttc_percentile": 5,
+    "drac_percentile": 95
+  },
+  "verify_legacy_no_attack": false,
+  "attacks": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "zero_one_budgeted_return",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "max_attempts": 3,
+        "objective": "return",
+        "resource_limits": {
+          "gradient_evaluations": 200,
+          "policy_forward_calls": 400,
+          "new_shadow_transitions": 200,
+          "shadow_steps": 4000
+        }
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "zero_one_budgeted_safety",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "max_attempts": 3,
+        "objective": "safety",
+        "resource_limits": {
+          "gradient_evaluations": 200,
+          "policy_forward_calls": 400,
+          "new_shadow_transitions": 200,
+          "shadow_steps": 4000
+        }
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "ours_progress_return",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "max_attempts": 3,
+        "objective": "return",
+        "resource_limits": {
+          "gradient_evaluations": 200,
+          "policy_forward_calls": 400,
+          "new_shadow_transitions": 200,
+          "shadow_steps": 4000
+        },
+        "retry_rule": "strict_margin_progress"
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "ours_progress_safety",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "max_attempts": 3,
+        "objective": "safety",
+        "resource_limits": {
+          "gradient_evaluations": 200,
+          "policy_forward_calls": 400,
+          "new_shadow_transitions": 200,
+          "shadow_steps": 4000
+        },
+        "retry_rule": "strict_margin_progress"
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ],
+  "research_seeds": {
+    "root_seed": 20260921,
+    "split_id": 10,
+    "attack_seed": 2,
+    "episode_sumo_seeds": [
+      1472154258,
+      1940738230,
+      1610385403,
+      258385557,
+      2018177452,
+      544136477,
+      1189631354,
+      2096810982,
+      1828089188,
+      200217526
+    ]
+  }
+}
