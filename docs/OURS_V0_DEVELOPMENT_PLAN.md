@@ -1,5 +1,7 @@
 # Ours-v0 开发方案：基于实际诱导行为的预算分配
 
+Single 候选验证更新（2026-10-03）：独立分支 `codex/single-candidate-validation` 的九批新增 1800 episode / 297467 步全部通过审计，复用 Return 对照 272619 步、Clean 回归 162243 步和原 45 个 Progress−ZO 配对条件核验一致，125 项测试通过。Single 与 Progress 的 900 对碰撞结果逐对相同，中/高档梯度减少 38.03%/37.86%，forward 减少 29.10%/29.47%，physical shadow 增加 4.60%/1.67%。Single−ZO 三档 Return 差为 −6.910/−4.652/−3.014，净转换仍为 +3/−1/+2；安全集中性与高档模型负例继续保留。建议冻结 Single Return 为下一轮正式候选，同时保留 Progress 机制参考，先独立预登记最终未见交通上的全对照协议。详见 [SINGLE_CANDIDATE_VALIDATION_RESULTS.md](SINGLE_CANDIDATE_VALIDATION_RESULTS.md)。本轮只复核已使用的 split 20，未启用 final split 30、Safety 简化候选或防御；不覆盖既有方法名称或比较结果。以下阶段记录保留。
+
 完整机制研究更新（2026-10-03）：`codex/mechanism-development-study` 的九批 2250 episode、369008 步审计全部通过；九批 Clean 共 89748 步及高档五条件 smoke 前缀 8504 步回归一致。Single 已取得低/中/高档相对预算版 ZO 的平均 Return 差 −10.511/−1.087/−3.685；固定重试只再改善 0/0.093/0.322，没有新增碰撞，高档梯度约翻倍。进展规则高档比固定重试节省 18.20% 梯度，但保留错过有效后续尝试的真实反例。当前 Progress 相对 ZO 的净新增转换仍为 +10/−1/+2，安全收益集中性和成本局限没有消失。详见 [MECHANISM_DEVELOPMENT_RESULTS.md](MECHANISM_DEVELOPMENT_RESULTS.md)。建议下一功能独立冻结并验证简化候选，不自动替换现有方法；final split 30 继续保留，当前不启动防御。以下 smoke 和各阶段判断保留为历史记录。
 
 机制对照工程更新（2026-10-03）：既有七个完成分支已依赖顺序合入 main，新分支 `codex/attack-mechanism-controls` 增加单次尝试行为搜索对照，与预算版 Zero-One、固定重试版、进展版形成四个 Return 条件。五模型、两个已有开发交通的 50 episode / 8504 步审计及 110 项测试通过，四个旧条件逐字段回归一致。当前 smoke 未显示独立重试带来额外效果，不能预设该模块有益。完整三预算、三 attack seed 的 2250 episode 机制研究尚未运行；最终 split 30 继续保留。详见 [MECHANISM_CONTROLS_SMOKE_RESULTS.md](MECHANISM_CONTROLS_SMOKE_RESULTS.md)。此工程结果不替代下述完整验证结论，后续分支/测试/合并规范见根目录 `AGENTS.md`。

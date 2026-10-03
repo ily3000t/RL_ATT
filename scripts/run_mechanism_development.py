@@ -17,12 +17,14 @@ from prepare_mechanism_controls import sha256
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--phase", choices=("development", "candidate-validation"), default="development")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     output = args.output.resolve()
     if output.exists() or (ROOT / ".local/runs").resolve() not in output.parents or git("status", "--porcelain"):
         parser.error("Use clean Git and a new directory inside .local/runs")
-    protocol_path = ROOT / "configs/research/mechanism_development.json"
+    candidate = args.phase == "candidate-validation"
+    protocol_path = ROOT / ("configs/research/single_candidate_validation.json" if candidate else "configs/research/mechanism_development.json")
     protocol = json.loads(protocol_path.read_text())
     subprocess.check_call(["git", "diff", "--exit-code", protocol["frozen_method_commit"], "--",
                            "main.py", "oarl.py", "Environment", "Data", "rl_att", "requirements.txt"], cwd=str(ROOT))
@@ -39,8 +41,8 @@ def main():
     env["PATH"] = os.pathsep.join(reference["runtime_path_prepend"] + [env.get("PATH", "")])
     env["MPLCONFIGDIR"] = str(output / "matplotlib")
     output.mkdir(parents=True)
-    status_path = output / "mechanism-development.json"
-    record = dict(kind="return_mechanism_development_pipeline", git_commit=git("rev-parse", "HEAD"),
+    status_path = output / ("candidate-validation.json" if candidate else "mechanism-development.json")
+    record = dict(kind="single_candidate_validation_pipeline" if candidate else "return_mechanism_development_pipeline", git_commit=git("rev-parse", "HEAD"),
                   command=[sys.executable] + sys.argv, protocol_sha256=sha256(protocol_path),
                   status="running", started_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
                   planned_episodes=protocol["total_episodes"], verified_episodes=0,
@@ -52,7 +54,7 @@ def main():
     save(status_path, record)
     lock, halted = threading.Lock(), threading.Event()
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
-    print("MECHANISM_DEVELOPMENT_DIR=" + str(output), flush=True)
+    print(("CANDIDATE_VALIDATION_DIR=" if candidate else "MECHANISM_DEVELOPMENT_DIR=") + str(output), flush=True)
 
     def run(index):
         item = record["groups"][index]
@@ -80,9 +82,11 @@ def main():
                 save(status_path, record)
             if code:
                 raise ValueError("Evaluation batch failed with code %d" % code)
-            audit_path = batch_path.parent / "verified-mechanism-development.json"
-            audit_command = [reference["launch_command"][0], str(ROOT / "scripts/analyze_mechanism_controls.py"),
-                             "--phase", "development", "--batch", str(batch_path),
+            audit_path = batch_path.parent / ("verified-candidate-validation.json" if candidate else "verified-mechanism-development.json")
+            audit_command = [reference["launch_command"][0], str(ROOT / ("scripts/analyze_single_validation.py" if candidate else "scripts/analyze_mechanism_controls.py"))]
+            if not candidate:
+                audit_command += ["--phase", "development"]
+            audit_command += ["--batch", str(batch_path),
                              "--gradient-cap", str(item["gradient_cap"]), "--attack-seed", str(item["attack_seed"]),
                              "--output", str(audit_path)]
             with lock:
@@ -93,7 +97,9 @@ def main():
             audit = json.loads(audit_path.read_text())
             if not audit["verified"] or audit["git_commit"] != record["git_commit"]:
                 raise ValueError("Group audit or source commit mismatch")
-            episodes = sum(r["episodes"] for r in audit["rows"])
+            if candidate and audit["kind"] != "single_candidate_validation":
+                raise ValueError("Wrong candidate audit kind")
+            episodes = audit["new_episodes"] if candidate else sum(r["episodes"] for r in audit["rows"])
             if episodes != item["episodes"]:
                 raise ValueError("Incomplete audited episode count")
             with lock:

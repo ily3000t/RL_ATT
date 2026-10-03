@@ -1,0 +1,82 @@
+{
+  "victims": [
+    "clean"
+  ],
+  "run_seeds": [
+    2
+  ],
+  "episodes": 20,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "research_split_v1",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {
+    "ttc_percentile": 5,
+    "drac_percentile": 95
+  },
+  "verify_legacy_no_attack": false,
+  "attacks": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "ours_single_return",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "horizon": 20,
+        "evaluations": 10,
+        "inner_steps": 2,
+        "step_size": 1.0,
+        "max_attempts": 1,
+        "objective": "return",
+        "resource_limits": {
+          "gradient_evaluations": 400,
+          "policy_forward_calls": 800,
+          "new_shadow_transitions": 200,
+          "shadow_steps": 4000
+        }
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ],
+  "research_seeds": {
+    "root_seed": 20260921,
+    "split_id": 20,
+    "attack_seed": 1,
+    "episode_sumo_seeds": [
+      66220013,
+      1408038459,
+      533300723,
+      724293118,
+      677741082,
+      1573595466,
+      1618988799,
+      1331668655,
+      495979247,
+      789462548,
+      1394101652,
+      668632225,
+      2021711356,
+      2125771701,
+      870217807,
+      890465090,
+      615847619,
+      625261628,
+      1364999002,
+      364372919
+    ]
+  }
+}

@@ -15,7 +15,7 @@ sys.path.pop(0)
 
 
 class MechanismRunnerTests(unittest.TestCase):
-    def exercise(self, fail):
+    def exercise(self, fail, phase="development"):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             (root / "configs/research").mkdir(parents=True)
@@ -29,7 +29,9 @@ class MechanismRunnerTests(unittest.TestCase):
                             references=dict(original=dict(manifests=[dict(path="runtime.json", sha256=sha256(reference_path))])),
                             execution=dict(parallel_groups=2, jobs_per_group=5), total_episodes=750,
                             groups=[dict(gradient_cap=100, attack_seed=i, configs=[str(i)], episodes=250) for i in range(3)])
-            (root / "configs/research/mechanism_development.json").write_text(json.dumps(protocol))
+            candidate = phase == "candidate-validation"
+            protocol_name = "single_candidate_validation.json" if candidate else "mechanism_development.json"
+            (root / "configs/research" / protocol_name).write_text(json.dumps(protocol))
             output, activity_lock = root / ".local/runs/pipeline", threading.Lock()
             activity = dict(active=0, maximum=0)
             def git(*args):
@@ -51,17 +53,24 @@ class MechanismRunnerTests(unittest.TestCase):
                 if command[0] == "git":
                     return 0
                 audit = Path(command[command.index("--output") + 1])
-                audit.write_text(json.dumps(dict(verified=True, git_commit="source", rows=[dict(episodes=250)], raw_episode_verified_steps=123)))
+                if candidate:
+                    self.assertIn(str(root / "scripts/analyze_single_validation.py"), command)
+                    self.assertNotIn("--phase", command)
+                    report = dict(verified=True, git_commit="source", kind="single_candidate_validation", new_episodes=250,
+                                  rows=[dict(episodes=250), dict(episodes=250)], raw_episode_verified_steps=123)
+                else:
+                    report = dict(verified=True, git_commit="source", rows=[dict(episodes=250)], raw_episode_verified_steps=123)
+                audit.write_text(json.dumps(report))
                 return 0
             with patch.object(runner, "ROOT", root), patch.object(runner, "git", git), \
                     patch.object(runner.subprocess, "run", launch), patch.object(runner.subprocess, "check_call", check_call), \
-                    patch.object(sys, "argv", ["runner", "--output", str(output)]):
+                    patch.object(sys, "argv", ["runner", "--phase", phase, "--output", str(output)]):
                 if fail:
                     with self.assertRaisesRegex(ValueError, "incomplete"):
                         runner.main()
                 else:
                     runner.main()
-                record = json.loads((output / "mechanism-development.json").read_text())
+                record = json.loads((output / ("candidate-validation.json" if candidate else "mechanism-development.json")).read_text())
                 self.assertLessEqual(activity["maximum"], 2)
                 if fail:
                     self.assertEqual(record["status"], "failed")
@@ -80,3 +89,6 @@ class MechanismRunnerTests(unittest.TestCase):
 
     def test_failure_stops_pending_cells_and_keeps_partial_evidence(self):
         self.exercise(True)
+
+    def test_candidate_phase_routes_auditor_and_counts_only_new_episodes(self):
+        self.exercise(False, "candidate-validation")

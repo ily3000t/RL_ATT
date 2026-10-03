@@ -50,7 +50,8 @@ def aggregate(rows):
     return result
 
 
-def aggregate_contrast(pairs):
+def aggregate_contrast(pairs, expected_episodes=10):
+    require(type(expected_episodes) is int and expected_episodes in (10, 20), "Unregistered paired traffic count")
     records, seen = [], set()
     for pair in pairs:
         for episode in pair["episodes"]:
@@ -58,7 +59,7 @@ def aggregate_contrast(pairs):
             require(key not in seen, "Duplicate correlated pair")
             seen.add(key)
             records.append(dict(attack_seed=pair["attack_seed"], checkpoint_seed=pair["checkpoint_seed"], **episode))
-    require(seen == {(a, c, e) for a in (0, 1, 2) for c in range(5) for e in range(1, 11)}, "Missing mechanism paired unit")
+    require(seen == {(a, c, e) for a in (0, 1, 2) for c in range(5) for e in range(1, expected_episodes + 1)}, "Missing mechanism paired unit")
     by_model, by_traffic = defaultdict(list), defaultdict(list)
     for r in records:
         by_model[r["checkpoint_seed"]].append(r)
@@ -76,7 +77,7 @@ def aggregate_contrast(pairs):
     models = [dict(checkpoint_seed=c, **describe(by_model[c])) for c in range(5)]
     traffic = []
     total_net = sum(r["net_conversions"] for r in models)
-    for e in range(1, 11):
+    for e in range(1, expected_episodes + 1):
         group = by_traffic[e]
         require(len({r["sumo_seed"] for r in group}) == 1, "Unpaired traffic cluster")
         item = dict(episode=e, sumo_seed=group[0]["sumo_seed"], **describe(group))
