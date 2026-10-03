@@ -57,9 +57,11 @@ def audit_attempts(steps, name, attack_seed, parameters):
     return witnesses, dict(attempts=attempts_count, retries=retries)
 
 
-def verify_shared_witnesses(witnesses):
+def verify_shared_witnesses(witnesses, names=CONTROL_NAMES[1:]):
+    require(len(names) >= 2 and len(set(names)) == len(names) and set(witnesses) == set(names),
+            "Explicit complete witness methods required")
     comparisons = []
-    for first, second in itertools.combinations(CONTROL_NAMES[1:], 2):
+    for first, second in itertools.combinations(names, 2):
         a, b = witnesses[first], witnesses[second]
         common = {k for k in set(a) & set(b) if k[-1] == 0}
         require(all(a[k] == b[k] for k in common), "Shared first-attempt primitive differs between controls")
