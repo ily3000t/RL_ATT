@@ -1,0 +1,4830 @@
+{
+  "kind": "attack_final_compact_results",
+  "experiment_commit": "bfe42d65a47493f66b7329e2328390814108617b",
+  "source": ".local/runs/20261004-final-attack-full-restart/final-comparison.json",
+  "source_sha256": "b7f24feff1ba804e09cd7bfdec641248d91f9c3a8da8050d3c828479514fb998",
+  "protocol_sha256": "58c7a9ea8c0a79b236021f17ff2e314cd3f43e700917b01c611ccc3260f9ea91",
+  "verified_steps": 2217831,
+  "groups": [
+    {
+      "group": "basic_attack0",
+      "episodes": 1250,
+      "verified_steps": 211926,
+      "sha256": "3e0472b7affccc6f8062010c627f919b3fcfefc98547b22cfb3bfb56f2b79980"
+    },
+    {
+      "group": "basic_attack1",
+      "episodes": 1000,
+      "verified_steps": 174491,
+      "sha256": "3bddd89832bbf7ec006459f1a070125c68044d9ed61d15c225adef4fb79d6182"
+    },
+    {
+      "group": "basic_attack2",
+      "episodes": 1000,
+      "verified_steps": 174699,
+      "sha256": "41a7d86fee905e0ea9c91b0852cc0422e4041cde71c82bf3120da3026351a23c"
+    },
+    {
+      "group": "search_g100_attack0",
+      "episodes": 1250,
+      "verified_steps": 191939,
+      "sha256": "823fe8b46b23e784f08fcac5f493b5970482812e95610789314239f7120dd97e"
+    },
+    {
+      "group": "search_g100_attack1",
+      "episodes": 1250,
+      "verified_steps": 194228,
+      "sha256": "9289daa300e4d856b03bd6511294a817ed8c804f3fd9fee564068b04bceb4677"
+    },
+    {
+      "group": "search_g100_attack2",
+      "episodes": 1250,
+      "verified_steps": 193045,
+      "sha256": "b6f322f1a8873dc3e56572d959e31f2e88975d7276c31b298ebeaa8560f07cdd"
+    },
+    {
+      "group": "search_g200_attack0",
+      "episodes": 1250,
+      "verified_steps": 181056,
+      "sha256": "9fae4ffa2c88fc32b06816668a6e7e789f4846b274a83c1bcc197cdadeb2852c"
+    },
+    {
+      "group": "search_g200_attack1",
+      "episodes": 1250,
+      "verified_steps": 181892,
+      "sha256": "346c7d1e0e58506a8c9e734f423ee06061b5fa779f962d9283eb1c60213aaa47"
+    },
+    {
+      "group": "search_g200_attack2",
+      "episodes": 1250,
+      "verified_steps": 182850,
+      "sha256": "72748cc00f9d541908f8185ed923fa3b099e6e7a3df79e313f22f674ab8f9b0f"
+    },
+    {
+      "group": "search_g400_attack0",
+      "episodes": 1250,
+      "verified_steps": 176344,
+      "sha256": "75ec0167e3af86117a5de3aa77ef0fe0e2c5c85a66f8da640cfc707323e8536e"
+    },
+    {
+      "group": "search_g400_attack1",
+      "episodes": 1250,
+      "verified_steps": 177323,
+      "sha256": "24428e8e9b755882036e36f3a082533fbddcca0fa8ee95e0911b66b1b973a670"
+    },
+    {
+      "group": "search_g400_attack2",
+      "episodes": 1250,
+      "verified_steps": 178038,
+      "sha256": "698061256cd7a473d724356db81384dce47b9d57cd324b74ad79c8b090160d22"
+    }
+  ],
+  "table": [
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "actual_episodes": 250,
+      "live_steps": 45658,
+      "episode_return_mean": 142.8160030976283,
+      "return_drop_mean": 0.0,
+      "collision_rate": 0.104,
+      "attack_success_rate": null,
+      "attack_successes": 0,
+      "attack_success_eligible_episodes": 0,
+      "attack_rate": 0.0,
+      "action_change_rate": 0.0,
+      "observation_changed_rate": 0.0,
+      "linf_max": 0.0,
+      "l2_max": 0.0,
+      "scaled_linf_max": 0.0,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 21.107096072746312,
+          "valid_episodes": 170,
+          "total_episodes": 250
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 26.624205051477833,
+          "valid_episodes": 170,
+          "total_episodes": 250
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.23899931783312978,
+          "valid_episodes": 242,
+          "total_episodes": 250
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 0,
+          "gradient_evaluations": 0,
+          "policy_forward_calls": 0,
+          "new_shadow_transitions": 0,
+          "shadow_steps": 0,
+          "replay_steps": 0,
+          "warmup_steps": 0,
+          "shadow_resets": 0,
+          "cache_hits": 0,
+          "ipc_requests": 0,
+          "evaluator_policy_forward_calls": 91316,
+          "total_policy_forward_calls": 91316
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 0.0,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 0.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 365.264,
+          "total_policy_forward_calls": 365.264
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.0,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 0.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 2.0
+        }
+      },
+      "attack_wall_seconds": 0.0
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "actual_episodes": 750,
+      "live_steps": 137887,
+      "episode_return_mean": 144.53222839518543,
+      "return_drop_mean": -1.716225297557102,
+      "collision_rate": 0.09466666666666666,
+      "attack_success_rate": 0.01488095238095238,
+      "attack_successes": 10,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 1.0,
+      "action_change_rate": 0.008710030677293727,
+      "observation_changed_rate": 1.0,
+      "linf_max": 0.24999980114921616,
+      "l2_max": 0.5983240725379008,
+      "scaled_linf_max": 0.9999992045968646,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 94.5989765460924,
+          "valid_episodes": 510,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 100.57187389886673,
+          "valid_episodes": 510,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.1402638993688174,
+          "valid_episodes": 727,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 0,
+          "gradient_evaluations": 0,
+          "policy_forward_calls": 0,
+          "new_shadow_transitions": 0,
+          "shadow_steps": 0,
+          "replay_steps": 0,
+          "warmup_steps": 0,
+          "shadow_resets": 0,
+          "cache_hits": 0,
+          "ipc_requests": 0,
+          "evaluator_policy_forward_calls": 275774,
+          "total_policy_forward_calls": 275774
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 0.0,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 0.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 367.69866666666667,
+          "total_policy_forward_calls": 367.69866666666667
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.0,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 0.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 2.0
+        }
+      },
+      "attack_wall_seconds": 27.171045900000948
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "actual_episodes": 250,
+      "live_steps": 36897,
+      "episode_return_mean": 106.12128198018891,
+      "return_drop_mean": 36.694721117439414,
+      "collision_rate": 0.304,
+      "attack_success_rate": 0.2544642857142857,
+      "attack_successes": 57,
+      "attack_success_eligible_episodes": 224,
+      "attack_rate": 1.0,
+      "action_change_rate": 0.23579152776648507,
+      "observation_changed_rate": 1.0,
+      "linf_max": 0.25,
+      "l2_max": 0.756950147116101,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 19.98234210108093,
+          "valid_episodes": 176,
+          "total_episodes": 250
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 25.04740839526005,
+          "valid_episodes": 176,
+          "total_episodes": 250
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.14914958776006082,
+          "valid_episodes": 235,
+          "total_episodes": 250
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 73794,
+          "gradient_evaluations": 36897,
+          "policy_forward_calls": 73794,
+          "new_shadow_transitions": 0,
+          "shadow_steps": 0,
+          "replay_steps": 0,
+          "warmup_steps": 0,
+          "shadow_resets": 0,
+          "cache_hits": 0,
+          "ipc_requests": 0,
+          "evaluator_policy_forward_calls": 73794,
+          "total_policy_forward_calls": 147588
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 295.176,
+          "gradient_evaluations": 147.588,
+          "policy_forward_calls": 295.176,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 295.176,
+          "total_policy_forward_calls": 590.352
+        },
+        "per_live_step": {
+          "objective_evaluations": 2.0,
+          "gradient_evaluations": 1.0,
+          "policy_forward_calls": 2.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 4.0
+        }
+      },
+      "attack_wall_seconds": 26.649254099999425
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "actual_episodes": 750,
+      "live_steps": 110024,
+      "episode_return_mean": 105.89742871474304,
+      "return_drop_mean": 36.91857438288528,
+      "collision_rate": 0.31733333333333336,
+      "attack_success_rate": 0.26339285714285715,
+      "attack_successes": 177,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 1.0,
+      "action_change_rate": 0.2338671562568167,
+      "observation_changed_rate": 1.0,
+      "linf_max": 0.25,
+      "l2_max": 0.752275366928305,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 19.887441264086654,
+          "valid_episodes": 528,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 24.921230036153865,
+          "valid_episodes": 528,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.15129763000896984,
+          "valid_episodes": 705,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 1210264,
+          "gradient_evaluations": 1100240,
+          "policy_forward_calls": 1320288,
+          "new_shadow_transitions": 0,
+          "shadow_steps": 0,
+          "replay_steps": 0,
+          "warmup_steps": 0,
+          "shadow_resets": 0,
+          "cache_hits": 0,
+          "ipc_requests": 0,
+          "evaluator_policy_forward_calls": 220048,
+          "total_policy_forward_calls": 1540336
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 1613.6853333333333,
+          "gradient_evaluations": 1466.9866666666667,
+          "policy_forward_calls": 1760.384,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 293.39733333333334,
+          "total_policy_forward_calls": 2053.7813333333334
+        },
+        "per_live_step": {
+          "objective_evaluations": 11.0,
+          "gradient_evaluations": 10.0,
+          "policy_forward_calls": 12.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 14.0
+        }
+      },
+      "attack_wall_seconds": 767.7235244000142
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "actual_episodes": 750,
+      "live_steps": 139334,
+      "episode_return_mean": 145.43228024970495,
+      "return_drop_mean": -2.6162771520766546,
+      "collision_rate": 0.08266666666666667,
+      "attack_success_rate": 0.001488095238095238,
+      "attack_successes": 1,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 1.0,
+      "action_change_rate": 0.0038325175477629293,
+      "observation_changed_rate": 1.0,
+      "linf_max": 0.25,
+      "l2_max": 0.7580054644199165,
+      "scaled_linf_max": 1.000000626118353,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 20.773868524843394,
+          "valid_episodes": 512,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 26.373292346216925,
+          "valid_episodes": 512,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.15111909643578258,
+          "valid_episodes": 732,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 696670,
+          "gradient_evaluations": 0,
+          "policy_forward_calls": 1532674,
+          "new_shadow_transitions": 0,
+          "shadow_steps": 0,
+          "replay_steps": 0,
+          "warmup_steps": 0,
+          "shadow_resets": 0,
+          "cache_hits": 0,
+          "ipc_requests": 0,
+          "evaluator_policy_forward_calls": 278668,
+          "total_policy_forward_calls": 1811342
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 928.8933333333333,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 2043.5653333333332,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 371.55733333333336,
+          "total_policy_forward_calls": 2415.1226666666666
+        },
+        "per_live_step": {
+          "objective_evaluations": 5.0,
+          "gradient_evaluations": 0.0,
+          "policy_forward_calls": 11.0,
+          "new_shadow_transitions": 0.0,
+          "shadow_steps": 0.0,
+          "replay_steps": 0.0,
+          "warmup_steps": 0.0,
+          "shadow_resets": 0.0,
+          "cache_hits": 0.0,
+          "ipc_requests": 0.0,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 13.0
+        }
+      },
+      "attack_wall_seconds": 7563.075303199995
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "actual_episodes": 750,
+      "live_steps": 112596,
+      "episode_return_mean": 115.58632336105228,
+      "return_drop_mean": 27.22967973657604,
+      "collision_rate": 0.28,
+      "attack_success_rate": 0.20386904761904762,
+      "attack_successes": 137,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.2178851824221109,
+      "action_change_rate": 0.06351913034210807,
+      "observation_changed_rate": 0.2178851824221109,
+      "linf_max": 0.25,
+      "l2_max": 0.7799220967826601,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.502619556356635,
+          "valid_episodes": 436,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 23.913229384186852,
+          "valid_episodes": 436,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.19224258692799484,
+          "valid_episodes": 715,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 15233,
+          "gradient_evaluations": 363738,
+          "policy_forward_calls": 1133180,
+          "new_shadow_transitions": 145951,
+          "shadow_steps": 831654,
+          "replay_steps": 283986,
+          "warmup_steps": 401717,
+          "shadow_resets": 4896,
+          "cache_hits": 189301,
+          "ipc_requests": 367764,
+          "evaluator_policy_forward_calls": 225192,
+          "total_policy_forward_calls": 1358372
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 20.310666666666666,
+          "gradient_evaluations": 484.984,
+          "policy_forward_calls": 1510.9066666666668,
+          "new_shadow_transitions": 194.60133333333334,
+          "shadow_steps": 1108.872,
+          "replay_steps": 378.648,
+          "warmup_steps": 535.6226666666666,
+          "shadow_resets": 6.528,
+          "cache_hits": 252.40133333333333,
+          "ipc_requests": 490.352,
+          "evaluator_policy_forward_calls": 300.256,
+          "total_policy_forward_calls": 1811.1626666666666
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.1352889978329603,
+          "gradient_evaluations": 3.2304699989342427,
+          "policy_forward_calls": 10.064123059433728,
+          "new_shadow_transitions": 1.2962361007495826,
+          "shadow_steps": 7.386177128850048,
+          "replay_steps": 2.5221677501865076,
+          "warmup_steps": 3.567773277913958,
+          "shadow_resets": 0.043482894596610894,
+          "cache_hits": 1.6812408966570749,
+          "ipc_requests": 3.266226153682191,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 12.064123059433728
+        }
+      },
+      "attack_wall_seconds": 4365.742546700001
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "actual_episodes": 750,
+      "live_steps": 112574,
+      "episode_return_mean": 115.57482087082138,
+      "return_drop_mean": 27.241182226806934,
+      "collision_rate": 0.28,
+      "attack_success_rate": 0.20386904761904762,
+      "attack_successes": 137,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.21828308490415194,
+      "action_change_rate": 0.06366478938298364,
+      "observation_changed_rate": 0.21828308490415194,
+      "linf_max": 0.25,
+      "l2_max": 0.7799220967826601,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.497760106626217,
+          "valid_episodes": 436,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 23.947980348250102,
+          "valid_episodes": 436,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.19309272960339582,
+          "valid_episodes": 715,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 15209,
+          "gradient_evaluations": 363612,
+          "policy_forward_calls": 1132767,
+          "new_shadow_transitions": 145877,
+          "shadow_steps": 830532,
+          "replay_steps": 283676,
+          "warmup_steps": 400979,
+          "shadow_resets": 4887,
+          "cache_hits": 189275,
+          "ipc_requests": 367633,
+          "evaluator_policy_forward_calls": 225148,
+          "total_policy_forward_calls": 1357915
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 20.278666666666666,
+          "gradient_evaluations": 484.816,
+          "policy_forward_calls": 1510.356,
+          "new_shadow_transitions": 194.50266666666667,
+          "shadow_steps": 1107.376,
+          "replay_steps": 378.23466666666667,
+          "warmup_steps": 534.6386666666667,
+          "shadow_resets": 6.516,
+          "cache_hits": 252.36666666666667,
+          "ipc_requests": 490.1773333333333,
+          "evaluator_policy_forward_calls": 300.19733333333335,
+          "total_policy_forward_calls": 1810.5533333333333
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.13510224385737382,
+          "gradient_evaluations": 3.229982056247446,
+          "policy_forward_calls": 10.06242116296836,
+          "new_shadow_transitions": 1.2958320749018424,
+          "shadow_steps": 7.3776538099383515,
+          "replay_steps": 2.5199069056798193,
+          "warmup_steps": 3.56191482935669,
+          "shadow_resets": 0.043411444916232875,
+          "cache_hits": 1.6813384973439693,
+          "ipc_requests": 3.2657007834846414,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 12.06242116296836
+        }
+      },
+      "attack_wall_seconds": 4301.043815600018
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "actual_episodes": 750,
+      "live_steps": 108535,
+      "episode_return_mean": 108.38061902766135,
+      "return_drop_mean": 34.43538406996696,
+      "collision_rate": 0.31866666666666665,
+      "attack_success_rate": 0.24851190476190477,
+      "attack_successes": 167,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.1290182890311881,
+      "action_change_rate": 0.1290182890311881,
+      "observation_changed_rate": 0.1290182890311881,
+      "linf_max": 0.25,
+      "l2_max": 0.7689064113171573,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.5199410950781,
+          "valid_episodes": 433,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 22.42344840023166,
+          "valid_episodes": 433,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13744793810891565,
+          "valid_episodes": 726,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 12099,
+          "gradient_evaluations": 348422,
+          "policy_forward_calls": 1100939,
+          "new_shadow_transitions": 148016,
+          "shadow_steps": 858969,
+          "replay_steps": 280446,
+          "warmup_steps": 430507,
+          "shadow_resets": 5247,
+          "cache_hits": 139940,
+          "ipc_requests": 316840,
+          "evaluator_policy_forward_calls": 217070,
+          "total_policy_forward_calls": 1318009
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 16.132,
+          "gradient_evaluations": 464.56266666666664,
+          "policy_forward_calls": 1467.9186666666667,
+          "new_shadow_transitions": 197.35466666666667,
+          "shadow_steps": 1145.292,
+          "replay_steps": 373.928,
+          "warmup_steps": 574.0093333333333,
+          "shadow_resets": 6.996,
+          "cache_hits": 186.58666666666667,
+          "ipc_requests": 422.4533333333333,
+          "evaluator_policy_forward_calls": 289.4266666666667,
+          "total_policy_forward_calls": 1757.3453333333334
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.11147556087897913,
+          "gradient_evaluations": 3.2102271156769704,
+          "policy_forward_calls": 10.143631086746211,
+          "new_shadow_transitions": 1.363762841479707,
+          "shadow_steps": 7.914212005343899,
+          "replay_steps": 2.583922237066384,
+          "warmup_steps": 3.966526926797807,
+          "shadow_resets": 0.04834385221357166,
+          "cache_hits": 1.289353664716451,
+          "ipc_requests": 2.9192426406228407,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 12.143631086746211
+        }
+      },
+      "attack_wall_seconds": 3986.0089586999875
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "actual_episodes": 750,
+      "live_steps": 108533,
+      "episode_return_mean": 108.37973659308926,
+      "return_drop_mean": 34.43626650453906,
+      "collision_rate": 0.31866666666666665,
+      "attack_success_rate": 0.24851190476190477,
+      "attack_successes": 167,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.1290206665253886,
+      "action_change_rate": 0.1290206665253886,
+      "observation_changed_rate": 0.1290206665253886,
+      "linf_max": 0.25,
+      "l2_max": 0.7689064113171573,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.5199410950781,
+          "valid_episodes": 433,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 22.42333655503137,
+          "valid_episodes": 433,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13765553230996413,
+          "valid_episodes": 725,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 11938,
+          "gradient_evaluations": 348936,
+          "policy_forward_calls": 1101637,
+          "new_shadow_transitions": 147799,
+          "shadow_steps": 852389,
+          "replay_steps": 277860,
+          "warmup_steps": 426730,
+          "shadow_resets": 5201,
+          "cache_hits": 138737,
+          "ipc_requests": 315277,
+          "evaluator_policy_forward_calls": 217066,
+          "total_policy_forward_calls": 1318703
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 15.917333333333334,
+          "gradient_evaluations": 465.248,
+          "policy_forward_calls": 1468.8493333333333,
+          "new_shadow_transitions": 197.06533333333334,
+          "shadow_steps": 1136.5186666666666,
+          "replay_steps": 370.48,
+          "warmup_steps": 568.9733333333334,
+          "shadow_resets": 6.934666666666667,
+          "cache_hits": 184.98266666666666,
+          "ipc_requests": 420.3693333333333,
+          "evaluator_policy_forward_calls": 289.42133333333334,
+          "total_policy_forward_calls": 1758.2706666666666
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.10999419531386767,
+          "gradient_evaluations": 3.2150221591589654,
+          "policy_forward_calls": 10.15024923295219,
+          "new_shadow_transitions": 1.361788580431758,
+          "shadow_steps": 7.853731123252835,
+          "replay_steps": 2.5601429979821804,
+          "warmup_steps": 3.931799544838897,
+          "shadow_resets": 0.04792090884800015,
+          "cache_hits": 1.2782932380013452,
+          "ipc_requests": 2.90489528530493,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 12.15024923295219
+        }
+      },
+      "attack_wall_seconds": 3856.690859200026
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "actual_episodes": 750,
+      "live_steps": 102174,
+      "episode_return_mean": 103.99342349474396,
+      "return_drop_mean": 38.822579602884346,
+      "collision_rate": 0.35733333333333334,
+      "attack_success_rate": 0.2857142857142857,
+      "attack_successes": 192,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.23975766829134615,
+      "action_change_rate": 0.06796249535106778,
+      "observation_changed_rate": 0.23975766829134615,
+      "linf_max": 0.25,
+      "l2_max": 0.7596189935922962,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.770438477492416,
+          "valid_episodes": 411,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 23.985123719075855,
+          "valid_episodes": 411,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13528366857650997,
+          "valid_episodes": 712,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 50851,
+          "gradient_evaluations": 564534,
+          "policy_forward_calls": 1561210,
+          "new_shadow_transitions": 166282,
+          "shadow_steps": 1016245,
+          "replay_steps": 341241,
+          "warmup_steps": 508722,
+          "shadow_resets": 6201,
+          "cache_hits": 835494,
+          "ipc_requests": 1064318,
+          "evaluator_policy_forward_calls": 204348,
+          "total_policy_forward_calls": 1765558
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 67.80133333333333,
+          "gradient_evaluations": 752.712,
+          "policy_forward_calls": 2081.6133333333332,
+          "new_shadow_transitions": 221.70933333333332,
+          "shadow_steps": 1354.9933333333333,
+          "replay_steps": 454.988,
+          "warmup_steps": 678.296,
+          "shadow_resets": 8.268,
+          "cache_hits": 1113.992,
+          "ipc_requests": 1419.0906666666667,
+          "evaluator_policy_forward_calls": 272.464,
+          "total_policy_forward_calls": 2354.077333333333
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.49769021473173214,
+          "gradient_evaluations": 5.5252216806623995,
+          "policy_forward_calls": 15.279914655391783,
+          "new_shadow_transitions": 1.627439466008965,
+          "shadow_steps": 9.946219194707068,
+          "replay_steps": 3.339802689529626,
+          "warmup_steps": 4.978977039168477,
+          "shadow_resets": 0.06069058664630924,
+          "cache_hits": 8.177168359856715,
+          "ipc_requests": 10.416720496408088,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 17.27991465539178
+        }
+      },
+      "attack_wall_seconds": 5267.40195700001
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "actual_episodes": 750,
+      "live_steps": 101422,
+      "episode_return_mean": 103.37034256653915,
+      "return_drop_mean": 39.44566053108916,
+      "collision_rate": 0.3626666666666667,
+      "attack_success_rate": 0.28869047619047616,
+      "attack_successes": 194,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.2349490248663998,
+      "action_change_rate": 0.06527183451322198,
+      "observation_changed_rate": 0.2349490248663998,
+      "linf_max": 0.25,
+      "l2_max": 0.7596189935922962,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.879591500379377,
+          "valid_episodes": 411,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 24.03731698169308,
+          "valid_episodes": 411,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13764795823499265,
+          "valid_episodes": 712,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 50658,
+          "gradient_evaluations": 559954,
+          "policy_forward_calls": 1546211,
+          "new_shadow_transitions": 163644,
+          "shadow_steps": 982839,
+          "replay_steps": 324003,
+          "warmup_steps": 495192,
+          "shadow_resets": 6036,
+          "cache_hits": 834223,
+          "ipc_requests": 1060105,
+          "evaluator_policy_forward_calls": 202844,
+          "total_policy_forward_calls": 1749055
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 67.544,
+          "gradient_evaluations": 746.6053333333333,
+          "policy_forward_calls": 2061.614666666667,
+          "new_shadow_transitions": 218.192,
+          "shadow_steps": 1310.452,
+          "replay_steps": 432.004,
+          "warmup_steps": 660.256,
+          "shadow_resets": 8.048,
+          "cache_hits": 1112.2973333333334,
+          "ipc_requests": 1413.4733333333334,
+          "evaluator_policy_forward_calls": 270.45866666666666,
+          "total_policy_forward_calls": 2332.0733333333333
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.4994774309321449,
+          "gradient_evaluations": 5.521030940032735,
+          "policy_forward_calls": 15.245321527873637,
+          "new_shadow_transitions": 1.6134960856618878,
+          "shadow_steps": 9.690589812861115,
+          "replay_steps": 3.194602748910493,
+          "warmup_steps": 4.882490978288734,
+          "shadow_resets": 0.05951371497308276,
+          "cache_hits": 8.22526670742048,
+          "ipc_requests": 10.452416635443987,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 17.245321527873635
+        }
+      },
+      "attack_wall_seconds": 5045.670322699999
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "actual_episodes": 750,
+      "live_steps": 102657,
+      "episode_return_mean": 103.3458713485637,
+      "return_drop_mean": 39.470131749064635,
+      "collision_rate": 0.35733333333333334,
+      "attack_success_rate": 0.28273809523809523,
+      "attack_successes": 190,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.12838871192417467,
+      "action_change_rate": 0.12838871192417467,
+      "observation_changed_rate": 0.12838871192417467,
+      "linf_max": 0.25,
+      "l2_max": 0.7689064113171573,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.997414836522758,
+          "valid_episodes": 421,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 22.66213428542285,
+          "valid_episodes": 421,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13476853775700515,
+          "valid_episodes": 727,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 48246,
+          "gradient_evaluations": 489972,
+          "policy_forward_calls": 1439958,
+          "new_shadow_transitions": 180189,
+          "shadow_steps": 1113213,
+          "replay_steps": 359634,
+          "warmup_steps": 573390,
+          "shadow_resets": 6989,
+          "cache_hits": 782246,
+          "ipc_requests": 1022793,
+          "evaluator_policy_forward_calls": 205314,
+          "total_policy_forward_calls": 1645272
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 64.328,
+          "gradient_evaluations": 653.296,
+          "policy_forward_calls": 1919.944,
+          "new_shadow_transitions": 240.252,
+          "shadow_steps": 1484.284,
+          "replay_steps": 479.512,
+          "warmup_steps": 764.52,
+          "shadow_resets": 9.318666666666667,
+          "cache_hits": 1042.9946666666667,
+          "ipc_requests": 1363.724,
+          "evaluator_policy_forward_calls": 273.752,
+          "total_policy_forward_calls": 2193.696
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.4699728221163681,
+          "gradient_evaluations": 4.772903942254303,
+          "policy_forward_calls": 14.026885648324031,
+          "new_shadow_transitions": 1.7552529296589614,
+          "shadow_steps": 10.84400479265905,
+          "replay_steps": 3.5032584236827495,
+          "warmup_steps": 5.5854934393173385,
+          "shadow_resets": 0.06808108555675697,
+          "cache_hits": 7.619996687999844,
+          "ipc_requests": 9.96320757473918,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 16.02688564832403
+        }
+      },
+      "attack_wall_seconds": 5304.735037800038
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "actual_episodes": 750,
+      "live_steps": 102571,
+      "episode_return_mean": 103.22394065967494,
+      "return_drop_mean": 39.59206243795339,
+      "collision_rate": 0.35733333333333334,
+      "attack_success_rate": 0.28422619047619047,
+      "attack_successes": 191,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.12894482846028604,
+      "action_change_rate": 0.12894482846028604,
+      "observation_changed_rate": 0.12894482846028604,
+      "linf_max": 0.25,
+      "l2_max": 0.7689064113171573,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.89402740129379,
+          "valid_episodes": 420,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 22.55736174251979,
+          "valid_episodes": 420,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13558422589428518,
+          "valid_episodes": 727,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 29361,
+          "gradient_evaluations": 818254,
+          "policy_forward_calls": 2093003,
+          "new_shadow_transitions": 178814,
+          "shadow_steps": 1079455,
+          "replay_steps": 345872,
+          "warmup_steps": 554769,
+          "shadow_resets": 6762,
+          "cache_hits": 438371,
+          "ipc_requests": 661764,
+          "evaluator_policy_forward_calls": 205142,
+          "total_policy_forward_calls": 2298145
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 39.148,
+          "gradient_evaluations": 1091.0053333333333,
+          "policy_forward_calls": 2790.670666666667,
+          "new_shadow_transitions": 238.41866666666667,
+          "shadow_steps": 1439.2733333333333,
+          "replay_steps": 461.16266666666667,
+          "warmup_steps": 739.692,
+          "shadow_resets": 9.016,
+          "cache_hits": 584.4946666666667,
+          "ipc_requests": 882.352,
+          "evaluator_policy_forward_calls": 273.5226666666667,
+          "total_policy_forward_calls": 3064.193333333333
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.28625049965389826,
+          "gradient_evaluations": 7.977440017158846,
+          "policy_forward_calls": 20.405406986380164,
+          "new_shadow_transitions": 1.7433192617796454,
+          "shadow_steps": 10.523978512445039,
+          "replay_steps": 3.3720252313031946,
+          "warmup_steps": 5.408634019362198,
+          "shadow_resets": 0.06592506653927524,
+          "cache_hits": 4.2738298349436,
+          "ipc_requests": 6.451765118795761,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 22.405406986380164
+        }
+      },
+      "attack_wall_seconds": 5507.834661400004
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "actual_episodes": 750,
+      "live_steps": 101149,
+      "episode_return_mean": 102.61542729509019,
+      "return_drop_mean": 40.20057580253812,
+      "collision_rate": 0.36533333333333334,
+      "attack_success_rate": 0.2916666666666667,
+      "attack_successes": 196,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.23561280882658256,
+      "action_change_rate": 0.07519599798317333,
+      "observation_changed_rate": 0.23561280882658256,
+      "linf_max": 0.25,
+      "l2_max": 0.7612586418762365,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.684603344234805,
+          "valid_episodes": 409,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 23.90086281532091,
+          "valid_episodes": 409,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.1290754959422234,
+          "valid_episodes": 712,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 57154,
+          "gradient_evaluations": 653860,
+          "policy_forward_calls": 1805493,
+          "new_shadow_transitions": 202964,
+          "shadow_steps": 1532047,
+          "replay_steps": 587513,
+          "warmup_steps": 741570,
+          "shadow_resets": 9040,
+          "cache_hits": 915596,
+          "ipc_requests": 1186524,
+          "evaluator_policy_forward_calls": 202298,
+          "total_policy_forward_calls": 2007791
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 76.20533333333333,
+          "gradient_evaluations": 871.8133333333334,
+          "policy_forward_calls": 2407.324,
+          "new_shadow_transitions": 270.6186666666667,
+          "shadow_steps": 2042.7293333333334,
+          "replay_steps": 783.3506666666667,
+          "warmup_steps": 988.76,
+          "shadow_resets": 12.053333333333333,
+          "cache_hits": 1220.7946666666667,
+          "ipc_requests": 1582.032,
+          "evaluator_policy_forward_calls": 269.73066666666665,
+          "total_policy_forward_calls": 2677.054666666667
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.5650476030410583,
+          "gradient_evaluations": 6.4643249068206305,
+          "policy_forward_calls": 17.84983539135335,
+          "new_shadow_transitions": 2.0065843458659995,
+          "shadow_steps": 15.146437433884666,
+          "replay_steps": 5.808391580737328,
+          "warmup_steps": 7.331461507281338,
+          "shadow_resets": 0.08937310304600145,
+          "cache_hits": 9.05195305934809,
+          "ipc_requests": 11.73045704851259,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 19.84983539135335
+        }
+      },
+      "attack_wall_seconds": 7537.920459
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "actual_episodes": 750,
+      "live_steps": 100581,
+      "episode_return_mean": 102.19370851907652,
+      "return_drop_mean": 40.622294578551774,
+      "collision_rate": 0.36666666666666664,
+      "attack_success_rate": 0.2931547619047619,
+      "attack_successes": 197,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.232091548105507,
+      "action_change_rate": 0.073433352223581,
+      "observation_changed_rate": 0.232091548105507,
+      "linf_max": 0.25,
+      "l2_max": 0.7612586418762365,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 17.697675471782336,
+          "valid_episodes": 409,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 23.854888008482504,
+          "valid_episodes": 409,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.13222366248662681,
+          "valid_episodes": 712,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 56801,
+          "gradient_evaluations": 647322,
+          "policy_forward_calls": 1785723,
+          "new_shadow_transitions": 199717,
+          "shadow_steps": 1490631,
+          "replay_steps": 568450,
+          "warmup_steps": 722464,
+          "shadow_resets": 8807,
+          "cache_hits": 912448,
+          "ipc_requests": 1179696,
+          "evaluator_policy_forward_calls": 201162,
+          "total_policy_forward_calls": 1986885
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 75.73466666666667,
+          "gradient_evaluations": 863.096,
+          "policy_forward_calls": 2380.964,
+          "new_shadow_transitions": 266.28933333333333,
+          "shadow_steps": 1987.508,
+          "replay_steps": 757.9333333333333,
+          "warmup_steps": 963.2853333333334,
+          "shadow_resets": 11.742666666666667,
+          "cache_hits": 1216.5973333333334,
+          "ipc_requests": 1572.928,
+          "evaluator_policy_forward_calls": 268.216,
+          "total_policy_forward_calls": 2649.18
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.5647289249460634,
+          "gradient_evaluations": 6.435827840248158,
+          "policy_forward_calls": 17.754078802159455,
+          "new_shadow_transitions": 1.9856334695419613,
+          "shadow_steps": 14.820204611208876,
+          "replay_steps": 5.6516638331295175,
+          "warmup_steps": 7.182907308537398,
+          "shadow_resets": 0.0875612690269534,
+          "cache_hits": 9.071772998876527,
+          "ipc_requests": 11.72881558147165,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 19.754078802159455
+        }
+      },
+      "attack_wall_seconds": 6533.268531999999
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "actual_episodes": 750,
+      "live_steps": 96392,
+      "episode_return_mean": 95.67893753413064,
+      "return_drop_mean": 47.137065563497664,
+      "collision_rate": 0.396,
+      "attack_success_rate": 0.33035714285714285,
+      "attack_successes": 222,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.12658726865300024,
+      "action_change_rate": 0.12658726865300024,
+      "observation_changed_rate": 0.12658726865300024,
+      "linf_max": 0.25,
+      "l2_max": 0.7501678165456658,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.312847451742627,
+          "valid_episodes": 386,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 21.937309999692953,
+          "valid_episodes": 386,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.12371708772967906,
+          "valid_episodes": 706,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 52763,
+          "gradient_evaluations": 624190,
+          "policy_forward_calls": 1792732,
+          "new_shadow_transitions": 229728,
+          "shadow_steps": 1673298,
+          "replay_steps": 603055,
+          "warmup_steps": 840515,
+          "shadow_resets": 10246,
+          "cache_hits": 810682,
+          "ipc_requests": 1103959,
+          "evaluator_policy_forward_calls": 192784,
+          "total_policy_forward_calls": 1985516
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 70.35066666666667,
+          "gradient_evaluations": 832.2533333333333,
+          "policy_forward_calls": 2390.309333333333,
+          "new_shadow_transitions": 306.304,
+          "shadow_steps": 2231.064,
+          "replay_steps": 804.0733333333334,
+          "warmup_steps": 1120.6866666666667,
+          "shadow_resets": 13.661333333333333,
+          "cache_hits": 1080.9093333333333,
+          "ipc_requests": 1471.9453333333333,
+          "evaluator_policy_forward_calls": 257.04533333333336,
+          "total_policy_forward_calls": 2647.3546666666666
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.5473794505768114,
+          "gradient_evaluations": 6.475537388994938,
+          "policy_forward_calls": 18.598348410656484,
+          "new_shadow_transitions": 2.3832683210224914,
+          "shadow_steps": 17.359303676653663,
+          "replay_steps": 6.25627645447755,
+          "warmup_steps": 8.719758901153623,
+          "shadow_resets": 0.10629512822640882,
+          "cache_hits": 8.410262262428418,
+          "ipc_requests": 11.452807286911776,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 20.598348410656484
+        }
+      },
+      "attack_wall_seconds": 6499.093951699976
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "actual_episodes": 750,
+      "live_steps": 96609,
+      "episode_return_mean": 96.72626024751243,
+      "return_drop_mean": 46.08974285011589,
+      "collision_rate": 0.39466666666666667,
+      "attack_success_rate": 0.3318452380952381,
+      "attack_successes": 223,
+      "attack_success_eligible_episodes": 672,
+      "attack_rate": 0.11902617768530882,
+      "action_change_rate": 0.11902617768530882,
+      "observation_changed_rate": 0.11902617768530882,
+      "linf_max": 0.25,
+      "l2_max": 0.7501678165456658,
+      "scaled_linf_max": 1.0000000000000004,
+      "safety": {
+        "minimum_ttc_s": {
+          "mean_of_episode_values": 16.541339616634414,
+          "valid_episodes": 379,
+          "total_episodes": 750
+        },
+        "ttc_low_percentile_s": {
+          "mean_of_episode_values": 22.344994762032684,
+          "valid_episodes": 379,
+          "total_episodes": 750
+        },
+        "drac_high_percentile_mps2": {
+          "mean_of_episode_values": 0.11831968731801663,
+          "valid_episodes": 709,
+          "total_episodes": 750
+        },
+        "scope": "Episode statistics, conditional on valid values; not pooled percentiles or transverse safety"
+      },
+      "costs": {
+        "total": {
+          "objective_evaluations": 51826,
+          "gradient_evaluations": 1019440,
+          "policy_forward_calls": 2571503,
+          "new_shadow_transitions": 223056,
+          "shadow_steps": 1599019,
+          "replay_steps": 561282,
+          "warmup_steps": 814681,
+          "shadow_resets": 9931,
+          "cache_hits": 801696,
+          "ipc_requests": 1087834,
+          "evaluator_policy_forward_calls": 193218,
+          "total_policy_forward_calls": 2764721
+        },
+        "mean_per_actual_episode": {
+          "objective_evaluations": 69.10133333333333,
+          "gradient_evaluations": 1359.2533333333333,
+          "policy_forward_calls": 3428.670666666667,
+          "new_shadow_transitions": 297.408,
+          "shadow_steps": 2132.0253333333335,
+          "replay_steps": 748.376,
+          "warmup_steps": 1086.2413333333334,
+          "shadow_resets": 13.241333333333333,
+          "cache_hits": 1068.928,
+          "ipc_requests": 1450.4453333333333,
+          "evaluator_policy_forward_calls": 257.624,
+          "total_policy_forward_calls": 3686.2946666666667
+        },
+        "per_live_step": {
+          "objective_evaluations": 0.5364510552847043,
+          "gradient_evaluations": 10.552225983086462,
+          "policy_forward_calls": 26.617633967849788,
+          "new_shadow_transitions": 2.308853212433624,
+          "shadow_steps": 16.55144965789937,
+          "replay_steps": 5.809831382169363,
+          "warmup_steps": 8.43276506329638,
+          "shadow_resets": 0.10279580577378919,
+          "cache_hits": 8.298357295904108,
+          "ipc_requests": 11.26017244770156,
+          "evaluator_policy_forward_calls": 2.0,
+          "total_policy_forward_calls": 28.617633967849788
+        }
+      },
+      "attack_wall_seconds": 6917.936924100062
+    }
+  ],
+  "per_model": [
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "checkpoint_seed": 0,
+      "actual_episodes": 50,
+      "return_mean": 150.16480145872515,
+      "collisions": 1
+    },
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "checkpoint_seed": 1,
+      "actual_episodes": 50,
+      "return_mean": 140.57466358153192,
+      "collisions": 4
+    },
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "checkpoint_seed": 2,
+      "actual_episodes": 50,
+      "return_mean": 131.89470625345334,
+      "collisions": 16
+    },
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "checkpoint_seed": 3,
+      "actual_episodes": 50,
+      "return_mean": 144.34127839855324,
+      "collisions": 3
+    },
+    {
+      "gradient_cap": null,
+      "attack": "none",
+      "checkpoint_seed": 4,
+      "actual_episodes": 50,
+      "return_mean": 147.1045657958779,
+      "collisions": 2
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 149.6140334449431,
+      "collisions": 4
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 144.5493253302366,
+      "collisions": 10
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 139.63555955523609,
+      "collisions": 41
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 144.10010978210104,
+      "collisions": 8
+    },
+    {
+      "gradient_cap": null,
+      "attack": "random",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 144.7621138634102,
+      "collisions": 8
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "checkpoint_seed": 0,
+      "actual_episodes": 50,
+      "return_mean": 110.42942984099417,
+      "collisions": 14
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "checkpoint_seed": 1,
+      "actual_episodes": 50,
+      "return_mean": 114.3474496412905,
+      "collisions": 9
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "checkpoint_seed": 2,
+      "actual_episodes": 50,
+      "return_mean": 55.64863463842517,
+      "collisions": 35
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "checkpoint_seed": 3,
+      "actual_episodes": 50,
+      "return_mean": 134.312033620733,
+      "collisions": 6
+    },
+    {
+      "gradient_cap": null,
+      "attack": "fgsm",
+      "checkpoint_seed": 4,
+      "actual_episodes": 50,
+      "return_mean": 115.86886215950162,
+      "collisions": 12
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 110.4259994764748,
+      "collisions": 42
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 113.71244117358714,
+      "collisions": 27
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 55.13364881272142,
+      "collisions": 115
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 134.33196558375928,
+      "collisions": 18
+    },
+    {
+      "gradient_cap": null,
+      "attack": "pgd",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 115.88308852717242,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 150.16647550542527,
+      "collisions": 3
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 143.92966744119354,
+      "collisions": 9
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 139.89177646433268,
+      "collisions": 37
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 146.09319383445802,
+      "collisions": 7
+    },
+    {
+      "gradient_cap": null,
+      "attack": "oarl_bo",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 147.08028800311536,
+      "collisions": 6
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 126.07812682811372,
+      "collisions": 29
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 123.04757500074265,
+      "collisions": 27
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 66.6295949690608,
+      "collisions": 107
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 134.93634386989817,
+      "collisions": 20
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 127.23997613744619,
+      "collisions": 27
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 126.07812682811372,
+      "collisions": 29
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 123.04757500074265,
+      "collisions": 27
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 66.57208251790634,
+      "collisions": 107
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 134.93634386989817,
+      "collisions": 20
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 127.23997613744619,
+      "collisions": 27
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 120.7501600700221,
+      "collisions": 33
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.08817700395217,
+      "collisions": 32
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 54.3653023887567,
+      "collisions": 120
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 134.21950251797753,
+      "collisions": 21
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 120.47995315759823,
+      "collisions": 33
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 120.7501600700221,
+      "collisions": 33
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.08817700395217,
+      "collisions": 32
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 54.36089021589619,
+      "collisions": 120
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 134.21950251797753,
+      "collisions": 21
+    },
+    {
+      "gradient_cap": 100,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 120.47995315759823,
+      "collisions": 33
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 117.24391229113894,
+      "collisions": 37
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.71509641592992,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 40.43459688062585,
+      "collisions": 135
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.48632431954292,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 118.08718756648234,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 117.24391229113894,
+      "collisions": 37
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.71509641592992,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 37.31919223960175,
+      "collisions": 139
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.48632431954292,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 118.08718756648234,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 116.12212793356184,
+      "collisions": 39
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 110.27138627253575,
+      "collisions": 35
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 42.78817173562052,
+      "collisions": 131
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.6748934306557,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 115.87277737044458,
+      "collisions": 39
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 116.12212793356184,
+      "collisions": 39
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 109.23839311336148,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 43.218221732480366,
+      "collisions": 130
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.6705507698611,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 200,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 115.87040974910987,
+      "collisions": 39
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 117.09354264018454,
+      "collisions": 37
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.32109719856082,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 34.292922430582394,
+      "collisions": 141
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.4844863741325,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 117.88508783199082,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 117.09354264018454,
+      "collisions": 37
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 112.32136273492685,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 32.18406301414804,
+      "collisions": 142
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 131.4844863741325,
+      "collisions": 24
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "zero_one_budgeted_safety",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 117.88508783199082,
+      "collisions": 36
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 108.18066566104216,
+      "collisions": 45
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 105.32354186357519,
+      "collisions": 38
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 31.9354299181915,
+      "collisions": 139
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 125.02352595743272,
+      "collisions": 30
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_single_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 107.93152427041174,
+      "collisions": 45
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 0,
+      "actual_episodes": 150,
+      "return_mean": 109.46605985992618,
+      "collisions": 45
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 1,
+      "actual_episodes": 150,
+      "return_mean": 105.89541678151544,
+      "collisions": 39
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 2,
+      "actual_episodes": 150,
+      "return_mean": 30.82501530487582,
+      "collisions": 140
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 3,
+      "actual_episodes": 150,
+      "return_mean": 125.02332965714956,
+      "collisions": 30
+    },
+    {
+      "gradient_cap": 400,
+      "attack": "ours_progress_return",
+      "checkpoint_seed": 4,
+      "actual_episodes": 150,
+      "return_mean": 112.4214796340952,
+      "collisions": 42
+    }
+  ],
+  "victims": [
+    {
+      "run_seed": 0,
+      "checkpoint_sha256": "b76d3f02a992f84d805480c96e42ac95c837fa934e63b86a577f42d7ad95e48d",
+      "weights_sha256": "6ff16dc9b7c23ad988d5ca33b78fbbccafbf8fe80f573b82474da092516a5ca3",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598"
+    },
+    {
+      "run_seed": 1,
+      "checkpoint_sha256": "900ac011d78bc175ef3695f0d82052abd6b50d3811cccf67167606853009462a",
+      "weights_sha256": "1e2d9fc6f8e5da8cfe024b24c360cceb89791e3f346a2aecb855a7be47edc315",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598"
+    },
+    {
+      "run_seed": 2,
+      "checkpoint_sha256": "3c0c5e254e2c8c6feda5dbbfb91df9068c4ad632845db3625f69bb68cb53f86b",
+      "weights_sha256": "0e8e21eda2af71a230ecdca6a5b806186974236afc381cd0fbcbc5b56bf07f83",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598"
+    },
+    {
+      "run_seed": 3,
+      "checkpoint_sha256": "ce7b56a6e7d3c214b09a731650d479bbe17dcc37a15c75b582c71d7196a7a9ab",
+      "weights_sha256": "5e50c9945c50312b6238feeb009edc5d7559017f4b3042e3bcba8e478c394d67",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598"
+    },
+    {
+      "run_seed": 4,
+      "checkpoint_sha256": "4e14a28adcd95fdea3306a57656d61d9480ed026cc21a8136b85a6267bc9659a",
+      "weights_sha256": "c661b05b4a8138556933dae21bae7449dad78ce395b52ec35b187fd533baf8ff",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598"
+    }
+  ],
+  "restart_policy_deviation": "User explicitly requested a fresh complete matrix after process interruption, including previously completed configurations; not an additional independent traffic sample",
+  "statistics": {
+    "primary": {
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "endpoint": "episode_return",
+      "direction": "first_minus_second; negative is stronger",
+      "budgets": [
+        100,
+        200,
+        400
+      ]
+    },
+    "secondary": {
+      "first": "ours_single_return",
+      "second": "ours_progress_return",
+      "claim": "Continuous effect/cost tradeoff; no equivalence or noninferiority margin"
+    },
+    "averaging": "attack seeds within checkpoint/traffic, then five fixed checkpoints within traffic",
+    "resampling_unit": "traffic seed; jointly paired across methods, budgets and checkpoints",
+    "traffic_clusters": 50,
+    "fixed_checkpoint_traffic_units": 250,
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 20261004,
+      "method": "percentile_traffic_block",
+      "descriptive_confidence": 0.95,
+      "primary_family_size": 3,
+      "primary_adjusted_confidence": 0.9833333333333333,
+      "interpretation": "Approximate conditional intervals, not a proof of significance"
+    },
+    "fgsm": "250 actual episodes; broadcast deterministic paired outcomes only, never costs or sample N",
+    "clean": "250 canonical episodes from basic_attack0; other Clean episodes are integrity checks",
+    "diagnostics": [
+      "per_checkpoint",
+      "per_traffic",
+      "leave_one_traffic_out",
+      "wins_ties_losses_tolerance_1e-9",
+      "clean_survived_collision_conversions"
+    ],
+    "costs": [
+      "gradient_evaluations",
+      "attack_policy_forward_calls",
+      "evaluator_policy_forward_calls",
+      "total_policy_forward_calls",
+      "new_shadow_transitions",
+      "physical_shadow_steps_including_setup"
+    ],
+    "cost_denominators": [
+      "total",
+      "mean_per_actual_episode",
+      "per_live_step"
+    ],
+    "safety": "Original SUMO collision definition; episode minimum TTC and TTC p5 / DRAC p95 with valid counts and nulls; do not present averaged episode percentiles as pooled percentiles",
+    "reporting": "All 17 method/budget rows; negative cases and traffic concentration; no post-test model/config selection"
+  },
+  "limitations": "50 traffic clusters, five fixed checkpoints, correlated attack repeats; same original scenario. Observation box is not physical plausibility. No guaranteed safety/efficiency/novelty claim.",
+  "pipeline": ".local/runs/20261004-final-attack-full-restart/final-attack.json",
+  "pipeline_sha256": "82c779abfa323dd1756c9ba468e29915666b45512cf16932e2f41a6a171e3ca2",
+  "launch_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "E:\\Att\\OARL-master\\scripts\\run_attack_final.py",
+    "--expected-commit",
+    "bfe42d65a47493f66b7329e2328390814108617b",
+    "--readiness",
+    "E:\\Att\\OARL-master\\.local\\runs\\20261004-final-full-restart-ready\\readiness.json",
+    "--restart-authorization",
+    "E:\\Att\\OARL-master\\.local\\runs\\20261004-final-full-restart-authorization\\authorization.json",
+    "--output",
+    "E:\\Att\\OARL-master\\.local\\runs\\20261004-final-attack-full-restart"
+  ],
+  "started_at": "2026-10-04T05:58:44.345585+00:00",
+  "finished_at": "2026-10-04T11:49:36.943653+00:00",
+  "method_freeze_commit": "d218309627830be924c48ef7fd9d984be11da247",
+  "environment": {
+    "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "1.3.1+cpu",
+    "torch_threads": 1,
+    "numpy": "1.21.6",
+    "scipy": "1.7.3",
+    "sklearn": "0.24.2",
+    "host_os": "Windows-10-10.0.26100-SP0",
+    "sumo": "1.22.0"
+  },
+  "seed_protocol": {
+    "root_seed": 20260921,
+    "split_id": 30,
+    "traffic_clusters": 50,
+    "checkpoint_training_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "attack_seeds": [
+      0,
+      1,
+      2
+    ],
+    "python_seed": 32918685,
+    "numpy_seed": 32918685,
+    "torch_seed": 32918685,
+    "initial_sumo_seed": 32918685,
+    "episode_sumo_seeds": [
+      122488048,
+      399826308,
+      1648743367,
+      856723588,
+      1629927975,
+      743760365,
+      1853253940,
+      141835652,
+      1287046359,
+      1965454955,
+      963942478,
+      2124083062,
+      1363240239,
+      1094437400,
+      991534693,
+      1682169354,
+      79111995,
+      140772638,
+      1117625610,
+      1581933520,
+      1438633849,
+      495532863,
+      1098994477,
+      1618996763,
+      2016201538,
+      2108331135,
+      1629408873,
+      1569616551,
+      1951237582,
+      673948177,
+      1250819915,
+      1421577547,
+      724160601,
+      1976600294,
+      1982995620,
+      2116187664,
+      1578165164,
+      705082706,
+      2081932161,
+      1194440832,
+      1473785956,
+      1794512370,
+      1128025789,
+      1368695729,
+      2143916078,
+      748354991,
+      255785100,
+      1831176229,
+      976088519,
+      1575801352
+    ],
+    "policy_inference": "greedy_argmax; no active policy sampling",
+    "analysis_bootstrap_seed": 20261004
+  },
+  "review_builder": {
+    "path": ".local/final_attack_review.py",
+    "sha256": "9c5978529605fcaa006d90501604c69d74160cf30ab561399d6e8d2341bee18f"
+  },
+  "comparisons": [
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "role": "primary",
+      "mean_delta": -7.205704333390916,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -12.99752533700075,
+        -1.9150843808511206
+      ],
+      "primary_family_adjusted_interval": [
+        -14.450197311941345,
+        -0.9532155290767637
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -5.327966758091606
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -10.95939799679041
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -12.264292580304081
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -0.7168413519206309
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -6.760022979847852
+        }
+      ],
+      "model_traffic_wins": 134,
+      "model_traffic_ties": 64,
+      "model_traffic_losses": 52,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 15.0,
+        "second_only_equivalent_units": 5.0,
+        "net_equivalent_units": 10.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -4.178666666666665,
+        "gradient_evaluations": -20.421333333333337,
+        "policy_forward_calls": -42.988000000000056,
+        "new_shadow_transitions": 2.7533333333333303,
+        "shadow_steps": 36.419999999999845,
+        "replay_steps": -4.720000000000027,
+        "warmup_steps": 38.386666666666656,
+        "shadow_resets": 0.46800000000000086,
+        "cache_hits": -65.81466666666665,
+        "ipc_requests": -67.89866666666666,
+        "evaluator_policy_forward_calls": -10.829333333333295,
+        "total_policy_forward_calls": -53.81733333333318
+      },
+      "leave_one_traffic_out_range": [
+        -8.013174084209421,
+        -5.4297103054802305
+      ],
+      "traffic_wins_ties_losses": [
+        35,
+        0,
+        15
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        7.666666666666664,
+        10.999999999999998
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 1.3333333333333337
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 1.666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 4.666666666666668
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 0.33333333333333337
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 2.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -4.210723102892744,
+        "policy_forward_calls": -2.8451790536366706,
+        "evaluator_policy_forward_calls": -3.606700060392898,
+        "total_policy_forward_calls": -2.9714246171151815,
+        "new_shadow_transitions": 1.4148584113846452,
+        "shadow_steps": 3.284418760686525
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -0.6266234716295283,
+        "policy_forward_calls": 0.7900144587158708,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 0.6590452279108039,
+        "new_shadow_transitions": 5.209447622317809,
+        "shadow_steps": 7.1489603794007595
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "ours_progress_return",
+      "role": "mechanism",
+      "mean_delta": 0.0008824345721027381,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -0.0002070513623234417,
+        0.0028543550786316557
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 0.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": 0.0
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": 0.0044121728605136905
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": 0.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": 0.0
+        }
+      ],
+      "model_traffic_wins": 1,
+      "model_traffic_ties": 248,
+      "model_traffic_losses": 1,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 0.0,
+        "second_only_equivalent_units": 0.0,
+        "net_equivalent_units": 0.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 0.2146666666666679,
+        "gradient_evaluations": -0.6853333333333467,
+        "policy_forward_calls": -0.9306666666666388,
+        "new_shadow_transitions": 0.28933333333333167,
+        "shadow_steps": 8.773333333333312,
+        "replay_steps": 3.447999999999979,
+        "warmup_steps": 5.0359999999999445,
+        "shadow_resets": 0.061333333333333684,
+        "cache_hits": 1.6040000000000134,
+        "ipc_requests": 2.084000000000003,
+        "evaluator_policy_forward_calls": 0.005333333333339851,
+        "total_policy_forward_calls": -0.9253333333331284
+      },
+      "leave_one_traffic_out_range": [
+        -7.042563344334752e-05,
+        0.0009708690743645088
+      ],
+      "traffic_wins_ties_losses": [
+        1,
+        48,
+        1
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        0.0,
+        0.0
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 0.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -0.14730494990485843,
+        "policy_forward_calls": -0.06336025387673194,
+        "evaluator_policy_forward_calls": 0.0018427575023238774,
+        "total_policy_forward_calls": -0.05262746805003715,
+        "new_shadow_transitions": 0.1468210204399245,
+        "shadow_steps": 0.7719480190382599
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -0.14914495902725866,
+        "policy_forward_calls": -0.06520180986780977,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -0.054469221816699775,
+        "new_shadow_transitions": 0.14497559138901828,
+        "shadow_steps": 0.7700910706249564
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_safety",
+      "role": "supplement",
+      "mean_delta": -7.19420184316002,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -12.993487908769094,
+        -1.9020045184953402
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -5.327966758091606
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -10.95939799679041
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -12.206780129149601
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -0.7168413519206309
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -6.760022979847852
+        }
+      ],
+      "model_traffic_wins": 134,
+      "model_traffic_ties": 63,
+      "model_traffic_losses": 53,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 15.0,
+        "second_only_equivalent_units": 5.0,
+        "net_equivalent_units": 10.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -4.146666666666665,
+        "gradient_evaluations": -20.25333333333333,
+        "policy_forward_calls": -42.4373333333333,
+        "new_shadow_transitions": 2.852000000000004,
+        "shadow_steps": 37.91599999999994,
+        "replay_steps": -4.306666666666672,
+        "warmup_steps": 39.37066666666658,
+        "shadow_resets": 0.4800000000000004,
+        "cache_hits": -65.78,
+        "ipc_requests": -67.72399999999999,
+        "evaluator_policy_forward_calls": -10.77066666666667,
+        "total_policy_forward_calls": -53.207999999999856
+      },
+      "leave_one_traffic_out_range": [
+        -8.001436849279935,
+        -5.417973070550745
+      ],
+      "traffic_wins_ties_losses": [
+        35,
+        0,
+        15
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        7.666666666666664,
+        10.999999999999998
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 1.3333333333333337
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 1.666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 4.666666666666668
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 0.33333333333333337
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 2.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -4.177529894502929,
+        "policy_forward_calls": -2.809756993273993,
+        "evaluator_policy_forward_calls": -3.5878622061932597,
+        "total_policy_forward_calls": -2.9387700997485,
+        "new_shadow_transitions": 1.4663038038895904,
+        "shadow_steps": 3.4239499501524273
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -0.6116114649078463,
+        "policy_forward_calls": 0.8070614662475162,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 0.6732472915733201,
+        "new_shadow_transitions": 5.242250743253929,
+        "shadow_steps": 7.27274834558862
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "random",
+      "role": "supplement",
+      "mean_delta": -36.15160936752406,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -47.58973862947261,
+        -25.928986107681432
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -28.863873374920967
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -32.461148326284444
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -85.27025716647937
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -9.880607264123526
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -24.28216070581199
+        }
+      ],
+      "model_traffic_wins": 162,
+      "model_traffic_ties": 45,
+      "model_traffic_losses": 43,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 52.666666666666664,
+        "second_only_equivalent_units": 0.3333333333333333,
+        "net_equivalent_units": 52.33333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 16.132,
+        "gradient_evaluations": 464.56266666666664,
+        "policy_forward_calls": 1467.9186666666667,
+        "new_shadow_transitions": 197.35466666666667,
+        "shadow_steps": 1145.292,
+        "replay_steps": 373.928,
+        "warmup_steps": 574.0093333333333,
+        "shadow_resets": 6.996,
+        "cache_hits": 186.58666666666667,
+        "ipc_requests": 422.4533333333333,
+        "evaluator_policy_forward_calls": -78.27199999999999,
+        "total_policy_forward_calls": 1389.6466666666668
+      },
+      "leave_one_traffic_out_range": [
+        -37.106265773518054,
+        -33.614647287521755
+      ],
+      "traffic_wins_ties_losses": [
+        46,
+        0,
+        4
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        47.66666666666668,
+        52.66666666666668
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 9.666666666666668
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 6.333333333333333
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 24.0
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 4.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 8.333333333333334
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": -21.28699587343259,
+        "total_policy_forward_calls": 377.9308419212834,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 507.18155433731056,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "fgsm",
+      "role": "supplement",
+      "mean_delta": 2.259337047472449,
+      "actual_episodes": {
+        "first": 750,
+        "second": 250
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -4.231906068526794,
+        8.7455710672459
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 10.320730229027903
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -2.2592726373383205
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -1.2833322496684534
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -0.09253110275548636
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": 4.611090998096599
+        }
+      ],
+      "model_traffic_wins": 96,
+      "model_traffic_ties": 59,
+      "model_traffic_losses": 95,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 10.666666666666666,
+        "second_only_equivalent_units": 12.0,
+        "net_equivalent_units": -1.333333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -279.044,
+        "gradient_evaluations": 316.9746666666666,
+        "policy_forward_calls": 1172.7426666666668,
+        "new_shadow_transitions": 197.35466666666667,
+        "shadow_steps": 1145.292,
+        "replay_steps": 373.928,
+        "warmup_steps": 574.0093333333333,
+        "shadow_resets": 6.996,
+        "cache_hits": 186.58666666666667,
+        "ipc_requests": 422.4533333333333,
+        "evaluator_policy_forward_calls": -5.749333333333311,
+        "total_policy_forward_calls": 1166.9933333333333
+      },
+      "leave_one_traffic_out_range": [
+        0.925485749960109,
+        4.003868289933654
+      ],
+      "traffic_wins_ties_losses": [
+        24,
+        0,
+        26
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -5.333333333333333,
+        1.6666666666666672
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": -3.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.3333333333333335
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 1.9999999999999993
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 1.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": -1.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": 214.76994516266004,
+        "policy_forward_calls": 397.3028520837286,
+        "evaluator_policy_forward_calls": -1.9477644975652852,
+        "total_policy_forward_calls": 197.6775437930817,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": 221.02271156769703,
+        "policy_forward_calls": 407.18155433731056,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 203.59077716865528,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "pgd",
+      "role": "supplement",
+      "mean_delta": 2.4831903129183215,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -4.108856141448684,
+        9.068948382189623
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 10.32416059354731
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -1.6242641696350009
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -0.7683464239647065
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -0.11246306578180225
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": 4.596864630425805
+        }
+      ],
+      "model_traffic_wins": 93,
+      "model_traffic_ties": 57,
+      "model_traffic_losses": 100,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 9.333333333333332,
+        "second_only_equivalent_units": 12.666666666666666,
+        "net_equivalent_units": -3.333333333333334,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -1597.5533333333333,
+        "gradient_evaluations": -1002.424,
+        "policy_forward_calls": -292.4653333333333,
+        "new_shadow_transitions": 197.35466666666667,
+        "shadow_steps": 1145.292,
+        "replay_steps": 373.928,
+        "warmup_steps": 574.0093333333333,
+        "shadow_resets": 6.996,
+        "cache_hits": 186.58666666666667,
+        "ipc_requests": 422.4533333333333,
+        "evaluator_policy_forward_calls": -3.9706666666666592,
+        "total_policy_forward_calls": -296.4359999999999
+      },
+      "leave_one_traffic_out_range": [
+        1.1199822751450628,
+        4.280376669341843
+      ],
+      "traffic_wins_ties_losses": [
+        27,
+        0,
+        23
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -7.333333333333334,
+        -0.3333333333333339
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": -3.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.3333333333333335
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 1.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": -1.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -68.33218206936668,
+        "policy_forward_calls": -16.613723672410863,
+        "evaluator_policy_forward_calls": -1.3533410892168973,
+        "total_policy_forward_calls": -14.433669017668871,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -67.8977288432303,
+        "policy_forward_calls": -15.469740943781574,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -13.25977795181278,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 100,
+      "first": "ours_single_return",
+      "second": "oarl_bo",
+      "role": "supplement",
+      "mean_delta": -37.05166122204361,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -48.57194262801939,
+        -26.70948856338185
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -29.416315435403167
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -31.841490437241337
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -85.52647407557598
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -11.873691316480512
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -26.600334845517057
+        }
+      ],
+      "model_traffic_wins": 162,
+      "model_traffic_ties": 52,
+      "model_traffic_losses": 36,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 55.33333333333333,
+        "second_only_equivalent_units": 0.0,
+        "net_equivalent_units": 55.33333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -912.7613333333334,
+        "gradient_evaluations": 464.56266666666664,
+        "policy_forward_calls": -575.6466666666665,
+        "new_shadow_transitions": 197.35466666666667,
+        "shadow_steps": 1145.292,
+        "replay_steps": 373.928,
+        "warmup_steps": 574.0093333333333,
+        "shadow_resets": 6.996,
+        "cache_hits": 186.58666666666667,
+        "ipc_requests": 422.4533333333333,
+        "evaluator_policy_forward_calls": -82.13066666666668,
+        "total_policy_forward_calls": -657.7773333333332
+      },
+      "leave_one_traffic_out_range": [
+        -37.80668398239585,
+        -34.26584942002011
+      ],
+      "traffic_wins_ties_losses": [
+        50,
+        0,
+        0
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        50.333333333333336,
+        55.333333333333336
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 10.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 6.666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 25.666666666666668
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 4.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 9.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": -28.168742994270136,
+        "evaluator_policy_forward_calls": -22.104439691676113,
+        "total_policy_forward_calls": -27.235773255409523,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": -7.78517193867081,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -6.587453178875302,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "role": "primary",
+      "mean_delta": -0.6475521461802836,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -4.470663316463162,
+        3.721174331357169
+      ],
+      "primary_family_adjusted_interval": [
+        -5.199048176972718,
+        4.728708062107387
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -1.1217843575770778
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -2.4437101433941337
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": 2.3535748549946693
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": 0.18856911111283506
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -2.214410196037711
+        }
+      ],
+      "model_traffic_wins": 128,
+      "model_traffic_ties": 58,
+      "model_traffic_losses": 64,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 6.666666666666666,
+        "second_only_equivalent_units": 7.333333333333333,
+        "net_equivalent_units": -0.6666666666666665,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -3.473333333333329,
+        "gradient_evaluations": -99.41599999999994,
+        "policy_forward_calls": -161.66933333333327,
+        "new_shadow_transitions": 18.54266666666669,
+        "shadow_steps": 129.29066666666677,
+        "replay_steps": 24.524,
+        "warmup_steps": 86.22399999999993,
+        "shadow_resets": 1.0506666666666664,
+        "cache_hits": -70.99733333333324,
+        "ipc_requests": -55.36666666666679,
+        "evaluator_policy_forward_calls": 1.288000000000011,
+        "total_policy_forward_calls": -160.38133333333326
+      },
+      "leave_one_traffic_out_range": [
+        -2.1007568603573006,
+        0.21809912664203968
+      ],
+      "traffic_wins_ties_losses": [
+        35,
+        0,
+        15
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -2.3333333333333326,
+        2.000000000000001
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 0.6666666666666667
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.33333333333333326
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": -1.9999999999999996
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 5.551115123125783e-17
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 1.0000000000000002
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -13.20770759599953,
+        "policy_forward_calls": -7.766540055469795,
+        "evaluator_policy_forward_calls": 0.4727230019378803,
+        "total_policy_forward_calls": -6.812916936175418,
+        "new_shadow_transitions": 8.363502964842873,
+        "shadow_steps": 9.541793563559974
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -13.616064329891342,
+        "policy_forward_calls": -8.20049741983081,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -7.251361086304753,
+        "new_shadow_transitions": 7.853653934265115,
+        "shadow_steps": 9.026400689316638
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "ours_progress_return",
+      "role": "mechanism",
+      "mean_delta": 0.12193068888875701,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -0.34676946865420855,
+        0.6520495325608627
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 0.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": 1.0329931591743058
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -0.43004999685983236
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": 0.004342660794610917
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": 0.002367621334700895
+        }
+      ],
+      "model_traffic_wins": 2,
+      "model_traffic_ties": 238,
+      "model_traffic_losses": 10,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 0.0,
+        "second_only_equivalent_units": 0.3333333333333333,
+        "net_equivalent_units": -0.3333333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 25.18,
+        "gradient_evaluations": -437.70933333333323,
+        "policy_forward_calls": -870.7266666666669,
+        "new_shadow_transitions": 1.8333333333333428,
+        "shadow_steps": 45.01066666666679,
+        "replay_steps": 18.349333333333334,
+        "warmup_steps": 24.827999999999975,
+        "shadow_resets": 0.3026666666666671,
+        "cache_hits": 458.5,
+        "ipc_requests": 481.37199999999996,
+        "evaluator_policy_forward_calls": 0.2293333333333294,
+        "total_policy_forward_calls": -870.4973333333332
+      },
+      "leave_one_traffic_out_range": [
+        -0.07556148332305238,
+        0.27084601641615774
+      ],
+      "traffic_wins_ties_losses": [
+        2,
+        39,
+        9
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -0.33333333333333337,
+        0.0
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.33333333333333337
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 0.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -40.11981609622439,
+        "policy_forward_calls": -31.201340848532,
+        "evaluator_policy_forward_calls": 0.0838443614666895,
+        "total_policy_forward_calls": -28.40869483866335,
+        "new_shadow_transitions": 0.7689554509154872,
+        "shadow_steps": 3.127318878508145
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -40.16998019429588,
+        "policy_forward_calls": -31.25897632090139,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -28.468669825696637,
+        "new_shadow_transitions": 0.6845371436516867,
+        "shadow_steps": 3.0409248729989846
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_safety",
+      "role": "supplement",
+      "mean_delta": -0.024471217975465417,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -3.785692211887424,
+        4.237507519485954
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -1.1217843575770778
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -2.4437101433941337
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": 5.46897949601876
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": 0.18856911111283506
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -2.214410196037711
+        }
+      ],
+      "model_traffic_wins": 126,
+      "model_traffic_ties": 58,
+      "model_traffic_losses": 66,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 6.0,
+        "second_only_equivalent_units": 7.333333333333333,
+        "net_equivalent_units": -1.3333333333333335,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -3.215999999999994,
+        "gradient_evaluations": -93.30933333333326,
+        "policy_forward_calls": -141.67066666666688,
+        "new_shadow_transitions": 22.060000000000002,
+        "shadow_steps": 173.8320000000001,
+        "replay_steps": 47.50799999999998,
+        "warmup_steps": 104.26400000000001,
+        "shadow_resets": 1.270666666666667,
+        "cache_hits": -69.30266666666671,
+        "ipc_requests": -49.749333333333425,
+        "evaluator_policy_forward_calls": 3.2933333333333508,
+        "total_policy_forward_calls": -138.37733333333335
+      },
+      "leave_one_traffic_out_range": [
+        -1.46495999484218,
+        0.8538959921571602
+      ],
+      "traffic_wins_ties_losses": [
+        34,
+        0,
+        16
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -2.999999999999999,
+        1.3333333333333344
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 0.6666666666666667
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.33333333333333326
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": -2.666666666666666
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 5.551115123125783e-17
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 1.0000000000000002
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -12.49781232029773,
+        "policy_forward_calls": -6.871830558701253,
+        "evaluator_policy_forward_calls": 1.2176845260397196,
+        "total_policy_forward_calls": -5.9336613199699295,
+        "new_shadow_transitions": 10.110361516462563,
+        "shadow_steps": 13.265041375037011
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -13.550494570747606,
+        "policy_forward_calls": -7.992195358568798,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -7.06531262742911,
+        "new_shadow_transitions": 8.78569494260175,
+        "shadow_steps": 11.902422887275144
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "random",
+      "role": "supplement",
+      "mean_delta": -41.18635704662172,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -53.139489216435635,
+        -30.46201159369233
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -33.49190551138124
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -34.277939057700884
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -96.84738781961555
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -12.425216351445313
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -28.88933649296565
+        }
+      ],
+      "model_traffic_wins": 182,
+      "model_traffic_ties": 26,
+      "model_traffic_losses": 42,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 60.666666666666664,
+        "second_only_equivalent_units": 0.6666666666666666,
+        "net_equivalent_units": 60.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 64.328,
+        "gradient_evaluations": 653.296,
+        "policy_forward_calls": 1919.944,
+        "new_shadow_transitions": 240.252,
+        "shadow_steps": 1484.284,
+        "replay_steps": 479.512,
+        "warmup_steps": 764.52,
+        "shadow_resets": 9.318666666666667,
+        "cache_hits": 1042.9946666666667,
+        "ipc_requests": 1363.724,
+        "evaluator_policy_forward_calls": -93.94666666666666,
+        "total_policy_forward_calls": 1825.9973333333332
+      },
+      "leave_one_traffic_out_range": [
+        -42.180592383940265,
+        -38.75214491925407
+      ],
+      "traffic_wins_ties_losses": [
+        48,
+        0,
+        2
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        55.333333333333336,
+        60.333333333333336
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 11.666666666666668
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 7.333333333333333
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 25.66666666666667
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 5.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 10.333333333333334
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": -25.549906807748368,
+        "total_policy_forward_calls": 496.6015650496421,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 701.3442824162015,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "fgsm",
+      "role": "supplement",
+      "mean_delta": -2.7754106316252187,
+      "actual_episodes": {
+        "first": 750,
+        "second": 250
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -8.81223050356667,
+        3.0574207119744705
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 5.6926980925676345
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -4.076063368754759
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -12.860462902804635
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -2.637140190077274
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": 0.003915210942934095
+        }
+      ],
+      "model_traffic_wins": 106,
+      "model_traffic_ties": 55,
+      "model_traffic_losses": 89,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 13.0,
+        "second_only_equivalent_units": 6.666666666666666,
+        "net_equivalent_units": 6.333333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -230.84799999999998,
+        "gradient_evaluations": 505.7080000000001,
+        "policy_forward_calls": 1624.768,
+        "new_shadow_transitions": 240.252,
+        "shadow_steps": 1484.284,
+        "replay_steps": 479.512,
+        "warmup_steps": 764.52,
+        "shadow_resets": 9.318666666666667,
+        "cache_hits": 1042.9946666666667,
+        "ipc_requests": 1363.724,
+        "evaluator_policy_forward_calls": -21.423999999999978,
+        "total_policy_forward_calls": 1603.344
+      },
+      "leave_one_traffic_out_range": [
+        -4.212011881772204,
+        -1.0621523041827443
+      ],
+      "traffic_wins_ties_losses": [
+        29,
+        0,
+        21
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        2.333333333333334,
+        8.333333333333334
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": -1.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 0.6666666666666665
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 3.666666666666666
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 2.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 1.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": 342.64845380383235,
+        "policy_forward_calls": 550.4404152099087,
+        "evaluator_policy_forward_calls": -7.258042659294784,
+        "total_policy_forward_calls": 271.59118627530694,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": 377.29039422543036,
+        "policy_forward_calls": 601.3442824162015,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 300.67214120810075,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "pgd",
+      "role": "supplement",
+      "mean_delta": -2.5515573661793467,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -8.727476774277916,
+        3.3996600619500725
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": 5.696128457087038
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -3.441054901051438
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -12.345477077100885
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -2.6570721531035906
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -0.010311156727860578
+        }
+      ],
+      "model_traffic_wins": 106,
+      "model_traffic_ties": 53,
+      "model_traffic_losses": 91,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 12.666666666666666,
+        "second_only_equivalent_units": 8.333333333333332,
+        "net_equivalent_units": 4.333333333333333,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -1549.3573333333334,
+        "gradient_evaluations": -813.6906666666666,
+        "policy_forward_calls": 159.55999999999995,
+        "new_shadow_transitions": 240.252,
+        "shadow_steps": 1484.284,
+        "replay_steps": 479.512,
+        "warmup_steps": 764.52,
+        "shadow_resets": 9.318666666666667,
+        "cache_hits": 1042.9946666666667,
+        "ipc_requests": 1363.724,
+        "evaluator_policy_forward_calls": -19.645333333333326,
+        "total_policy_forward_calls": 139.91466666666656
+      },
+      "leave_one_traffic_out_range": [
+        -4.017515356587252,
+        -0.7856439247745557
+      ],
+      "traffic_wins_ties_losses": [
+        30,
+        0,
+        20
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        0.33333333333333304,
+        7.333333333333333
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": -1.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 0.6666666666666665
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 1.6666666666666667
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 2.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 1.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -55.466807242056284,
+        "policy_forward_calls": 9.063931505853272,
+        "evaluator_policy_forward_calls": -6.695811822875008,
+        "total_policy_forward_calls": 6.812539601749235,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -52.27096057745697,
+        "policy_forward_calls": 16.89071373603359,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 14.477754630885919,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 200,
+      "first": "ours_single_return",
+      "second": "oarl_bo",
+      "role": "supplement",
+      "mean_delta": -42.08640890114128,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -53.8697163695367,
+        -31.48836716511156
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -34.04434757186343
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -33.65828116865778
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -97.10360472871218
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -14.4183004038023
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -31.20751063267073
+        }
+      ],
+      "model_traffic_wins": 181,
+      "model_traffic_ties": 30,
+      "model_traffic_losses": 39,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 63.0,
+        "second_only_equivalent_units": 0.0,
+        "net_equivalent_units": 63.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -864.5653333333333,
+        "gradient_evaluations": 653.296,
+        "policy_forward_calls": -123.62133333333327,
+        "new_shadow_transitions": 240.252,
+        "shadow_steps": 1484.284,
+        "replay_steps": 479.512,
+        "warmup_steps": 764.52,
+        "shadow_resets": 9.318666666666667,
+        "cache_hits": 1042.9946666666667,
+        "ipc_requests": 1363.724,
+        "evaluator_policy_forward_calls": -97.80533333333335,
+        "total_policy_forward_calls": -221.42666666666673
+      },
+      "leave_one_traffic_out_range": [
+        -42.94418161412817,
+        -39.40334705175243
+      ],
+      "traffic_wins_ties_losses": [
+        50,
+        0,
+        0
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        58.0,
+        63.0
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 12.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 7.666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 27.333333333333336
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 5.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 11.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": -6.04929684981933,
+        "evaluator_policy_forward_calls": -26.32307979387659,
+        "total_policy_forward_calls": -9.1683403796743,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": 27.5171422574912,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 23.283735756338686,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "role": "primary",
+      "mean_delta": -6.936489760959542,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -12.02728874912549,
+        -2.7365709833187335
+      ],
+      "primary_family_adjusted_interval": [
+        -13.459411042049846,
+        -2.144996935734192
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -8.912876979142395
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -6.997555334985647
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -2.357492512390894
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -6.460960416699727
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -9.953563561579056
+        }
+      ],
+      "model_traffic_wins": 142,
+      "model_traffic_ties": 69,
+      "model_traffic_losses": 39,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 10.999999999999998,
+        "second_only_equivalent_units": 2.333333333333333,
+        "net_equivalent_units": 8.666666666666666,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -5.85466666666666,
+        "gradient_evaluations": -39.56000000000006,
+        "policy_forward_calls": -17.014666666666926,
+        "new_shadow_transitions": 35.68533333333329,
+        "shadow_steps": 188.3346666666664,
+        "replay_steps": 20.72266666666667,
+        "warmup_steps": 131.92666666666673,
+        "shadow_resets": 1.6080000000000005,
+        "cache_hits": -139.8853333333334,
+        "ipc_requests": -110.08666666666659,
+        "evaluator_policy_forward_calls": -12.68533333333329,
+        "total_policy_forward_calls": -29.700000000000273
+      },
+      "leave_one_traffic_out_range": [
+        -7.292272557039427,
+        -5.324499392864715
+      ],
+      "traffic_wins_ties_losses": [
+        40,
+        0,
+        10
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        6.000000000000003,
+        9.000000000000004
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 2.666666666666667
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 0.6666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 0.3333333333333336
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 2.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 3.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -4.537668614076418,
+        "policy_forward_calls": -0.7067875643937849,
+        "evaluator_policy_forward_calls": -4.7029629556396895,
+        "total_policy_forward_calls": -1.1094282223598095,
+        "new_shadow_transitions": 13.186574959106023,
+        "shadow_steps": 9.21975631295906
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": 0.17345171129126147,
+        "policy_forward_calls": 4.193388918677221,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 3.770877715334553,
+        "new_shadow_transitions": 18.772396781253818,
+        "shadow_steps": 14.609813379735836
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "ours_progress_return",
+      "role": "mechanism",
+      "mean_delta": -1.0473227133817773,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -3.469279227712584,
+        0.7801141332890377
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -1.2853941988840385
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -0.571874917940262
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": 1.1104146133156965
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": 0.00019630028317275602
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -4.489955363683456
+        }
+      ],
+      "model_traffic_wins": 20,
+      "model_traffic_ties": 211,
+      "model_traffic_losses": 19,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 1.0,
+        "second_only_equivalent_units": 1.3333333333333333,
+        "net_equivalent_units": -0.3333333333333332,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 1.2493333333333396,
+        "gradient_evaluations": -527.0,
+        "policy_forward_calls": -1038.3613333333337,
+        "new_shadow_transitions": 8.895999999999958,
+        "shadow_steps": 99.03866666666636,
+        "replay_steps": 55.697333333333404,
+        "warmup_steps": 34.44533333333334,
+        "shadow_resets": 0.41999999999999993,
+        "cache_hits": 11.981333333333168,
+        "ipc_requests": 21.5,
+        "evaluator_policy_forward_calls": -0.5786666666666633,
+        "total_policy_forward_calls": -1038.94
+      },
+      "leave_one_traffic_out_range": [
+        -1.2702592089206075,
+        -0.24055530384106694
+      ],
+      "traffic_wins_ties_losses": [
+        9,
+        30,
+        11
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        -1.3333333333333335,
+        0.33333333333333326
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": -0.33333333333333337
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": -1.0
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 0.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 1.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -38.77128619634309,
+        "policy_forward_calls": -30.28466231616297,
+        "evaluator_policy_forward_calls": -0.22461675413263382,
+        "total_policy_forward_calls": -28.18385652657176,
+        "new_shadow_transitions": 2.991177103507625,
+        "shadow_steps": 4.645285640758479
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -38.63344663605391,
+        "policy_forward_calls": -30.127717463090175,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": -28.022182288733212,
+        "new_shadow_transitions": 3.2230333304918535,
+        "shadow_steps": 4.8808656368582115
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_safety",
+      "role": "supplement",
+      "mean_delta": -6.514770984945882,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -11.636055727435474,
+        -2.335023970375833
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -8.912876979142395
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -6.997820871351697
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -0.24863309595653463
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -6.460960416699727
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -9.953563561579056
+        }
+      ],
+      "model_traffic_wins": 139,
+      "model_traffic_ties": 69,
+      "model_traffic_losses": 42,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 10.666666666666666,
+        "second_only_equivalent_units": 2.333333333333333,
+        "net_equivalent_units": 8.333333333333332,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -5.384,
+        "gradient_evaluations": -30.842666666666673,
+        "policy_forward_calls": 9.345333333333201,
+        "new_shadow_transitions": 40.01466666666664,
+        "shadow_steps": 243.5559999999998,
+        "replay_steps": 46.1400000000001,
+        "warmup_steps": 157.40133333333335,
+        "shadow_resets": 1.9186666666666667,
+        "cache_hits": -135.6880000000001,
+        "ipc_requests": -100.98266666666677,
+        "evaluator_policy_forward_calls": -11.170666666666648,
+        "total_policy_forward_calls": -1.8253333333332193
+      },
+      "leave_one_traffic_out_range": [
+        -6.882831398231144,
+        -4.900924344832872
+      ],
+      "traffic_wins_ties_losses": [
+        38,
+        0,
+        12
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        5.666666666666669,
+        8.66666666666667
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 2.666666666666667
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 0.6666666666666667
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": -1.1102230246251565e-16
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 2.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 3.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -3.5734920178829066,
+        "policy_forward_calls": 0.3925020845898297,
+        "evaluator_policy_forward_calls": -4.164802497489584,
+        "total_policy_forward_calls": -0.06890182370896669,
+        "new_shadow_transitions": 15.026762869460274,
+        "shadow_steps": 12.254340611459158
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": 0.6170076287380644,
+        "policy_forward_calls": 4.755355757429336,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 4.273900175009615,
+        "new_shadow_transitions": 20.02559171065217,
+        "shadow_steps": 17.13268562786512
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "random",
+      "role": "supplement",
+      "mean_delta": -48.85329086105477,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -61.5307705362201,
+        -37.18949011130684
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -41.433367783900955
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -39.22578346666151
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -107.70012963704455
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -19.0765838246683
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -36.83058959299849
+        }
+      ],
+      "model_traffic_wins": 186,
+      "model_traffic_ties": 26,
+      "model_traffic_losses": 38,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 70.66666666666666,
+        "second_only_equivalent_units": 0.0,
+        "net_equivalent_units": 70.66666666666666,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": 70.35066666666667,
+        "gradient_evaluations": 832.2533333333333,
+        "policy_forward_calls": 2390.309333333333,
+        "new_shadow_transitions": 306.304,
+        "shadow_steps": 2231.064,
+        "replay_steps": 804.0733333333334,
+        "warmup_steps": 1120.6866666666667,
+        "shadow_resets": 13.661333333333333,
+        "cache_hits": 1080.9093333333333,
+        "ipc_requests": 1471.9453333333333,
+        "evaluator_policy_forward_calls": -110.65333333333331,
+        "total_policy_forward_calls": 2279.656
+      },
+      "leave_one_traffic_out_range": [
+        -49.87923577679868,
+        -46.57554677071635
+      ],
+      "traffic_wins_ties_losses": [
+        49,
+        0,
+        1
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        66.0,
+        70.66666666666667
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 13.666666666666668
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 8.333333333333334
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 29.333333333333336
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 7.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 12.333333333333334
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": -30.09348234423839,
+        "total_policy_forward_calls": 619.9794034245433,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": null,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 929.9174205328243,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "fgsm",
+      "role": "supplement",
+      "mean_delta": -10.442344446058256,
+      "actual_episodes": {
+        "first": 750,
+        "second": 250
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -18.434096320631657,
+        -3.716512983573903
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -2.248764179952073
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -9.023907777715392
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -23.71320472023365
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -9.288507663300264
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -7.937337889089905
+        }
+      ],
+      "model_traffic_wins": 123,
+      "model_traffic_ties": 46,
+      "model_traffic_losses": 81,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 19.333333333333332,
+        "second_only_equivalent_units": 2.333333333333333,
+        "net_equivalent_units": 17.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -224.82533333333333,
+        "gradient_evaluations": 684.6653333333334,
+        "policy_forward_calls": 2095.133333333333,
+        "new_shadow_transitions": 306.304,
+        "shadow_steps": 2231.064,
+        "replay_steps": 804.0733333333334,
+        "warmup_steps": 1120.6866666666667,
+        "shadow_resets": 13.661333333333333,
+        "cache_hits": 1080.9093333333333,
+        "ipc_requests": 1471.9453333333333,
+        "evaluator_policy_forward_calls": -38.13066666666663,
+        "total_policy_forward_calls": 2057.0026666666668
+      },
+      "leave_one_traffic_out_range": [
+        -11.2819108593434,
+        -8.064643731922963
+      ],
+      "traffic_wins_ties_losses": [
+        34,
+        0,
+        16
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        13.0,
+        18.0
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 1.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 1.6666666666666665
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 7.333333333333334
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 4.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 3.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": 463.9031176879783,
+        "policy_forward_calls": 709.7912206051079,
+        "evaluator_policy_forward_calls": -12.917942741505616,
+        "total_policy_forward_calls": 348.4366389318011,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": 547.5537388994937,
+        "policy_forward_calls": 829.9174205328243,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 414.95871026641214,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "pgd",
+      "role": "supplement",
+      "mean_delta": -10.218491180612384,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -18.247841491179944,
+        -3.453408999861129
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -2.2453338154326685
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -8.388899310012071
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -23.1982188945299
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -9.308439626326578
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -7.951564256760699
+        }
+      ],
+      "model_traffic_wins": 124,
+      "model_traffic_ties": 44,
+      "model_traffic_losses": 82,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 18.333333333333332,
+        "second_only_equivalent_units": 3.333333333333333,
+        "net_equivalent_units": 15.0,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -1543.3346666666666,
+        "gradient_evaluations": -634.7333333333333,
+        "policy_forward_calls": 629.9253333333331,
+        "new_shadow_transitions": 306.304,
+        "shadow_steps": 2231.064,
+        "replay_steps": 804.0733333333334,
+        "warmup_steps": 1120.6866666666667,
+        "shadow_resets": 13.661333333333333,
+        "cache_hits": 1080.9093333333333,
+        "ipc_requests": 1471.9453333333333,
+        "evaluator_policy_forward_calls": -36.351999999999975,
+        "total_policy_forward_calls": 593.5733333333333
+      },
+      "leave_one_traffic_out_range": [
+        -11.054441540861218,
+        -7.828480139462743
+      ],
+      "traffic_wins_ties_losses": [
+        36,
+        0,
+        14
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        11.0,
+        16.0
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 1.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 1.6666666666666665
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 5.333333333333333
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 4.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 3.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": -43.267832472915,
+        "policy_forward_calls": 35.78340483288493,
+        "evaluator_policy_forward_calls": -12.390023994764764,
+        "total_policy_forward_calls": 28.901486428934973,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": -35.244626110050625,
+        "policy_forward_calls": 54.9862367554707,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 47.131060076117734,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    },
+    {
+      "gradient_cap": 400,
+      "first": "ours_single_return",
+      "second": "oarl_bo",
+      "role": "supplement",
+      "mean_delta": -49.75334271557432,
+      "actual_episodes": {
+        "first": 750,
+        "second": 750
+      },
+      "traffic_clusters": 50,
+      "fixed_model_traffic_units": 250,
+      "attack_repeats_per_model_traffic": 3,
+      "descriptive_interval": [
+        -62.339379107869604,
+        -37.81836092657141
+      ],
+      "bootstrap_seed": 20261004,
+      "bootstrap_draws": 10000,
+      "per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "mean_delta": -41.98580984438315
+        },
+        {
+          "checkpoint_seed": 1,
+          "mean_delta": -38.60612557761841
+        },
+        {
+          "checkpoint_seed": 2,
+          "mean_delta": -107.95634654614119
+        },
+        {
+          "checkpoint_seed": 3,
+          "mean_delta": -21.06966787702529
+        },
+        {
+          "checkpoint_seed": 4,
+          "mean_delta": -39.148763732703564
+        }
+      ],
+      "model_traffic_wins": 184,
+      "model_traffic_ties": 27,
+      "model_traffic_losses": 39,
+      "interpretation": "First minus second. Conditional on five fixed models; correlated attack repeats are averaged, not independent traffic samples.",
+      "collision_conversion": {
+        "eligible_unique_model_traffic_pairs": 224,
+        "first_only_equivalent_units": 73.66666666666666,
+        "second_only_equivalent_units": 0.0,
+        "net_equivalent_units": 73.66666666666666,
+        "definition": "Average three correlated attacks within each fixed model/traffic pair; units may be fractional, not independent events"
+      },
+      "cost_difference_per_actual_episode": {
+        "objective_evaluations": -858.5426666666666,
+        "gradient_evaluations": 832.2533333333333,
+        "policy_forward_calls": 346.7439999999999,
+        "new_shadow_transitions": 306.304,
+        "shadow_steps": 2231.064,
+        "replay_steps": 804.0733333333334,
+        "warmup_steps": 1120.6866666666667,
+        "shadow_resets": 13.661333333333333,
+        "cache_hits": 1080.9093333333333,
+        "ipc_requests": 1471.9453333333333,
+        "evaluator_policy_forward_calls": -114.512,
+        "total_policy_forward_calls": 232.23199999999997
+      },
+      "leave_one_traffic_out_range": [
+        -50.767583465590455,
+        -47.22674890321471
+      ],
+      "traffic_wins_ties_losses": [
+        50,
+        0,
+        0
+      ],
+      "collision_conversion_leave_one_traffic_out_range": [
+        68.66666666666667,
+        73.66666666666667
+      ],
+      "collision_conversion_per_checkpoint": [
+        {
+          "checkpoint_seed": 0,
+          "net_equivalent_units": 14.0
+        },
+        {
+          "checkpoint_seed": 1,
+          "net_equivalent_units": 8.666666666666668
+        },
+        {
+          "checkpoint_seed": 2,
+          "net_equivalent_units": 31.000000000000004
+        },
+        {
+          "checkpoint_seed": 3,
+          "net_equivalent_units": 7.0
+        },
+        {
+          "checkpoint_seed": 4,
+          "net_equivalent_units": 13.0
+        }
+      ],
+      "cost_percent_change": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": 16.967600416004956,
+        "evaluator_policy_forward_calls": -30.819469763302564,
+        "total_policy_forward_calls": 9.615743465342263,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      },
+      "cost_percent_change_per_live_step": {
+        "gradient_evaluations": null,
+        "policy_forward_calls": 69.07589464233168,
+        "evaluator_policy_forward_calls": 0.0,
+        "total_policy_forward_calls": 58.44883392812681,
+        "new_shadow_transitions": null,
+        "shadow_steps": null
+      }
+    }
+  ]
+}
