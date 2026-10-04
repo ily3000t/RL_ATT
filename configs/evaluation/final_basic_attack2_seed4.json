@@ -1,0 +1,131 @@
+{
+  "victims": [
+    "clean"
+  ],
+  "run_seeds": [
+    4
+  ],
+  "episodes": 50,
+  "max_steps": 200,
+  "action_selection": "greedy_argmax",
+  "gate_enabled": false,
+  "sumo_schedule": "research_split_v1",
+  "lookahead_m": 1000.0,
+  "metric_percentiles": {
+    "ttc_percentile": 5,
+    "drac_percentile": 95
+  },
+  "verify_legacy_no_attack": false,
+  "attacks": [
+    {
+      "name": "none",
+      "parameters": {},
+      "budget": {
+        "norm": "none"
+      }
+    },
+    {
+      "name": "random",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "pgd",
+      "parameters": {
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05,
+        "every_n_steps": 1,
+        "objective": "untargeted_logit_margin",
+        "steps": 10,
+        "step_size": 0.2
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    },
+    {
+      "name": "oarl_bo",
+      "parameters": {
+        "evaluations": 5,
+        "every_n_steps": 1
+      },
+      "budget": {
+        "norm": "observation_scaled_linf",
+        "epsilon": 1.0,
+        "relative_scale": 0.2,
+        "absolute_scale": 0.05
+      }
+    }
+  ],
+  "research_seeds": {
+    "root_seed": 20260921,
+    "split_id": 30,
+    "attack_seed": 2,
+    "episode_sumo_seeds": [
+      122488048,
+      399826308,
+      1648743367,
+      856723588,
+      1629927975,
+      743760365,
+      1853253940,
+      141835652,
+      1287046359,
+      1965454955,
+      963942478,
+      2124083062,
+      1363240239,
+      1094437400,
+      991534693,
+      1682169354,
+      79111995,
+      140772638,
+      1117625610,
+      1581933520,
+      1438633849,
+      495532863,
+      1098994477,
+      1618996763,
+      2016201538,
+      2108331135,
+      1629408873,
+      1569616551,
+      1951237582,
+      673948177,
+      1250819915,
+      1421577547,
+      724160601,
+      1976600294,
+      1982995620,
+      2116187664,
+      1578165164,
+      705082706,
+      2081932161,
+      1194440832,
+      1473785956,
+      1794512370,
+      1128025789,
+      1368695729,
+      2143916078,
+      748354991,
+      255785100,
+      1831176229,
+      976088519,
+      1575801352
+    ]
+  }
+}

@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "kind": "attack_final_test_preregistration",
+  "registration_date": "2026-10-04",
+  "status": "preregistered_not_run",
+  "final_outcomes_seen": false,
+  "final_execution_ready": false,
+  "frozen_method_commit": "d218309627830be924c48ef7fd9d984be11da247",
+  "method_document": {
+    "path": "docs/ATTACK_METHOD_FREEZE.md",
+    "commit": "f0ada172e486bbd6b61dc4822a4082b630eb975a",
+    "git_blob_sha256": "fa2ba83651ddee54033d999d7f3901929957d3077e58c4b7cb307cd58739c6e9"
+  },
+  "frozen_source_sha256": {
+    "Data/._StraightRoad.net.xml": "e4c32f6914a758a2e0d8dfd7ca5cbb89b3b221f4238cc2f24adbda64284f42fc",
+    "Data/._StraightRoad.rou.xml": "4ac481cdaa7b7031da1eb2fcfe9c2d9dba46ff7430126e82726c9a86e1e3134a",
+    "Data/._StraightRoad.sumocfg": "f8ec5a0da994c27def0077c32e1e5a204c7efe108d1ed6e04c884f0efc59e36a",
+    "Data/StraightRoad.net.xml": "909b6de2a90150e94c309d0b9180cc96acf26eed164a71ef0b63f33d35204205",
+    "Data/StraightRoad.rou.xml": "fb756f353c0e8e7a9d37fcf4681c2939254a231fd051b0ca653c3d8e767f1489",
+    "Data/StraightRoad.sumocfg": "2edd802cbe7ccb6256b65cc616fd4ebcab1f94609c7e01b62893792b2a24f0b2",
+    "Environment/environment/__init__.py": "5187db17949bf9af69d5867ecd5912eefe848650200f8d61bd5e51dd4c19ba76",
+    "Environment/environment/envs/__init__.py": "09e56cffa1aaa45fd81c0f2f313f82f1637d92cb274d3a6bc62dddbf773ca0f1",
+    "Environment/environment/envs/highway_env.py": "555e36cfd0d22114b491deb94a84a0390b95dcd7cb3d5ecd3a0ca811e9b37798",
+    "Environment/setup.py": "5ce3226c7bc1e605a0d5b1c80ee0ad3c4a36520a6ea700ca24d913f49a9d12c7",
+    "main.py": "1ba4cdb18997d56b944df079259edbd062f6587f7cb3cc26c6371cac1f8424e2",
+    "oarl.py": "4ec5a1b2fc048e231bf1d4785e9817b05ff7a0596cc6fddf9c249db89372a6d8",
+    "requirements.txt": "381ce7320502d7a7ebf516f0ae062d036360cdce60828bb535f7783781b4c489",
+    "rl_att/__init__.py": "1d9eda2ef1abf9268dce97cac0aad330772b27650dfe96c115cb9683ccf6e688",
+    "rl_att/agents/__init__.py": "08c74f798928ee72fd2e2e301dc83ac6bcce82b9999cd170ee72960ddb985f51",
+    "rl_att/agents/clean_victim.py": "3bc42841d91ccdb55b4899522818ddd449ee3fcfeb9db18647da5afd11ed3e0c",
+    "rl_att/agents/victim_adapter.py": "360f4842632f346f44bb7ed106388e96dc5257a807e86c2f76c54439680325b6",
+    "rl_att/attacks/__init__.py": "c621f4046dc8bdc405fccc8cbee66d01bfad3d11b9dfb95d4c06bf18203b2015",
+    "rl_att/attacks/base.py": "55ca8bc8dc3531bfdc9cf04e05e94174ec48aab9524f456c569616c04f1be789",
+    "rl_att/attacks/behavior_search.py": "495574f6d147400f2a28639fc9d232f75dc519a6257612ab503b61a43f4db760",
+    "rl_att/attacks/box.py": "87ef07e63c01384cf79128c6799ff2427d615032a58f36c41f8e0b4e36624152",
+    "rl_att/attacks/fgsm.py": "edd7b0772f4beca6437206507fa55a1b9ff476c496448d06860604e0bfa919aa",
+    "rl_att/attacks/no_attack.py": "31a9038454003c05591699f655025f6b02b25e6781fb3c68dd943bb46546a1f0",
+    "rl_att/attacks/oarl_bo.py": "94205cef19e5966339faf2e330a0c558285563f89d7978ed0f0ab64660d9f8ac",
+    "rl_att/attacks/objectives.py": "f837b359319eea466df3bb5c4d383b4683b41e81e5d5564072bc717d38aa5328",
+    "rl_att/attacks/pgd.py": "09d50857377354c1429bb5b2d3c850331e90b06baab980c9ffd2b65551d1712c",
+    "rl_att/attacks/progress_retry.py": "d9ddb872035a9ee9cde7d56ae71be9bd9cf4ce677982efdc0e44e6b025c70ce4",
+    "rl_att/attacks/proposed.py": "918e33f06f73192ad86bd2042c1a3fc194d1789773e626cd938b53b39904f51d",
+    "rl_att/attacks/random_noise.py": "fa979d51027b75d0aa611ff107a6de3c948170c7b99d0b699b9693c633b9df95",
+    "rl_att/attacks/registry.py": "393dd579d9cff27f37f17e26b7438e3daa4533e78add40e7e86985a64168eef3",
+    "rl_att/attacks/rollout_objectives.py": "d29cfb17be2c1538e2ab56022dd32195a2818869f7ec6145dc6661e5cbea689e",
+    "rl_att/attacks/search_budget.py": "8bda23c17b6d0bc84b9a610f12a333a90ec5dfaf3643c74921c2bdad86758846",
+    "rl_att/attacks/single_attempt.py": "21df837008f2d4959183969500120a3595c4bda30e13581c3e06f8fc5d30abc1",
+    "rl_att/attacks/zero_one.py": "fbffd9188dba13c1181b2d06e0b9dc845a496ad5db84ee1e5bade7c3566f9808",
+    "rl_att/attacks/zero_one_controls.py": "815c30f212b256ef9d735c312eee291e86b1b9831733d564da8f332955f9e222",
+    "rl_att/checkpoint_evaluation.py": "b919606d824c0d6e4a7a630a0af9b03bc242ad802fafa4de378b6dd6028fec3f",
+    "rl_att/evaluation/__init__.py": "84b614f0d6261490fafc20a27a2a9137b49b87c236a9173b334b6c5cf8cea841",
+    "rl_att/evaluation/configuration.py": "f9e820065b8a01412f7da1fef523d57b22455b94d29321738d40e9fcabd2c8cb",
+    "rl_att/evaluation/evaluator.py": "23395ae0d5c597d3b01690c6118808cf0b5899a8db142208639c2517e619edc0",
+    "rl_att/evaluation/oracle_worker.py": "f86d607d5b3d93c022f64f52dabeee7575dfdba1f8439898fa466f549ec01353",
+    "rl_att/evaluation/replay_oracle.py": "b04daa14407b3f4f53a84a7590a062a2b266a6d2d594ec7d0a5b88dbc56d2aa7",
+    "rl_att/evaluation/results.py": "eaaf093af7e8a0da971de1f6c53db4e7a866de0752dc50ab6cb569b7e7c74f97",
+    "rl_att/evaluation/run.py": "241991049d924acfac767bf1d5df089fdfb4b3bf76780e623ffcf714a0c046dc",
+    "rl_att/evaluation/seed_control.py": "6136509a407f409a658124054d36e75b2bce5edca9e8c37560c54483b0757950",
+    "rl_att/evaluation/simulator_oracle.py": "b4fe139a746a391a9e51c7f68d00b66a4c9587cc07bf75da8ad49632501ae37c",
+    "rl_att/evaluation/sumo_metrics.py": "68b6b01916879a444643f950271498e1ee9458fd610aee6214b20cd5ee0d85cf",
+    "rl_att/evaluation/trace_diagnostics.py": "760e83238466efd0c1dc6de77318e22073351724facbe4aa3660816f3dae2aca",
+    "rl_att/experiment.py": "1b1e1ce1c25ee11ad827552a2b61ce529b4f5fc4123356260970749cdf06a757",
+    "rl_att/utils/__init__.py": "9a3b0fe150ed9ad2e9912376ede16f557ce38d066efaacfd792981cc6a6d0959",
+    "rl_att/utils/checkpoints.py": "8d3fd969226bac8090a0eca66267da330d93a490a0db84a89770995536f97895",
+    "rl_att/utils/seeding.py": "e517a75b233962fc6eaaaa2fc2b95c8a62a6d4d5d8584aa494bcff53671f6b51",
+    "rl_att/utils/zero_one_dependency.py": "0575c58cc680ed0c88aa59ae9d0ede5cd4a2848c0f34d3f3d54df0a984e4e96a"
+  },
+  "seed_protocol": {
+    "root_seed": 20260921,
+    "phase_id": 1,
+    "episode_index": "zero_based",
+    "splits": {
+      "10": [
+        1472154258,
+        1940738230,
+        1610385403,
+        258385557,
+        2018177452,
+        544136477,
+        1189631354,
+        2096810982,
+        1828089188,
+        200217526
+      ],
+      "20": [
+        66220013,
+        1408038459,
+        533300723,
+        724293118,
+        677741082,
+        1573595466,
+        1618988799,
+        1331668655,
+        495979247,
+        789462548,
+        1394101652,
+        668632225,
+        2021711356,
+        2125771701,
+        870217807,
+        890465090,
+        615847619,
+        625261628,
+        1364999002,
+        364372919
+      ],
+      "30": [
+        122488048,
+        399826308,
+        1648743367,
+        856723588,
+        1629927975,
+        743760365,
+        1853253940,
+        141835652,
+        1287046359,
+        1965454955,
+        963942478,
+        2124083062,
+        1363240239,
+        1094437400,
+        991534693,
+        1682169354,
+        79111995,
+        140772638,
+        1117625610,
+        1581933520,
+        1438633849,
+        495532863,
+        1098994477,
+        1618996763,
+        2016201538,
+        2108331135,
+        1629408873,
+        1569616551,
+        1951237582,
+        673948177,
+        1250819915,
+        1421577547,
+        724160601,
+        1976600294,
+        1982995620,
+        2116187664,
+        1578165164,
+        705082706,
+        2081932161,
+        1194440832,
+        1473785956,
+        1794512370,
+        1128025789,
+        1368695729,
+        2143916078,
+        748354991,
+        255785100,
+        1831176229,
+        976088519,
+        1575801352
+      ]
+    },
+    "split_names": {
+      "10": "development",
+      "20": "validation",
+      "30": "final_test"
+    },
+    "attack_seeds": [
+      0,
+      1,
+      2
+    ],
+    "old_unique_seeds_checked": 2302,
+    "intersections": [],
+    "old_protocols_checked": [
+      "controlled_train_5x400",
+      "controlled_evaluation_5x20",
+      "constant_0_to_4",
+      "upstream_paired_400"
+    ],
+    "payload_sha256": "564bd6606d8e0b3ed94b05d7270d6dd241ddbd24a0959cc46271be1de776e93f"
+  },
+  "seed_splits_sha256": "36a8319fd8ae73523d2e76cbaeece0ee9b37d3254c483a0d244a93b8412ae30e",
+  "frozen_victims_sha256": "abdfb1437842832134fca2ff7de5d8c9091c27014f4d7e18bfb0e9ec062f5af9",
+  "victims": [
+    {
+      "victim": "clean",
+      "run_seed": 0,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/source/model/policy400.pkl",
+      "checkpoint_sha256": "b76d3f02a992f84d805480c96e42ac95c837fa934e63b86a577f42d7ad95e48d",
+      "weights_sha256": "6ff16dc9b7c23ad988d5ca33b78fbbccafbf8fe80f573b82474da092516a5ca3",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed0.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 1,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/source/model/policy400.pkl",
+      "checkpoint_sha256": "900ac011d78bc175ef3695f0d82052abd6b50d3811cccf67167606853009462a",
+      "weights_sha256": "1e2d9fc6f8e5da8cfe024b24c360cceb89791e3f346a2aecb855a7be47edc315",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed1.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 2,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/source/model/policy400.pkl",
+      "checkpoint_sha256": "3c0c5e254e2c8c6feda5dbbfb91df9068c4ad632845db3625f69bb68cb53f86b",
+      "weights_sha256": "0e8e21eda2af71a230ecdca6a5b806186974236afc381cd0fbcbc5b56bf07f83",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed2.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 3,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/source/model/policy400.pkl",
+      "checkpoint_sha256": "ce7b56a6e7d3c214b09a731650d479bbe17dcc37a15c75b582c71d7196a7a9ab",
+      "weights_sha256": "5e50c9945c50312b6238feeb009edc5d7559017f4b3042e3bcba8e478c394d67",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed3.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    },
+    {
+      "victim": "clean",
+      "run_seed": 4,
+      "training_episode": 400,
+      "checkpoint": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/source/model/policy400.pkl",
+      "checkpoint_sha256": "4e14a28adcd95fdea3306a57656d61d9480ed026cc21a8136b85a6267bc9659a",
+      "weights_sha256": "c661b05b4a8138556933dae21bae7449dad78ce395b52ec35b187fd533baf8ff",
+      "training_commit": "4be94fad8ce43a516f63b6edffd7f9f474496598",
+      "training_config": "configs/experiments/clean_protocol_a_seed4.json",
+      "verification_summary": "docs/CLEAN_VICTIM_RESULTS.json"
+    }
+  ],
+  "runtime_references": [
+    {
+      "path": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/manifest.json",
+      "sha256": "4b2a30f7022012806ac4c4e0002b4b5dd29a0c74d04b67ee013cc4f05af62dbe"
+    },
+    {
+      "path": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/manifest.json",
+      "sha256": "7a64bf9d5bf13cac132c1ef08706c5d703378212d28d66480a4dc7b00192edd0"
+    },
+    {
+      "path": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/manifest.json",
+      "sha256": "b9f266f71790c63678c1c83c4037f9095628fb19f163ddb54cfc9e45b69ef338"
+    },
+    {
+      "path": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/manifest.json",
+      "sha256": "3696a7dfd9e7ac81b852518dbfbf551f7cc648ec266f078f3294c819ef30d5c4"
+    },
+    {
+      "path": ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/manifest.json",
+      "sha256": "f87874e318016b6760ca7b5f08fddba1539d7b2d119a8c2ab1aa5b46cdfc1781"
+    }
+  ],
+  "zero_one_wheel": {
+    "path": ".local/dependencies/zero-one/zoopt-0.4.2-py3-none-any.whl",
+    "sha256": "d015ab3633b8f1951c5caa59b05adff08bcd6655e6cc3a5f397b7abd2171faa5"
+  },
+  "evidence": {
+    "path": "docs/SINGLE_CANDIDATE_VALIDATION_RESULTS.json",
+    "sha256": "3056961497ecdc86702ed471ab7ec31a5f635ae32c3a43569dda8a84ddfce510"
+  },
+  "templates": {
+    "configs/evaluation/basic_validation_attack0_seed0.json": "73eeb777a04cf7d92899933bd548e43c8b507b78f6349f03265c8250b0e87a61",
+    "configs/evaluation/basic_validation_attack0_seed1.json": "44f65f7d01281849985405fbea1a098e11d95bc384e65b20165706a5bc5a6803",
+    "configs/evaluation/basic_validation_attack0_seed2.json": "1afede15d00ed730103153ac902383e95affe939640d370a40854823e075f7bc",
+    "configs/evaluation/basic_validation_attack0_seed3.json": "c6627d77109888a8d66261fa4376c8c4cf0b4d70d5791280a548874e0e899e6d",
+    "configs/evaluation/basic_validation_attack0_seed4.json": "8a4ca8a44d3e4b0c3006733105e5eb2e5e810f6e4ec9230fc081bd01b81b0dc8",
+    "configs/evaluation/basic_validation_attack1_seed0.json": "ba2483e8af284ff675c12cef2ceed0d3224d8a5221b199570a64aea634c27334",
+    "configs/evaluation/basic_validation_attack1_seed1.json": "314d34383e01c72ecfa734b13a80b3abcce4cc4384a747ab385bf7c5dc732170",
+    "configs/evaluation/basic_validation_attack1_seed2.json": "d21810a8b26ed20c3dc79e959d47052cef68eabd9f2abb428758fb759e01e0dd",
+    "configs/evaluation/basic_validation_attack1_seed3.json": "3e2c563b4f785de2111d8719c81caf5d3c91a8801b910bdb1ac66e1fcb6fdc02",
+    "configs/evaluation/basic_validation_attack1_seed4.json": "babaadfad27455686020b4acffe59282e33316801fc6144e5d64bfbf01f3de4f",
+    "configs/evaluation/basic_validation_attack2_seed0.json": "afdfe08ee6e1db1763d252d071371f52e9be48b247c2852ac85b91e84c30ec7d",
+    "configs/evaluation/basic_validation_attack2_seed1.json": "222bc28615570b3946d452a8208837a95df26cebd62f584e89f8aedec9a317c7",
+    "configs/evaluation/basic_validation_attack2_seed2.json": "629bb96d49e3225ae8b9426108ad643638620e6590b04506f8bfef414f717bc2",
+    "configs/evaluation/basic_validation_attack2_seed3.json": "588a8694939236a7e0564be83b3a11bcd6cdcdf7c0693cddc33ba017309e826b",
+    "configs/evaluation/basic_validation_attack2_seed4.json": "3d0a831270169319fe8e001f3029f53a7ec7caa28c4fb43fce49e9671ed6c9ee",
+    "configs/evaluation/budget_validation_g100_attack0_seed0.json": "c5445d253db3aec942e9fe79c07899a07395c54700f57a2ab8b1d85c75ea9c70",
+    "configs/evaluation/budget_validation_g100_attack0_seed1.json": "6c9282ed589bd5d3ac56a84e699fa2b63dd7e5d9f423a62b7b1bdb7c3bd88058",
+    "configs/evaluation/budget_validation_g100_attack0_seed2.json": "de3cfd1db4d9c54f6c3ac57d16a5ebe53de1214d9003550ad1dd68080d07bd2d",
+    "configs/evaluation/budget_validation_g100_attack0_seed3.json": "f1b53d009e9397869709c287d5999a91b5f7c51cc47336617dc3c06316cb38f2",
+    "configs/evaluation/budget_validation_g100_attack0_seed4.json": "d802a5a719a75cfe432cff0d5ef36ec88c046b99619d8143d5ad0ba4171f2cf9",
+    "configs/evaluation/budget_validation_g100_attack1_seed0.json": "19dbe1a78ffe4111102956211df76a4e112ab40e3a54d106a63119f4a1729343",
+    "configs/evaluation/budget_validation_g100_attack1_seed1.json": "cf30322b312aee4e3ef8e247e67c67d97cf19b53cf1129a32a47711fea2b0013",
+    "configs/evaluation/budget_validation_g100_attack1_seed2.json": "92e216b7918cf1815ecdc1d335138c0a1d231fec9c6c64b740cc2b7603f4b014",
+    "configs/evaluation/budget_validation_g100_attack1_seed3.json": "1ce9e8ab0ab855f3a87ffdc0f1f68f76bc1a6a9f1058e3d7a25e4f7fbd223785",
+    "configs/evaluation/budget_validation_g100_attack1_seed4.json": "1ecf9fa3d91e1caa17d97d3103f6da134480cb133bb15afe9f10ff2480b2da1e",
+    "configs/evaluation/budget_validation_g100_attack2_seed0.json": "3817d112ac4388818a01b36a8e73a047cff175e83eae91c020003af373d99f46",
+    "configs/evaluation/budget_validation_g100_attack2_seed1.json": "d655f03305c157c54b2247530e9645055dc533899a3138abf85850df45d3071b",
+    "configs/evaluation/budget_validation_g100_attack2_seed2.json": "8fbfab886693a1b93dfe7b0b9129afe479d009694c36b0c460d81dadc8fb1714",
+    "configs/evaluation/budget_validation_g100_attack2_seed3.json": "893ec229583a68104d01f90a21a0c566a7732eae342e5ed37840d6b6cb268a5c",
+    "configs/evaluation/budget_validation_g100_attack2_seed4.json": "2772949d9c9ee956fbee1b516061a29ed4203c7571dfd02b78a8cb1944f24bd8",
+    "configs/evaluation/budget_validation_g200_attack0_seed0.json": "3390af1799f2f4585f3bd72baf3ab5b95afd9824842edd967a245610fd19961f",
+    "configs/evaluation/budget_validation_g200_attack0_seed1.json": "24e551a2f5b0a7cf6ad8660f2c03309ea08ab8880c2f719519cd568cb82c6d81",
+    "configs/evaluation/budget_validation_g200_attack0_seed2.json": "55b15824c7ee7cc02a55eec9d8d03e0af0338df0913d9b9582b45ef6231010ae",
+    "configs/evaluation/budget_validation_g200_attack0_seed3.json": "4bc75e2c309d1dc89e174e0be555b7693ff0428928cd21e6701cecc4571cf242",
+    "configs/evaluation/budget_validation_g200_attack0_seed4.json": "8d6dadb32e61f2833edea2a33b6f3f4d6706dafd9af130249424ad4221fd76af",
+    "configs/evaluation/budget_validation_g200_attack1_seed0.json": "6bbae1b32798ad046f96a0748e11d3682c14fe9ab2fa89c113341f365aaf5d7f",
+    "configs/evaluation/budget_validation_g200_attack1_seed1.json": "4066782f834a24b05e0237bd8c5dd339c771ef6163d7f4c1ec73cc2a260e5522",
+    "configs/evaluation/budget_validation_g200_attack1_seed2.json": "40891b0bc79a7624b23d3ec34b5ed494008b99732fdfc4300c93be66e268b5c9",
+    "configs/evaluation/budget_validation_g200_attack1_seed3.json": "1ac1b046166ee0ceef29c3717e334e3b82980401e8cf2a37cc9a80f163856df3",
+    "configs/evaluation/budget_validation_g200_attack1_seed4.json": "4149c5edeaa23cf11f76552440c611374b5dd0994735b7053182da92e206c7f7",
+    "configs/evaluation/budget_validation_g200_attack2_seed0.json": "164f8d1f49057c7e00a1d647c5fff2a56fcfec9cd918bc4baa7c5a5c63db8a16",
+    "configs/evaluation/budget_validation_g200_attack2_seed1.json": "bc9b4b10b8e9dbd31a0ed5bf1e3e04dbcda4a09b7f003d07b7c65a54aefc43dc",
+    "configs/evaluation/budget_validation_g200_attack2_seed2.json": "296119de034a83de9a4ed2c3cf64b235b6091b9c5ac62a33b7fea5877a51d94c",
+    "configs/evaluation/budget_validation_g200_attack2_seed3.json": "487bce3074763f620320e3f92565e33b41b5f02c782028f0784cccb08ce4b0ac",
+    "configs/evaluation/budget_validation_g200_attack2_seed4.json": "d903bbfc79c20cec34d5e11eddc22e0b483dd92c228b995309c2fb32f133a519",
+    "configs/evaluation/budget_validation_g400_attack0_seed0.json": "034f0137367a5d0be55400c745b6dc6a846c7b3a4c65c4d92130b0d711420ac9",
+    "configs/evaluation/budget_validation_g400_attack0_seed1.json": "9ffe73e6abbf77846001ceed14264cd7d42947f9fc320d80d7f14edbeb044186",
+    "configs/evaluation/budget_validation_g400_attack0_seed2.json": "0f35b7585762cb7d55d30d00513302616533e3c6c6f9108052c27960eb265928",
+    "configs/evaluation/budget_validation_g400_attack0_seed3.json": "49799b2b95fd4283bb28022fa7c12cae43e729f9252f5737fef8fc8a6edfc4e0",
+    "configs/evaluation/budget_validation_g400_attack0_seed4.json": "cc0f8977e803194b3e0ea7c69a023eeaf84eead1948671d950937ed8ca05bf71",
+    "configs/evaluation/budget_validation_g400_attack1_seed0.json": "7bfabd13da594d3d5c2c18d3b606119d15e73256cae06ddbd797e0c3dc45345c",
+    "configs/evaluation/budget_validation_g400_attack1_seed1.json": "7a6fdf3c9d22008748f7c2ba122571e081432fbc71b501eb8302f7b072a23296",
+    "configs/evaluation/budget_validation_g400_attack1_seed2.json": "f13520fac192de9914aa1d583c78732e39a5663df9a2754ea6d1003fa08ceb40",
+    "configs/evaluation/budget_validation_g400_attack1_seed3.json": "27cf4ad7b3a22f6ce6b8167de5a4dd83fac7549d1dca3cff9d9a4daaf9bd3382",
+    "configs/evaluation/budget_validation_g400_attack1_seed4.json": "9708110154b23593deac222854a66a311be027d2a56a5b2113d84a875203f110",
+    "configs/evaluation/budget_validation_g400_attack2_seed0.json": "11d6f218016a0b9c7427d57e73fadd3e06c01f8066b0073a5c6b2434d1af75fa",
+    "configs/evaluation/budget_validation_g400_attack2_seed1.json": "ac5a752f27a310b8959490608d24aabb6c2d8276f208be0504ee97cc5e0c5485",
+    "configs/evaluation/budget_validation_g400_attack2_seed2.json": "dbb785ca36cddec8e07ab7adb5a27ce01ecbe41b4e9f98685bc99d2ff4e29a13",
+    "configs/evaluation/budget_validation_g400_attack2_seed3.json": "e01baa3680a9da9c37761c8cdb1378d803452b6b7d1acffa162351d407bac766",
+    "configs/evaluation/budget_validation_g400_attack2_seed4.json": "59d81e0eb5c5fcb7e482c4b05b03296acabe93deb7ddef24cda1d71257b28cfe",
+    "configs/evaluation/single_validation_g100_attack0_seed0.json": "62ef8dd05e266e8c442ba0fdbd3a4262975dcfab1fcc26e22f555b40a0525e3f",
+    "configs/evaluation/single_validation_g100_attack0_seed1.json": "7c8aedb1d8a5a4d506ab32f6109da7bb86d07b6fa30fb2ec11eac9273aca1ffa",
+    "configs/evaluation/single_validation_g100_attack0_seed2.json": "54a88c40111a2540756f7763d347d5bba93964d5fdfec1a460aaef2c05ccb901",
+    "configs/evaluation/single_validation_g100_attack0_seed3.json": "28ac0c6b3cf606768b727d429e1e62c50e8f2e28b371035b5cdf10589b6391ef",
+    "configs/evaluation/single_validation_g100_attack0_seed4.json": "b596acba85bc2f89fb359a0e4a81b8364ceb742470bdfdbfd26d9e557ff8808b",
+    "configs/evaluation/single_validation_g100_attack1_seed0.json": "30b854168e6f0a7bfe23e7f420f19b17decf4ee42b599a4a144acbe289bd1954",
+    "configs/evaluation/single_validation_g100_attack1_seed1.json": "6226975c45acb69cb8253e14d5d6f6d798310c89fafef26593ccb3c90b796c4e",
+    "configs/evaluation/single_validation_g100_attack1_seed2.json": "53abedaca1c0c3601942ecac7fd693f80cfcb2f2a80a50e2f99e55a7d555ee40",
+    "configs/evaluation/single_validation_g100_attack1_seed3.json": "5a785887164e1068d45d7f811ea6ba1659e1faf873b7b2a42d9f1d15dbfc3272",
+    "configs/evaluation/single_validation_g100_attack1_seed4.json": "1475847ed5255badc3ba1ef7d562c57c777c84285e894044fb25b26e963632a2",
+    "configs/evaluation/single_validation_g100_attack2_seed0.json": "e270ccb63a449b6ba4a85315824504b7bde9844b03640af5ebadc00bcd9cec3e",
+    "configs/evaluation/single_validation_g100_attack2_seed1.json": "51a6c88333a16b14700921056014cb6a51eadf2140598faa9f4543ad6837701c",
+    "configs/evaluation/single_validation_g100_attack2_seed2.json": "4a6793dbc82953038c04e1e33a9406a882b3c810660a18522507413a88fc4463",
+    "configs/evaluation/single_validation_g100_attack2_seed3.json": "d8e928cc4de5a210f26e2bf42d990bf9eb55dde96ce85d59433e7e234e4d39ea",
+    "configs/evaluation/single_validation_g100_attack2_seed4.json": "7535567c7ef1a6e7d761fde211fb192cf66bf80c8025f0bf712461b1c22847ba",
+    "configs/evaluation/single_validation_g200_attack0_seed0.json": "00f7d5925b019be8c19f7af5d2852d9caa2b62926ad566277c195e15d6241dbf",
+    "configs/evaluation/single_validation_g200_attack0_seed1.json": "55281c7f31a10ca1221422caa245f71c493a40fc9cdb9b86f6ad586c77826d9c",
+    "configs/evaluation/single_validation_g200_attack0_seed2.json": "1448cce121d158d1270d55e2ba6edec57145f94f505f4e5574d4ea70c1fc23cf",
+    "configs/evaluation/single_validation_g200_attack0_seed3.json": "4daef63d337dda72105d854828abe81f562e722ef09944ff9fa226e7689bcfde",
+    "configs/evaluation/single_validation_g200_attack0_seed4.json": "ea3211ad5fa18da7bd4c272002e513d34e48303c62a7fcd63778e484f4a2c590",
+    "configs/evaluation/single_validation_g200_attack1_seed0.json": "2834da22b7a2829cc6575df18a545f2c67b54068527bb1c5ff7b1080c196290a",
+    "configs/evaluation/single_validation_g200_attack1_seed1.json": "6fb9bf7257d35524238acdabd84a7d492e91665674a4a16105d2969ea4655b2e",
+    "configs/evaluation/single_validation_g200_attack1_seed2.json": "f38384809807c81bc4e223d8d520cde48f2f9583d47843095ee4f9816581d07a",
+    "configs/evaluation/single_validation_g200_attack1_seed3.json": "1c06ba4b9730e268dc72092a7f9493c100faf216d63b905261097244326875ef",
+    "configs/evaluation/single_validation_g200_attack1_seed4.json": "88c0b29f182c2508f522f8ff978fdee83792d402843b78879eedc2271b50344f",
+    "configs/evaluation/single_validation_g200_attack2_seed0.json": "801a46a04258d2f7ae614ff28d82f3afb7a220f7afb8fee81358a4200b1b319a",
+    "configs/evaluation/single_validation_g200_attack2_seed1.json": "36e8e479f243771a7c3e1a1d6a66c564061bebb01dea484fe64421cb55ca683e",
+    "configs/evaluation/single_validation_g200_attack2_seed2.json": "c9ecfb5af8a4c785e77ca6888cecd314c834b3d391d00f918d52a73937f8ea1f",
+    "configs/evaluation/single_validation_g200_attack2_seed3.json": "0dc67c8e69177581a0a2dea6ec9d23c00d5b7e2d8884d8a3a8a5c94d88bc8cb6",
+    "configs/evaluation/single_validation_g200_attack2_seed4.json": "83598dd681e47d30340f7f8837dbe9a51f7f1988c32a731abed13b6789765416",
+    "configs/evaluation/single_validation_g400_attack0_seed0.json": "f0dc04d07ee7325fd84aee293a3af955164edc96c874d7f846e72be02da5c449",
+    "configs/evaluation/single_validation_g400_attack0_seed1.json": "6914427f51141e0cc6ab0b64eb5d5fc78979e8e81550e6cb246a6c3d51392861",
+    "configs/evaluation/single_validation_g400_attack0_seed2.json": "c40c817ceb011a5237a6e4003bd797e6c3099d698b6d18ffdced36d4166e1d45",
+    "configs/evaluation/single_validation_g400_attack0_seed3.json": "65fc313dd5434debe4d8d56697cbd9cfaaccfe4b9677b1bb0ca27fd612f64363",
+    "configs/evaluation/single_validation_g400_attack0_seed4.json": "f8b131bb4862c8bad039139aad2b51d2829acfa0d1b44c1f2af5bd6978c955ab",
+    "configs/evaluation/single_validation_g400_attack1_seed0.json": "61816ce4415b1057fdaf28601f77ce9908f871a00b6304f0bd6b9edc42bdfbbc",
+    "configs/evaluation/single_validation_g400_attack1_seed1.json": "0417876a75a3960f7800b37488fa99ab6e4f03bc9f5d71dfa1253d004b108b0a",
+    "configs/evaluation/single_validation_g400_attack1_seed2.json": "6f1fdf1ed87ee17b3697c59f7a1a6bd728a7e1b99182ff34876fda54effa5090",
+    "configs/evaluation/single_validation_g400_attack1_seed3.json": "e5b7239aa1555771fdf14b8096eb33432faf283b03cd40403ac396fa25a50ba8",
+    "configs/evaluation/single_validation_g400_attack1_seed4.json": "3c60c821eab64349ba5750f518362baef1583e2c2cf3c81524b27f122dc87074",
+    "configs/evaluation/single_validation_g400_attack2_seed0.json": "593ffa9cb61f570d50fee48e060bbc4dfb145d13ba79b6e57ae2ffdae044cc89",
+    "configs/evaluation/single_validation_g400_attack2_seed1.json": "76b07852a0bbc4fdcda00876ab3e2f9bca7eae919c4ace9fdfa4194b8b46d580",
+    "configs/evaluation/single_validation_g400_attack2_seed2.json": "c3a260e3eb91dce54e91153c976b1265070704174cc80fbc16c987c7e2daaca8",
+    "configs/evaluation/single_validation_g400_attack2_seed3.json": "dc8c317c22c0acc9a7c345bcb04afe74d3a1e64733b78d7ea471ec9882e7325d",
+    "configs/evaluation/single_validation_g400_attack2_seed4.json": "6e2f37094d58d8136fc87897cec5fa0a2f45629fd925a60d941d3340b5a92ef4"
+  },
+  "config_digest_algorithm": "sha256 canonical JSON UTF-8 sort_keys=True separators=(comma,colon) allow_nan=False",
+  "configs": {
+    "configs/evaluation/final_basic_attack0_seed0.json": "8d764bcea582d0cf3201fa63206d3df5c56d0cd3b2c3232c449da6be36aad657",
+    "configs/evaluation/final_basic_attack0_seed1.json": "32144eeb1a630fc948534250231134a50f4f4e435d1e169590cad260ed7d455e",
+    "configs/evaluation/final_basic_attack0_seed2.json": "d2d1783beb970dbfa1ebbdf9b1fcd8bf35abc3a63cf0a0f5dcef049d823aced5",
+    "configs/evaluation/final_basic_attack0_seed3.json": "884e40d2ada28bd924f2dc742e6733a3a2c1d5c72ba7d67a333f815f6a489945",
+    "configs/evaluation/final_basic_attack0_seed4.json": "abf825736cb6eda99ca47d087652c8f2d6b5c10d44d797d7ed7c71d4bd6f57a1",
+    "configs/evaluation/final_basic_attack1_seed0.json": "f6577aee9aa94deab647babdfb694011e39dbc3b257ba6d43f30c96d0874ac3c",
+    "configs/evaluation/final_basic_attack1_seed1.json": "6fceef08ebb142d3a47e9766226c5408aed37f83c50bc81ba3349c8895f28a98",
+    "configs/evaluation/final_basic_attack1_seed2.json": "ad89499ef7880d5a496e786644f934a5a3af6aa1a0113a0d16b660f204e4f933",
+    "configs/evaluation/final_basic_attack1_seed3.json": "c7df82ef46e5ba582184c519dae82baa960804cbc13b4407642ac591dc73ff00",
+    "configs/evaluation/final_basic_attack1_seed4.json": "63c2e6736ca8b945b5c9ee2abe1ff5eb03f8b387fc27b5112c2500c61a82e82e",
+    "configs/evaluation/final_basic_attack2_seed0.json": "9bcbb484a98cb3f338c1d289926a30ec635dc9dad899cc810f6705897003685b",
+    "configs/evaluation/final_basic_attack2_seed1.json": "d6e014d797136bbad63cdcb903fbc24d77196faad62bf6ee60cfb29fbcefa518",
+    "configs/evaluation/final_basic_attack2_seed2.json": "5a9c4a21b83a9cb219a04581789ec9d30464a086c57a2dbaaa76d068d22def99",
+    "configs/evaluation/final_basic_attack2_seed3.json": "a1403d3f0d5c20e3e2856e4fec582551975627f3dec6d161f91650ac0ced9b8c",
+    "configs/evaluation/final_basic_attack2_seed4.json": "aacf1a2876cacd752bc50d2312960561ae9ab5215089c855e4e24c0c5dc4cc2d",
+    "configs/evaluation/final_search_g100_attack0_seed0.json": "7e3fa4f2259d0e10363da15fc832114ac2c566878d8e7dac8361f6beac2c38fa",
+    "configs/evaluation/final_search_g100_attack0_seed1.json": "5596bda8f56763d14e86cb5aafc7c22236aeaabc40a5d6d084f2fbb6b811026f",
+    "configs/evaluation/final_search_g100_attack0_seed2.json": "5aed3aff7d6f7c96dc22afcb758d9a83d9fdf58342f6e7da8afcb881f849ac22",
+    "configs/evaluation/final_search_g100_attack0_seed3.json": "224c6166f5a49020f90cd575e8e7913b2ed32f0e28f184865783442ab3368cdd",
+    "configs/evaluation/final_search_g100_attack0_seed4.json": "a5a54a9cbadaa8b860c54038126e230354f18a5c3351985b714354e5c87c4ffc",
+    "configs/evaluation/final_search_g100_attack1_seed0.json": "bd3ca0c9a1be19478481d6d69cfb0b0f9159e36ebd41f9364b195078903c4eda",
+    "configs/evaluation/final_search_g100_attack1_seed1.json": "0ac6ce54a054c5853e6aa2beaa1a5318fd561f9fa13f9e8dc2c60d02d02fd32c",
+    "configs/evaluation/final_search_g100_attack1_seed2.json": "96314e00ff33b74fc92dda7a47824fe017dff4b71fb152da0951bcc108845495",
+    "configs/evaluation/final_search_g100_attack1_seed3.json": "07e35390a65456a9fe8ab4ab781e2a8282da2810bcd0e537402a503c97e08959",
+    "configs/evaluation/final_search_g100_attack1_seed4.json": "fe67f0fbab3c75d3b940420124ec7fb6533a0357830fd6202e9f18ff3888a18f",
+    "configs/evaluation/final_search_g100_attack2_seed0.json": "daf579493302718b3f23d75dbb87f4ddd32f889a2f673bd1f2fe36201a0414f5",
+    "configs/evaluation/final_search_g100_attack2_seed1.json": "a5b79b83fc367dcab2bd5bf5c65863a6ca42c5569b538ac8fc92b9d92d1183c6",
+    "configs/evaluation/final_search_g100_attack2_seed2.json": "526db7197d9743678bc5f262595c7fa3ad56958afc17837c98dd040fe3673600",
+    "configs/evaluation/final_search_g100_attack2_seed3.json": "0add3d85da4eb6c6a684b24d62ba863f3221fdfd1853dd488067cc84995f9c42",
+    "configs/evaluation/final_search_g100_attack2_seed4.json": "9be365ce5669203a86da45b45c4598d40ba8a231a3bbde9f5fa1d73e4914e98b",
+    "configs/evaluation/final_search_g200_attack0_seed0.json": "1732d7bbcf929badb0757b8d4866f8e4e4fa43032194e14eb91d5eec33d3e5a1",
+    "configs/evaluation/final_search_g200_attack0_seed1.json": "5858706d96624417aa6b4dfb9571fe17a76e3610e9a4a1f37f79b98567193dbe",
+    "configs/evaluation/final_search_g200_attack0_seed2.json": "d40a53b5de769a7e950edb44907d861e61bdb6ccdcddc81250021a1a082a463f",
+    "configs/evaluation/final_search_g200_attack0_seed3.json": "0cbf4c2d42034156e070f66e9e70d889aa90ee84a0fbb0f4a881cfa861215f3d",
+    "configs/evaluation/final_search_g200_attack0_seed4.json": "45c0f51dae2fa1975b22732d54130e229ac8d7318d914763cf8fc754e60f9e88",
+    "configs/evaluation/final_search_g200_attack1_seed0.json": "e94f6355692f3bf51fede3562c755e36ec97bc5ba5e79ac7b42c777accfdc08d",
+    "configs/evaluation/final_search_g200_attack1_seed1.json": "9abb8832d215802a1c8dafc3ff37e03e9baeb7a5e5cffb75626d0fdd142584de",
+    "configs/evaluation/final_search_g200_attack1_seed2.json": "e60f461bf0579e07155b3357083715e62dfc75239aaa9722e837682109a6f965",
+    "configs/evaluation/final_search_g200_attack1_seed3.json": "bbeafd82faaf0a979cf10550075edb41ebba242171055a4cf6a3f9c2b8e7a287",
+    "configs/evaluation/final_search_g200_attack1_seed4.json": "43ac2fc538219702428455a59cd615678a580be5f2abfc5d1f9eb02a3c8d4273",
+    "configs/evaluation/final_search_g200_attack2_seed0.json": "520752c31e7c634cf2a39e8fbedf7e3960952d196163c7b62f0413423dfe6d96",
+    "configs/evaluation/final_search_g200_attack2_seed1.json": "ea17af890961e85d42d75947c4d7ffc4dcf75c2a26bce02a698c2bf59f3362fc",
+    "configs/evaluation/final_search_g200_attack2_seed2.json": "fbfe435177b9c3e1b6ccc145ec754dc0ff93940b3f897c2d12ba71255d024abd",
+    "configs/evaluation/final_search_g200_attack2_seed3.json": "570bc6d66b97a20b7fc38bfe1d621692347a57bc1c2af39468c2d39b64bcaee7",
+    "configs/evaluation/final_search_g200_attack2_seed4.json": "6eb43039d2c945fa55d2824c2564e3adda1a3701ac5a6ffe706e08af1d6958e7",
+    "configs/evaluation/final_search_g400_attack0_seed0.json": "8c531479f5a177cc3627f038de624744838330371e411ddd42f52c2e61b551e7",
+    "configs/evaluation/final_search_g400_attack0_seed1.json": "ecf2bb74538446ba5ac50e7edf50ea9cd99504b3b6d160b28afc5a5f97fe769a",
+    "configs/evaluation/final_search_g400_attack0_seed2.json": "1c3d1ee88e12ddc09598eae8c49b8650cebef306c67916234bd133ddb0f27382",
+    "configs/evaluation/final_search_g400_attack0_seed3.json": "86b4ae82c290be2ad08794d167605b220698d5f04dd852a49d292437e0d61f30",
+    "configs/evaluation/final_search_g400_attack0_seed4.json": "1e6efc33a97e7be6f04e27a133397ee6512dd17f9c0cc28a67e5cf6981577b85",
+    "configs/evaluation/final_search_g400_attack1_seed0.json": "3e317114e6974e6c82dafd313d29414a475534415d204de095a5f026677aabc0",
+    "configs/evaluation/final_search_g400_attack1_seed1.json": "64f05b813a7b5e0e908ad1319aea3a78704ae957646570f52cd23cc8afbdb441",
+    "configs/evaluation/final_search_g400_attack1_seed2.json": "937f64d3ff902ae851cd0c346b1ee56c92cde1d498b41f9ec2d7a2d07177aa0e",
+    "configs/evaluation/final_search_g400_attack1_seed3.json": "979a6b447b4650bc42f7c5cf893ecbd8383c0b2623ff8ff7655ceac773134abb",
+    "configs/evaluation/final_search_g400_attack1_seed4.json": "3d60394bb1dc350f70f32bb9c1602f8316ccd2bff97c2150337ae531d0174109",
+    "configs/evaluation/final_search_g400_attack2_seed0.json": "036073b43b1bc7d2c04832b811085ed26316883b7ec8e72180212968205dd90b",
+    "configs/evaluation/final_search_g400_attack2_seed1.json": "728609acf3cafe7a746b580bc807f474a3af86dc90a0e75563368da617737960",
+    "configs/evaluation/final_search_g400_attack2_seed2.json": "50496dab53067048f04d1e8b80c299cb5c66f4157cc9fa90e4f0f01c1ce8e8ef",
+    "configs/evaluation/final_search_g400_attack2_seed3.json": "2bb5088ef9869f12caf793924ee1176695d9eda96b3671cebe6fd8e15bbdedf9",
+    "configs/evaluation/final_search_g400_attack2_seed4.json": "f47f54bece221049db3d778118a39e34411eccdb628a0daf27ee60ae8c15f4f1"
+  },
+  "groups": [
+    {
+      "id": "basic_attack0",
+      "gradient_cap": null,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/final_basic_attack0_seed0.json",
+        "configs/evaluation/final_basic_attack0_seed1.json",
+        "configs/evaluation/final_basic_attack0_seed2.json",
+        "configs/evaluation/final_basic_attack0_seed3.json",
+        "configs/evaluation/final_basic_attack0_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "basic_attack1",
+      "gradient_cap": null,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/final_basic_attack1_seed0.json",
+        "configs/evaluation/final_basic_attack1_seed1.json",
+        "configs/evaluation/final_basic_attack1_seed2.json",
+        "configs/evaluation/final_basic_attack1_seed3.json",
+        "configs/evaluation/final_basic_attack1_seed4.json"
+      ],
+      "episodes": 1000
+    },
+    {
+      "id": "basic_attack2",
+      "gradient_cap": null,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/final_basic_attack2_seed0.json",
+        "configs/evaluation/final_basic_attack2_seed1.json",
+        "configs/evaluation/final_basic_attack2_seed2.json",
+        "configs/evaluation/final_basic_attack2_seed3.json",
+        "configs/evaluation/final_basic_attack2_seed4.json"
+      ],
+      "episodes": 1000
+    },
+    {
+      "id": "search_g100_attack0",
+      "gradient_cap": 100,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/final_search_g100_attack0_seed0.json",
+        "configs/evaluation/final_search_g100_attack0_seed1.json",
+        "configs/evaluation/final_search_g100_attack0_seed2.json",
+        "configs/evaluation/final_search_g100_attack0_seed3.json",
+        "configs/evaluation/final_search_g100_attack0_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g100_attack1",
+      "gradient_cap": 100,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/final_search_g100_attack1_seed0.json",
+        "configs/evaluation/final_search_g100_attack1_seed1.json",
+        "configs/evaluation/final_search_g100_attack1_seed2.json",
+        "configs/evaluation/final_search_g100_attack1_seed3.json",
+        "configs/evaluation/final_search_g100_attack1_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g100_attack2",
+      "gradient_cap": 100,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/final_search_g100_attack2_seed0.json",
+        "configs/evaluation/final_search_g100_attack2_seed1.json",
+        "configs/evaluation/final_search_g100_attack2_seed2.json",
+        "configs/evaluation/final_search_g100_attack2_seed3.json",
+        "configs/evaluation/final_search_g100_attack2_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g200_attack0",
+      "gradient_cap": 200,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/final_search_g200_attack0_seed0.json",
+        "configs/evaluation/final_search_g200_attack0_seed1.json",
+        "configs/evaluation/final_search_g200_attack0_seed2.json",
+        "configs/evaluation/final_search_g200_attack0_seed3.json",
+        "configs/evaluation/final_search_g200_attack0_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g200_attack1",
+      "gradient_cap": 200,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/final_search_g200_attack1_seed0.json",
+        "configs/evaluation/final_search_g200_attack1_seed1.json",
+        "configs/evaluation/final_search_g200_attack1_seed2.json",
+        "configs/evaluation/final_search_g200_attack1_seed3.json",
+        "configs/evaluation/final_search_g200_attack1_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g200_attack2",
+      "gradient_cap": 200,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/final_search_g200_attack2_seed0.json",
+        "configs/evaluation/final_search_g200_attack2_seed1.json",
+        "configs/evaluation/final_search_g200_attack2_seed2.json",
+        "configs/evaluation/final_search_g200_attack2_seed3.json",
+        "configs/evaluation/final_search_g200_attack2_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g400_attack0",
+      "gradient_cap": 400,
+      "attack_seed": 0,
+      "configs": [
+        "configs/evaluation/final_search_g400_attack0_seed0.json",
+        "configs/evaluation/final_search_g400_attack0_seed1.json",
+        "configs/evaluation/final_search_g400_attack0_seed2.json",
+        "configs/evaluation/final_search_g400_attack0_seed3.json",
+        "configs/evaluation/final_search_g400_attack0_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g400_attack1",
+      "gradient_cap": 400,
+      "attack_seed": 1,
+      "configs": [
+        "configs/evaluation/final_search_g400_attack1_seed0.json",
+        "configs/evaluation/final_search_g400_attack1_seed1.json",
+        "configs/evaluation/final_search_g400_attack1_seed2.json",
+        "configs/evaluation/final_search_g400_attack1_seed3.json",
+        "configs/evaluation/final_search_g400_attack1_seed4.json"
+      ],
+      "episodes": 1250
+    },
+    {
+      "id": "search_g400_attack2",
+      "gradient_cap": 400,
+      "attack_seed": 2,
+      "configs": [
+        "configs/evaluation/final_search_g400_attack2_seed0.json",
+        "configs/evaluation/final_search_g400_attack2_seed1.json",
+        "configs/evaluation/final_search_g400_attack2_seed2.json",
+        "configs/evaluation/final_search_g400_attack2_seed3.json",
+        "configs/evaluation/final_search_g400_attack2_seed4.json"
+      ],
+      "episodes": 1250
+    }
+  ],
+  "search_methods": [
+    "none",
+    "zero_one_budgeted_return",
+    "zero_one_budgeted_safety",
+    "ours_single_return",
+    "ours_progress_return"
+  ],
+  "checkpoint_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "attack_seeds": [
+    0,
+    1,
+    2
+  ],
+  "split_id": 30,
+  "episodes": 50,
+  "max_steps": 200,
+  "gate_enabled": false,
+  "gradient_forward_caps": [
+    [
+      100,
+      200
+    ],
+    [
+      200,
+      400
+    ],
+    [
+      400,
+      800
+    ]
+  ],
+  "common_shadow_limits": {
+    "new_shadow_transitions": 200,
+    "shadow_steps": 4000
+  },
+  "totals": {
+    "configs": 60,
+    "groups": 12,
+    "raw_episodes": 14500,
+    "attack_episodes": 11500,
+    "repeated_clean_episodes": 3000,
+    "search_attack_episodes": 9000,
+    "simple_attack_episodes": 2500,
+    "fgsm_episodes": 250,
+    "canonical_clean_episodes": 250,
+    "unique_model_traffic_pairs": 250,
+    "traffic_clusters": 50,
+    "table_rows": 17
+  },
+  "seed_roles": {
+    "checkpoint_training_seed": "0..4 model identity, never evaluation traffic seed",
+    "policy_seed": "unused: frozen greedy_argmax inference",
+    "environment_seed": "SeedSequence([20260921,1,30,2**31-2]) mod (2**31-1); Python/NumPy/Torch/initial SUMO",
+    "episode_sumo_seed": "Frozen 50-element split 30 list in order",
+    "attack_seed": "0,1,2 isolated by existing attack implementation; FGSM/no_attack deterministic"
+  },
+  "execution": {
+    "parallel_groups": 2,
+    "jobs_per_group": 5,
+    "max_live_evaluations": 10,
+    "policy_threads": 1,
+    "clean_reference_group": "basic_attack0",
+    "require_clean_reference_before_other_groups": true,
+    "provenance": "Record actual execution SHA, clean tracked tree, config, role seeds, launch command, versions, checkpoint hashes; keep fixed for entire batch"
+  },
+  "statistics": {
+    "primary": {
+      "first": "ours_single_return",
+      "second": "zero_one_budgeted_return",
+      "endpoint": "episode_return",
+      "direction": "first_minus_second; negative is stronger",
+      "budgets": [
+        100,
+        200,
+        400
+      ]
+    },
+    "secondary": {
+      "first": "ours_single_return",
+      "second": "ours_progress_return",
+      "claim": "Continuous effect/cost tradeoff; no equivalence or noninferiority margin"
+    },
+    "averaging": "attack seeds within checkpoint/traffic, then five fixed checkpoints within traffic",
+    "resampling_unit": "traffic seed; jointly paired across methods, budgets and checkpoints",
+    "traffic_clusters": 50,
+    "fixed_checkpoint_traffic_units": 250,
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 20261004,
+      "method": "percentile_traffic_block",
+      "descriptive_confidence": 0.95,
+      "primary_family_size": 3,
+      "primary_adjusted_confidence": 0.9833333333333333,
+      "interpretation": "Approximate conditional intervals, not a proof of significance"
+    },
+    "fgsm": "250 actual episodes; broadcast deterministic paired outcomes only, never costs or sample N",
+    "clean": "250 canonical episodes from basic_attack0; other Clean episodes are integrity checks",
+    "diagnostics": [
+      "per_checkpoint",
+      "per_traffic",
+      "leave_one_traffic_out",
+      "wins_ties_losses_tolerance_1e-9",
+      "clean_survived_collision_conversions"
+    ],
+    "costs": [
+      "gradient_evaluations",
+      "attack_policy_forward_calls",
+      "evaluator_policy_forward_calls",
+      "total_policy_forward_calls",
+      "new_shadow_transitions",
+      "physical_shadow_steps_including_setup"
+    ],
+    "cost_denominators": [
+      "total",
+      "mean_per_actual_episode",
+      "per_live_step"
+    ],
+    "safety": "Original SUMO collision definition; episode minimum TTC and TTC p5 / DRAC p95 with valid counts and nulls; do not present averaged episode percentiles as pooled percentiles",
+    "reporting": "All 17 method/budget rows; negative cases and traffic concentration; no post-test model/config selection"
+  },
+  "failure_policy": {
+    "dispatch": "Stop dispatch on any failed config or integrity audit; preserve every attempt",
+    "infrastructure_retries": 1,
+    "retry": "Only demonstrated infrastructure failure; same source/config/seeds/runtime/models, fresh output; retain failed attempt and cause; never retry because of poor scientific outcomes",
+    "invalidation": "Seed/model/runtime/replay/budget/matrix mismatch invalidates the batch; do not drop traffic or replace it",
+    "exposure": "Record exposure when any split-30 simulation starts. Algorithm changes after exposure require a new independent preregistered split; split 30 cannot become unseen again",
+    "debugging": "Use split 10/20; no tuning on final outcomes"
+  },
+  "readiness_requirements": [
+    "Final dispatcher and 50-episode auditor committed/tested before exposure",
+    "Whole-matrix completion, paired Clean regression, action/replay and all actual-cost ledger audits",
+    "Raw episode identity validation and registered traffic-block statistics",
+    "Read-only preflight passed on a clean exact execution commit"
+  ],
+  "scope": "Freeze only. Existing validation auditors are not final-50 auditors; no automatic launch, new attack, defense, Gate or final tuning."
+}
