@@ -42,7 +42,7 @@ def assert_unexposed():
                 scope="Existing launcher manifest/evaluation/batch files under .local/runs; no outcome parsing, no guarantee about unrecorded runs")
 
 
-def preflight(expected_commit):
+def preflight(expected_commit, restart_authorization=None):
     if git("status", "--porcelain") or git("rev-parse", "HEAD") != expected_commit:
         raise ValueError("Require a clean exact execution commit")
     record = json.loads(PROTOCOL.read_text(encoding="utf-8"))
@@ -53,7 +53,11 @@ def preflight(expected_commit):
         raise ValueError("Committed method document changed")
     configs = {p: read(p) for p in record["configs"]}
     validate_registration(record, configs)
-    exposure = assert_unexposed()
+    if restart_authorization is None:
+        exposure = assert_unexposed()
+    else:
+        from final_restart import validate_restart
+        exposure = validate_restart(restart_authorization, record)
     wheel = record["zero_one_wheel"]
     if sha256(ROOT / wheel["path"]) != wheel["sha256"]:
         raise ValueError("ZOOpt wheel changed")
@@ -92,8 +96,9 @@ def preflight(expected_commit):
                             for p, c in configs.items()}, environment_overrides=trainings[0]["environment_overrides"],
                 runtime_path_prepend=trainings[0]["runtime_path_prepend"], probes=probes,
                 checkpoint_probe=checkpoints, checkpoint_verification=verified, exposure_check=exposure,
-                totals=record["totals"], simulations_run=0, final_outcomes_seen=False,
-                final_execution_ready=False, next_requirements=record["readiness_requirements"])
+                totals=record["totals"], simulations_run=0, final_outcomes_seen=restart_authorization is not None,
+                final_execution_ready=False, next_requirements=record["readiness_requirements"],
+                traffic_previously_exposed=restart_authorization is not None)
 
 
 def main():

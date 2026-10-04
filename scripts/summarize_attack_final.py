@@ -131,6 +131,10 @@ def summarize(pipeline_path):
     result = build_result(reports, protocol, commit)
     result.update(inputs=proofs, pipeline=pipeline_path.relative_to(ROOT).as_posix(),
                   raw_episode_verified_steps=sum(r["raw_episode_verified_steps"] for r in reports))
+    if 'restart' in pipeline:
+        for name, digest in pipeline['restart']['source_sha256'].items():
+            require(sha256(ROOT / name) == digest, 'Original restart evidence changed: ' + name)
+        result['restart'] = pipeline['restart']
     return result
 
 
@@ -152,6 +156,10 @@ def markdown(result):
     lines.extend(["", "所有机制/简单对照的配对差、实际成本、逐模型/交通和 leave-one-traffic-out 在同名 JSON 中保留。",
                   "FGSM 为 250 个实际 episode；确定性结果只在配对计算广播，成本与样本数不复制。安全 episode 百分位条件均值不等于 pooled 百分位。",
                   "", "区间条件于五个固定模型，三个攻击 seed 不是三倍独立交通。净转换可为分数单位。负例与交通集中性必须纳入论文讨论，不能仅凭均值主张稳定安全优势或全面计算优势。", ""])
+    if 'restart' in result:
+        lines[0] = '# 最终固定交通攻击比较'
+        lines.extend(['用户授权对中断测试完整重跑；仅本轮完整矩阵进入结果，旧尝试单独保留。',
+                      'split 30 已在原尝试中暴露，本轮不是新的独立交通样本；算法、预算、模型和seed未调参。', ''])
     return "\n".join(lines)
 
 
