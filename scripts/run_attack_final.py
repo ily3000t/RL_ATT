@@ -58,15 +58,15 @@ def dispatch(groups, worker, concurrency=2):
     return not halted
 
 
-def run(output, readiness, expected_commit):
+def run(output, readiness, expected_commit, restart_authorization=None):
     output = output.resolve()
     if output.exists() or (ROOT / ".local/runs").resolve() not in output.parents:
         raise ValueError("Use a new ignored final output directory")
     certificate = json.loads(readiness.read_text())
-    validate_certificate(certificate, expected_commit)
-    # Initial preflight is required even if the engineering certificate was made
-    # on a parent feature commit with identical tooling. No resume or outcome retry.
-    inputs = preflight(expected_commit)
+    validate_certificate(certificate, expected_commit, restart_authorization)
+    # Revalidate all inputs even for a certified parent feature commit. A fresh
+    # full restart needs explicit preserved evidence; never infer it from outcomes.
+    inputs = preflight(expected_commit, restart_authorization)
     protocol = json.loads(PROTOCOL.read_text())
     training = json.loads((ROOT / protocol["runtime_references"][0]["path"]).read_text())
     env = os.environ.copy()
@@ -81,6 +81,8 @@ def run(output, readiness, expected_commit):
                   protocol_sha256=sha256(PROTOCOL), status="running", planned_episodes=14500, verified_episodes=0,
                   started_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(), final_exposure_declared_at_utc=None,
                   execution=protocol["execution"], groups=[dict(copy.deepcopy(g), status="pending") for g in protocol["groups"]])
+    if restart_authorization is not None:
+        record['restart'] = inputs['exposure_check']
     save(path, record)
     lock = threading.Lock()
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
@@ -163,5 +165,6 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--readiness", type=Path, required=True)
     parser.add_argument("--expected-commit", required=True)
+    parser.add_argument('--restart-authorization', type=Path)
     args = parser.parse_args()
-    run(args.output, args.readiness.resolve(), args.expected_commit)
+    run(args.output, args.readiness.resolve(), args.expected_commit, args.restart_authorization)

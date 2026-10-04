@@ -23,7 +23,7 @@ TOOLS = ("scripts/analyze_attack_final.py", "scripts/check_final_auditor_fixture
          "scripts/analyze_proposed_development.py", "scripts/analyze_progress_retry.py",
          "scripts/analyze_basic_validation.py", "scripts/analyze_mechanism_controls.py",
          "scripts/run_baseline.py", "scripts/run_budget_validation.py",
-         "scripts/prepare_mechanism_controls.py", "scripts/prepare_proposed_configs.py")
+         "scripts/prepare_mechanism_controls.py", "scripts/prepare_proposed_configs.py", "scripts/final_restart.py")
 
 
 def tool_hashes():
@@ -32,7 +32,7 @@ def tool_hashes():
             for p in TOOLS + tuple(tests)}
 
 
-def validate_certificate(record, expected_commit=None):
+def validate_certificate(record, expected_commit=None, restart_authorization=None):
     if (record["kind"] != "attack_final_execution_readiness" or not record["verified"] or
             not record["final_execution_ready"] or record["new_simulations"] != 0 or
             record["protocol_sha256"] != sha256(PROTOCOL) or record["tools_git_blob_sha256"] != tool_hashes()):
@@ -41,6 +41,9 @@ def validate_certificate(record, expected_commit=None):
         raise ValueError("Incomplete engineering evidence")
     if expected_commit and (git("rev-parse", "HEAD") != expected_commit or git("status", "--porcelain")):
         raise ValueError("Execution source or tracked tree changed")
+    expected_restart = sha256(restart_authorization) if restart_authorization is not None else None
+    if record.get('restart_authorization_sha256') != expected_restart:
+        raise ValueError('Readiness certificate restart authorization differs')
     for proof in record["inputs"]:
         if sha256(ROOT / proof["path"]) != proof["sha256"]:
             raise ValueError("Engineering certificate input changed")
@@ -53,11 +56,11 @@ def validate_certificate(record, expected_commit=None):
         raise ValueError("Engineering proof provenance mismatch")
 
 
-def check(output, expected_commit):
+def check(output, expected_commit, restart_authorization=None):
     output = output.resolve()
     if output.exists() or (ROOT / ".local/runs").resolve() not in output.parents:
         raise ValueError("Use a new ignored readiness output")
-    checks = preflight(expected_commit)
+    checks = preflight(expected_commit, restart_authorization)
     output.parent.mkdir(parents=True, exist_ok=True)
     write_json(output.parent / "protocol-preflight.json", checks)
     reference = json.loads((PROTOCOL).read_text())["runtime_references"][0]["path"]
@@ -94,7 +97,8 @@ def check(output, expected_commit):
                   command=[sys.executable] + sys.argv, check_commands=commands, protocol_sha256=sha256(PROTOCOL),
                   tools_git_blob_sha256=tool_hashes(), inputs=inputs, tests_passed=int(tests.group(1)),
                   fixture_episodes=proof["episodes"], fixture_steps=proof["steps"],
-                  limitation="Engineering certificate, not final efficacy; preregistration historical readiness remains false")
+                  limitation="Engineering certificate, not final efficacy; preregistration historical readiness remains false",
+                  restart_authorization_sha256=sha256(restart_authorization) if restart_authorization is not None else None)
     write_json(output, record)
     return record
 
@@ -103,6 +107,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--expected-commit", required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument('--restart-authorization', type=Path)
     args = parser.parse_args()
-    result = check(args.output, args.expected_commit)
+    result = check(args.output, args.expected_commit, args.restart_authorization)
     print("FINAL_EXECUTION_READY tests=%d fixture_steps=%d new_simulations=0" % (result["tests_passed"], result["fixture_steps"]))

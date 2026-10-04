@@ -70,7 +70,7 @@ class DispatchTests(unittest.TestCase):
 
 
 class FinalPipelineContractTests(unittest.TestCase):
-    def exercise(self, fail_anchor=False):
+    def exercise(self, fail_anchor=False, restart=False):
         protocol = json.loads(PROTOCOL.read_text())
         with TemporaryDirectory() as temp:
             root = Path(temp)
@@ -114,7 +114,8 @@ class FinalPipelineContractTests(unittest.TestCase):
                 target.write_text(json.dumps(dict(verified=True, git_commit="mock", episodes=group["episodes"], raw_episode_verified_steps=10)))
             with patch.object(final_runner, "ROOT", root), \
                  patch.object(final_runner, "validate_certificate"), \
-                 patch.object(final_runner, "preflight", return_value=dict(simulations_run=0)), \
+                 patch.object(final_runner, "preflight", return_value=dict(simulations_run=0,
+                     exposure_check=dict(kind='authorized_full_matrix_restart', original_first_exposure_at_utc='original'))), \
                  patch.object(final_runner, "git", side_effect=lambda *args: "" if args[0] == "status" else "mock"), \
                  patch.object(final_runner.subprocess, "run", side_effect=process), \
                  patch.object(final_runner.subprocess, "check_call", side_effect=audit):
@@ -122,7 +123,7 @@ class FinalPipelineContractTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         final_runner.run(output, readiness, "mock")
                 else:
-                    final_runner.run(output, readiness, "mock")
+                    final_runner.run(output, readiness, "mock", Path('authorization.json') if restart else None)
             return json.loads((output / "final-attack.json").read_text())
 
     def test_whole_pipeline_records_anchor_audits_and_summary(self):
@@ -138,6 +139,12 @@ class FinalPipelineContractTests(unittest.TestCase):
         self.assertEqual(result["verified_episodes"], 0)
         self.assertNotIn("summary_sha256", result)
         self.assertTrue(all(g["status"] == "not_run_after_failure" for g in result["groups"][1:]))
+
+    def test_full_restart_keeps_origin_and_runs_the_entire_matrix(self):
+        result = self.exercise(restart=True)
+        self.assertEqual(result['restart']['original_first_exposure_at_utc'], 'original')
+        self.assertEqual(result['verified_episodes'], 14500)
+        self.assertTrue(all(g['status'] == 'passed' for g in result['groups']))
 
 
 
