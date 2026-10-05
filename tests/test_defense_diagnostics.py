@@ -115,6 +115,17 @@ class DefenseDiagnosticTests(unittest.TestCase):
         self.assertIsNone(summary["asr"])
         self.assertEqual(summary["early_collision_conversions"], 0)
 
+    def test_failed_requested_target_can_have_valid_execution_witness(self):
+        clean, attack = trace(1), trace(1, changed=True)
+        attack[0]["attack_metadata"] = dict(target_action=0, planned_action=1)
+        detail = diagnose_pair(clean, attack, episode(clean), episode(attack))
+        self.assertEqual(detail["target_hits"], 0)
+        self.assertEqual(detail["witness_verified_steps"], 1)
+        self.assertEqual(detail["requested_target_mismatches_with_valid_witness"], 1)
+        attack[0]["attack_metadata"]["planned_action"] = 2
+        with self.assertRaises(ValueError):
+            diagnose_pair(clean, attack, episode(clean), episode(attack))
+
     def test_grid_rejects_missing_duplicate_and_wrong_cohort(self):
         entries = [dict(victim="clean", run_seed=0, attack=dict(name=name)) for name in ("none", "pgd")]
         self.assertEqual(len(index_grid(entries, ["clean"], [0], ["none", "pgd"])), 2)

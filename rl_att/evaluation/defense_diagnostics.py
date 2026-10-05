@@ -84,7 +84,7 @@ def diagnose_pair(clean, attacked, reference, episode, max_steps=200, early_step
     else:
         timing = "real_steps_4_to_20"
     local_counts = [[0] * 3 for _ in range(3)]
-    target_hits = target_queries = 0
+    target_hits = target_queries = witness_queries = alternate_witnesses = 0
     costs = {k: 0 for k in ("objective_evaluations", "gradient_evaluations", "policy_forward_calls",
                             "new_shadow_transitions", "shadow_steps", "replay_steps", "warmup_steps")}
     for row in attacked:
@@ -94,6 +94,12 @@ def diagnose_pair(clean, attacked, reference, episode, max_steps=200, early_step
             require(type(target) is int and target in (0, 1, 2), "Invalid target action")
             target_queries += 1
             target_hits += int(row["action"] == target)
+        witness = row["attack_metadata"].get("planned_action")
+        if witness is not None:
+            require(type(witness) is int and witness in (0, 1, 2) and witness == row["action"],
+                    "Execution differs from planned witness action")
+            witness_queries += 1
+            alternate_witnesses += int(target is not None and target != witness)
         for key in costs:
             value = row["attack_cost"].get(key, 0)
             require(type(value) is int and value >= 0, "Invalid resource count")
@@ -107,6 +113,7 @@ def diagnose_pair(clean, attacked, reference, episode, max_steps=200, early_step
                 first_collision_real_step=first + 1 if collision else None,
                 ego_missing_steps=sum(not r["safety"]["ego_present"] for r in attacked),
                 local_action_counts=local_counts, target_queries=target_queries, target_hits=target_hits,
+                witness_verified_steps=witness_queries, requested_target_mismatches_with_valid_witness=alternate_witnesses,
                 costs=costs)
 
 
@@ -143,6 +150,8 @@ def summarize_cases(cases):
                 terminated_episodes=sum(c["terminated"] for c in cases),
                 ego_missing_steps=sum(c["ego_missing_steps"] for c in cases),
                 local_action_counts=local, target_queries=queries, target_hits=hits,
+                witness_verified_steps=sum(c["witness_verified_steps"] for c in cases),
+                requested_target_mismatches_with_valid_witness=sum(c["requested_target_mismatches_with_valid_witness"] for c in cases),
                 target_hit_rate=hits / queries if queries else None, costs=costs)
 
 
