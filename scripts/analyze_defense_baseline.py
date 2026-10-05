@@ -2,10 +2,12 @@
 
 import argparse
 import hashlib
+import io
 import json
 from pathlib import Path
 import subprocess
 import sys
+import tarfile
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -82,7 +84,17 @@ def paired_tradeoffs(rows, config):
     return comparisons
 
 
-def analyze(directory, group_id):
+def exported_source_hashes(commit, paths):
+    """Match launcher's exported bytes, including Windows CRLF conversion."""
+    from run_baseline import SOURCE_PATHS
+    archive = subprocess.check_output(["git","archive","--format=tar",commit,*SOURCE_PATHS,"rl_att"],cwd=str(ROOT))
+    with tarfile.open(fileobj=io.BytesIO(archive)) as source:
+        result = {m.name:hashlib.sha256(source.extractfile(m).read()).hexdigest() for m in source.getmembers() if m.isfile()}
+    require(set(result) == set(paths),"Executed source file set differs from committed export")
+    return result
+
+
+def analyze(directory, group_id, expected_execution_commit=None):
     directory = directory.resolve()
     require((ROOT / ".local/runs").resolve() in directory.parents, "Use an ignored run directory")
     require(not git("status", "--porcelain"), "Commit source before defense audit")
@@ -92,15 +104,22 @@ def analyze(directory, group_id):
     config = reader.json(ROOT / group["config"])
     require(canonical_hash(config) == group["config_sha256"], "Registered defense configuration changed")
     manifest, evaluation = reader.json(directory/"manifest.json"), reader.json(directory/"evaluation.json")
+    execution_commit = expected_execution_commit or git("rev-parse","HEAD")
+    require(subprocess.call(["git","merge-base","--is-ancestor",execution_commit,"HEAD"],cwd=str(ROOT)) == 0,
+            "Execution commit must be an ancestor of audit source")
     require(manifest["status"] == "passed" and manifest["returncode"] == 0 and
             manifest["config"] == evaluation["config"] == config and
-            manifest["git_commit"] == evaluation["git_commit"] == git("rev-parse", "HEAD"), "Defense provenance differs")
-    require(manifest["victim_references"] == protocol["victim_references"] and not evaluation["gate_enabled"], "Frozen defense cohort or Gate changed")
-    frozen = {name: hashlib.sha256(subprocess.check_output(["git","show",manifest["git_commit"]+":"+name], cwd=str(ROOT))).hexdigest()
-              for name in manifest["source_sha256_before"]}
+            manifest["git_commit"] == evaluation["git_commit"] == execution_commit, "Defense provenance differs")
+    execution_protocol = json.loads(subprocess.check_output(["git","show",execution_commit+":configs/research/defense_baseline.json"],cwd=str(ROOT)))
+    execution_group = next(g for g in execution_protocol["groups"] if g["id"] == group_id)
+    require(execution_group == group and execution_protocol["victim_references"] == protocol["victim_references"],
+            "Execution registration differs from audit group")
+    references = [r for r in protocol["victim_references"] if r["run_seed"] in config["run_seeds"] and r["victim"] in config["victims"]]
+    require(manifest["victim_references"] == references and not evaluation["gate_enabled"], "Frozen defense cohort or Gate changed")
+    frozen = exported_source_hashes(execution_commit,manifest["source_sha256_before"])
     verify_sources(manifest, frozen, directory)
     rows, total_steps, entries = [], 0, iter(evaluation["runs"])
-    for ref in protocol["victim_references"]:
+    for ref in references:
         checkpoint = ROOT/ref["checkpoint"]
         reader.path(checkpoint)
         training = reader.json(checkpoint.parents[2]/"manifest.json")
@@ -140,22 +159,56 @@ def analyze(directory, group_id):
                              costs=costs,episode_rows=episodes))
         victim.assert_frozen()
     require(next(entries,None) is None and sum(len(r["episode_rows"]) for r in rows) == group["actual_episodes"], "Unexpected/incomplete defense runs")
-    require(not git("status","--porcelain") and git("rev-parse","HEAD") == manifest["git_commit"], "Defense source changed while auditing")
+    require(not git("status","--porcelain"), "Defense tracked tree changed while auditing")
     return dict(kind="oarl_defense_baseline_audit", verified=True, group_id=group_id,
-        git_commit=manifest["git_commit"], protocol_sha256=reader.sources["configs/research/defense_baseline.json"],
+        git_commit=manifest["git_commit"], audit_git_commit=git("rev-parse","HEAD"),
+        execution_protocol_canonical_sha256=canonical_hash(execution_protocol),
+        protocol_sha256=reader.sources["configs/research/defense_baseline.json"],
         attack_mode=protocol["attack_mode"], actual_episodes=group["actual_episodes"], real_steps=total_steps,
-        comparisons=paired_tradeoffs(rows,config), source_sha256=reader.sources,
+        comparisons=paired_tradeoffs(rows,config), rows=rows, source_sha256=reader.sources,
         scientific_evidence=group_id != "engineering_smoke",
         limitation=protocol["statistics"]["efficacy_limit"], defense_training_cost="not measured by evaluation; report training independently")
 
 
+def analyze_batch(path):
+    reader = Reader()
+    batch = reader.json(path.resolve())
+    protocol = reader.json(ROOT/"configs/research/defense_baseline.json")
+    groups = [g for g in protocol["groups"] if g["id"].startswith("development_seed")]
+    expected = {g["config"]:g for g in groups}
+    require(len(groups) == 5 and batch["status"] == "passed" and batch["git_commit"] == git("rev-parse","HEAD") and
+            len(batch["configs"]) == 5 and set(batch["configs"]) == set(expected) and
+            len(batch["runs"]) == 5 and {r["config"] for r in batch["runs"]} == set(expected), "Incomplete defense pilot batch")
+    children = []
+    for run in sorted(batch["runs"],key=lambda r:r["config"]):
+        require(run["returncode"] == 0,"Defense pilot child failed")
+        children.append(analyze(Path(run["run_dir"]),expected[run["config"]]["id"]))
+    rows = [r for c in children for r in c["rows"]]
+    config = reader.json(ROOT/"configs/evaluation/defense_oarl_development.json")
+    return dict(kind="oarl_defense_baseline_audit",verified=True,group_id="development_pilot",git_commit=batch["git_commit"],
+        protocol_sha256=children[0]["protocol_sha256"],attack_mode=protocol["attack_mode"],actual_episodes=350,
+        real_steps=sum(c["real_steps"] for c in children),comparisons=paired_tradeoffs(rows,config),
+        source_sha256=dict(reader.sources, **{p:h for c in children for p,h in c["source_sha256"].items()}),
+        scientific_evidence=True,limitation=protocol["statistics"]["efficacy_limit"],
+        defense_training_cost="not measured by evaluation; report training independently")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run",type=Path,required=True)
-    parser.add_argument("--group",choices=("engineering_smoke","development_pilot"),required=True)
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument("--run",type=Path)
+    inputs.add_argument("--batch",type=Path)
+    parser.add_argument("--group")
+    parser.add_argument("--expected-execution-commit", help="Explicitly audit an existing ancestor execution after an auditor-only repair")
     parser.add_argument("--output",type=Path,required=True)
     args = parser.parse_args()
     require((ROOT/".local/runs").resolve() in args.output.resolve().parents and not args.output.exists(), "Use new ignored audit output")
-    report = analyze(args.run,args.group)
+    if args.run is not None and args.group is None:
+        parser.error("--run requires its registered --group")
+    if args.batch is not None and args.group is not None:
+        parser.error("Batch audits select the complete registered pilot; omit --group")
+    if args.batch is not None and args.expected_execution_commit is not None:
+        parser.error("Historical execution override applies only to an explicit --run")
+    report = analyze_batch(args.batch) if args.batch is not None else analyze(args.run,args.group,args.expected_execution_commit)
     args.output.write_text(json.dumps(report,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     print("DEFENSE_AUDIT_PASSED episodes=%d steps=%d"%(report["actual_episodes"],report["real_steps"]))

@@ -127,6 +127,36 @@
       "config": "configs/evaluation/defense_oarl_development.json",
       "config_sha256": "1fe7ac4339ffa4827e6e5c2fc9d956b524c7a24e384158e408a0d28eef42ee57",
       "actual_episodes": 350
+    },
+    {
+      "id": "development_seed0",
+      "config": "configs/evaluation/defense_oarl_development_seed0.json",
+      "config_sha256": "ada5fbe666679e63142a9a6f7e292016794119e45f5c378687576d9c80176ab0",
+      "actual_episodes": 70
+    },
+    {
+      "id": "development_seed1",
+      "config": "configs/evaluation/defense_oarl_development_seed1.json",
+      "config_sha256": "180abf60c87e00d1ed858d05edb865330ce6cdf2ec07ae76806f45d19979c493",
+      "actual_episodes": 70
+    },
+    {
+      "id": "development_seed2",
+      "config": "configs/evaluation/defense_oarl_development_seed2.json",
+      "config_sha256": "0e5c13fd73876ae35b2292355224fc396dae77ce9981153c3ab5992ed5abbd0d",
+      "actual_episodes": 70
+    },
+    {
+      "id": "development_seed3",
+      "config": "configs/evaluation/defense_oarl_development_seed3.json",
+      "config_sha256": "af4c846cf07a5b1e564a2b1391149f7561e691fc5766537e3bf727c48b19ad42",
+      "actual_episodes": 70
+    },
+    {
+      "id": "development_seed4",
+      "config": "configs/evaluation/defense_oarl_development_seed4.json",
+      "config_sha256": "e62bd93197b08c0a6ec4a95f0be4789244bfcb28e624fd3ed02c592599e944c0",
+      "actual_episodes": 70
     }
   ],
   "attack_mode": "regenerate_against_each_actual_frozen_policy",
@@ -146,7 +176,7 @@
     "collision_denominators": "Each policy has its own clean reference; compare raw collision rate as well as within-policy ASR.",
     "efficacy_limit": "Smoke is engineering only; five-traffic pilot is exploratory, no significance or general robustness claim."
   },
-  "source_commit_at_preparation": "9953a6fd5715fd14d88275449b494fc0afd23479",
+  "source_commit_at_preparation": "8dbd492652709e90783f967c7cdba7540ff199ae",
   "reserved_traffic": {
     "attack_final_split_30": "never tune or use for defense development",
     "defense_final": "Register a new, disjoint held-out split after defense freeze; not executable in this pilot."

@@ -46,6 +46,10 @@ def build_config(root, smoke=False):
 def build_protocol(root):
     configs = {"configs/evaluation/defense_oarl_smoke.json": build_config(root, True),
                "configs/evaluation/defense_oarl_development.json": build_config(root)}
+    for seed in range(5):
+        config = build_config(root)
+        config["run_seeds"] = [seed]
+        configs["configs/evaluation/defense_oarl_development_seed%d.json" % seed] = config
     registry = read(root / "configs/frozen_victims.json")
     refs = [r for r in registry["victims"] if r["victim"] in ("clean", "oarl")]
     if len(refs) != 10 or {(r["victim"], r["run_seed"]) for r in refs} != {
@@ -53,8 +57,9 @@ def build_protocol(root):
         raise ValueError("Exactly ten frozen matched training references required")
     protocol = dict(schema_version=1, kind="oarl_defense_baseline", gate_enabled=False,
         checkpoint_selection="episode_400_predeclared", victim_references=refs,
-        groups=[dict(id="engineering_smoke" if "smoke" in p else "development_pilot", config=p,
-                     config_sha256=canonical_hash(c), actual_episodes=10*c["episodes"]*len(c["attacks"]))
+        groups=[dict(id="engineering_smoke" if "smoke" in p else
+                     "development_seed%d" % c["run_seeds"][0] if len(c["run_seeds"]) == 1 else "development_pilot", config=p,
+                     config_sha256=canonical_hash(c), actual_episodes=len(c["victims"])*len(c["run_seeds"])*c["episodes"]*len(c["attacks"]))
                 for p, c in configs.items()],
         attack_mode="regenerate_against_each_actual_frozen_policy",
         adaptation_contract="Each victim is the attack's policy argument and the policy used for execution; do not replay Clean-targeted perturbations as adaptive evidence.",

@@ -3,11 +3,15 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
+import hashlib
+import io
+import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from prepare_defense_baseline import build_config, canonical_hash
-from analyze_defense_baseline import paired_tradeoffs
+from analyze_defense_baseline import paired_tradeoffs, exported_source_hashes
 
 
 class DefenseProtocolTests(unittest.TestCase):
@@ -72,6 +76,17 @@ class DefenseProtocolTests(unittest.TestCase):
             elif failure == "duplicate": rows.append(copy.deepcopy(rows[0]))
             else: rows[0]["episode_rows"][0]["sumo_seed"] += 1
             with self.assertRaises(ValueError): paired_tradeoffs(rows,config)
+
+    def test_source_audit_hashes_export_bytes_and_file_set(self):
+        buffer = io.BytesIO()
+        content = b'first\r\nsecond\r\n'
+        with tarfile.open(fileobj=buffer,mode='w') as archive:
+            member = tarfile.TarInfo('main.py')
+            member.size = len(content)
+            archive.addfile(member,io.BytesIO(content))
+        with patch('analyze_defense_baseline.subprocess.check_output',return_value=buffer.getvalue()):
+            self.assertEqual(exported_source_hashes('mock',['main.py']),{'main.py':hashlib.sha256(content).hexdigest()})
+            with self.assertRaises(ValueError): exported_source_hashes('mock',['main.py','oarl.py'])
 
 
 if __name__ == "__main__":
