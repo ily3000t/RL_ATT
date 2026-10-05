@@ -1,6 +1,6 @@
 # 防御阶段：基线、适应性攻击与方法设计
 
-2026-10-05。状态：防御对照工具与协议已经实现；新方法为待检验设计，不宣称已有效或已证明创新性。
+2026-10-05。状态：防御对照工具、协议与 350 episode 开发交通 pilot 已完成并通过原始数据审计，173 项测试通过。实测结果与限制见 [DEFENSE_BASELINE_RESULTS.md](DEFENSE_BASELINE_RESULTS.md)；新方法为待检验设计，不宣称已有效或已证明创新性。
 
 ## 先建立 OARL Robust 对照
 
@@ -50,6 +50,7 @@ PGD 对抗训练的鲁棒优化源头参见 [Madry 等，ICLR 2018](https://arxi
 | [Robust Deep RL through Adversarial Loss，NeurIPS 2021](https://arxiv.org/abs/2008.01976)；[RADIAL-RL](https://github.com/tuomaso/radial_rl_v2) | 对抗损失与鲁棒 RL 训练 | 研究鲁棒损失及其干净性能取舍；不宣称目前已适配 |
 | [Reward Certification for Policy Smoothed RL，AAAI 2024](https://ojs.aaai.org/index.php/AAAI/article/view/30139)；[ReCePS](https://github.com/TrustAI/ReCePS) | 平滑策略与回报认证 | 可核查训练、攻击和认证代码；认证前提与本项目观测相关盒不同，先做经验对照 |
 | [Breaking the Barrier: Enhanced Utility and Robustness in Smoothed DRL Agents，ICML 2024](https://proceedings.mlr.press/v235/sun24b.html)；[S-DQN/S-PPO](https://github.com/Trustworthy-ML-Lab/Robust_HighUtil_Smoothed_DRL) | 平滑策略训练与 Smoothed Attack | 优先参考平滑攻击和干净性能评估；不直接更换 victim 或 Torch 环境 |
+| [On Minimizing Adversarial Counterfactual Error in Adversarial RL，ICLR 2025](https://arxiv.org/abs/2406.04724)；[ACoE](https://github.com/romanbelaire/acoe-robust-rl) | 对观测不确定性的 belief 与反事实误差目标 | 新方法的重要近邻：已讨论一致性约束、保守性及攻击成功后的性能取舍，包含 Highway 实验；不能把“考虑部分可观测性”或“降低保守性”单独宣称为本项目新概念 |
 
 上述为 2026-10-05 核查的论文/作者仓库，当前仅调研，没有下载、复制或混入其源代码。在线平滑的理论来源同时参见 [Policy Smoothing for Provably Robust RL，ICLR 2022](https://arxiv.org/abs/2106.11420)。关于梯度掩盖及适应性测试参见 [Athalye 等，ICML 2018](https://arxiv.org/abs/1802.00420)。
 
@@ -72,6 +73,8 @@ PGD 对抗训练的鲁棒优化源头参见 [Madry 等，ICLR 2018](https://arxi
 先做标准 PGD 一致性基线，再在独立 branch 上加入分支覆盖，最后加入恢复采样。新增模块各自消融，同时保持训练交互/更新次数匹配。主要检验“在相同训练交互和明确额外计算下，适应性轨迹攻击中的回报损害是否减少，干净性能损失是否可接受”；安全优势单独检验，不能从回报推出。
 
 部署时新策略只接收真实传入的 16D 观测，不得获取未扰动观测、真实 SUMO state、attack flag 或扰动值。训练阶段可用的干净状态、分支搜索和片段标记全部留在训练侧。评估仍必须针对最终冻结的新策略重新运行 PGD、预算版 Zero-One 与 Single；不只测试训练中使用的攻击。
+
+未来 `DefendedPolicy` 需要区分不提交状态的策略查询与一次真实转移后的状态提交；评估器查询同状态的无扰动动作，不能悄悄推进防御记忆。有状态防御与随机化防御不能直接塞进现有严格确定性规划回放：必须明确 cloned memory、随机流可见性、EOT 搜索样本与真实执行随机流的隔离，以及随机动作分歧后的计划处置。原始攻击比较保持原协议，新的防御适应性协议另行提交、测试和预登记。
 
 ## 后续功能分支
 
