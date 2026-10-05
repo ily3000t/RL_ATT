@@ -4,6 +4,8 @@
 
 已审阅原稿位于仓库外 `E:/Att/DEFENSE_RESEARCH_PLAN_REVIEW_20261005.md`，SHA256 为 `8c116c1d297422b11cebcc885547400e5cadfebfcf80eb8b9312e845b29f2c94`，审阅源码为 `bfc3b13fa01cca3eda094ce9e9d6c17d8ac0388b`。原稿保留不变，本文件登记批准范围及 OARL 强基线补充；原稿和攻击论文稿不提交 Git。
 
+D1 首批进度：完整历史轨迹诊断已通过，见 [诊断结果](DEFENSE_D1_RESULTS.md) 与 [复现协议](DEFENSE_DIAGNOSTIC_PROTOCOL.md)；ACoE 目标核对、逆可行集合和梯度检查见 [离散映射](ACOE_DISCRETE_MAPPING.md)。两种搜索的早碰撞转换集中于一个交通种子，需要控制性 reset/分支验证。候选奖励来源和 off-policy 目标尚未选定，D1 没有据此关闭全部验收，也没有开始母方法或新防御训练。
+
 ## 先建立 OARL Robust 对照
 
 使用 `configs/frozen_victims.json` 中 episode-400 的五个 Clean 和五个 OARL 模型。已有训练控制审计表明它们采用匹配的架构、交通、种子与超参数；Clean 去掉 BO 与鲁棒双变量约束，OARL 保留原鲁棒训练。两组不是同一个 checkpoint 加/不加过滤器，而是两个不同训练方案的固定产物。
