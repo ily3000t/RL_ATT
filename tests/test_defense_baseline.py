@@ -1,0 +1,78 @@
+import copy
+import json
+from pathlib import Path
+import sys
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from prepare_defense_baseline import build_config, canonical_hash
+from analyze_defense_baseline import paired_tradeoffs
+
+
+class DefenseProtocolTests(unittest.TestCase):
+    def test_same_traffic_and_frozen_search_for_both_policies(self):
+        config = build_config(ROOT)
+        self.assertEqual(config["victims"], ["clean", "oarl"])
+        self.assertEqual(config["run_seeds"], list(range(5)))
+        self.assertEqual(config["research_seeds"]["split_id"], 10)
+        self.assertFalse(config["gate_enabled"])
+        final = json.loads((ROOT / "configs/evaluation/final_search_g400_attack0_seed0.json").read_text())
+        for name in ("zero_one_budgeted_return", "ours_single_return"):
+            self.assertEqual(next(a for a in config["attacks"] if a["name"] == name),
+                             next(a for a in final["attacks"] if a["name"] == name))
+
+    def test_smoke_is_full_cohort_but_not_an_efficacy_sample(self):
+        config = build_config(ROOT, True)
+        self.assertEqual(config["episodes"], 1)
+        self.assertEqual([a["name"] for a in config["attacks"]], ["none", "pgd", "ours_single_return"])
+        self.assertEqual(config["max_steps"], 200)
+
+    def test_canonical_hash_catches_attacker_change(self):
+        a = build_config(ROOT)
+        b = copy.deepcopy(a)
+        b["attacks"][-1]["parameters"]["resource_limits"]["gradient_evaluations"] = 200
+        self.assertNotEqual(canonical_hash(a), canonical_hash(b))
+
+    def fixture(self):
+        config = build_config(ROOT, True)
+        config["run_seeds"] = [0]
+        rows = []
+        for victim in config["victims"]:
+            for spec in config["attacks"]:
+                clean = spec["name"] == "none"
+                rows.append(dict(victim=victim, checkpoint_seed=0, attack=spec["name"], costs={"gradient_evaluations":0},
+                    episode_rows=[dict(sumo_seed=config["research_seeds"]["episode_sumo_seeds"][0], steps=1,
+                        episode_return=(10 if clean else 2) if victim == "clean" else (8 if clean else 4),
+                        ego_collision_observed=(victim == "clean" and not clean),
+                        safety=dict(minimum_ttc_s=None,ttc_low_percentile_s=None,drac_high_percentile_mps2=None))]))
+        return rows, config
+
+    def test_clean_penalty_and_robustness_gain_are_separate(self):
+        rows, config = self.fixture()
+        results = paired_tradeoffs(rows,config)
+        self.assertEqual(results[0]["return_robust_minus_clean_mean"], -2)
+        self.assertEqual(results[1]["return_robust_minus_clean_mean"], 2)
+        self.assertEqual(results[1]["drop_robust_minus_clean_mean"], -4)
+        self.assertIsNone(results[1]["populations"]["clean"]["safety"]["minimum_ttc_s"]["mean_of_valid_episode_values"])
+
+    def test_policy_specific_asr_denominators(self):
+        rows, config = self.fixture()
+        next(r for r in rows if r["victim"] == "oarl" and r["attack"] == "none")["episode_rows"][0]["ego_collision_observed"] = True
+        results = paired_tradeoffs(rows,config)
+        self.assertEqual(results[1]["populations"]["clean"]["asr_eligible"], 1)
+        self.assertEqual(results[1]["populations"]["oarl"]["asr_eligible"], 0)
+        self.assertIsNone(results[1]["populations"]["oarl"]["asr"])
+        self.assertEqual(results[1]["common_clean_noncollision_pairs"], 0)
+
+    def test_reject_missing_duplicate_or_unpaired_data(self):
+        for failure in ("missing","duplicate","traffic"):
+            rows, config = self.fixture()
+            if failure == "missing": rows.pop()
+            elif failure == "duplicate": rows.append(copy.deepcopy(rows[0]))
+            else: rows[0]["episode_rows"][0]["sumo_seed"] += 1
+            with self.assertRaises(ValueError): paired_tradeoffs(rows,config)
+
+
+if __name__ == "__main__":
+    unittest.main()
