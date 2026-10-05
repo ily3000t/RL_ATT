@@ -11,7 +11,7 @@ import tarfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from prepare_defense_baseline import build_config, canonical_hash
-from analyze_defense_baseline import paired_tradeoffs, exported_source_hashes
+from analyze_defense_baseline import paired_tradeoffs, exported_source_hashes, analyze_batch
 
 
 class DefenseProtocolTests(unittest.TestCase):
@@ -87,6 +87,57 @@ class DefenseProtocolTests(unittest.TestCase):
         with patch('analyze_defense_baseline.subprocess.check_output',return_value=buffer.getvalue()):
             self.assertEqual(exported_source_hashes('mock',['main.py']),{'main.py':hashlib.sha256(content).hexdigest()})
             with self.assertRaises(ValueError): exported_source_hashes('mock',['main.py','oarl.py'])
+
+    def batch_fixture(self):
+        protocol = json.loads((ROOT/'configs/research/defense_baseline.json').read_text())
+        config = build_config(ROOT)
+        groups = [g for g in protocol['groups'] if g['id'].startswith('development_seed')]
+        batch = dict(status='passed', git_commit='execution', configs=[g['config'] for g in groups],
+                     runs=[dict(config=g['config'], run_dir='run-%d'%i, returncode=0) for i,g in enumerate(groups)])
+        children = []
+        for seed in config['run_seeds']:
+            rows = []
+            for victim in config['victims']:
+                for spec in config['attacks']:
+                    rows.append(dict(victim=victim,checkpoint_seed=seed,attack=spec['name'],costs={'gradient_evaluations':0},
+                        episode_rows=[dict(sumo_seed=s,steps=1,episode_return=10,ego_collision_observed=False,
+                            safety=dict(minimum_ttc_s=None,ttc_low_percentile_s=None,drac_high_percentile_mps2=None))
+                            for s in config['research_seeds']['episode_sumo_seeds']]))
+            children.append(dict(rows=rows,real_steps=len(rows)*config['episodes'],protocol_sha256='hash',source_sha256={}))
+        return protocol, config, batch, children
+
+    def test_batch_requires_explicit_historical_commit_and_records_both_commits(self):
+        protocol, config, batch, children = self.batch_fixture()
+        with patch('analyze_defense_baseline.Reader') as reader, \
+             patch('analyze_defense_baseline.git',return_value='auditor'), \
+             patch('analyze_defense_baseline.subprocess.check_output',return_value=json.dumps(protocol).encode()), \
+             patch('analyze_defense_baseline.analyze',side_effect=children) as audit:
+            reader.return_value.json.side_effect = [batch,protocol]
+            with self.assertRaises(ValueError): analyze_batch(Path('batch.json'))
+            self.assertEqual(audit.call_count,0)
+            reader.return_value.json.side_effect = [batch,protocol,config]
+            reader.return_value.sources = {}
+            result = analyze_batch(Path('batch.json'),'execution')
+            self.assertEqual(result['git_commit'],'execution')
+            self.assertEqual(result['audit_git_commit'],'auditor')
+            self.assertEqual(result['actual_episodes'],350)
+            self.assertTrue(all(call[0][-1] == 'execution' for call in audit.call_args_list))
+
+    def test_historical_batch_rejects_changed_protocol_or_aggregate_config(self):
+        protocol, config, batch, children = self.batch_fixture()
+        changed = copy.deepcopy(config)
+        changed['attacks'][-1]['parameters']['resource_limits']['gradient_evaluations'] += 1
+        with patch('analyze_defense_baseline.Reader') as reader, \
+             patch('analyze_defense_baseline.git',return_value='auditor'), \
+             patch('analyze_defense_baseline.subprocess.check_output',return_value=json.dumps(protocol).encode()), \
+             patch('analyze_defense_baseline.analyze',side_effect=children) as audit:
+            modified_protocol = copy.deepcopy(protocol)
+            modified_protocol['statistics']['efficacy_limit'] = 'invalid claim'
+            reader.return_value.json.side_effect = [batch,modified_protocol]
+            with self.assertRaises(ValueError): analyze_batch(Path('batch.json'),'execution')
+            self.assertEqual(audit.call_count,0)
+            reader.return_value.json.side_effect = [batch,protocol,changed]
+            with self.assertRaises(ValueError): analyze_batch(Path('batch.json'),'execution')
 
 
 if __name__ == "__main__":

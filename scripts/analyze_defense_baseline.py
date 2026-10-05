@@ -170,23 +170,32 @@ def analyze(directory, group_id, expected_execution_commit=None):
         limitation=protocol["statistics"]["efficacy_limit"], defense_training_cost="not measured by evaluation; report training independently")
 
 
-def analyze_batch(path):
+def analyze_batch(path, expected_execution_commit=None):
     reader = Reader()
     batch = reader.json(path.resolve())
     protocol = reader.json(ROOT/"configs/research/defense_baseline.json")
     groups = [g for g in protocol["groups"] if g["id"].startswith("development_seed")]
     expected = {g["config"]:g for g in groups}
-    require(len(groups) == 5 and batch["status"] == "passed" and batch["git_commit"] == git("rev-parse","HEAD") and
+    execution_commit = expected_execution_commit or git("rev-parse","HEAD")
+    require(len(groups) == 5 and batch["status"] == "passed" and batch["git_commit"] == execution_commit and
             len(batch["configs"]) == 5 and set(batch["configs"]) == set(expected) and
             len(batch["runs"]) == 5 and {r["config"] for r in batch["runs"]} == set(expected), "Incomplete defense pilot batch")
+    execution_protocol = json.loads(subprocess.check_output(
+        ["git", "show", execution_commit+":configs/research/defense_baseline.json"], cwd=str(ROOT)))
+    require(execution_protocol == protocol, "Execution registration differs from audit protocol")
     children = []
     for run in sorted(batch["runs"],key=lambda r:r["config"]):
         require(run["returncode"] == 0,"Defense pilot child failed")
-        children.append(analyze(Path(run["run_dir"]),expected[run["config"]]["id"]))
+        children.append(analyze(Path(run["run_dir"]),expected[run["config"]]["id"],execution_commit))
     rows = [r for c in children for r in c["rows"]]
     config = reader.json(ROOT/"configs/evaluation/defense_oarl_development.json")
+    aggregate = next(g for g in protocol["groups"] if g["id"] == "development_pilot")
+    require(canonical_hash(config) == aggregate["config_sha256"], "Registered aggregate configuration changed")
+    actual_episodes = sum(len(r["episode_rows"]) for r in rows)
+    require(actual_episodes == aggregate["actual_episodes"], "Incomplete aggregate episode count")
     return dict(kind="oarl_defense_baseline_audit",verified=True,group_id="development_pilot",git_commit=batch["git_commit"],
-        protocol_sha256=children[0]["protocol_sha256"],attack_mode=protocol["attack_mode"],actual_episodes=350,
+        audit_git_commit=git("rev-parse","HEAD"),execution_protocol_canonical_sha256=canonical_hash(execution_protocol),
+        protocol_sha256=children[0]["protocol_sha256"],attack_mode=protocol["attack_mode"],actual_episodes=actual_episodes,
         real_steps=sum(c["real_steps"] for c in children),comparisons=paired_tradeoffs(rows,config),
         source_sha256=dict(reader.sources, **{p:h for c in children for p,h in c["source_sha256"].items()}),
         scientific_evidence=True,limitation=protocol["statistics"]["efficacy_limit"],
@@ -207,8 +216,6 @@ if __name__ == "__main__":
         parser.error("--run requires its registered --group")
     if args.batch is not None and args.group is not None:
         parser.error("Batch audits select the complete registered pilot; omit --group")
-    if args.batch is not None and args.expected_execution_commit is not None:
-        parser.error("Historical execution override applies only to an explicit --run")
-    report = analyze_batch(args.batch) if args.batch is not None else analyze(args.run,args.group,args.expected_execution_commit)
+    report = analyze_batch(args.batch,args.expected_execution_commit) if args.batch is not None else analyze(args.run,args.group,args.expected_execution_commit)
     args.output.write_text(json.dumps(report,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     print("DEFENSE_AUDIT_PASSED episodes=%d steps=%d"%(report["actual_episodes"],report["real_steps"]))
