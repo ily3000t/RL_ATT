@@ -1,7 +1,9 @@
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
+import tempfile
 import unittest
 
 import numpy as np
@@ -10,6 +12,8 @@ from rl_att.training.protocol import validate_config
 from rl_att.training.session import training_seeds
 from rl_att.utils.victim_registry import registry_references
 from rl_att.evaluation.configuration import validate_config as validate_evaluation
+from rl_att.training.session import TrainingSession
+from rl_att.agents.victim_adapter import VictimAdapter
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,6 +54,25 @@ def registry(engineering=False):
 
 
 class DefenseTrainingProtocolTests(unittest.TestCase):
+    def test_relative_actor_export_can_load_from_a_different_working_directory(self):
+        tests_root = ROOT / ".local/tests"
+        tests_root.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=str(tests_root)) as temporary:
+            destination = Path(temporary)
+            session = TrainingSession(short_config(), dict(git_commit="test"), agent_kwargs=dict(buffer_size=32, batch_size=16))
+            session.action(np.ones(16))
+            previous = Path.cwd()
+            try:
+                os.chdir(str(destination))
+                record = session.export_actor("model/policy16.pkl")
+            finally:
+                os.chdir(str(previous))
+            self.assertTrue(Path(record["checkpoint"]).is_absolute())
+            reference = dict(checkpoint=Path(record["checkpoint"]).relative_to(destination).as_posix(),
+                             checkpoint_sha256=record["checkpoint_sha256"], weights_sha256=record["weights_sha256"])
+            victim = VictimAdapter.from_reference(reference, destination)
+            self.assertIn(victim.action(np.ones(16)), (0, 1, 2))
+
     def test_five_full_configs_match_original_training_and_each_other(self):
         for seed in range(5):
             path = ROOT / ("configs/experiments/pgd_consistency_protocol_a_seed%d.json" % seed)

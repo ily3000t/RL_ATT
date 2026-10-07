@@ -113,8 +113,8 @@ def main():
                 if index + 1 in config["checkpoint_episodes"]:
                     full_path = directory / "checkpoints" / ("training%d.pt" % (index + 1))
                     full_hash = session.save(full_path, env.unwrapped.__dict__)
-                    actor_path = Path(cli["save_dir_model"]) / ("policy%d.pkl" % (index + 1))
-                    actor = session.export_actor(actor_path.resolve(), engineering_only=config["training_stage"] != "full")
+                    actor_path = Path.cwd() / Path(cli["save_dir_model"]) / ("policy%d.pkl" % (index + 1))
+                    actor = session.export_actor(actor_path, engineering_only=config["training_stage"] != "full")
                     records.append(dict(episode=index + 1, full_training_path=str(full_path), full_training_sha256=full_hash,
                                         actor=actor, numeric_agent_sha256=tree_digest(session.payload(env.unwrapped.__dict__)["agent"])))
                     write_json(directory / "checkpoint_index.json", records)
