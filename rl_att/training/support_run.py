@@ -100,6 +100,17 @@ def train(manifest_path, manifest):
             require(session.loop["completed_episodes"] == manifest["split_after_episode"], "Wrong resume boundary")
         begin_counts = copy.deepcopy(session.resources.counts)
         begin_episode = session.loop["completed_episodes"]
+        if config["victim"] == "pgd_consistency":
+            update_path = directory / "defense_updates.jsonl"
+            update_path.touch()
+            original_update = session.update
+            def recorded_update():
+                original_update()
+                row = dict(training_update=session.loop["updates"], metrics=session.agent.last_consistency,
+                           **{name: value.tolist() for name, value in session.agent.last_consistency_trace.items()})
+                with update_path.open("a", encoding="utf-8") as handle:
+                    handle.write(json.dumps(row) + "\n")
+            session.update = recorded_update
         stop = manifest["split_after_episode"] if mode == "prefix" else cli["episodes"]
         checkpoint = None
         with (directory / "episodes.jsonl").open("w", encoding="utf-8") as raw:
@@ -156,7 +167,9 @@ def train(manifest_path, manifest):
                       actor_artifact=actor, cumulative_resources=session.resources.state_dict(),
                       segment_counts=segment_counts, effective_seeds=session.seeds,
                       auxiliary_role_seeds=session.auxiliary_streams.seeds,
-                      interpretation="Engineering compatibility only; no defense enabled, convergence or frozen benchmark model")
+                      comparison_reference=manifest.get("comparison_reference", "original_loop"),
+                      interpretation=("Enabled PGD engineering repeat/resume only; no efficacy or benchmark model" if config["victim"] == "pgd_consistency" else
+                                      "Engineering compatibility only; no defense enabled, convergence or frozen benchmark model"))
         write_json(directory / "support_report.json", report)
     finally:
         if started:
@@ -171,7 +184,7 @@ def main():
     path = args.manifest.resolve()
     manifest = json.loads(path.read_text(encoding="utf-8"))
     require(manifest["mode"] in ("reference", "continuous", "prefix", "resumed"), "Unknown support check mode")
-    if manifest["mode"] == "reference":
+    if manifest["mode"] == "reference" and manifest["config"]["victim"] != "pgd_consistency":
         reference(path, manifest)
     else:
         train(path, manifest)

@@ -35,7 +35,15 @@ def main():
     committed = subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=str(ROOT))
     require(committed.replace(b"\r\n", b"\n") == config_path.read_bytes().replace(b"\r\n", b"\n"), "Uncommitted support configuration")
     protocol = json.loads(committed)
-    require(protocol["engineering_only"] and not protocol["gate_enabled"] and protocol["victims"] == ["clean", "oarl"] and
+    expected_victims = ["clean", "oarl"]
+    if protocol["kind"] == "pgd_consistency_engineering":
+        from rl_att.defenses.pgd_consistency import validate_config
+        defense = validate_config(protocol["defense"])
+        require(defense["coefficient"] > 0 and defense["epsilon"] > 0, "Engineering matrix must exercise enabled PGD")
+        expected_victims.append("pgd_consistency")
+    else:
+        require(protocol["kind"] == "defense_training_support_compatibility", "Unknown training support protocol")
+    require(protocol["engineering_only"] and not protocol["gate_enabled"] and protocol["victims"] == expected_victims and
             11 < protocol["split_after_episode"] < protocol["episodes"], "Only registered short matched support checks")
     output = args.output.resolve()
     require((ROOT / ".local/runs").resolve() in output.parents and not output.exists(), "Use a new ignored run directory")
@@ -76,6 +84,8 @@ def main():
                   cpu_threads=1, gate_enabled=False, training=dict(env="highway-v0", algo=victim, seed=protocol["run_seed"],
                   episodes=protocol["episodes"], max_step=protocol["max_steps"], state_dim=16, action_dim=1, action_numb=3,
                   mode="train", save_dir_model="model/", save_dir_data="result/", save_dir_train_data="train/"))
+            if victim == "pgd_consistency":
+                training_config["defense"] = protocol["defense"]
             identity = dict(git_commit=commit, protocol_sha256=manifest["protocol_sha256"], victim=victim,
                             run_seed=protocol["run_seed"], frozen_runtime_manifest_sha256=sha(training_path))
             prefix_checkpoint = None
@@ -103,6 +113,7 @@ def main():
                        git_commit=commit, root=str(ROOT), cwd=str(source), split_after_episode=protocol["split_after_episode"],
                        launch_command=command, source_sha256_before=hashes,
                        started_at_utc=datetime.datetime.utcnow().isoformat() + "Z")
+                child["comparison_reference"] = "independent_repeat" if victim == "pgd_consistency" else "original_loop"
                 if mode == "resumed":
                     child.update(resume_path=prefix_checkpoint["path"], resume_sha256=prefix_checkpoint["sha256"])
                 write_json(child_path, child)
