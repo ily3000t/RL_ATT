@@ -1,0 +1,1656 @@
+{
+  "schema_version": 1,
+  "kind": "pgd_consistency_long_training_summary",
+  "verified": true,
+  "gate_enabled": false,
+  "execution_commit": "1e91acbba12f5ec868536fc33d820e171c89ffae",
+  "analysis_commit": "43b1238a514bf60da1cc38a497704dc776c30102",
+  "generated_at_utc": "2026-10-07T13:39:39.637630Z",
+  "batch_directory": ".local/runs/20261007T110756Z-defense-pgd-consistency-long",
+  "registry_sha256": "95fbf6ba87e08c4964f5c40771d21a6326c593e57331ad8a5d0906daf3e3ceea",
+  "all_2000_episodes_completed": true,
+  "all_20_checkpoints_reverified": true,
+  "runs": [
+    {
+      "run_seed": 0,
+      "windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "episodes": 100,
+          "return_mean": 97.72681199240793,
+          "steps_mean": 154.76,
+          "collisions": 31,
+          "terminated": 31
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "episodes": 100,
+          "return_mean": 129.35306693509352,
+          "steps_mean": 182.33,
+          "collisions": 9,
+          "terminated": 9
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "episodes": 100,
+          "return_mean": 134.73747884960505,
+          "steps_mean": 187.0,
+          "collisions": 7,
+          "terminated": 7
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "episodes": 100,
+          "return_mean": 130.393193207032,
+          "steps_mean": 188.85,
+          "collisions": 6,
+          "terminated": 6
+        }
+      ],
+      "transition_windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "steps": 15476,
+          "action_counts": [
+            460,
+            889,
+            14127
+          ],
+          "no_new_lane_request_action_fraction": 0.912832773326441,
+          "pre_action_observation_decoded_speed_mps": 24.621504409122725
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "steps": 18233,
+          "action_counts": [
+            0,
+            106,
+            18127
+          ],
+          "no_new_lane_request_action_fraction": 0.9941863653814512,
+          "pre_action_observation_decoded_speed_mps": 26.75358465960646
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "steps": 18700,
+          "action_counts": [
+            0,
+            100,
+            18600
+          ],
+          "no_new_lane_request_action_fraction": 0.9946524064171123,
+          "pre_action_observation_decoded_speed_mps": 27.09501975326042
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "steps": 18885,
+          "action_counts": [
+            0,
+            100,
+            18785
+          ],
+          "no_new_lane_request_action_fraction": 0.9947047921630924,
+          "pre_action_observation_decoded_speed_mps": 26.227400527059494
+        }
+      ],
+      "counts": {
+        "interactions": 71294,
+        "updates": 35303,
+        "warmup_steps": 32842
+      },
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-0\\source\\model\\policy100.pkl",
+          "checkpoint_sha256": "896c72a4942d040602e84d61f04923b84eca822f86ed1b633c92b4561fe3c748",
+          "weights_sha256": "c78cdd959060619d47e56c827e38c60290e742b2af03658ad35742d21c8e0a1e",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              25,
+              39
+            ],
+            "entropy_nats_mean": 0.31034819870328684,
+            "max_probability_mean": 0.8384831473231316
+          }
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-0\\source\\model\\policy200.pkl",
+          "checkpoint_sha256": "b939e86e6930245e30ddbb75488fe9995ee72e8b8cab1f2b7633cad470130be0",
+          "weights_sha256": "8e858bac50e1e3d559e5a4d5eda5043bee6ddb24357e9232aca5710c0a7ea09a",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              15,
+              49
+            ],
+            "entropy_nats_mean": 0.31930059838141245,
+            "max_probability_mean": 0.8369270768016577
+          }
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-0\\source\\model\\policy300.pkl",
+          "checkpoint_sha256": "1fd0c50b2917f33740d9ffa44635b2c4acf426ed80e7ed1323022a3768e5904d",
+          "weights_sha256": "fa7128b7cda498346fdbc7c5294cb3b46ed6a8d677825343a5b3f13e4fb4a28b",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              12,
+              52
+            ],
+            "entropy_nats_mean": 0.24482454638579948,
+            "max_probability_mean": 0.8983208257704973
+          }
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-0\\source\\model\\policy400.pkl",
+          "checkpoint_sha256": "de8f4cc478f0ec4d7652ae3ba13edf55b2754d7a38a97c09da984e44d964f586",
+          "weights_sha256": "4589c229013d55ee2d17108752bb33cee762f0a85adbdb7e70b0c868758dbede",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              11,
+              53
+            ],
+            "entropy_nats_mean": 0.14132658884154792,
+            "max_probability_mean": 0.9484556838870049
+          }
+        }
+      ],
+      "resources": {
+        "counts": {
+          "real_interaction_steps": 71294,
+          "sumo_reset_warmup_steps": 32842,
+          "primary_updates": 35303,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 27112704,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 71294
+            },
+            "network_observation_rows": {
+              "actor": 71294
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 13.823000000062166
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 317727,
+              "qf1": 70606,
+              "qf2": 70606,
+              "qf1_target": 35303,
+              "qf2_target": 35303
+            },
+            "network_observation_rows": {
+              "actor": 40669056,
+              "qf1": 9037568,
+              "qf2": 9037568,
+              "qf1_target": 4518784,
+              "qf2_target": 4518784
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35303,
+              "qf1_optimizer": 35303,
+              "qf2_optimizer": 35303
+            },
+            "wall_seconds": 281.9250000050524
+          }
+        }
+      },
+      "defense_counts": {
+        "updates": 35303,
+        "gradient_evaluations": 176515,
+        "search_actor_forward_calls": 211818,
+        "search_observation_rows": 27112704,
+        "regularizer_actor_forward_calls": 35303,
+        "regularizer_observation_rows": 4518784,
+        "candidate_observations": 27112704
+      },
+      "training_wall_seconds": 847.6089999999967,
+      "raw_kl_min": 1.1003249669701847e-05,
+      "raw_kl_max": 0.121937668673405,
+      "effective_seeds": {
+        "run_seed": 0,
+        "policy_seed": 0,
+        "numpy_seed": 0,
+        "python_seed": 0,
+        "torch_seed": 0,
+        "sumo_seed": 0,
+        "attack_seed": 0,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "isolated_auxiliary_attack_numpy",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 1500372476,
+        "belief": 1060443234,
+        "initialization": 1886378803,
+        "sampling": 797080042
+      },
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "training_command": [
+        "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+        "E:\\Att\\OARL-master\\scripts\\run_experiment.py",
+        "--config",
+        "configs/experiments/pgd_consistency_protocol_a_seed0.json",
+        "--output",
+        "E:\\Att\\OARL-master\\.local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-0",
+        "--expected-commit",
+        "1e91acbba12f5ec868536fc33d820e171c89ffae"
+      ],
+      "complete_episode_seed_list": "See the hashed training manifest; generated by the committed Protocol A training schedule",
+      "tracked_worktree_clean_after_training": true
+    },
+    {
+      "run_seed": 1,
+      "windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "episodes": 100,
+          "return_mean": 76.5327083741002,
+          "steps_mean": 143.51,
+          "collisions": 34,
+          "terminated": 34
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "episodes": 100,
+          "return_mean": 137.44737628002218,
+          "steps_mean": 188.76,
+          "collisions": 6,
+          "terminated": 6
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "episodes": 100,
+          "return_mean": 135.91883158777102,
+          "steps_mean": 190.13,
+          "collisions": 5,
+          "terminated": 5
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "episodes": 100,
+          "return_mean": 133.7246247618188,
+          "steps_mean": 190.08,
+          "collisions": 5,
+          "terminated": 5
+        }
+      ],
+      "transition_windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "steps": 14351,
+          "action_counts": [
+            361,
+            951,
+            13039
+          ],
+          "no_new_lane_request_action_fraction": 0.9085777994564839,
+          "pre_action_observation_decoded_speed_mps": 21.617266326081815
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "steps": 18876,
+          "action_counts": [
+            0,
+            346,
+            18530
+          ],
+          "no_new_lane_request_action_fraction": 0.9816698453062089,
+          "pre_action_observation_decoded_speed_mps": 27.30769914385266
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "steps": 19013,
+          "action_counts": [
+            0,
+            116,
+            18897
+          ],
+          "no_new_lane_request_action_fraction": 0.9938989112712354,
+          "pre_action_observation_decoded_speed_mps": 26.906256974715482
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "steps": 19008,
+          "action_counts": [
+            0,
+            102,
+            18906
+          ],
+          "no_new_lane_request_action_fraction": 0.9946338383838383,
+          "pre_action_observation_decoded_speed_mps": 26.488878068884777
+        }
+      ],
+      "counts": {
+        "interactions": 71248,
+        "updates": 35435,
+        "warmup_steps": 32844
+      },
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-1\\source\\model\\policy100.pkl",
+          "checkpoint_sha256": "be67c735bd031470872a1a6a1a6915ff7ab450e545db8dcf2e681fd50b6112a9",
+          "weights_sha256": "fd0471e924c1f9fef66b6e5d4eb781866e0b10ee42e251077e62207bf6ff53a8",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              3,
+              61
+            ],
+            "entropy_nats_mean": 0.2389673047258146,
+            "max_probability_mean": 0.9029875323176384
+          }
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-1\\source\\model\\policy200.pkl",
+          "checkpoint_sha256": "37ad2c7c0efb4b30c04ac3cc4e60ff27302f88d073f16cf4f596b6a57bf94771",
+          "weights_sha256": "c1f92619218627d7293b0c6ddd0dae5fd69d23b7877b61812da08021dc0a076b",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              15,
+              49
+            ],
+            "entropy_nats_mean": 0.17785949335421863,
+            "max_probability_mean": 0.9354935102164745
+          }
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-1\\source\\model\\policy300.pkl",
+          "checkpoint_sha256": "28929f27e1c54454fe4fa1d2053bf2435476c8e83278f9a2f17657044409d07e",
+          "weights_sha256": "4b657d756e21f8dfebc1c20a31adc616aea6d2bbffa67b7b1fc46f68b95b2d60",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              15,
+              49
+            ],
+            "entropy_nats_mean": 0.16620921936354638,
+            "max_probability_mean": 0.9368930710479617
+          }
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-1\\source\\model\\policy400.pkl",
+          "checkpoint_sha256": "40d162924b7c8807378892917e904bd3b551e2fc695152342016712716dab55f",
+          "weights_sha256": "9db2e914fb4a8c09fe3855ecf0592213422358b86d01ec677c937bdc0d23460d",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              15,
+              49
+            ],
+            "entropy_nats_mean": 0.18497010893080706,
+            "max_probability_mean": 0.9316177377477288
+          }
+        }
+      ],
+      "resources": {
+        "counts": {
+          "real_interaction_steps": 71248,
+          "sumo_reset_warmup_steps": 32844,
+          "primary_updates": 35435,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 27214080,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 71248
+            },
+            "network_observation_rows": {
+              "actor": 71248
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 14.189000000129454
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 318915,
+              "qf1": 70870,
+              "qf2": 70870,
+              "qf1_target": 35435,
+              "qf2_target": 35435
+            },
+            "network_observation_rows": {
+              "actor": 40821120,
+              "qf1": 9071360,
+              "qf2": 9071360,
+              "qf1_target": 4535680,
+              "qf2_target": 4535680
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35435,
+              "qf1_optimizer": 35435,
+              "qf2_optimizer": 35435
+            },
+            "wall_seconds": 292.2479999989155
+          }
+        }
+      },
+      "defense_counts": {
+        "updates": 35435,
+        "gradient_evaluations": 177175,
+        "search_actor_forward_calls": 212610,
+        "search_observation_rows": 27214080,
+        "regularizer_actor_forward_calls": 35435,
+        "regularizer_observation_rows": 4535680,
+        "candidate_observations": 27214080
+      },
+      "training_wall_seconds": 858.75,
+      "raw_kl_min": 0.00021319236470298053,
+      "raw_kl_max": 0.22452651549340083,
+      "effective_seeds": {
+        "run_seed": 1,
+        "policy_seed": 1,
+        "numpy_seed": 1,
+        "python_seed": 1,
+        "torch_seed": 1,
+        "sumo_seed": 1,
+        "attack_seed": 1,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "isolated_auxiliary_attack_numpy",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 682990420,
+        "belief": 166749311,
+        "initialization": 1425186549,
+        "sampling": 71951467
+      },
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "training_command": [
+        "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+        "E:\\Att\\OARL-master\\scripts\\run_experiment.py",
+        "--config",
+        "configs/experiments/pgd_consistency_protocol_a_seed1.json",
+        "--output",
+        "E:\\Att\\OARL-master\\.local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-1",
+        "--expected-commit",
+        "1e91acbba12f5ec868536fc33d820e171c89ffae"
+      ],
+      "complete_episode_seed_list": "See the hashed training manifest; generated by the committed Protocol A training schedule",
+      "tracked_worktree_clean_after_training": true
+    },
+    {
+      "run_seed": 2,
+      "windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "episodes": 100,
+          "return_mean": 69.75982051584634,
+          "steps_mean": 150.47,
+          "collisions": 33,
+          "terminated": 33
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "episodes": 100,
+          "return_mean": 94.23348746585049,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "episodes": 100,
+          "return_mean": 91.95449994939982,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "episodes": 100,
+          "return_mean": 96.78246229590928,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        }
+      ],
+      "transition_windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "steps": 15047,
+          "action_counts": [
+            491,
+            560,
+            13996
+          ],
+          "no_new_lane_request_action_fraction": 0.9301521898052768,
+          "pre_action_observation_decoded_speed_mps": 19.35988033978106
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 19.546360306523795
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 19.209662491144947
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 19.88165590178419
+        }
+      ],
+      "counts": {
+        "interactions": 75047,
+        "updates": 37091,
+        "warmup_steps": 32847
+      },
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-2\\source\\model\\policy100.pkl",
+          "checkpoint_sha256": "d3c3f78a30593619f552db5ba726e5c0279675a17e565e2921a144a1fe72dd25",
+          "weights_sha256": "fd99ae822dbbfa319246336607c267350c9efcd8a8565c4dbc775ce57fe9eee3",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 4.097021167301924e-05,
+            "max_probability_mean": 0.9999968335032463
+          }
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-2\\source\\model\\policy200.pkl",
+          "checkpoint_sha256": "a606c993004137ef945445ee4dc411321b9641ead6fbd12d138c353caef9fc61",
+          "weights_sha256": "7ed4325dfc75b43c3ceb988686c1a427b63a9e2adf4ec77352401d4c061dc3e9",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 1.3337359257840658e-07,
+            "max_probability_mean": 0.9999999962747097
+          }
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-2\\source\\model\\policy300.pkl",
+          "checkpoint_sha256": "7132541eb84b3404b5cda4b634f51197a6a28b508530fdd608907a227dc1a103",
+          "weights_sha256": "ebce55130df81dcb9ec73e7a1a352524fbcb315be39cfd82f673f9e3f1c78afc",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 9.706369226454162e-09,
+            "max_probability_mean": 1.0
+          }
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-2\\source\\model\\policy400.pkl",
+          "checkpoint_sha256": "25a4d9e1fa53cd064511282a613382f21b8023554bc11ea90accff3e0c0dc8a1",
+          "weights_sha256": "d0be3920d71bc142f69f690531a69f311936dd1708af1cc438ad2bdae1841778",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 3.9284783145323995e-09,
+            "max_probability_mean": 1.0
+          }
+        }
+      ],
+      "resources": {
+        "counts": {
+          "real_interaction_steps": 75047,
+          "sumo_reset_warmup_steps": 32847,
+          "primary_updates": 37091,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 28485888,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 75047
+            },
+            "network_observation_rows": {
+              "actor": 75047
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 15.937000000179978
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 333819,
+              "qf1": 74182,
+              "qf2": 74182,
+              "qf1_target": 37091,
+              "qf2_target": 37091
+            },
+            "network_observation_rows": {
+              "actor": 42728832,
+              "qf1": 9495296,
+              "qf2": 9495296,
+              "qf1_target": 4747648,
+              "qf2_target": 4747648
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 37091,
+              "qf1_optimizer": 37091,
+              "qf2_optimizer": 37091
+            },
+            "wall_seconds": 294.26299999834737
+          }
+        }
+      },
+      "defense_counts": {
+        "updates": 37091,
+        "gradient_evaluations": 185455,
+        "search_actor_forward_calls": 222546,
+        "search_observation_rows": 28485888,
+        "regularizer_actor_forward_calls": 37091,
+        "regularizer_observation_rows": 4747648,
+        "candidate_observations": 28485888
+      },
+      "training_wall_seconds": 887.6559999999881,
+      "raw_kl_min": 0.0,
+      "raw_kl_max": 0.021791337246191138,
+      "effective_seeds": {
+        "run_seed": 2,
+        "policy_seed": 2,
+        "numpy_seed": 2,
+        "python_seed": 2,
+        "torch_seed": 2,
+        "sumo_seed": 2,
+        "attack_seed": 2,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "isolated_auxiliary_attack_numpy",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 1717682223,
+        "belief": 1828304941,
+        "initialization": 2002734905,
+        "sampling": 939314619
+      },
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "training_command": [
+        "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+        "E:\\Att\\OARL-master\\scripts\\run_experiment.py",
+        "--config",
+        "configs/experiments/pgd_consistency_protocol_a_seed2.json",
+        "--output",
+        "E:\\Att\\OARL-master\\.local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-2",
+        "--expected-commit",
+        "1e91acbba12f5ec868536fc33d820e171c89ffae"
+      ],
+      "complete_episode_seed_list": "See the hashed training manifest; generated by the committed Protocol A training schedule",
+      "tracked_worktree_clean_after_training": true
+    },
+    {
+      "run_seed": 3,
+      "windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "episodes": 100,
+          "return_mean": 95.60280728008534,
+          "steps_mean": 145.8,
+          "collisions": 35,
+          "terminated": 35
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "episodes": 100,
+          "return_mean": 125.23182230854925,
+          "steps_mean": 182.8,
+          "collisions": 9,
+          "terminated": 9
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "episodes": 100,
+          "return_mean": 132.22041563325206,
+          "steps_mean": 188.22,
+          "collisions": 6,
+          "terminated": 6
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "episodes": 100,
+          "return_mean": 132.75302614897535,
+          "steps_mean": 188.15,
+          "collisions": 6,
+          "terminated": 6
+        }
+      ],
+      "transition_windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "steps": 14580,
+          "action_counts": [
+            567,
+            654,
+            13359
+          ],
+          "no_new_lane_request_action_fraction": 0.9162551440329219,
+          "pre_action_observation_decoded_speed_mps": 25.24863897394768
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "steps": 18280,
+          "action_counts": [
+            0,
+            112,
+            18168
+          ],
+          "no_new_lane_request_action_fraction": 0.9938730853391685,
+          "pre_action_observation_decoded_speed_mps": 26.058941137144213
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "steps": 18822,
+          "action_counts": [
+            0,
+            105,
+            18717
+          ],
+          "no_new_lane_request_action_fraction": 0.9944214217405164,
+          "pre_action_observation_decoded_speed_mps": 26.5420421337629
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "steps": 18815,
+          "action_counts": [
+            0,
+            100,
+            18715
+          ],
+          "no_new_lane_request_action_fraction": 0.9946850916821685,
+          "pre_action_observation_decoded_speed_mps": 26.619008661935975
+        }
+      ],
+      "counts": {
+        "interactions": 70497,
+        "updates": 34848,
+        "warmup_steps": 32845
+      },
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-3\\source\\model\\policy100.pkl",
+          "checkpoint_sha256": "a15cbe3611ca85819c5d1acd13a4c3e45b25498ffbb7c8d0467bf782f0b170a2",
+          "weights_sha256": "686864660fbded275d94517ceb9739e0008a4b3741cc47b3bbcb8fe814c510b1",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              38,
+              26
+            ],
+            "entropy_nats_mean": 0.3625075498792184,
+            "max_probability_mean": 0.8280241126194596
+          }
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-3\\source\\model\\policy200.pkl",
+          "checkpoint_sha256": "69d3056e50a3a2351ce2cbc5ced079576b91c79610546aaee20425c750bf1c55",
+          "weights_sha256": "fbc1e29b10395c7f4fadf56b8a004dc4e27616862a0388afd5fbe5e69023a28e",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              43,
+              21
+            ],
+            "entropy_nats_mean": 0.33979431877785327,
+            "max_probability_mean": 0.8458232553675771
+          }
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-3\\source\\model\\policy300.pkl",
+          "checkpoint_sha256": "0b7573ac46c428456c39a98f0bf2a724efbf3f817085c050bd41d68124d1c262",
+          "weights_sha256": "a6835220089f34a72baf783b867b3cf2b71c34337362bdbacfd708bcbcd436a2",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              46,
+              18
+            ],
+            "entropy_nats_mean": 0.3019440282270201,
+            "max_probability_mean": 0.8650701493024826
+          }
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-3\\source\\model\\policy400.pkl",
+          "checkpoint_sha256": "329a1ec11b0a01c92fa2bcee053849122d62cb39b6e90335733caea0cea63936",
+          "weights_sha256": "bba231d90de89eef275949c0fdd9ba5e3be6d7d4f244711f33b324dee968ad6b",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              35,
+              29
+            ],
+            "entropy_nats_mean": 0.32548629338582924,
+            "max_probability_mean": 0.8558171158656478
+          }
+        }
+      ],
+      "resources": {
+        "counts": {
+          "real_interaction_steps": 70497,
+          "sumo_reset_warmup_steps": 32845,
+          "primary_updates": 34848,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 26763264,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 70497
+            },
+            "network_observation_rows": {
+              "actor": 70497
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 13.663000000087777
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 313632,
+              "qf1": 69696,
+              "qf2": 69696,
+              "qf1_target": 34848,
+              "qf2_target": 34848
+            },
+            "network_observation_rows": {
+              "actor": 40144896,
+              "qf1": 8921088,
+              "qf2": 8921088,
+              "qf1_target": 4460544,
+              "qf2_target": 4460544
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 34848,
+              "qf1_optimizer": 34848,
+              "qf2_optimizer": 34848
+            },
+            "wall_seconds": 282.10699999995995
+          }
+        }
+      },
+      "defense_counts": {
+        "updates": 34848,
+        "gradient_evaluations": 174240,
+        "search_actor_forward_calls": 209088,
+        "search_observation_rows": 26763264,
+        "regularizer_actor_forward_calls": 34848,
+        "regularizer_observation_rows": 4460544,
+        "candidate_observations": 26763264
+      },
+      "training_wall_seconds": 847.0629999999946,
+      "raw_kl_min": 0.0004999338160335768,
+      "raw_kl_max": 0.1597602424051013,
+      "effective_seeds": {
+        "run_seed": 3,
+        "policy_seed": 3,
+        "numpy_seed": 3,
+        "python_seed": 3,
+        "torch_seed": 3,
+        "sumo_seed": 3,
+        "attack_seed": 3,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "isolated_auxiliary_attack_numpy",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 2039883242,
+        "belief": 696499871,
+        "initialization": 1264264320,
+        "sampling": 32382756
+      },
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "training_command": [
+        "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+        "E:\\Att\\OARL-master\\scripts\\run_experiment.py",
+        "--config",
+        "configs/experiments/pgd_consistency_protocol_a_seed3.json",
+        "--output",
+        "E:\\Att\\OARL-master\\.local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-3",
+        "--expected-commit",
+        "1e91acbba12f5ec868536fc33d820e171c89ffae"
+      ],
+      "complete_episode_seed_list": "See the hashed training manifest; generated by the committed Protocol A training schedule",
+      "tracked_worktree_clean_after_training": true
+    },
+    {
+      "run_seed": 4,
+      "windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "episodes": 100,
+          "return_mean": 81.42421897311132,
+          "steps_mean": 169.94,
+          "collisions": 21,
+          "terminated": 21
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "episodes": 100,
+          "return_mean": 90.60353295632473,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "episodes": 100,
+          "return_mean": 94.74165926305834,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "episodes": 100,
+          "return_mean": 94.37698192262167,
+          "steps_mean": 200.0,
+          "collisions": 0,
+          "terminated": 0
+        }
+      ],
+      "transition_windows": [
+        {
+          "first_episode": 1,
+          "last_episode": 100,
+          "steps": 16994,
+          "action_counts": [
+            368,
+            330,
+            16296
+          ],
+          "no_new_lane_request_action_fraction": 0.9589266800047076,
+          "pre_action_observation_decoded_speed_mps": 19.764956534577898
+        },
+        {
+          "first_episode": 101,
+          "last_episode": 200,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 18.953643267357066
+        },
+        {
+          "first_episode": 201,
+          "last_episode": 300,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 19.533090371035286
+        },
+        {
+          "first_episode": 301,
+          "last_episode": 400,
+          "steps": 20000,
+          "action_counts": [
+            0,
+            0,
+            20000
+          ],
+          "no_new_lane_request_action_fraction": 1.0,
+          "pre_action_observation_decoded_speed_mps": 19.45002183645887
+        }
+      ],
+      "counts": {
+        "interactions": 76994,
+        "updates": 38241,
+        "warmup_steps": 32856
+      },
+      "checkpoints": [
+        {
+          "episode": 100,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-4\\source\\model\\policy100.pkl",
+          "checkpoint_sha256": "2b744ccd8c40c8e8f865b301cd6b643a9e40e0fd3fc5cd2fbdcc8a65eb39e0ee",
+          "weights_sha256": "02aa01af2bf6b60135b1757020fb1642224f0baef5b89d30cc639d34ea51f250",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 3.979181448779359e-05,
+            "max_probability_mean": 0.9999969191849232
+          }
+        },
+        {
+          "episode": 200,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-4\\source\\model\\policy200.pkl",
+          "checkpoint_sha256": "c9d1e1feff5851a78b37836f9c7e3f938999c9ffe6ec4d9f02de5ef3d886e75f",
+          "weights_sha256": "308c4990c7d300b0e5e1fee64cc5e154c7d987ad173a0392ddde8bd12122ba0e",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 1.865996007189662e-07,
+            "max_probability_mean": 0.9999999925494194
+          }
+        },
+        {
+          "episode": 300,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-4\\source\\model\\policy300.pkl",
+          "checkpoint_sha256": "8f38f6eb06c010ab52e938d2f19ea8af69095d7980829881384405e584a5ace9",
+          "weights_sha256": "8cad324745ca57925dfeb13b2e0bdbca9b8bcd98cc4f3f52ff29d28b27dba447",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 1.287549709628657e-08,
+            "max_probability_mean": 1.0
+          }
+        },
+        {
+          "episode": 400,
+          "checkpoint": ".local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-4\\source\\model\\policy400.pkl",
+          "checkpoint_sha256": "f8dd46bbeb7518ea1691eb852bc072158a1a331cf6f9e98ad66638e95251190f",
+          "weights_sha256": "c74796a671bdc46719c4abe83e512c00b8469c60d765a2a8d0a3b64090d32d51",
+          "probe_profile": {
+            "observations": 64,
+            "greedy_action_counts": [
+              0,
+              0,
+              64
+            ],
+            "entropy_nats_mean": 5.943268944849948e-09,
+            "max_probability_mean": 1.0
+          }
+        }
+      ],
+      "resources": {
+        "counts": {
+          "real_interaction_steps": 76994,
+          "sumo_reset_warmup_steps": 32856,
+          "primary_updates": 38241,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 29369088,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 76994
+            },
+            "network_observation_rows": {
+              "actor": 76994
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 15.629999999917345
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 344169,
+              "qf1": 76482,
+              "qf2": 76482,
+              "qf1_target": 38241,
+              "qf2_target": 38241
+            },
+            "network_observation_rows": {
+              "actor": 44053632,
+              "qf1": 9789696,
+              "qf2": 9789696,
+              "qf1_target": 4894848,
+              "qf2_target": 4894848
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 38241,
+              "qf1_optimizer": 38241,
+              "qf2_optimizer": 38241
+            },
+            "wall_seconds": 306.4620000004361
+          }
+        }
+      },
+      "defense_counts": {
+        "updates": 38241,
+        "gradient_evaluations": 191205,
+        "search_actor_forward_calls": 229446,
+        "search_observation_rows": 29369088,
+        "regularizer_actor_forward_calls": 38241,
+        "regularizer_observation_rows": 4894848,
+        "candidate_observations": 29369088
+      },
+      "training_wall_seconds": 909.6089999999967,
+      "raw_kl_min": 0.0,
+      "raw_kl_max": 0.030063007056366785,
+      "effective_seeds": {
+        "run_seed": 4,
+        "policy_seed": 4,
+        "numpy_seed": 4,
+        "python_seed": 4,
+        "torch_seed": 4,
+        "sumo_seed": 4,
+        "attack_seed": 4,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "isolated_auxiliary_attack_numpy",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 1171040255,
+        "belief": 182436289,
+        "initialization": 1861997699,
+        "sampling": 681402390
+      },
+      "runtime": {
+        "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+        "torch": "1.3.1+cpu",
+        "torch_threads": 1,
+        "numpy": "1.21.6",
+        "scipy": "1.7.3",
+        "sklearn": "0.24.2"
+      },
+      "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+      "training_command": [
+        "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+        "E:\\Att\\OARL-master\\scripts\\run_experiment.py",
+        "--config",
+        "configs/experiments/pgd_consistency_protocol_a_seed4.json",
+        "--output",
+        "E:\\Att\\OARL-master\\.local\\runs\\20261007T110756Z-defense-pgd-consistency-long\\run-4",
+        "--expected-commit",
+        "1e91acbba12f5ec868536fc33d820e171c89ffae"
+      ],
+      "complete_episode_seed_list": "See the hashed training manifest; generated by the committed Protocol A training schedule",
+      "tracked_worktree_clean_after_training": true
+    }
+  ],
+  "aggregate": {
+    "episodes": 2000,
+    "interactions": 365080,
+    "updates": 180918,
+    "warmup_steps": 164234,
+    "actor_training_forward_calls": 1628262,
+    "pgd_gradient_evaluations": 904590,
+    "concurrent_batch_wall_seconds": 977.125662
+  },
+  "training_comparison": {
+    "cohorts": {
+      "clean": {
+        "last100_return_mean": 134.6517335763736,
+        "across_run_sample_sd": 5.366685834290442,
+        "collisions": 45,
+        "episodes": 500,
+        "collision_episode_fraction": 0.09
+      },
+      "oarl": {
+        "last100_return_mean": 134.80822377439608,
+        "across_run_sample_sd": 2.9251279878417136,
+        "collisions": 55,
+        "episodes": 500,
+        "collision_episode_fraction": 0.11
+      },
+      "pgd_consistency": {
+        "last100_return_mean": 117.60605766727141,
+        "across_run_sample_sd": 20.16160818747017,
+        "collisions": 17,
+        "episodes": 500,
+        "collision_episode_fraction": 0.034
+      }
+    },
+    "per_seed": [
+      {
+        "run_seed": 0,
+        "last100": {
+          "clean": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 135.73608541903718,
+            "steps_mean": 195.83,
+            "collisions": 3,
+            "terminated": 3
+          },
+          "oarl": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 133.09885808988295,
+            "steps_mean": 192.34,
+            "collisions": 4,
+            "terminated": 4
+          },
+          "pgd_consistency": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 130.393193207032,
+            "steps_mean": 188.85,
+            "collisions": 6,
+            "terminated": 6
+          }
+        },
+        "pgd_minus_clean_return": -5.342892212005182,
+        "pgd_minus_oarl_return": -2.7056648828509537
+      },
+      {
+        "run_seed": 1,
+        "last100": {
+          "clean": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 134.72621989325384,
+            "steps_mean": 188.91,
+            "collisions": 6,
+            "terminated": 6
+          },
+          "oarl": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 135.41154342133558,
+            "steps_mean": 192.16,
+            "collisions": 4,
+            "terminated": 4
+          },
+          "pgd_consistency": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 133.7246247618188,
+            "steps_mean": 190.08,
+            "collisions": 5,
+            "terminated": 5
+          }
+        },
+        "pgd_minus_clean_return": -1.0015951314350389,
+        "pgd_minus_oarl_return": -1.6869186595167776
+      },
+      {
+        "run_seed": 2,
+        "last100": {
+          "clean": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 142.1896316547473,
+            "steps_mean": 171.23,
+            "collisions": 21,
+            "terminated": 21
+          },
+          "oarl": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 135.66617062810542,
+            "steps_mean": 165.62,
+            "collisions": 25,
+            "terminated": 25
+          },
+          "pgd_consistency": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 96.78246229590928,
+            "steps_mean": 200.0,
+            "collisions": 0,
+            "terminated": 0
+          }
+        },
+        "pgd_minus_clean_return": -45.40716935883802,
+        "pgd_minus_oarl_return": -38.883708332196136
+      },
+      {
+        "run_seed": 3,
+        "last100": {
+          "clean": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 133.41683476109355,
+            "steps_mean": 188.81,
+            "collisions": 6,
+            "terminated": 6
+          },
+          "oarl": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 138.81638973526842,
+            "steps_mean": 176.55,
+            "collisions": 17,
+            "terminated": 17
+          },
+          "pgd_consistency": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 132.75302614897535,
+            "steps_mean": 188.15,
+            "collisions": 6,
+            "terminated": 6
+          }
+        },
+        "pgd_minus_clean_return": -0.6638086121182027,
+        "pgd_minus_oarl_return": -6.063363586293065
+      },
+      {
+        "run_seed": 4,
+        "last100": {
+          "clean": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 127.18989615373603,
+            "steps_mean": 183.84,
+            "collisions": 9,
+            "terminated": 9
+          },
+          "oarl": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 131.048156997388,
+            "steps_mean": 190.25,
+            "collisions": 5,
+            "terminated": 5
+          },
+          "pgd_consistency": {
+            "first_episode": 301,
+            "last_episode": 400,
+            "episodes": 100,
+            "return_mean": 94.37698192262167,
+            "steps_mean": 200.0,
+            "collisions": 0,
+            "terminated": 0
+          }
+        },
+        "pgd_minus_clean_return": -32.81291423111436,
+        "pgd_minus_oarl_return": -36.671175074766325
+      }
+    ],
+    "statistics": "Descriptive fixed-run training means and sample SD; no test or confidence interval"
+  },
+  "source_sha256": {
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/batch.json": "ceee7f5c7f8f98830ae13551b84155e39e5425f7aca6818e6a4fe4acc45e18f1",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/frozen_defense_victims.json": "95fbf6ba87e08c4964f5c40771d21a6326c593e57331ad8a5d0906daf3e3ceea",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/manifest.json": "99b0e275e7986c145e15d30152bd6cfdc76b3f51d075162091e838f9908e8413",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/training_audit.json": "45ec011d767a5dcef369fee6695493024916bfbbd531c283a28b89da8fa3ec8f",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/training_report.json": "86f13943676695ba4907800df88dc0c99a93bb2978744151fd95c6543358e7ec",
+    "configs/experiments/pgd_consistency_protocol_a_seed3.json": "9fb6be8eb9dcd8851135355d68a345cc6f9da03871b494aecd12622296c73f06",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/episodes.jsonl": "d0e1e4cdea2a0ad3ad8cc9b002cfd922c1763a1ac6059458d53f7b38f72b6528",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/transitions.jsonl.gz": "6bc4b550dcc266eb9ce96542e3a4a198f4cdb9788d30916dbc7a87a63cce06ca",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/defense_updates.jsonl.gz": "3f9f2640952144ea912b8c13daee8ddda0c546029775b6c7461b241f5c747436",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/checkpoints/training100.pt": "24868d7b02fe3bb798a4dda8b03bf79f914bcb19970072222dcbf89dd8c843ab",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/source/model/policy100.pkl": "a15cbe3611ca85819c5d1acd13a4c3e45b25498ffbb7c8d0467bf782f0b170a2",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/checkpoints/training200.pt": "fbe5948821a1a61a28eb4cfca2cede8ff711f27877be9f506a1c0151641029cd",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/source/model/policy200.pkl": "69d3056e50a3a2351ce2cbc5ced079576b91c79610546aaee20425c750bf1c55",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/checkpoints/training300.pt": "1f72dcfdb70624d458566e43d417006e3f8beec6124b43a438697e2b6063a3f0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/source/model/policy300.pkl": "0b7573ac46c428456c39a98f0bf2a724efbf3f817085c050bd41d68124d1c262",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/checkpoints/training400.pt": "0a4ff21a46dea23cf1ec7bd72d663ce42dd862fcbe9fb83e3169c7d5aa4aaf01",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-3/source/model/policy400.pkl": "329a1ec11b0a01c92fa2bcee053849122d62cb39b6e90335733caea0cea63936",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/manifest.json": "9dd6ae80ad74c6827143e2147f0da16e314157c1e9085660175539479363e0f0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/training_audit.json": "bcc81ebbcd937a63f799d26eba87737ed98f3a1b220fcac94526f4bedfbc02a0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/training_report.json": "15981c4e52b7dcd383b7d4b43fcf8b51bc759ea29f8f1ecc9127b73ff84568e9",
+    "configs/experiments/pgd_consistency_protocol_a_seed0.json": "5103e97ac086af6fdca124721fc7ecf0049790a730b59d34872caeaea0479e16",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/episodes.jsonl": "2221dac282c254985a79cf88bbc98bbcd4aefc2dd3971f47868a79ba57850d15",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/transitions.jsonl.gz": "bdaeb5f1b3c45ff353de7d335a4826b618c241af7b6f4c01f38893fe886c8637",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/defense_updates.jsonl.gz": "709dc64caa2fa1cb80e2589d2989549384661798daf90bfd84f2dbb1e973da65",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/checkpoints/training100.pt": "d923c35ad75c8bc02dc5dcc678fda87c72a6d990660103d0447f0e9d833bf247",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/source/model/policy100.pkl": "896c72a4942d040602e84d61f04923b84eca822f86ed1b633c92b4561fe3c748",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/checkpoints/training200.pt": "d8433674d4633b7736709a1f47cda163d08c916feee0225bac4cead05e51ee9b",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/source/model/policy200.pkl": "b939e86e6930245e30ddbb75488fe9995ee72e8b8cab1f2b7633cad470130be0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/checkpoints/training300.pt": "a39296cdb1dacc178b33dec5cf4fd1a2f604339744262aa712d72c5290e24b94",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/source/model/policy300.pkl": "1fd0c50b2917f33740d9ffa44635b2c4acf426ed80e7ed1323022a3768e5904d",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/checkpoints/training400.pt": "e9c0f676569a496c67c8f3115492db63d8723e7a8bce217686641febf611bb6b",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-0/source/model/policy400.pkl": "de8f4cc478f0ec4d7652ae3ba13edf55b2754d7a38a97c09da984e44d964f586",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/manifest.json": "9e875bf02c95e0bb84b25293c3bbcca62ce09fe236833b2d091af55294c4018a",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/training_audit.json": "0cc284eeaeaecfac4f93f9659a553afe903f801f5aef1c1e77c4db0772ce78e7",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/training_report.json": "73fd66794e7515bfdd9ce567671c3d2e82377effde090bf5fb06bfb4b96fc377",
+    "configs/experiments/pgd_consistency_protocol_a_seed1.json": "e5ee2558f81d1a74a1b2d7f0a08ffef97f6fdfb41db4913905887fad898e9cbf",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/episodes.jsonl": "54dc6798f5b28379f098926a46c7b02b7c9b1a482e0c7a81b1038b8255ee941c",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/transitions.jsonl.gz": "15722addf5d0ec001325c986f8addd7c37e7081ec19bf990884c49efcd98807b",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/defense_updates.jsonl.gz": "fbfd9fae0b3cd7088b431ce455b9e5191a0572c793bf1715766a379d0375cd25",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/checkpoints/training100.pt": "1f75108b7140e04a7735641428f9433f7fd1c8b6a84a8057061123291c1315be",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/source/model/policy100.pkl": "be67c735bd031470872a1a6a1a6915ff7ab450e545db8dcf2e681fd50b6112a9",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/checkpoints/training200.pt": "ed63dccd61fc3eb66df938b112c219f24eedd42f6c330ea093882daaa81229ef",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/source/model/policy200.pkl": "37ad2c7c0efb4b30c04ac3cc4e60ff27302f88d073f16cf4f596b6a57bf94771",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/checkpoints/training300.pt": "6733021431cd9abda19a15b15fe55e9dd6494aad15352a26c5dc20622f16d9f0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/source/model/policy300.pkl": "28929f27e1c54454fe4fa1d2053bf2435476c8e83278f9a2f17657044409d07e",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/checkpoints/training400.pt": "37d996ad3429b57cac5dd87e85d7a720fccdd8e657a331ccf4d7af012435d6c9",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-1/source/model/policy400.pkl": "40d162924b7c8807378892917e904bd3b551e2fc695152342016712716dab55f",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/manifest.json": "4e362833225baf0afd70a1bc6b94963bac2e307a3ac78cbfe32f168941b02f75",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/training_audit.json": "5eb4d685e7a22dd8bad241bc4ff2485d58b86ff710e7c19014bf29b64d5f3373",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/training_report.json": "b55505bf3e1e57d841dda51e7a4f2b35b5b0015bbeaadebda28de5b69882f7da",
+    "configs/experiments/pgd_consistency_protocol_a_seed2.json": "3fe7b352a77c7690dc8f52ef59ffc2f148a2f947d0e041c69f70d6e413e56c4d",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/episodes.jsonl": "659fdc42a2c118a00aa1a6d35d16f7a88b1ce8e1edef34a166b23d9caaaf5c6e",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/transitions.jsonl.gz": "5156033c769b83f6efde1393ffb6d7bb4df051a9521de21f0e8f738eeeb577c0",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/defense_updates.jsonl.gz": "d7ea234488407e3d07b4f04598e54f34bb7fbd9f6375b0b237939f25bb760570",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/checkpoints/training100.pt": "6d40998b6082543cf7e1027da69cba968bbf9b6c9055ef18b06c098bd9a9738b",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/source/model/policy100.pkl": "d3c3f78a30593619f552db5ba726e5c0279675a17e565e2921a144a1fe72dd25",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/checkpoints/training200.pt": "7945d3abcc143b45b99ea386b5b7f7f95b0500aa05fb0d5802a560d21e8c6d0d",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/source/model/policy200.pkl": "a606c993004137ef945445ee4dc411321b9641ead6fbd12d138c353caef9fc61",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/checkpoints/training300.pt": "5a14470d602bbb614d511a5229b83b45a7de82c5255028c53e8c7fcc07b992e4",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/source/model/policy300.pkl": "7132541eb84b3404b5cda4b634f51197a6a28b508530fdd608907a227dc1a103",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/checkpoints/training400.pt": "4789087306f045ad5a564ee445b45b9c510e1b00c720bfeffe39b531e1dddc16",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-2/source/model/policy400.pkl": "25a4d9e1fa53cd064511282a613382f21b8023554bc11ea90accff3e0c0dc8a1",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/manifest.json": "b0fd666007ad59bef611465307d291027d35b9f2c0caa8076a333670a0fff66f",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/training_audit.json": "30a3b4790fee1d1afb2a04547f6cf0abe98bd65444bf5a1c475ec354c90b2553",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/training_report.json": "ecabdfc1b9aefaf6bc79f8aefcda8976b6c584cad4ada3b24f024d53f7632ca9",
+    "configs/experiments/pgd_consistency_protocol_a_seed4.json": "5de308909f9ba10d775f395ebf02a8895654e5df062932d4143ef5f491fa6d5d",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/episodes.jsonl": "e55750cb6d437d70ecf9f0f6a3aeb394391a01e996c6f043b71e12f065dead1e",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/transitions.jsonl.gz": "86a0473f650794383f287ebc2bebc8272d899d4c88d8b019a35f4170a56bb210",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/defense_updates.jsonl.gz": "c7f44c8f01666e4fa92605fdd7738702d8cbb8d9af269c27c133df0d86e4de2d",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/checkpoints/training100.pt": "8d07736342f6f07a0c84be4d10a590af0775535c2837494937773d5abf8ed19f",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/source/model/policy100.pkl": "2b744ccd8c40c8e8f865b301cd6b643a9e40e0fd3fc5cd2fbdcc8a65eb39e0ee",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/checkpoints/training200.pt": "5f543f04b783ab3217e481da9938ead16e8f5ec6982e2f62f9b76cd26020297c",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/source/model/policy200.pkl": "c9d1e1feff5851a78b37836f9c7e3f938999c9ffe6ec4d9f02de5ef3d886e75f",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/checkpoints/training300.pt": "bda88fde440bedb976d8894310d2783cccfc7c913407d8713d056015b32a25da",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/source/model/policy300.pkl": "8f38f6eb06c010ab52e938d2f19ea8af69095d7980829881384405e584a5ace9",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/checkpoints/training400.pt": "fd9e83c684c2490640fb3eb6e5ece864e5a74843af6fcbc7c2a9d053c7f75dfe",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long/run-4/source/model/policy400.pkl": "f8dd46bbeb7518ea1691eb852bc072158a1a331cf6f9e98ad66638e95251190f",
+    "docs/CLEAN_VICTIM_RESULTS.json": "bf0c7e0c21d59a52511bcc06e89c041ac22d839c79b5c617e4d6502b0b15d2c1",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/manifest.json": "4b2a30f7022012806ac4c4e0002b4b5dd29a0c74d04b67ee013cc4f05af62dbe",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-0/episodes.jsonl": "c8ba1bae016ab1fdf0810d92f1e4a2c0ef73c389db172358a0b7a7d93007cc9c",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/manifest.json": "7a64bf9d5bf13cac132c1ef08706c5d703378212d28d66480a4dc7b00192edd0",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-1/episodes.jsonl": "ff045da4130afcf64287556adf320a933ad6645a1c5d929aca5cfec386837455",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/manifest.json": "b9f266f71790c63678c1c83c4037f9095628fb19f163ddb54cfc9e45b69ef338",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-2/episodes.jsonl": "7b40886df1430e2d9b9c1c5940d46fc8672c7bddc1bff79d0b25d1196e522837",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/manifest.json": "3696a7dfd9e7ac81b852518dbfbf551f7cc648ec266f078f3294c819ef30d5c4",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-3/episodes.jsonl": "3f57bdd28a42d7de6b86e0ccfa41942cb0e241f0cf054697e2c725f0759b1211",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/manifest.json": "f87874e318016b6760ca7b5f08fddba1539d7b2d119a8c2ab1aa5b46cdfc1781",
+    ".local/runs/20260913T125918Z-protocol-a-clean-long/run-4/episodes.jsonl": "a66676f330c59acc0b9717e768d7a6d5e96f2715fb964114e9fe3fd25e31e052",
+    "docs/OARL_PROTOCOL_A_RESULTS.json": "07bc2fc863d39cbdf59e8ea72064fc25285a309102202cb958a5a586ae4204e9",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/manifest.json": "3288dfdebda63b4f66daddbad4380cfd71771b1d5f9607736bf1405bcddf6bd9",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-0/episodes.jsonl": "b4dca168bd2b3fe55863035c8d026cff22e2c9bb93e902d8b9dbd7aa5724c4e5",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/manifest.json": "af0e487375bc8bd3a32d5c46f63e048a54bea184a440fc5f9174413f91fba0d4",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-1/episodes.jsonl": "c21e12282d97ad1518bf2b52667cbffadc1fdec7726025322967e9238ac62a2b",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/manifest.json": "c99b9927588269c2e8170cc8073eb1540af1d139bf31dcca155d5336d782553e",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-2/episodes.jsonl": "2177804b4b16dfb93d8a868be8fa106a09f40a43758b317047a11223910e8d0e",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/manifest.json": "41f2c8a248bf0a448dff9c93e9c9d5570ec1a2f727a11e9342bf58310e45a0d7",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-3/episodes.jsonl": "ea268276496068731d3b5f0e64c679a86b6d12f6309f7028bcc5153ff97b6c7b",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/manifest.json": "4331276eda261720c4aa7130412b9f523c50ab72c8223f1df6843429fada7af9",
+    ".local/runs/20260913T023805Z-protocol-a-oarl-stable-js/run-4/episodes.jsonl": "2a4113567f62cee764d127cc7b996ea0ac75166fcd0ba39690f2bc7738fa3377"
+  },
+  "analysis_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "scripts/analyze_pgd_training.py",
+    "--batch",
+    ".local/runs/20261007T110756Z-defense-pgd-consistency-long",
+    "--output",
+    ".local/reports/defense-pgd-long-analysis"
+  ],
+  "audit_scope": "Completed full raw box/KL/loss audits bound by fresh file hashes; streamed trajectories reaudited and 20 actors reloaded. No SUMO rerun.",
+  "limitation": "Stochastic training outcomes and own-run early observation probes only; not frozen greedy evaluation or adversarial robustness. No hyperparameter or checkpoint reselection.",
+  "full_analysis_path": ".local/reports/defense-pgd-long-analysis/analysis.json",
+  "full_analysis_sha256": "dd2b8abe5225892545f4932666e8f17a08a31f94734c963c304e8ee1201419a3",
+  "frozen_registry": "configs/frozen_defense_victims.json",
+  "tests": {
+    "new_analysis_tests_passed": 6,
+    "existing_training_protocol_tests_passed": 10
+  },
+  "compact_schema_note": "The old full report field source_snapshots_unchanged denotes only git_worktree_clean_after; this compact summary uses the precise tracked_worktree_clean_after_training label. Private SUMO config seeds may change as already allowed by the production audit."
+}
