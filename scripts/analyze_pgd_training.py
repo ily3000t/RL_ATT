@@ -152,7 +152,7 @@ def analyze(batch_directory):
             training_wall_seconds=report["training_wall_seconds"], raw_kl_min=audit["raw_kl_min"], raw_kl_max=audit["raw_kl_max"],
             effective_seeds=manifest["effective_seeds"], auxiliary_role_seeds=manifest["auxiliary_role_seeds"],
             runtime=json.loads(manifest["python_runtime"]["stdout"]), sumo_version=manifest["sumo_version"]["stdout"].splitlines()[0],
-            training_command=manifest["wrapper_command"], source_snapshots_unchanged=manifest["git_worktree_clean_after"]))
+            training_command=manifest["wrapper_command"], tracked_worktree_clean_after_training=manifest["git_worktree_clean_after"]))
         print("TRAINING_RECHECKED seed=%d episodes=400 checkpoints=4" % seed, flush=True)
     for name, file in (("clean", "CLEAN_VICTIM_RESULTS.json"), ("oarl", "OARL_PROTOCOL_A_RESULTS.json")):
         historical = read(ROOT / "docs" / file)
