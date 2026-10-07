@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "kind": "defense_training_support_compatibility",
+  "engineering_only": true,
+  "gate_enabled": false,
+  "victims": ["clean", "oarl"],
+  "run_seed": 0,
+  "episodes": 16,
+  "max_steps": 16,
+  "split_after_episode": 13,
+  "expected_physical_episodes": 96,
+  "comparison_modes": ["reference", "continuous", "prefix", "resumed"],
+  "reference": "Existing rl_att.experiment executes unmodified main.py; original Clean/OARL update and controlled policy stream.",
+  "acceptance": "Exact episode traces, actor/critics/targets/dual, gradients, Adam states normalized by parameter order, FIFO replay, Python/NumPy/Torch/policy RNG and loop state match across original, continuous and fresh-process boundary resume.",
+  "limitation": "Short training-seed engineering checks only. No new defense, full long-run reproduction, benchmark-eligible checkpoint, final traffic or efficacy claim."
+}
