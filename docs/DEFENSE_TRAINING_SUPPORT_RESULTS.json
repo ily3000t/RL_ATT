@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "kind": "defense_training_support_compatibility_summary",
+  "verified": true,
+  "engineering_only": true,
+  "gate_enabled": false,
+  "execution_git_commit": "0ea0071d10ab4b835c49c6efc5319fcffa3613a7",
+  "auxiliary_cost_extension_commit": "29d0daa",
+  "auxiliary_cost_extension_validation": "Unit-tested after the completed SUMO batch; not exercised by that batch.",
+  "protocol_sha256": "56ff5fb9c848573cf2ed00fe4491420368724f12a8716bae2816d824e82d6bda",
+  "config_file": "configs/research/defense_training_support.json",
+  "raw_directory": ".local/runs/20261007-defense-training-support",
+  "parent_manifest_sha256": "c8a10cab68e3b1dfbb06cce0ea6e5c8a6afc96591474da720f81f1e0c22b6716",
+  "audit_sha256": "138ea55f28953a9a9822e7f625bce3c8217dd8742e2562694314681fbbe0fc32",
+  "wrapper_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "scripts/validate_training_support.py",
+    "--output",
+    ".local/runs/20261007-defense-training-support"
+  ],
+  "started_at_utc": "2026-10-07T06:51:48.082077Z",
+  "finished_at_utc": "2026-10-07T06:52:30.187932Z",
+  "batch_wall_seconds": 42.105855,
+  "host_os": "Windows-10-10.0.26100-SP0",
+  "runtime": {
+    "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "1.3.1+cpu",
+    "torch_threads": 1,
+    "numpy": "1.21.6",
+    "scipy": "1.7.3",
+    "sklearn": "0.24.2"
+  },
+  "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+  "pip_freeze_stdout_sha256": "4b41834f03448b27842d3698f22436d70a518fc30c8f16bc907743a7b3e08084",
+  "frozen_registry_sha256": "abdfb1437842832134fca2ff7de5d8c9091c27014f4d7e18bfb0e9ec062f5af9",
+  "groups": [
+    {
+      "victim": "clean",
+      "verified": true,
+      "episodes": 16,
+      "numeric_state_sha256": "4f7027ec073e93088ddee87a7f9484ad681cb32e00f265ae95358647a3a300f4",
+      "boundary_state_sha256": "5049934585128b0dab53ae60edfaaa2ab613fd6261fba3202fc901670615ff28",
+      "split_after_episode": 13,
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 0,
+        "bo_objective_evaluations": 0
+      },
+      "physical_episodes": 48,
+      "actual_batch_sumo_steps": 4539,
+      "cumulative_resources": {
+        "counts": {
+          "real_interaction_steps": 199,
+          "sumo_reset_warmup_steps": 1314,
+          "primary_updates": 35,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 0,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 199
+            },
+            "network_observation_rows": {
+              "actor": 199
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 0.07800000000861473
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 70,
+              "qf1": 70,
+              "qf2": 70,
+              "qf1_target": 35,
+              "qf2_target": 35
+            },
+            "network_observation_rows": {
+              "actor": 8960,
+              "qf1": 8960,
+              "qf2": 8960,
+              "qf1_target": 4480,
+              "qf2_target": 4480
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35,
+              "qf1_optimizer": 35,
+              "qf2_optimizer": 35
+            },
+            "wall_seconds": 0.07899999993969686
+          }
+        }
+      },
+      "effective_seeds": {
+        "run_seed": 0,
+        "policy_seed": 0,
+        "numpy_seed": 0,
+        "python_seed": 0,
+        "torch_seed": 0,
+        "sumo_seed": 0,
+        "attack_seed": 0,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "unused_clean_training",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "episode_sumo_seeds": [
+          821328063,
+          1683718083,
+          779308543,
+          198478470,
+          53917133,
+          1387925762,
+          1079240589,
+          1037991102,
+          2012181747,
+          643195294,
+          1754190249,
+          1122099562,
+          163117957,
+          1684409658,
+          764043652,
+          817502473
+        ],
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 1500372476,
+        "belief": 1060443234,
+        "initialization": 1886378803,
+        "sampling": 797080042
+      },
+      "inference_actor_sha256": "2e0b36259dd7b3bffed652d57974f8e844939736e70762a30db68ccc8ae6c413",
+      "inference_actor_weights_sha256": "c2778a5e4a425b7e1504bcf3f2350027782e51ae80f249ffef7a444ecefe278f",
+      "benchmark_eligible": false
+    },
+    {
+      "victim": "oarl",
+      "verified": true,
+      "episodes": 16,
+      "numeric_state_sha256": "ddb2ab51e7356adae9ed7b338a99767b3eb8752acfd6ece8bb63c7449818b40f",
+      "boundary_state_sha256": "70f6dc04934e71a30bf8f2e99c5c2eace2f88eed1693b39e0c597baca282b382",
+      "split_after_episode": 13,
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 0,
+        "bo_objective_evaluations": 175
+      },
+      "physical_episodes": 48,
+      "actual_batch_sumo_steps": 4539,
+      "cumulative_resources": {
+        "counts": {
+          "real_interaction_steps": 199,
+          "sumo_reset_warmup_steps": 1314,
+          "primary_updates": 35,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 0,
+          "bo_objective_evaluations": 175
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 199
+            },
+            "network_observation_rows": {
+              "actor": 199
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 0.0930000000516884
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 420,
+              "qf1": 70,
+              "qf2": 70,
+              "qf1_target": 35,
+              "qf2_target": 35
+            },
+            "network_observation_rows": {
+              "actor": 53760,
+              "qf1": 8960,
+              "qf2": 8960,
+              "qf1_target": 4480,
+              "qf2_target": 4480
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35,
+              "qf1_optimizer": 35,
+              "qf2_optimizer": 35,
+              "dual_cst_optimizer": 35
+            },
+            "wall_seconds": 1.4830000000074506
+          }
+        }
+      },
+      "effective_seeds": {
+        "run_seed": 0,
+        "policy_seed": 0,
+        "numpy_seed": 0,
+        "python_seed": 0,
+        "torch_seed": 0,
+        "sumo_seed": 0,
+        "attack_seed": 0,
+        "protocol": "controlled",
+        "policy_rng": "isolated_cpu",
+        "attack_rng": "optimizer_reinitialized_each_update",
+        "phase": "train",
+        "sumo_schedule": "seedsequence_v1",
+        "episode_sumo_seeds": [
+          821328063,
+          1683718083,
+          779308543,
+          198478470,
+          53917133,
+          1387925762,
+          1079240589,
+          1037991102,
+          2012181747,
+          643195294,
+          1754190249,
+          1122099562,
+          163117957,
+          1684409658,
+          764043652,
+          817502473
+        ],
+        "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+      },
+      "auxiliary_role_seeds": {
+        "attack": 1500372476,
+        "belief": 1060443234,
+        "initialization": 1886378803,
+        "sampling": 797080042
+      },
+      "inference_actor_sha256": "d300d655fe414e5ff017a11cda81761f0df9de8379fc0ace3e0052fa3d25a695",
+      "inference_actor_weights_sha256": "b08cc055122768ff827da42b28bbd56f5e0cb55c522f82b93ad58a411918116c",
+      "benchmark_eligible": false
+    }
+  ],
+  "physical_episodes": 96,
+  "actual_batch_sumo_steps": 9078,
+  "relevant_tests": {
+    "training_support": 9,
+    "training_support_audit": 5,
+    "clean_victim": 1,
+    "checkpoint_evaluation": 2,
+    "seed_protocols": 5,
+    "total": 22
+  },
+  "limitations": [
+    "One training run seed and short horizons; engineering equality only, not defense efficacy or independent traffic statistics.",
+    "Fresh-process restore is supported only after an episode, before its next reset, within the recorded source/config/runtime identity.",
+    "No mid-episode SUMO restoration, cross-version guarantee or new benchmark-eligible checkpoint.",
+    "All optional defense/auxiliary/privileged data paths were disabled in the SUMO comparison.",
+    "Phase wall time is instrumentation for this short run, not a trained-defense latency or convergence comparison."
+  ]
+}
