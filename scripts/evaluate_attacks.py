@@ -23,6 +23,8 @@ def main():
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--expected-commit", help="Reject a batch child launched after its Git commit changed")
+    parser.add_argument("--victim-registry", type=Path, help="Extend the legacy frozen registry with audited defense models")
+    parser.add_argument("--allow-engineering-victims", action="store_true", help="Explicitly permit short integration checks only")
     args = parser.parse_args()
     if git("status", "--porcelain"):
         parser.error("Commit changes before evaluation")
@@ -32,6 +34,24 @@ def main():
     config = validate_config(json.loads(subprocess.check_output(["git", "show", "HEAD:" + relative], cwd=str(ROOT))))
     references = json.loads(subprocess.check_output(
         ["git", "show", "HEAD:configs/frozen_victims.json"], cwd=str(ROOT)))["victims"]
+    additional_registry = None
+    if args.victim_registry:
+        from rl_att.utils.victim_registry import registry_references
+        registry_path = args.victim_registry.resolve()
+        registry_relative = registry_path.relative_to(ROOT).as_posix()
+        data = registry_path.read_bytes()
+        if not args.allow_engineering_victims:
+            committed_registry = subprocess.check_output(["git", "show", "HEAD:" + registry_relative], cwd=str(ROOT))
+            if committed_registry.replace(b"\r\n", b"\n") != data.replace(b"\r\n", b"\n"):
+                raise ValueError("Commit the audited defense registry before benchmark evaluation")
+        value = json.loads(data)
+        extra = registry_references(value, args.allow_engineering_victims)
+        if args.allow_engineering_victims and (config["episodes"] != 1 or config["max_steps"] > 16 or
+                                              [a["name"] for a in config["attacks"]] != ["none", "pgd"]):
+            raise ValueError("Engineering victim evaluation is limited to one short None/PGD integration pair")
+        references.extend(extra)
+        additional_registry = dict(path=registry_relative, sha256=hashlib.sha256(data).hexdigest(),
+                                   engineering_only=value["engineering_only"])
     selected = [r for r in references if r["victim"] in config["victims"] and r["run_seed"] in config["run_seeds"]]
     keys = {(r["victim"], r["run_seed"]) for r in selected}
     if len(keys) != len(selected) or len(keys) != len(config["victims"]) * len(config["run_seeds"]):
@@ -44,6 +64,16 @@ def main():
         training = json.loads((path.parents[2] / "manifest.json").read_text(encoding="utf-8"))
         if training["status"] != "passed" or training["git_commit"] != reference["training_commit"]:
             raise ValueError("Frozen training provenance mismatch")
+        if reference["victim"] == "pgd_consistency":
+            audit_path = ROOT / reference["training_audit"]
+            if hashlib.sha256(audit_path.read_bytes()).hexdigest() != reference["training_audit_sha256"] or \
+               hashlib.sha256((ROOT / reference["training_manifest"]).read_bytes()).hexdigest() != reference["training_manifest_sha256"]:
+                raise ValueError("Defense training audit/manifest changed after freezing")
+            audit = json.loads(audit_path.read_text(encoding="utf-8"))
+            if not audit["verified"] or audit["git_commit"] != reference["training_commit"] or \
+               audit["engineering_only"] != reference["engineering_only"] or \
+               training["config"]["defense"] != reference["defense_config"]:
+                raise ValueError("Defense training eligibility/protocol mismatch")
         trainings.append(training)
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     output = args.output.resolve() if args.output else ROOT / ".local/runs" / (stamp + "-attack-evaluation")
@@ -93,6 +123,8 @@ def main():
                 "python_runtime": capture([python, "-c", "import json,sys,torch,numpy,scipy,sklearn; print(json.dumps(dict(python=sys.version,torch=torch.__version__,torch_threads=torch.get_num_threads(),numpy=numpy.__version__,scipy=scipy.__version__,sklearn=sklearn.__version__)))"], env),
                 "pip_freeze": capture([python, "-m", "pip", "freeze", "--all"], env),
                 "sumo_version": capture(["sumo", "--version"], env), "started_at_utc": stamp, "status": "preparing"}
+    if additional_registry:
+        manifest["additional_victim_registry"] = additional_registry
     write_json(manifest_path, manifest)
     for previous in trainings:
         for key in ("python_runtime", "pip_freeze", "sumo_version"):
@@ -110,6 +142,8 @@ def main():
         after = {name: hashlib.sha256((source / name).read_bytes()).hexdigest() for name in hashes}
         changed = [name for name in hashes if after[name] != hashes[name]]
         if any(name != "Data/StraightRoad.sumocfg" for name in changed):
+            code = 1
+        if additional_registry and hashlib.sha256((ROOT / additional_registry["path"]).read_bytes()).hexdigest() != additional_registry["sha256"]:
             code = 1
         manifest.update(status="passed" if code == 0 else "failed", returncode=code,
                         source_sha256_after=after, changed_source_files=changed,

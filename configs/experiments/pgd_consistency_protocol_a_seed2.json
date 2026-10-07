@@ -1,0 +1,41 @@
+{
+  "victim": "pgd_consistency",
+  "protocol": "controlled",
+  "run_seed": 2,
+  "sumo_schedule": "derived",
+  "cpu_threads": 1,
+  "gate_enabled": false,
+  "training": {
+    "env": "highway-v0",
+    "algo": "pgd_consistency",
+    "seed": 2,
+    "episodes": 400,
+    "max_step": 200,
+    "state_dim": 16,
+    "action_dim": 1,
+    "action_numb": 3,
+    "mode": "train",
+    "save_dir_model": "model/",
+    "save_dir_data": "result/",
+    "save_dir_train_data": "train/"
+  },
+  "training_stage": "full",
+  "checkpoint_episodes": [
+    100,
+    200,
+    300,
+    400
+  ],
+  "checkpoint_selection": "last_predeclared",
+  "update_recording": "all_gzip",
+  "defense": {
+    "coefficient": 0.1,
+    "multiplicative": 0.2,
+    "additive": 0.05,
+    "epsilon": 1.0,
+    "steps": 5,
+    "step_size": 0.4,
+    "random_start": true,
+    "probability_floor": 1e-08
+  }
+}

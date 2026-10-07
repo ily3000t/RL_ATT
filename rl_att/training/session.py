@@ -136,7 +136,9 @@ class TrainingSession:
 
     def export_actor(self, path, engineering_only=True):
         require(not self.in_episode and self.probes, "Export actor at a populated episode boundary")
-        path = Path(path)
+        # Python 3.7 on Windows may leave resolve() relative for a missing parent.
+        # The persisted artifact reference must survive a different caller cwd.
+        path = Path(path).absolute()
         require(not path.exists(), "Actor artifact already exists")
         path.parent.mkdir(parents=True, exist_ok=True)
         probes = np.stack(self.probes)

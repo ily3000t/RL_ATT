@@ -49,8 +49,10 @@ def validate_config(config):
     for key in ("victims", "run_seeds"):
         if not config[key] or len(set(config[key])) != len(config[key]):
             raise ValueError(key + " must be nonempty and unique")
-    if any(v not in ("clean", "oarl") for v in config["victims"]):
+    if any(v not in ("clean", "oarl", "pgd_consistency") for v in config["victims"]):
         raise ValueError("Unknown frozen victim")
+    if "pgd_consistency" in config["victims"] and config["verify_legacy_no_attack"]:
+        raise ValueError("New defense policies have no upstream legacy evaluation reference")
     if any(type(s) is not int or not 0 <= s < 5 for s in config["run_seeds"]):
         raise ValueError("The frozen registry contains run_seed 0 through 4")
     if not math.isfinite(config["lookahead_m"]) or config["lookahead_m"] <= 0:
