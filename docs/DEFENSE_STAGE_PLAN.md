@@ -123,8 +123,8 @@ ACoE 的 [steps.py](https://github.com/romanbelaire/acoe-robust-rl/blob/main/pol
 | 阶段 | 任务 | 验收与证据 |
 | --- | --- | --- |
 | D1 诊断与目标映射 | 检查全部五模型 × 五开发交通；核对即时/后续失败与 ACoE 目标 | 不只选 seed 3；控制性分支核对 reset warmup、真实注入时刻与碰撞定义；明确 belief、奖励/递推来源、离散输出和梯度路径 |
-| D2 训练与登记支撑 | 基础 snapshot、独立随机流、恢复和成本已验证；生产审计与扩展登记入口验收完成 | 原 22 项测试、96 次 SUMO episode；新增短程完整状态/冻结评估接入通过；正式五 seed registry 须等长程全部审计通过后独立提交，新交通 namespace 尚未实现 |
-| D3 独立比较方法 | PGD 一致性工程实现及五 seed 长程入口验收完成，其他方法待补 | 原 35 项测试、144 次 SUMO episode；生产 16 集路径与原实现完整数值等价，None/PGD 两次评估通过；400 集实际状态以 ignored batch 记录为准，尚无防御效果结论 |
+| D2 训练与登记支撑 | 基础 snapshot、独立随机流、恢复和成本已验证；PGD 五 seed 正式登记完成 | 原 22 项测试、96 次 SUMO episode；生产审计与冻结评估接入通过；五个 episode-400 模型单独登记，不覆盖旧模型，新交通 namespace 尚未实现 |
+| D3 独立比较方法 | PGD 一致性五 seed 各 400 集及 20 个 checkpoint 已完成，其他方法待补 | 全部训练审计通过，原始轨迹重新核验、20 actor 重新加载；末100集回报117.61±20.16，seed2/4存在常动作退化；尚无冻结防御效果结论，见长程结果 |
 | D4 单一新增机制 | 诊断支持后才确定一个主要增量 | 与母方法、等预算普通辅助数据/仿真控制比较；核对 WocaR、RADIAL 等近邻；不预设创新成立 |
 | D5 验证与冻结 | 建议 30 个新验证交通、五模型、三个随机攻击重复 | 全部候选及负例保留；冻结超参数、episode-400 选择规则与科学主张 |
 | D6 最终测试 | 建议 50 个新的保留交通、五模型、搜索三档预算 | 所有方法预先冻结，攻击逐策略重新生成；结果不反向用于选版本或调参 |
@@ -157,6 +157,7 @@ ACoE 适配前检查对称邻域采样、作者未显式播种的 `default_rng()
 - `codex/defense-training-support`：基础完整状态、随机流隔离、恢复、成本和工程产物记录已完成，见 [审计结果](DEFENSE_TRAINING_SUPPORT_RESULTS.md)；正式防御模型冻结登记与新交通协议另行补齐。
 - `codex/defense-pgd-consistency`：独立基础比较方法实现与短程原始更新/恢复审计已完成，见 [结果](DEFENSE_PGD_CONSISTENCY_RESULTS.md)；不代表自己的方法起点。
 - `codex/defense-pgd-long-run`：五 seed 长程配置、生产原始记录/审计、冻结候选与评估扩展入口完成工程验收，见 [结果](DEFENSE_PGD_LONG_RUN_INTEGRATION_RESULTS.md) 和 [协议](DEFENSE_PGD_LONG_RUN_PROTOCOL.md)；长程模型只有实际运行与审计完成后才可正式登记。
+- `codex/defense-pgd-results`：长程结果只读核验与五 seed 的 episode-400 正式登记完成，见 [长程分析](DEFENSE_PGD_LONG_RUN_RESULTS.md)；保留常动作、低收益负例，未重新训练或执行新攻击矩阵。
 - `codex/defense-pgd-training`：独立对抗交互训练，明示 clean/attacked 数据对应与实际成本。
 - `codex/defense-smoothing-eot`：独立基础比较方法，包含真实执行与搜索一致的 EOT 评估。
 - 论文机制适配分支：讨论选定具体论文后命名，建立对应母方法对照。
