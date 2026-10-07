@@ -12,7 +12,7 @@ actor-only 文件只用于推理；新增 full-training snapshot 保存 actor、
 
 ## 资源和信息权限
 
-记录真实交互、reset warmup、主/辅助更新、被攻击交互、额外仿真分支/回放与候选观测。实际 forward hooks 分网络、分阶段记录**调用次数与输入 observation 行数**，批量 forward 不当成一条样本；实际 optimizer.step 计数，不把 OARL dual 或额外网络成本忽略。BO objective 数计实际调用。阶段 wall time 单独记录，不估计未测量 FLOPs、延迟或能耗。
+记录真实交互、reset warmup、主/辅助更新、被攻击交互、额外仿真分支/回放与候选观测。实际 forward hooks 分网络、分阶段记录**调用次数与输入 observation 行数**，批量 forward 不当成一条样本；实际 optimizer.step 计数，不把 OARL dual 或额外网络成本忽略。额外网络通过显式 `measure_component(name, network, optimizer)` 上下文计费，辅助更新定义为成功的额外 optimizer.step 次数；注册网络本身不假装已测量训练。BO objective 数计实际调用。阶段 wall time 单独记录，不估计未测量 FLOPs、延迟或能耗。
 
 恢复的账本是完整逻辑轨迹累计成本；每个新进程另记录相对 resume 起点的 segment delta。批次实际物理成本按进程 segment 加总，不能再次累计 prefix 成本。原始仿真状态/正常 observation 只用于训练和审计，工程配置未开启特权分支、辅助训练或观测攻击，这些成本为零；未来使用时必须显式计费并与母方法共享相同权限。
 

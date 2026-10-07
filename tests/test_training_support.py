@@ -118,9 +118,12 @@ class TrainingSupportTests(unittest.TestCase):
         with session.auxiliary_streams.torch["initialization"].activate():
             network = torch.nn.Linear(16, 3)
         optimizer = torch.optim.Adam(network.parameters(), lr=.001)
-        optimizer.zero_grad()
-        network(torch.ones(2, 16)).sum().backward()
-        optimizer.step()
+        with session.resources.measure_component("test_cost", network, optimizer):
+            optimizer.zero_grad()
+            network(torch.ones(2, 16)).sum().backward()
+            optimizer.step()
+        self.assertEqual(session.resources.counts["auxiliary_updates"], 1)
+        self.assertEqual(session.resources.phases["auxiliary_update"]["network_observation_rows"]["test_cost"], 2)
         session.register_component("test_cost", network, optimizer)
         digest = session.save(self.path, dict(reset_times=0))
         other = self.session()
@@ -132,6 +135,19 @@ class TrainingSupportTests(unittest.TestCase):
         other.restore(self.path, digest, SimpleNamespace())
         self.assertEqual(tree_digest(optimizer_state(optimizer)), tree_digest(optimizer_state(restored_optimizer)))
         self.assertEqual(tree_digest(network.state_dict()), tree_digest(restored.state_dict()))
+        self.assertEqual(session.resources.state_dict(), other.resources.state_dict())
+
+    def test_extra_cost_hooks_restore_after_failure(self):
+        session = self.session()
+        network = torch.nn.Linear(16, 3)
+        optimizer = torch.optim.Adam(network.parameters())
+        with self.assertRaises(RuntimeError):
+            with session.resources.measure_component("test_extra", network, optimizer):
+                network(torch.ones(2, 16))
+                raise RuntimeError("expected")
+        network(torch.ones(2, 16))
+        self.assertEqual(session.resources.phases["auxiliary_update"]["network_forward_calls"]["test_extra"], 1)
+        self.assertEqual(session.resources.counts["auxiliary_updates"], 0)
 
     def test_mid_episode_save_and_inference_only_restore_are_rejected(self):
         session = self.session()

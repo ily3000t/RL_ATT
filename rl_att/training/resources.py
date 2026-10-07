@@ -58,6 +58,32 @@ class TrainingResources:
     def state_dict(self):
         return copy.deepcopy(dict(counts=self.counts, phases=self.phases))
 
+    @contextmanager
+    def measure_component(self, name, network, optimizer, phase="auxiliary_update"):
+        """Explicitly measure a registered extra network without selecting its loss."""
+        require(bool(name), "Name auxiliary component costs")
+        record = self.phases.setdefault(phase, dict(network_forward_calls={}, network_observation_rows={}, optimizer_steps={}, wall_seconds=0.))
+        start, original = time.monotonic(), optimizer.step
+
+        def forward(module, args, output):
+            record["network_forward_calls"][name] = record["network_forward_calls"].get(name, 0) + 1
+            rows = 1 if args[0].dim() == 1 else args[0].shape[0]
+            record["network_observation_rows"][name] = record["network_observation_rows"].get(name, 0) + rows
+
+        def step(*args, **kwargs):
+            value = original(*args, **kwargs)
+            record["optimizer_steps"][name] = record["optimizer_steps"].get(name, 0) + 1
+            self.add("auxiliary_updates")
+            return value
+        hook = network.register_forward_hook(forward)
+        optimizer.step = step
+        try:
+            yield
+        finally:
+            hook.remove()
+            optimizer.step = original
+            record["wall_seconds"] += time.monotonic() - start
+
     def load_state_dict(self, state):
         require(set(state["counts"]) == set(self.counts), "Training ledger schema changed")
         require(all(type(v) is int and v >= 0 for v in state["counts"].values()), "Invalid saved resource counts")
