@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "kind": "pgd_consistency_production_entry_engineering_summary",
+  "verified": true,
+  "engineering_only": true,
+  "benchmark_eligible": false,
+  "gate_enabled": false,
+  "execution_git_commit": "16aa8a555c1e556474447bac4c321a4f39e19402",
+  "branch": "codex/defense-pgd-long-run",
+  "training_config": "configs/experiments/pgd_consistency_training_smoke.json",
+  "config_sha256": "da733d562ecef46fc4607c326224047b6d65cde27c7e18705eb75602223cfe74",
+  "training_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "scripts/run_experiment_batch.py",
+    "--configs",
+    "configs/experiments/pgd_consistency_training_smoke.json",
+    "--jobs",
+    "1",
+    "--name",
+    "defense-pgd-long-integration"
+  ],
+  "evaluation_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "scripts/evaluate_attacks.py",
+    "--config",
+    "configs/evaluation/pgd_consistency_integration_smoke.json",
+    "--victim-registry",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/frozen_defense_victims.json",
+    "--allow-engineering-victims",
+    "--output",
+    ".local/runs/20261007-defense-pgd-production-eval-smoke"
+  ],
+  "effective_seeds": {
+    "run_seed": 0,
+    "policy_seed": 0,
+    "numpy_seed": 0,
+    "python_seed": 0,
+    "torch_seed": 0,
+    "sumo_seed": 0,
+    "attack_seed": 0,
+    "protocol": "controlled",
+    "policy_rng": "isolated_cpu",
+    "attack_rng": "isolated_auxiliary_attack_numpy",
+    "phase": "train",
+    "sumo_schedule": "seedsequence_v1",
+    "episode_sumo_seeds": [
+      821328063,
+      1683718083,
+      779308543,
+      198478470,
+      53917133,
+      1387925762,
+      1079240589,
+      1037991102,
+      2012181747,
+      643195294,
+      1754190249,
+      1122099562,
+      163117957,
+      1684409658,
+      764043652,
+      817502473
+    ],
+    "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+  },
+  "auxiliary_role_seeds": {
+    "attack": 1500372476,
+    "belief": 1060443234,
+    "initialization": 1886378803,
+    "sampling": 797080042
+  },
+  "host_os": "Windows-10-10.0.26100-SP0",
+  "runtime": {
+    "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "1.3.1+cpu",
+    "torch_threads": 1,
+    "numpy": "1.21.6",
+    "scipy": "1.7.3",
+    "sklearn": "0.24.2"
+  },
+  "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+  "pip_freeze_sha256": "4b41834f03448b27842d3698f22436d70a518fc30c8f16bc907743a7b3e08084",
+  "tests": {
+    "full_suite_before_path_repair": {
+      "passed": 235
+    },
+    "after_path_repair": {
+      "protocol": 10,
+      "training_support": 14,
+      "new_regression_tests": 1
+    },
+    "interpretation": "Full suite was not rerun after the path repair; 24 relevant post-repair tests passed, including one new test"
+  },
+  "training": {
+    "episodes": 16,
+    "counts": {
+      "interactions": 199,
+      "updates": 35,
+      "warmup_steps": 1314
+    },
+    "resources": {
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 26880,
+        "bo_objective_evaluations": 0
+      },
+      "phases": {
+        "interaction_policy": {
+          "network_forward_calls": {
+            "actor": 199
+          },
+          "network_observation_rows": {
+            "actor": 199
+          },
+          "optimizer_steps": {},
+          "wall_seconds": 0.029999999998835847
+        },
+        "primary_update": {
+          "network_forward_calls": {
+            "actor": 315,
+            "qf1": 70,
+            "qf2": 70,
+            "qf1_target": 35,
+            "qf2_target": 35
+          },
+          "network_observation_rows": {
+            "actor": 40320,
+            "qf1": 8960,
+            "qf2": 8960,
+            "qf1_target": 4480,
+            "qf2_target": 4480
+          },
+          "optimizer_steps": {
+            "actor_optimizer": 35,
+            "qf1_optimizer": 35,
+            "qf2_optimizer": 35
+          },
+          "wall_seconds": 0.4220000000204891
+        }
+      }
+    },
+    "defense_counts": {
+      "updates": 35,
+      "gradient_evaluations": 175,
+      "search_actor_forward_calls": 210,
+      "search_observation_rows": 26880,
+      "regularizer_actor_forward_calls": 35,
+      "regularizer_observation_rows": 4480,
+      "candidate_observations": 26880
+    },
+    "checkpoints": [
+      {
+        "episode": 13,
+        "checkpoint": "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\source\\model\\policy13.pkl",
+        "checkpoint_sha256": "5f1e405cdaa44a20b0dc50f0a8351f75f47a08a68afe2574f33f63a42aa25b80",
+        "weights_sha256": "9ab1a30ab3e4b781dc681441a14018b84d780d21a03f0eb8636243a7e3ce821d",
+        "full_training_checkpoint": "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\checkpoints\\training13.pt",
+        "full_training_sha256": "d59d8a1a58e01b70f42be5724cfd0e212b6cf070a8f2c2da433953f56668ace7"
+      },
+      {
+        "episode": 16,
+        "checkpoint": "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\source\\model\\policy16.pkl",
+        "checkpoint_sha256": "15e287df0f96fabbd97b210eb754a76ba94cfc9cd6f73300a0209edcc9f084a2",
+        "weights_sha256": "c1c87a448ac83c5a47753409bb838208a05efb39ea2329d3f4635bdb7a6dcb67",
+        "full_training_checkpoint": "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\checkpoints\\training16.pt",
+        "full_training_sha256": "05078010d07c9b8141f9c72c414ec5eab0d330b3e2dba0f53f56e26b26a15431"
+      }
+    ],
+    "training_wall_seconds": 2.2809999999881256,
+    "raw_kl_min": 0.0012485601543307328,
+    "raw_kl_max": 0.0016819808932382941,
+    "max_box_violation": 4.768371580921027e-08
+  },
+  "equivalence": {
+    "verified": true,
+    "kind": "production_entry_numeric_equivalence",
+    "reference_commit": "3ae20dbadac79d32597d3491c64a3c686adeb9d1",
+    "production_commit": "16aa8a555c1e556474447bac4c321a4f39e19402",
+    "final_numeric_state_sha256": "0af3872bf84ff5a01f65b4eb22f916a6a7eb2998133c50b4df4d1228b4b215e9",
+    "boundary_numeric_state_sha256": "43922a79930e0e3daca2860a9d0cc33b2ab59eca5ada408c3ad9469aa97a9874",
+    "actor_weights_sha256": "c1c87a448ac83c5a47753409bb838208a05efb39ea2329d3f4635bdb7a6dcb67",
+    "episodes": 16,
+    "counts": {
+      "interactions": 199,
+      "updates": 35,
+      "warmup_steps": 1314
+    },
+    "source_sha256": {
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\checkpoints\\training16.pt": "05078010d07c9b8141f9c72c414ec5eab0d330b3e2dba0f53f56e26b26a15431",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\checkpoints\\training13.pt": "d59d8a1a58e01b70f42be5724cfd0e212b6cf070a8f2c2da433953f56668ace7",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-consistency\\pgd_consistency-continuous\\canonical.pt": "bc3f89a5f275b8c91d3c8401f0c3402e65abcb09846b6d68489baf5775821505",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-consistency\\pgd_consistency-continuous\\training-boundary.pt": "6d06b0db3a6ba2a36d21a39b003d643e25b86bbd1e652443b7d8aa2779502a2a",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\run-0\\episodes.jsonl": "e0600b9442985b768dc6e5e779f19b59a1a6417c66011512710acd9bd065c239",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-consistency\\pgd_consistency-continuous\\episodes.jsonl": "e58579d4cd0ff9beb17012d88849c311a32dc0db59860d9e1351fdbe93a32ed2"
+    },
+    "interpretation": "Exact short-run training/trajectory/complete numeric state equivalence; no defense efficacy conclusion"
+  },
+  "integration": {
+    "verified": true,
+    "engineering_only": true,
+    "benchmark_eligible": false,
+    "kind": "short_frozen_defense_evaluation_audit",
+    "execution_commit": "16aa8a555c1e556474447bac4c321a4f39e19402",
+    "episodes": 2,
+    "real_steps": 32,
+    "runs": [
+      {
+        "attack": "none",
+        "episodes": 1,
+        "real_steps": 16,
+        "return_mean": 3.2267430295620647,
+        "collision_rate": 0.0,
+        "attack_gradients": 0,
+        "attack_policy_forwards": 0,
+        "attack_objectives": 0,
+        "evaluator_policy_forwards": 32
+      },
+      {
+        "attack": "pgd",
+        "episodes": 1,
+        "real_steps": 16,
+        "return_mean": 6.828048384238511,
+        "collision_rate": 0.0,
+        "attack_gradients": 160,
+        "attack_policy_forwards": 192,
+        "attack_objectives": 176,
+        "evaluator_policy_forwards": 32
+      }
+    ],
+    "source_sha256": {
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-production-eval-smoke\\pgd_consistency-seed0-none\\episodes.json": "297eeb3c8f5cc11f84b59e2628ee87b461d98092b8ca82886d0cf523bc471a2a",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-production-eval-smoke\\pgd_consistency-seed0-none\\steps.jsonl": "224ebbe3e0ff84ee2fee679f5f5c291afa0314f8c5bed376c502921920b7fff6",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-production-eval-smoke\\pgd_consistency-seed0-pgd\\episodes.json": "d32b41fb8a97e254836017792b6f2f3ea6d066bd391929b78e7707633c447cba",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007-defense-pgd-production-eval-smoke\\pgd_consistency-seed0-pgd\\steps.jsonl": "807af444941e85b1784f0fbd2e612b15ef13f751978cfffd2bac3d162ecf6733"
+    },
+    "audit_command": [
+      "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+      "E:\\Att\\OARL-master\\.local\\runs\\20261007T110022Z-defense-pgd-long-integration\\integration_check.py"
+    ],
+    "interpretation": "Existing one-traffic short None/PGD integration only; no defense efficacy or safety inference"
+  },
+  "failed_attempt": {
+    "directory": ".local/runs/20261007T105530Z-defense-pgd-long-integration",
+    "execution_commit": "5c1e3b62da33f65ff210bfa34826515b3baeb72d",
+    "status": "failed",
+    "reason": "First actor checkpoint used a relative artifact path; audit could not locate it across process working directories",
+    "correction_commit": "16aa8a555c1e556474447bac4c321a4f39e19402",
+    "frozen_registry_generated": false,
+    "preserved": true
+  },
+  "source_sha256": {
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/batch.json": "4ce396d5d218da31750e043249e4bbb164401b9c2204df62da8ffbfbeb8d612b",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/run-0/manifest.json": "081a043eca88aa3ad1e0642cd19cefa0cd6596a467482a5694ca9cdff3b91e85",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/run-0/training_audit.json": "53b9756961bf314729acdb3fe8dcd5aaff4b3796748b190d05f2e722e678781d",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/run-0/training_report.json": "556421eb55a203058cfa3ea5924edd330ecdfd90dda611429790cafdd4c4fccc",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/frozen_defense_victims.json": "f57373dfaeff8c383cdfa79ceb5d399dcccb987fb45756f33d0f39191e09d98c",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/numeric_equivalence.json": "29ed043490346aed9fd3439db0fff975269694bdff902823e0aa20c3dedb17b7",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/integration_audit.json": "d82719fe32dbc6b22a0807130cbf4444007fe8288663b09a400401c550eaa5df",
+    ".local/runs/20261007T110022Z-defense-pgd-long-integration/integration_check.py": "ac47164db3f38d4ec3c64736f30741eebe90602a250e8c4b02a7970240a897df",
+    ".local/runs/20261007-defense-pgd-production-eval-smoke/manifest.json": "c401af7bb35823e61f1c078aacd66ae55885ffb399220ad6cc1255b65bc8523c",
+    ".local/runs/20261007-defense-pgd-production-eval-smoke/evaluation.json": "149f94402896723d56d59be090e291d7a620637b3ceb6e4a1e3d253e4a234947"
+  },
+  "long_training_protocol": "docs/DEFENSE_PGD_LONG_RUN_PROTOCOL.md",
+  "limitation": "Short engineering integration only. No convergence or defense efficacy claim. Full five-seed training and official registry require actual execution and audits."
+}
