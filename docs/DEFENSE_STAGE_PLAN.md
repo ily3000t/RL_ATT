@@ -4,9 +4,11 @@
 
 已审阅原稿位于仓库外 `E:/Att/DEFENSE_RESEARCH_PLAN_REVIEW_20261005.md`，SHA256 为 `8c116c1d297422b11cebcc885547400e5cadfebfcf80eb8b9312e845b29f2c94`，审阅源码为 `bfc3b13fa01cca3eda094ce9e9d6c17d8ac0388b`。原稿保留不变，本文件登记批准范围及 OARL 强基线补充；原稿和攻击论文稿不提交 Git。
 
-D1 进度（2026-10-07）：完整历史轨迹诊断已通过，见 [诊断结果](DEFENSE_D1_RESULTS.md) 与 [复现协议](DEFENSE_DIAGNOSTIC_PROTOCOL.md)；ACoE 目标核对、逆可行集合和梯度检查见 [离散映射](ACOE_DISCRETE_MAPPING.md)。现已完成 [控制性 reset/分支验证](DEFENSE_CONTROLLED_REPLAY_RESULTS.md)：350 次 rollout、150 个配对，无攻击和持续攻击历史精确复现，warmup 未观测到 ego 碰撞。OARL 两种搜索的单次转换均为集中交通的 5 次早失败，持续后增至 11/8 次；其他交通单次输入恢复有时提高回报，不能预设所有行为偏离有害或恢复模块已被支持。候选奖励来源、belief 和 off-policy 目标尚未选定，D1 没有据此关闭全部验收，也没有开始母方法或新防御训练。
+D1 进度（2026-10-07）：完整历史轨迹诊断已通过，见 [诊断结果](DEFENSE_D1_RESULTS.md) 与 [复现协议](DEFENSE_DIAGNOSTIC_PROTOCOL.md)；ACoE 目标核对、逆可行集合和梯度检查见 [离散映射](ACOE_DISCRETE_MAPPING.md)。现已完成 [控制性 reset/分支验证](DEFENSE_CONTROLLED_REPLAY_RESULTS.md)：350 次 rollout、150 个配对，无攻击和持续攻击历史精确复现，warmup 未观测到 ego 碰撞。OARL 两种搜索的单次转换均为集中交通的 5 次早失败，持续后增至 11/8 次；其他交通单次输入恢复有时提高回报，不能预设所有行为偏离有害或恢复模块已被支持。候选奖励来源、belief 和 off-policy 目标尚未选定，D1 没有据此关闭全部验收，也没有开始母方法或自己的防御训练。
 
-D2 进度（2026-10-07）：[基础训练支撑](DEFENSE_TRAINING_SUPPORT_RESULTS.md) 已通过 22 项相关测试和 96 次真实 SUMO 短程 episode 的独立审计。关闭新防御时，Clean/OARL 原循环、新连续路径及独立进程恢复的逐 episode 轨迹和完整数值训练状态一致。新增完整 snapshot、隔离辅助随机流、实际成本计量及工程 actor 产物记录，旧入口与冻结模型不变；恢复仅限 episode 边界，工程产物不进入 benchmark。正式防御冻结登记和新交通 namespace 仍未完成。下一步独立实现 PGD 一致性基础对照，同时明确 ACoE 的误差来源、belief 和更新目标；不把基础对照作为自己的方法起点。
+D2 进度（2026-10-07）：[基础训练支撑](DEFENSE_TRAINING_SUPPORT_RESULTS.md) 已通过 22 项相关测试和 96 次真实 SUMO 短程 episode 的独立审计。关闭新防御时，Clean/OARL 原循环、新连续路径及独立进程恢复的逐 episode 轨迹和完整数值训练状态一致。新增完整 snapshot、隔离辅助随机流、实际成本计量及工程 actor 产物记录，旧入口与冻结模型不变；恢复仅限 episode 边界，工程产物不进入 benchmark。正式防御冻结登记和新交通 namespace 仍未完成。
+
+D3 进度（2026-10-07）：[独立 PGD 一致性基线](DEFENSE_PGD_CONSISTENCY_RESULTS.md) 已实现，35 项相关测试、144 次 SUMO 短程 episode 及独立原始更新审计通过。系数/预算为零时精确退化到 Clean；enabled 方法完成独立重复和 episode 边界恢复。只在 replay batch 上搜索并正则化 actor，正常 SUMO 交互和 critic 目标保持；不称为完整 SA-PPO，不作为自己的母方法。尚未长程训练或测得防御收益，PGD 对抗交互训练、随机平滑和 ACoE 适配均未完成。下一项登记五 seed 长程训练与正式模型冻结/评估接入，同时补新的防御交通协议和 ACoE 数学目标。
 
 ## 先建立 OARL Robust 对照
 
@@ -122,7 +124,7 @@ ACoE 的 [steps.py](https://github.com/romanbelaire/acoe-robust-rl/blob/main/pol
 | --- | --- | --- |
 | D1 诊断与目标映射 | 检查全部五模型 × 五开发交通；核对即时/后续失败与 ACoE 目标 | 不只选 seed 3；控制性分支核对 reset warmup、真实注入时刻与碰撞定义；明确 belief、奖励/递推来源、离散输出和梯度路径 |
 | D2 训练与登记支撑 | 基础 snapshot、独立随机流、恢复和成本已验证；正式模型冻结登记待补 | 22 项相关测试、96 次 SUMO episode 通过；关闭防御原更新及独立进程恢复完整状态等价；不覆盖原 actor-only；新交通 namespace 尚未实现 |
-| D3 独立比较方法 | PGD 对抗训练、PGD 一致性与核对后的 ACoE 适配版；平滑另批实现 | 各方法独立模型和配置，五训练 seed；母方法与自己的版本共用必要适配，明确论文差异 |
+| D3 独立比较方法 | PGD 一致性工程实现通过，长程及其他方法待补 | 35 项相关测试、144 次 SUMO episode；各方法仍须独立冻结五 seed 模型、记录训练成本；母方法与自己的版本共用必要适配 |
 | D4 单一新增机制 | 诊断支持后才确定一个主要增量 | 与母方法、等预算普通辅助数据/仿真控制比较；核对 WocaR、RADIAL 等近邻；不预设创新成立 |
 | D5 验证与冻结 | 建议 30 个新验证交通、五模型、三个随机攻击重复 | 全部候选及负例保留；冻结超参数、episode-400 选择规则与科学主张 |
 | D6 最终测试 | 建议 50 个新的保留交通、五模型、搜索三档预算 | 所有方法预先冻结，攻击逐策略重新生成；结果不反向用于选版本或调参 |
@@ -153,7 +155,7 @@ ACoE 适配前检查对称邻域采样、作者未显式播种的 `default_rng()
 - `codex/defense-route-discussion`：本次角色澄清与研究路线讨论，只修改方案文档。
 - `codex/defense-protocol-design`：登记用户批准范围、OARL 强基线定位和 D1–D6 设计，统一已撤回路线；本轮不启动训练。
 - `codex/defense-training-support`：基础完整状态、随机流隔离、恢复、成本和工程产物记录已完成，见 [审计结果](DEFENSE_TRAINING_SUPPORT_RESULTS.md)；正式防御模型冻结登记与新交通协议另行补齐。
-- `codex/defense-pgd-consistency`：独立基础比较方法，登记新 checkpoint 与训练成本；不代表自己的方法起点。
+- `codex/defense-pgd-consistency`：独立基础比较方法实现与短程原始更新/恢复审计已完成，见 [结果](DEFENSE_PGD_CONSISTENCY_RESULTS.md)；五 seed 长程与正式冻结登记待补，不代表自己的方法起点。
 - `codex/defense-pgd-training`：独立对抗交互训练，明示 clean/attacked 数据对应与实际成本。
 - `codex/defense-smoothing-eot`：独立基础比较方法，包含真实执行与搜索一致的 EOT 评估。
 - 论文机制适配分支：讨论选定具体论文后命名，建立对应母方法对照。

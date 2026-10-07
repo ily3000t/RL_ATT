@@ -39,6 +39,7 @@ def audit_run(path):
 
     for victim in manifest["protocol"]["victims"]:
         modes = {}
+        defense_checks = {}
         for job in manifest["jobs"]:
             if job["victim"] != victim:
                 continue
@@ -62,7 +63,7 @@ def audit_run(path):
             require(report["completed_episodes"] == canonical["completed_episodes"] and canonical["updates"] > 0,
                     "No trained updates or wrong final episode")
             boundary = None
-            if mode != "reference":
+            if mode != "reference" or victim == "pgd_consistency":
                 final = report["final_training_checkpoint"]
                 require(hashlib.sha256(read(Path(final["path"]))).hexdigest() == final["sha256"], "Full resume checkpoint changed")
                 payload = torch.load(final["path"], map_location="cpu")
@@ -84,6 +85,20 @@ def audit_run(path):
                 require(steps == {n: canonical["updates"] for n in
                         (["actor_optimizer", "qf1_optimizer", "qf2_optimizer"] + (["dual_cst_optimizer"] if victim == "oarl" else []))},
                         "Optimizer step accounting drift")
+                if victim == "pgd_consistency":
+                    from .consistency_audit import audit_training
+                    require(child["comparison_reference"] == report["comparison_reference"] == "independent_repeat",
+                            "PGD baseline incorrectly labeled as original-paper reference")
+                    rows = [json.loads(line) for line in read(directory / "defense_updates.jsonl").decode("utf-8").splitlines()]
+                    defense_checks[mode] = audit_training(rows, child["config"]["defense"], payload["agent"]["defense_training"],
+                                                         ledger, report["segment_counts"]["primary_updates"])
+                    require(tree_digest(payload["agent"]["defense_training"]["attack_rng"]) ==
+                            tree_digest(payload["auxiliary_rng"]["numpy"]["attack"]), "Defense attack RNG differs from auxiliary stream")
+                    require(actor["defense_config"] == child["config"]["defense"] and
+                            actor["defense_training_counts"] == payload["agent"]["defense_training"]["counts"] and
+                            tree_digest(torch.load(actor["checkpoint"], map_location="cpu").state_dict()) ==
+                            tree_digest(payload["agent"]["networks"]["actor"]["weights"]),
+                            "Exported actor differs from trained model")
                 checkpoint = report["boundary_checkpoint"]
                 if checkpoint:
                     require(hashlib.sha256(read(Path(checkpoint["path"]))).hexdigest() == checkpoint["sha256"], "Boundary checkpoint changed")
@@ -105,6 +120,11 @@ def audit_run(path):
                            split_after_episode=modes["prefix"]["end_episode"], counts=modes["continuous"]["counts"],
                            physical_episodes=sum(len(m["episodes"]) for m in modes.values()),
                            actual_batch_sumo_steps=sum(m["counts"]["real_interaction_steps"] + m["counts"]["sumo_reset_warmup_steps"] for m in modes.values())))
+        if defense_checks:
+            groups[-1]["defense_checks"] = defense_checks
+            groups[-1]["reference_kind"] = "independent_repeat"
     return dict(verified=True, kind="defense_training_support_compatibility", git_commit=manifest["git_commit"],
                 source_sha256=inputs, groups=groups, physical_episodes=sum(g["physical_episodes"] for g in groups),
-                interpretation="Short exact-engineering verification on training seeds; not new defense efficacy, full reproduction or final traffic validation")
+                interpretation=("Short exact-engineering verification on training seeds; PGD reference is an independent repeat, not paper reproduction. No efficacy or final traffic validation"
+                                if manifest["protocol"]["kind"] == "pgd_consistency_engineering" else
+                                "Short exact-engineering verification on training seeds; not new defense efficacy, full reproduction or final traffic validation"))

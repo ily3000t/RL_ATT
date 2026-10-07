@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "pgd_consistency_engineering",
+  "engineering_only": true,
+  "gate_enabled": false,
+  "victims": ["clean", "oarl", "pgd_consistency"],
+  "run_seed": 0,
+  "episodes": 16,
+  "max_steps": 16,
+  "split_after_episode": 13,
+  "expected_physical_episodes": 144,
+  "comparison_modes": ["reference", "continuous", "prefix", "resumed"],
+  "defense": {
+    "coefficient": 0.1,
+    "multiplicative": 0.2,
+    "additive": 0.05,
+    "epsilon": 1.0,
+    "steps": 5,
+    "step_size": 0.4,
+    "random_start": true,
+    "probability_floor": 1e-8
+  },
+  "reference": "Clean/OARL use unmodified main.py; PGD consistency reference means an independent complete repeat, not an upstream PGD implementation.",
+  "acceptance": "Original Clean/OARL compatibility, enabled PGD deterministic repeat and complete fresh-process resume, independent raw box/KL/loss and actual resource audits.",
+  "limitation": "Short engineering training only; parameters are an initial baseline configuration, not tuned on validation or reserved traffic. No defense efficacy, paper reproduction or benchmark-eligible model."
+}

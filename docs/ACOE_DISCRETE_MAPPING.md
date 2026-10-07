@@ -100,6 +100,7 @@ A2B 可以先作为低复杂度 sanity check；条件 belief 要逐观测归一�
 | 即时误差的来源和 off-policy 目标 | 待验证，不能伪造候选 reward 或默认代理正确 |
 | 行为后果、正常输入恢复与交通集中性解释 | 控制性分支已审计；即时失败与持续损害分开，尚未确证恢复模块 |
 | 基础训练 snapshot、恢复与成本支撑 | 22 项相关测试、96 次 SUMO episode 通过；仅 episode 边界，未训练母方法 |
+| 独立 PGD 一致性基础比较 | 35 项相关测试、144 次工程 episode 通过；未完成长程或测得防御收益，不选为母算法 |
 | 新防御有效性与创新 | 未训练、未测量，不作结论 |
 
-2026-10-07 补充：D1 控制性分支已完成，见 [结果](DEFENSE_CONTROLLED_REPLAY_RESULTS.md)，原输入/权重/算法保持不变。D2 的基础策略快照、独立进程训练恢复和成本支撑已通过 [工程验证](DEFENSE_TRAINING_SUPPORT_RESULTS.md)，没有解决即时反事实误差来源、belief 和 off-policy 更新选择。下一项独立实现通用 PGD 一致性对照；正式模型冻结登记和新交通 namespace 仍待补齐。ACoE 母方法仍需上述数学目标明确后再开始，基础支撑验证不能替代数学核对。自己的创新模块继续后置，并在同样的工程适配与辅助数据预算下与母方法比较。
+2026-10-07 补充：D1 控制性分支已完成，见 [结果](DEFENSE_CONTROLLED_REPLAY_RESULTS.md)，原输入/权重/算法保持不变。D2 的基础策略快照、独立进程训练恢复和成本支撑已通过 [工程验证](DEFENSE_TRAINING_SUPPORT_RESULTS.md)，独立 [PGD 一致性基础对照](DEFENSE_PGD_CONSISTENCY_RESULTS.md) 的实现和短程审计也已通过；两者没有解决即时反事实误差来源、belief 和 off-policy 更新选择。PGD 对照长程、正式模型冻结登记和新交通 namespace 仍待补齐。ACoE 母方法仍需上述数学目标明确后再开始，基础支撑与比较方法不能替代数学核对。自己的创新模块继续后置，并在同样的工程适配与辅助数据预算下与母方法比较。

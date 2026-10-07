@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "kind": "pgd_consistency_engineering_summary",
+  "verified": true,
+  "engineering_only": true,
+  "gate_enabled": false,
+  "execution_git_commit": "3ae20dbadac79d32597d3491c64a3c686adeb9d1",
+  "config_file": "configs/research/defense_pgd_consistency_smoke.json",
+  "protocol": {
+    "schema_version": 1,
+    "kind": "pgd_consistency_engineering",
+    "engineering_only": true,
+    "gate_enabled": false,
+    "victims": [
+      "clean",
+      "oarl",
+      "pgd_consistency"
+    ],
+    "run_seed": 0,
+    "episodes": 16,
+    "max_steps": 16,
+    "split_after_episode": 13,
+    "expected_physical_episodes": 144,
+    "comparison_modes": [
+      "reference",
+      "continuous",
+      "prefix",
+      "resumed"
+    ],
+    "defense": {
+      "coefficient": 0.1,
+      "multiplicative": 0.2,
+      "additive": 0.05,
+      "epsilon": 1.0,
+      "steps": 5,
+      "step_size": 0.4,
+      "random_start": true,
+      "probability_floor": 1e-08
+    },
+    "reference": "Clean/OARL use unmodified main.py; PGD consistency reference means an independent complete repeat, not an upstream PGD implementation.",
+    "acceptance": "Original Clean/OARL compatibility, enabled PGD deterministic repeat and complete fresh-process resume, independent raw box/KL/loss and actual resource audits.",
+    "limitation": "Short engineering training only; parameters are an initial baseline configuration, not tuned on validation or reserved traffic. No defense efficacy, paper reproduction or benchmark-eligible model."
+  },
+  "protocol_sha256": "07052e51427b8628fab28be88bf7069574f2d58652f8578b87092c987f515306",
+  "raw_directory": ".local/runs/20261007-defense-pgd-consistency",
+  "parent_manifest_sha256": "eac8f13cadaf69838e1c7e34c6cb23d60b824ce21e28c85c7e6af27cce65f850",
+  "audit_sha256": "2894c9e9833aca73c7c226a9404090c68e32224d0fbc917a313005c0ccd6391e",
+  "wrapper_command": [
+    "E:\\Att\\OARL-master\\.local\\envs\\oarl-legacy\\python.exe",
+    "scripts/validate_training_support.py",
+    "--config",
+    "configs/research/defense_pgd_consistency_smoke.json",
+    "--output",
+    ".local/runs/20261007-defense-pgd-consistency"
+  ],
+  "started_at_utc": "2026-10-07T07:23:40.528671Z",
+  "finished_at_utc": "2026-10-07T07:24:31.824804Z",
+  "batch_wall_seconds": 51.296133,
+  "host_os": "Windows-10-10.0.26100-SP0",
+  "runtime": {
+    "python": "3.7.16 (default, Jan 17 2023, 16:06:28) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "1.3.1+cpu",
+    "torch_threads": 1,
+    "numpy": "1.21.6",
+    "scipy": "1.7.3",
+    "sklearn": "0.24.2"
+  },
+  "sumo_version": "Eclipse SUMO sumo Version 1.22.0",
+  "pip_freeze_stdout_sha256": "4b41834f03448b27842d3698f22436d70a518fc30c8f16bc907743a7b3e08084",
+  "frozen_registry_sha256": "abdfb1437842832134fca2ff7de5d8c9091c27014f4d7e18bfb0e9ec062f5af9",
+  "pgd_effective_seeds": {
+    "run_seed": 0,
+    "policy_seed": 0,
+    "numpy_seed": 0,
+    "python_seed": 0,
+    "torch_seed": 0,
+    "sumo_seed": 0,
+    "attack_seed": 0,
+    "protocol": "controlled",
+    "policy_rng": "isolated_cpu",
+    "attack_rng": "isolated_auxiliary_attack_numpy",
+    "phase": "train",
+    "sumo_schedule": "seedsequence_v1",
+    "episode_sumo_seeds": [
+      821328063,
+      1683718083,
+      779308543,
+      198478470,
+      53917133,
+      1387925762,
+      1079240589,
+      1037991102,
+      2012181747,
+      643195294,
+      1754190249,
+      1122099562,
+      163117957,
+      1684409658,
+      764043652,
+      817502473
+    ],
+    "numpy_rng": "upstream_shared_environment_and_replay_preserved"
+  },
+  "auxiliary_role_seeds": {
+    "attack": 1500372476,
+    "belief": 1060443234,
+    "initialization": 1886378803,
+    "sampling": 797080042
+  },
+  "groups": [
+    {
+      "victim": "clean",
+      "verified": true,
+      "episodes": 16,
+      "numeric_state_sha256": "4f7027ec073e93088ddee87a7f9484ad681cb32e00f265ae95358647a3a300f4",
+      "boundary_state_sha256": "5049934585128b0dab53ae60edfaaa2ab613fd6261fba3202fc901670615ff28",
+      "split_after_episode": 13,
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 0,
+        "bo_objective_evaluations": 0
+      },
+      "physical_episodes": 48,
+      "actual_batch_sumo_steps": 4539,
+      "cumulative_resources": {
+        "counts": {
+          "real_interaction_steps": 199,
+          "sumo_reset_warmup_steps": 1314,
+          "primary_updates": 35,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 0,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 199
+            },
+            "network_observation_rows": {
+              "actor": 199
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 0.06300000002374873
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 70,
+              "qf1": 70,
+              "qf2": 70,
+              "qf1_target": 35,
+              "qf2_target": 35
+            },
+            "network_observation_rows": {
+              "actor": 8960,
+              "qf1": 8960,
+              "qf2": 8960,
+              "qf1_target": 4480,
+              "qf2_target": 4480
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35,
+              "qf1_optimizer": 35,
+              "qf2_optimizer": 35
+            },
+            "wall_seconds": 0.09400000001187436
+          }
+        }
+      },
+      "inference_actor_sha256": "ad7ae2f18297d31485e90bf853a32a8c3ed85b258f862a755804c48532a6b4d6",
+      "inference_actor_weights_sha256": "c2778a5e4a425b7e1504bcf3f2350027782e51ae80f249ffef7a444ecefe278f",
+      "benchmark_eligible": false
+    },
+    {
+      "victim": "oarl",
+      "verified": true,
+      "episodes": 16,
+      "numeric_state_sha256": "ddb2ab51e7356adae9ed7b338a99767b3eb8752acfd6ece8bb63c7449818b40f",
+      "boundary_state_sha256": "70f6dc04934e71a30bf8f2e99c5c2eace2f88eed1693b39e0c597baca282b382",
+      "split_after_episode": 13,
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 0,
+        "bo_objective_evaluations": 175
+      },
+      "physical_episodes": 48,
+      "actual_batch_sumo_steps": 4539,
+      "cumulative_resources": {
+        "counts": {
+          "real_interaction_steps": 199,
+          "sumo_reset_warmup_steps": 1314,
+          "primary_updates": 35,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 0,
+          "bo_objective_evaluations": 175
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 199
+            },
+            "network_observation_rows": {
+              "actor": 199
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 0.0
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 420,
+              "qf1": 70,
+              "qf2": 70,
+              "qf1_target": 35,
+              "qf2_target": 35
+            },
+            "network_observation_rows": {
+              "actor": 53760,
+              "qf1": 8960,
+              "qf2": 8960,
+              "qf1_target": 4480,
+              "qf2_target": 4480
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35,
+              "qf1_optimizer": 35,
+              "qf2_optimizer": 35,
+              "dual_cst_optimizer": 35
+            },
+            "wall_seconds": 1.4200000000419095
+          }
+        }
+      },
+      "inference_actor_sha256": "c1741aa4ea8d9d61976cd533c9d9fd3d801167965ab14a2bcec86802b222a544",
+      "inference_actor_weights_sha256": "b08cc055122768ff827da42b28bbd56f5e0cb55c522f82b93ad58a411918116c",
+      "benchmark_eligible": false
+    },
+    {
+      "victim": "pgd_consistency",
+      "verified": true,
+      "episodes": 16,
+      "numeric_state_sha256": "0af3872bf84ff5a01f65b4eb22f916a6a7eb2998133c50b4df4d1228b4b215e9",
+      "boundary_state_sha256": "43922a79930e0e3daca2860a9d0cc33b2ab59eca5ada408c3ad9469aa97a9874",
+      "split_after_episode": 13,
+      "counts": {
+        "real_interaction_steps": 199,
+        "sumo_reset_warmup_steps": 1314,
+        "primary_updates": 35,
+        "auxiliary_updates": 0,
+        "attacked_interaction_steps": 0,
+        "privileged_branch_steps": 0,
+        "privileged_replay_steps": 0,
+        "candidate_observations": 26880,
+        "bo_objective_evaluations": 0
+      },
+      "physical_episodes": 48,
+      "actual_batch_sumo_steps": 4539,
+      "defense_checks": {
+        "reference": {
+          "verified": true,
+          "segment_updates": 35,
+          "cumulative_counts": {
+            "updates": 35,
+            "gradient_evaluations": 175,
+            "search_actor_forward_calls": 210,
+            "search_observation_rows": 26880,
+            "regularizer_actor_forward_calls": 35,
+            "regularizer_observation_rows": 4480,
+            "candidate_observations": 26880
+          },
+          "raw_kl_min": 0.0012485601543307328,
+          "raw_kl_max": 0.0016819808932382941,
+          "max_box_violation": 4.768371580921027e-08
+        },
+        "continuous": {
+          "verified": true,
+          "segment_updates": 35,
+          "cumulative_counts": {
+            "updates": 35,
+            "gradient_evaluations": 175,
+            "search_actor_forward_calls": 210,
+            "search_observation_rows": 26880,
+            "regularizer_actor_forward_calls": 35,
+            "regularizer_observation_rows": 4480,
+            "candidate_observations": 26880
+          },
+          "raw_kl_min": 0.0012485601543307328,
+          "raw_kl_max": 0.0016819808932382941,
+          "max_box_violation": 4.768371580921027e-08
+        },
+        "prefix": {
+          "verified": true,
+          "segment_updates": 16,
+          "cumulative_counts": {
+            "updates": 16,
+            "gradient_evaluations": 80,
+            "search_actor_forward_calls": 96,
+            "search_observation_rows": 12288,
+            "regularizer_actor_forward_calls": 16,
+            "regularizer_observation_rows": 2048,
+            "candidate_observations": 12288
+          },
+          "raw_kl_min": 0.0012485601543307328,
+          "raw_kl_max": 0.001463686194881921,
+          "max_box_violation": 4.768371580921027e-08
+        },
+        "resumed": {
+          "verified": true,
+          "segment_updates": 19,
+          "cumulative_counts": {
+            "updates": 35,
+            "gradient_evaluations": 175,
+            "search_actor_forward_calls": 210,
+            "search_observation_rows": 26880,
+            "regularizer_actor_forward_calls": 35,
+            "regularizer_observation_rows": 4480,
+            "candidate_observations": 26880
+          },
+          "raw_kl_min": 0.0014199880878343475,
+          "raw_kl_max": 0.0016819808932382941,
+          "max_box_violation": 4.768371580921027e-08
+        }
+      },
+      "reference_kind": "independent_repeat",
+      "cumulative_resources": {
+        "counts": {
+          "real_interaction_steps": 199,
+          "sumo_reset_warmup_steps": 1314,
+          "primary_updates": 35,
+          "auxiliary_updates": 0,
+          "attacked_interaction_steps": 0,
+          "privileged_branch_steps": 0,
+          "privileged_replay_steps": 0,
+          "candidate_observations": 26880,
+          "bo_objective_evaluations": 0
+        },
+        "phases": {
+          "interaction_policy": {
+            "network_forward_calls": {
+              "actor": 199
+            },
+            "network_observation_rows": {
+              "actor": 199
+            },
+            "optimizer_steps": {},
+            "wall_seconds": 0.06399999998393469
+          },
+          "primary_update": {
+            "network_forward_calls": {
+              "actor": 315,
+              "qf1": 70,
+              "qf2": 70,
+              "qf1_target": 35,
+              "qf2_target": 35
+            },
+            "network_observation_rows": {
+              "actor": 40320,
+              "qf1": 8960,
+              "qf2": 8960,
+              "qf1_target": 4480,
+              "qf2_target": 4480
+            },
+            "optimizer_steps": {
+              "actor_optimizer": 35,
+              "qf1_optimizer": 35,
+              "qf2_optimizer": 35
+            },
+            "wall_seconds": 0.29699999996228144
+          }
+        }
+      },
+      "inference_actor_sha256": "38a2808995706a6c1d088ba06a016101d90c7a883f9d41ba966c77391d0c4745",
+      "inference_actor_weights_sha256": "c1c87a448ac83c5a47753409bb838208a05efb39ea2329d3f4635bdb7a6dcb67",
+      "benchmark_eligible": false
+    }
+  ],
+  "physical_episodes": 144,
+  "actual_batch_sumo_steps": 13617,
+  "relevant_tests": {
+    "pgd_consistency": 8,
+    "consistency_audit": 5,
+    "training_support": 9,
+    "training_support_audit": 5,
+    "seed_protocols": 5,
+    "clean_victim": 1,
+    "checkpoints": 2,
+    "total": 35
+  },
+  "read_only_reaudit_matches": true,
+  "limitations": [
+    "One training run seed and short horizon; 144 episodes are repeated engineering paths, not independent traffic or efficacy samples.",
+    "Enabled PGD reference is an independent fresh-process repetition, not an upstream implementation or full SA-PPO reproduction.",
+    "Initial coefficient 0.1 and PGD parameters are engineering defaults, not validated or reserved-traffic-tuned hyperparameters.",
+    "Episode-boundary CPU restore only; no mid-episode or cross-source/runtime guarantee.",
+    "No benchmark-eligible model, new final traffic, proposed defense module or ACoE training.",
+    "Raw KL and box audits do not prove global PGD optimality, physical feasibility or certified robustness.",
+    "Wall time and network counts describe this short run; long-run training and attacked performance remain unmeasured."
+  ]
+}
