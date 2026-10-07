@@ -4,7 +4,7 @@
 
 已审阅原稿位于仓库外 `E:/Att/DEFENSE_RESEARCH_PLAN_REVIEW_20261005.md`，SHA256 为 `8c116c1d297422b11cebcc885547400e5cadfebfcf80eb8b9312e845b29f2c94`，审阅源码为 `bfc3b13fa01cca3eda094ce9e9d6c17d8ac0388b`。原稿保留不变，本文件登记批准范围及 OARL 强基线补充；原稿和攻击论文稿不提交 Git。
 
-D1 首批进度：完整历史轨迹诊断已通过，见 [诊断结果](DEFENSE_D1_RESULTS.md) 与 [复现协议](DEFENSE_DIAGNOSTIC_PROTOCOL.md)；ACoE 目标核对、逆可行集合和梯度检查见 [离散映射](ACOE_DISCRETE_MAPPING.md)。两种搜索的早碰撞转换集中于一个交通种子，需要控制性 reset/分支验证。候选奖励来源和 off-policy 目标尚未选定，D1 没有据此关闭全部验收，也没有开始母方法或新防御训练。
+D1 进度（2026-10-07）：完整历史轨迹诊断已通过，见 [诊断结果](DEFENSE_D1_RESULTS.md) 与 [复现协议](DEFENSE_DIAGNOSTIC_PROTOCOL.md)；ACoE 目标核对、逆可行集合和梯度检查见 [离散映射](ACOE_DISCRETE_MAPPING.md)。现已完成 [控制性 reset/分支验证](DEFENSE_CONTROLLED_REPLAY_RESULTS.md)：350 次 rollout、150 个配对，无攻击和持续攻击历史精确复现，warmup 未观测到 ego 碰撞。OARL 两种搜索的单次转换均为集中交通的 5 次早失败，持续后增至 11/8 次；其他交通单次输入恢复有时提高回报，不能预设所有行为偏离有害或恢复模块已被支持。候选奖励来源、belief 和 off-policy 目标尚未选定，D1 没有据此关闭全部验收，也没有开始母方法或新防御训练。下一步补 D2 的策略快照/恢复/训练成本支持，并完成上述目标选择。
 
 ## 先建立 OARL Robust 对照
 
