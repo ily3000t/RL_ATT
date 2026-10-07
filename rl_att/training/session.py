@@ -22,6 +22,8 @@ def training_seeds(config):
     seeds = seed_manifest(config["run_seed"], "controlled", config["training"]["episodes"], config["sumo_schedule"])
     if config["victim"] == "clean":
         seeds["attack_rng"] = "unused_clean_training"
+    elif config["victim"] == "pgd_consistency":
+        seeds["attack_rng"] = "isolated_auxiliary_attack_numpy"
     seeds["numpy_rng"] = "upstream_shared_environment_and_replay_preserved"
     return seeds
 
@@ -34,8 +36,8 @@ def initialize_global_rng(seeds):
 
 class TrainingSession:
     def __init__(self, config, identity, initialize_rng=True, agent_kwargs=None):
-        require(config["victim"] in ("clean", "oarl") and config["protocol"] == "controlled" and
-                config["gate_enabled"] is False, "Only matched controlled Clean/OARL training without Gate")
+        require(config["victim"] in ("clean", "oarl", "pgd_consistency") and config["protocol"] == "controlled" and
+                config["gate_enabled"] is False, "Only registered controlled training without Gate")
         require(not torch.cuda.is_available(), "Use the frozen CPU environment")
         self.config, self.identity = copy.deepcopy(config), copy.deepcopy(identity)
         self.seeds = training_seeds(config)
@@ -43,12 +45,17 @@ class TrainingSession:
             initialize_global_rng(self.seeds)
         cli = config["training"]
         cls = CleanVictimAgent if config["victim"] == "clean" else Agent
+        if config["victim"] == "pgd_consistency":
+            from rl_att.agents.pgd_consistency import PGDConsistencyAgent
+            cls = PGDConsistencyAgent
         self.agent = cls(cli["state_dim"], cli["action_dim"], cli["action_numb"],
                          attack_seed=self.seeds["attack_seed"], **(agent_kwargs or {}))
         self.agent.train()
         self.policy_stream = TorchPolicyStream(self.seeds["policy_seed"])
         self.auxiliary_streams = AuxiliaryStreams(config["run_seed"])
         self.resources = TrainingResources()
+        if config["victim"] == "pgd_consistency":
+            self.agent.configure_consistency(config["defense"], self.auxiliary_streams.numpy["attack"], self.resources)
         self.components = {}
         self.loop = dict(completed_episodes=0, interactions=0, updates=0, policy_version=0)
         self.probes = []
@@ -143,6 +150,9 @@ class TrainingSession:
                       auxiliary_role_seeds=self.auxiliary_streams.seeds, gate_enabled=False,
                       engineering_only=engineering_only, benchmark_eligible=False,
                       provenance_scope="New training artifact; does not replace or append old frozen registry automatically")
+        if self.config["victim"] == "pgd_consistency":
+            record.update(defense_config=copy.deepcopy(self.config["defense"]),
+                          defense_training_counts=copy.deepcopy(self.agent.consistency_counts))
         record_path = path.with_suffix(".json")
         require(not record_path.exists(), "Actor record already exists")
         record_path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")

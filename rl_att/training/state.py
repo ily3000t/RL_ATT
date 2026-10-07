@@ -84,15 +84,19 @@ def optimizer_state(optimizer):
 
 
 def agent_state(agent):
-    return dict(hyperparameters={k: getattr(agent, k) for k in HYPERPARAMETERS},
+    state = dict(hyperparameters={k: getattr(agent, k) for k in HYPERPARAMETERS},
                 networks={n: network_state(getattr(agent, n)) for n in NETWORKS},
                 optimizers={n: optimizer_state(getattr(agent, n)) for n in OPTIMIZERS},
                 dual=agent.dual_cst.detach().clone(), dual_gradient=None if agent.dual_cst.grad is None else agent.dual_cst.grad.detach().clone(),
                 replay=replay_state(agent.replay_buffer), js_float64_evaluations=agent.js_float64_evaluations)
+    if hasattr(agent, "training_state_dict"):
+        state["defense_training"] = agent.training_state_dict()
+    return state
 
 
 def restore_agent(agent, state):
     require(state["hyperparameters"] == {k: getattr(agent, k) for k in HYPERPARAMETERS}, "Agent hyperparameters mismatch")
+    require(("defense_training" in state) == hasattr(agent, "load_training_state_dict"), "Defense training state mismatch")
     for name in NETWORKS:
         restore_network(getattr(agent, name), state["networks"][name])
     agent.dual_cst.data.copy_(state["dual"])
@@ -101,6 +105,8 @@ def restore_agent(agent, state):
         getattr(agent, name).load_state_dict(state["optimizers"][name])
     restore_replay(agent.replay_buffer, state["replay"])
     agent.js_float64_evaluations = state["js_float64_evaluations"]
+    if "defense_training" in state:
+        agent.load_training_state_dict(state["defense_training"])
 
 
 def tree_digest(value):
